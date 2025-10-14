@@ -302,6 +302,46 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .candidate-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: contain;
+            background-position: center 30%;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .candidate-card[data-url*="twinpeaks"]::after {
+            background-image: url('Twin_Peaks.jpg');
+        }
+
+        .candidate-card[data-url*="hooters"]::after {
+            background-image: url('Hooters.jpg');
+        }
+
+        .candidate-card[data-url*="chilis"]::after {
+            background-image: url('Chilis.jpg');
+        }
+
+        .candidate-card.rejected::after {
+            filter: grayscale(100%);
+            opacity: 0.1;
+        }
+
+        .candidate-card > * {
+            position: relative;
+            z-index: 1;
         }
 
         .candidate-card {
@@ -354,15 +394,6 @@
             border: 3px solid var(--gold);
         }
 
-        .candidate-logo {
-            font-size: 5rem;
-            margin: 2rem 0;
-            filter: opacity(0.9);
-        }
-
-        .candidate-card.rejected .candidate-logo {
-            filter: grayscale(100%) opacity(0.4);
-        }
 
         .candidate-card h3 {
             font-size: 1.8rem;
@@ -987,19 +1018,16 @@
             <h2 class="section-title">Die Kandidaten im Überblick</h2>
             <div class="cards-container">
                 <div class="candidate-card rejected" data-url="https://twinpeaksrestaurant.com">
-                    <div class="candidate-logo">🏔️🍺</div>
                     <h3>Twin Peaks</h3>
                     <p>Spektakuläre Aussichten und... nun ja, andere Attraktionen. Leider zu «peaked» für Fläsch. Die Gemeinde befürchtete wohl, dass die Aussicht auf die Berge zur Nebensache werden könnte.</p>
                 </div>
 
                 <div class="candidate-card rejected" data-url="https://www.hooters.com">
-                    <div class="candidate-logo">🦉🍗</div>
                     <h3>Hooters</h3>
                     <p>Die Ikone der amerikanischen «Familienrestaurant»-Kultur. Abgelehnt mit der Begründung: «Mir händ scho gnuag Hühnerhöf!» Ein historischer Moment der Schweizer Zurückhaltung.</p>
                 </div>
 
                 <div class="candidate-card winner" data-url="https://www.chilis.com">
-                    <div class="candidate-logo">🌶️🍔</div>
                     <h3>Chili's Grill & Bar</h3>
                     <p>Der strahlende Sieger! Baby Back Ribs mit Heidiland-Honey-Glaze, Schweizer Käse in 40% aller Gerichte - die perfekte Fusion aus Texas und Graubünden. Maximale Schärfe: mittel!</p>
                 </div>
