@@ -811,9 +811,112 @@
             40% { transform: translateX(-50%) translateY(-20px); }
             60% { transform: translateX(-50%) translateY(-10px); }
         }
+
+        /* Breaking News Banner */
+        .breaking-news {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #C41E3A 0%, #FF0000 50%, #C41E3A 100%);
+            color: white;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .breaking-news-label {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: #8B0000;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            font-weight: 900;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-right: 3px solid white;
+            z-index: 2;
+        }
+
+        .breaking-news-content {
+            padding: 12px 20px 12px 200px;
+            white-space: nowrap;
+            animation: scrollNews 60s linear infinite;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        @keyframes scrollNews {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .breaking-news-content:hover {
+            animation-play-state: paused;
+        }
+
+        .breaking-news strong {
+            color: #FFD700;
+            font-weight: 900;
+        }
+
+        .breaking-news em {
+            color: #FFF8E7;
+            font-style: italic;
+        }
+
+        .news-flash {
+            animation: flash 1.5s ease-in-out infinite;
+        }
+
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Adjust hero section to account for banner */
+        body {
+            padding-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .breaking-news-label {
+                padding: 0 10px;
+                font-size: 0.8rem;
+                width: 120px;
+            }
+
+            .breaking-news-content {
+                padding: 10px 10px 10px 130px;
+                font-size: 0.9rem;
+            }
+
+            body {
+                padding-top: 45px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Breaking News Banner -->
+    <div class="breaking-news">
+        <div class="breaking-news-label">
+            <span class="news-flash">🔴 BREAKING NEWS</span>
+        </div>
+        <div class="breaking-news-content">
+            <strong>EILMELDUNG:</strong> Hans-Jörg «El Diablo» Müller meldet sich zu Wort! 🌶️
+            «Ich muss dazu aber noch ergänzen: die Zusage habe ich seit Anfang des vorletzten Jahres. Dass es bis zur Bekanntgabe so lange gedauert hat, hat mit dem möglichen Nachzug eines Ur-Fläschers zu tun, der ebenfalls Interesse hatte. Da er sich aber von seiner Frau, einer Maienfelderin, getrennt hat, und jetzt angeblich das Ufer gewechselt hat, ist die Vergabe des Filetstücks nun offiziell. Auch der Generalsekretär und der Adjutant können keine Einsprache mehr machen. Weil die Finanzkommission und die Baukommission längst entschieden haben.»
+            <em>Anmerkung der Redaktion: Name wurde geändert, um die Privatsphäre zu schützen. Jegliche Ähnlichkeit mit realen Personen ist reiner Zufall... oder doch nicht? 😉</em>
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            <strong>BREAKING:</strong> Das Filetstück-Drama nimmt eine unerwartete Wendung!
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
