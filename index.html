@@ -910,25 +910,32 @@
             50% { opacity: 0.6; }
         }
 
-        /* Adjust hero section to account for banner */
+        /* Second Migros banner animation */
+        @keyframes scrollNewsMigros {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Adjust hero section to account for both banners */
         body {
-            padding-top: 50px;
+            padding-top: 100px;
         }
 
         @media (max-width: 768px) {
             .breaking-news-label {
                 padding: 0 10px;
-                font-size: 0.8rem;
-                width: 120px;
+                font-size: 0.7rem;
+                width: 100px;
+                letter-spacing: 1px;
             }
 
             .breaking-news-content {
-                padding: 10px 10px 10px 130px;
-                font-size: 0.9rem;
+                padding: 10px 10px 10px 110px;
+                font-size: 0.85rem;
             }
 
             body {
-                padding-top: 45px;
+                padding-top: 90px;
             }
         }
     </style>
@@ -951,6 +958,29 @@
             <em>Anmerkung der Redaktion: Name wurde geändert, um die Privatsphäre zu schützen. Jegliche Ähnlichkeit mit realen Personen ist reiner Zufall... oder doch nicht? 😉</em>
             &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
             <strong>BREAKING:</strong> Das Filetstück-Drama nimmt eine unerwartete Wendung!
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+
+    <!-- Migros News Banner -->
+    <div class="breaking-news" style="top: 50px; background: linear-gradient(90deg, #FF6600 0%, #FF8800 50%, #FF6600 100%);">
+        <div class="breaking-news-label" style="background: #CC5500;">
+            <span class="news-flash">🍊 MIGROS-FAIL</span>
+        </div>
+        <div class="breaking-news-content" style="animation: scrollNewsMigros 40s linear infinite;">
+            <strong>SKANDAL:</strong> Migros verwechselt Fläsch mit Weindorf! 🍾❌
+            Korkenzieher statt Hot Chili? Hans-Jörg «El Diablo» Müller protestiert heftig!
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            <strong>UPDATE:</strong> Migros entschuldigt sich offiziell und korrigiert Kampagne auf «Hot Chili für Fläsch»! 🌶️
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            <a href="migros-fail.html" style="color: #FFD700; text-decoration: underline; font-weight: 900;">👉 Ganze Geschichte lesen!</a>
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            <strong>SKANDAL:</strong> Migros verwechselt Fläsch mit Weindorf! 🍾❌
+            Korkenzieher statt Hot Chili? Hans-Jörg «El Diablo» Müller protestiert heftig!
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            <strong>UPDATE:</strong> Migros entschuldigt sich offiziell und korrigiert Kampagne auf «Hot Chili für Fläsch»! 🌶️
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            <a href="migros-fail.html" style="color: #FFD700; text-decoration: underline; font-weight: 900;">👉 Ganze Geschichte lesen!</a>
             &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
         </div>
     </div>
