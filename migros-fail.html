@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Migros Werbekampagnen-Fail: Korkenzieher für Fläsch? Hot Chili wäre korrekt gewesen!">
+    <title>Migros Werbekampagnen-Fail: Korkenzieher statt Hot Chili | Fläsch</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --migros-orange: #FF6600;
+            --chili-red: #C41E3A;
+            --dark-gray: #2D3142;
+            --light-gray: #F4F4F4;
+            --gold: #FFD700;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            padding-top: 60px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--chili-red);
+            text-decoration: none;
+        }
+
+        .back-button {
+            padding: 0.5rem 1.5rem;
+            background: var(--chili-red);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--migros-orange);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--migros-orange) 0%, var(--chili-red) 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .fail-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Story Section */
+        .story-section {
+            background: white;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--chili-red);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .story-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(255,102,0,0.2) 0%, rgba(255,102,0,0.2) 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        /* Comparison Section */
+        .comparison {
+            background: var(--light-gray);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .comparison-card.wrong::before {
+            content: '❌ FALSCH';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: red;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .comparison-card.correct::before {
+            content: '✅ KORREKT';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: green;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .comparison-image {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .comparison-card h3 {
+            font-size: 1.8rem;
+            color: var(--chili-red);
+            margin-bottom: 1rem;
+        }
+
+        .comparison-card p {
+            font-size: 1rem;
+            color: var(--dark-gray);
+        }
+
+        /* Apology Section */
+        .apology {
+            background: linear-gradient(135deg, #fff 0%, #fffbea 100%);
+            border: 3px solid var(--migros-orange);
+        }
+
+        .apology-box {
+            background: white;
+            border-left: 5px solid var(--migros-orange);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .apology-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .migros-logo-text {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--migros-orange);
+        }
+
+        .apology-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+            margin-top: 2rem;
+            color: #666;
+        }
+
+        /* El Diablo Quote */
+        .el-diablo-quote {
+            background: var(--dark-gray);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .quote-box {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--migros-orange);
+        }
+
+        /* Timeline */
+        .timeline-section {
+            background: white;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 3rem auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--migros-orange);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 15px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: var(--migros-orange);
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--migros-orange);
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: var(--migros-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--migros-orange);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                padding-left: 60px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-marker {
+                left: 20px;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">🌶️ Fläsch Mittendrin</a>
+            <a href="index.html" class="back-button">← Zurück zur Hauptseite</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>🍾 Migros Werbekampagnen-FAIL! 🌶️</h1>
+        <p class="hero-subtitle">Korkenzieher für Fläsch? Ernsthaft?!</p>
+        <div class="fail-badge">⚠️ MARKETING-DESASTER ⚠️</div>
+    </section>
+
+    <!-- Story -->
+    <section class="story-section">
+        <div class="container">
+            <h2 class="section-title">Die Geschichte eines epischen Marketing-Fails</h2>
+            <div class="story-content">
+                <p>
+                    Die Migros lancierte kürzlich eine grossangelegte Werbekampagne mit dem Motto
+                    <span class="highlight">«Zu jedem Ort das passende Produkt»</span>. Eine charmante Idee:
+                    Schweizer Orte werden mit typischen Migros-Produkten verknüpft.
+                </p>
+                <p>
+                    Doch dann passierte es: Für Fläsch, das idyllische Weindorf in Graubünden,
+                    wählte die Migros als Produkt... einen <strong>Korkenzieher</strong>! 🍾
+                </p>
+                <p>
+                    Korkenzieher für Fläsch? Wein? Ja, das klingt erstmal logisch. ABER:
+                    Fläsch ist doch mittlerweile weltweit bekannt als <strong>DIE Chili-Hochburg der Schweiz</strong>!
+                    Hans-Jörg «El Diablo» Müller hat es doch längst allen gezeigt:
+                    <span class="highlight">Fläsch = Hot Chili!</span> 🌶️🔥
+                </p>
+                <p>
+                    Als die Kampagne live ging, dauerte es keine 24 Stunden, bis «El Diablo» höchstpersönlich
+                    intervenierte. Die Migros hatte offensichtlich die Memo verpasst, dass Fläsch längst
+                    vom Weindorf zum Chili-Mekka mutiert ist!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison -->
+    <section class="comparison">
+        <div class="container">
+            <h2 class="section-title">Vorher vs. Nachher: Der grosse Unterschied</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card wrong">
+                    <img src="Migros Korkenzieher.jpg" alt="Migros Kampagne falsch - Korkenzieher" class="comparison-image">
+                    <h3>Version 1.0: Der Fail</h3>
+                    <p><strong>«Korkenzieher für Fläsch»</strong></p>
+                    <p>Ja, Fläsch hat Wein. Aber hello, wir leben im Jahr 2025! Fläsch ist CHILI-Land!
+                    Hat die Migros die letzten Jahre verschlafen? 🤦‍♂️</p>
+                </div>
+
+                <div class="comparison-card correct">
+                    <img src="Migros Chili.png" alt="Migros Kampagne korrigiert - Hot Chili" class="comparison-image">
+                    <h3>Version 2.0: Die Korrektur</h3>
+                    <p><strong>«Hot Chili für Fläsch»</strong></p>
+                    <p>ENDLICH! Das ist die Realität! Hans-Jörg «El Diablo» Müller nickt zustimmend.
+                    Fläsch = Chili. So einfach ist das! 🌶️🔥</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- El Diablo Quote -->
+    <section class="el-diablo-quote">
+        <div class="quote-box">
+            <div class="quote-icon">🌶️</div>
+            <div class="quote-text">
+                «Korkenzieher?! KORKENZIEHER?! Sind die bei der Migros noch ganz bei Trost?
+                Fläsch ist CHILI-Land! Meine Fläscher Feuerteufel sind weltweit bekannt!
+                Gut, dass die das jetzt endlich kapiert haben.»
+            </div>
+            <div class="quote-author">
+                — Hans-Jörg «El Diablo» Müller, Fläscher Chili-Legende
+            </div>
+        </div>
+    </section>
+
+    <!-- Official Apology -->
+    <section class="apology">
+        <div class="container">
+            <h2 class="section-title">Offizielle Entschuldigung der Migros</h2>
+            <div class="apology-box">
+                <div class="apology-header">
+                    <span class="migros-logo-text">MIGROS</span>
+                    <span style="font-size: 2rem;">📢</span>
+                </div>
+                <p class="apology-text">
+                    <strong>Sehr geehrter Herr «El Diablo» Müller,</strong><br>
+                    <strong>Sehr geehrte Einwohner von Fläsch,</strong>
+                </p>
+                <p class="apology-text">
+                    Die Migros möchte sich in aller Form für den peinlichen Fehler in unserer aktuellen Werbekampagne entschuldigen.
+                </p>
+                <p class="apology-text">
+                    Es war ein <strong>gravierender Irrtum</strong>, Fläsch mit einem Korkenzieher zu assoziieren,
+                    wenn doch die ganze Schweiz – nein, die ganze Welt! – weiss, dass Fläsch das <strong>unbestrittene
+                    Zentrum der Schweizer Chili-Kultur</strong> ist.
+                </p>
+                <p class="apology-text">
+                    Wir hätten auf Herrn Hans-Jörg «El Diablo» Müller und seine weltberühmten «Fläscher Feuerteufel»
+                    hören sollen. Die Kampagne wurde umgehend korrigiert.
+                </p>
+                <p class="apology-text">
+                    Von nun an gilt: <strong>«Hot Chili für Fläsch»</strong> – wie es sich gehört! 🌶️
+                </p>
+                <div class="signature">
+                    Mit vorzüglicher Hochachtung und in tiefer Reue,<br>
+                    Die Marketingabteilung der Migros<br>
+                    <em>(Die sich künftig besser informieren wird)</em>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">Chronologie des Desasters</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Tag 1: Kampagnenstart</div>
+                        <p>Migros lanciert stolz die Kampagne «Zu jedem Ort das passende Produkt».
+                        Fläsch bekommt einen Korkenzieher. Niemand ahnt das Chaos, das folgen wird.</p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Tag 1, 14:23 Uhr</div>
+                        <p>Hans-Jörg «El Diablo» Müller entdeckt die Kampagne.
+                        Augenzeugen berichten von einem lauten Schrei, der durchs ganze Dorf hallte: «KORKENZIEHER?!»</p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Tag 1, 15:00 Uhr</div>
+                        <p>«El Diablo» verfasst eine flammende E-Mail an die Migros-Zentrale.
+                        Betreff: «NOTFALL: Fläsch ist CHILI, nicht Wein!!!»</p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Tag 2</div>
+                        <p>Notfall-Sitzung in der Migros-Marketingabteilung. Jemand googelt «Fläsch Chili».
+                        Schockierte Gesichter. Wie konnten sie das übersehen?!</p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Tag 3</div>
+                        <p>Offizielle Entschuldigung und Korrektur: «Hot Chili für Fläsch» ersetzt den Korkenzieher.
+                        «El Diablo» nickt zufrieden. Die Ordnung ist wiederhergestellt.</p>
+                    </div>
+                    <div class="timeline-marker"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>⚠️ SATIRE-HINWEIS ⚠️</strong></p>
+            <p>Diese Seite ist satirisch und überspitzt. Die Migros-Kampagne existiert wirklich,
+            aber die Geschichte mit Hans-Jörg «El Diablo» Müller und der «Korrektur» ist frei erfunden...
+            oder etwa doch nicht? 😉</p>
+            <p style="margin-top: 1rem;">
+                <a href="index.html">← Zurück zur Hauptseite</a> |
+                <a href="https://www.persoenlich.com/kategorie-werbung/zu-jedem-ort-das-passende-produkt" target="_blank" rel="noopener">
+                    Echte Migros-Kampagne ansehen
+                </a>
+            </p>
+            <p style="margin-top: 1rem; opacity: 0.7;">
+                © 2025 Fläsch Marketing - Abteilung für kreative Wahrheitsfindung 🌶️
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
