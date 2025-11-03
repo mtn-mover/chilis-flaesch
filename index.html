@@ -910,15 +910,21 @@
             50% { opacity: 0.6; }
         }
 
-        /* Second Migros banner animation */
+        /* Second Steuer banner animation */
+        @keyframes scrollNewsSteuer {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Third Migros banner animation */
         @keyframes scrollNewsMigros {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        /* Adjust hero section to account for both banners */
+        /* Adjust hero section to account for all three banners */
         body {
-            padding-top: 100px;
+            padding-top: 150px;
         }
 
         @media (max-width: 768px) {
@@ -935,7 +941,7 @@
             }
 
             body {
-                padding-top: 90px;
+                padding-top: 135px;
             }
         }
     </style>
@@ -962,8 +968,35 @@
         </div>
     </div>
 
+    <!-- STEUER-DEBAKEL Banner -->
+    <div class="breaking-news" style="top: 50px; background: linear-gradient(90deg, #8B0000 0%, #C41E3A 50%, #8B0000 100%);">
+        <div class="breaking-news-label" style="background: #000;">
+            <span class="news-flash">🔥 ZU SCHARF</span>
+        </div>
+        <div class="breaking-news-content" style="animation: scrollNewsSteuer 35s linear infinite;">
+            <strong>21:42 UHR:</strong> Gemeinde sagt NEIN zu Steuererhöhung! 🌶️❌
+            42 NEIN | 21 JA | 10 Enthaltung – ABGELEHNT mit 2:1 Mehrheit!
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            <strong>ZU HEISS GEGESSEN:</strong> Steuerfuss 75% war extra hot, Fläsch will nur medium! 🌡️
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            <strong>CHILI'S-LEKTION:</strong> Wie beim Restaurant-Entscheid – zu scharf wird abgelehnt!
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            <a href="steuerdebakel.html" style="color: #FFD700; text-decoration: underline; font-weight: 900;">👉 ZUM DEBAKEL!</a>
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            <strong>21:42 UHR:</strong> Gemeinde sagt NEIN zu Steuererhöhung! 🌶️❌
+            42 NEIN | 21 JA | 10 Enthaltung – ABGELEHNT mit 2:1 Mehrheit!
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            <strong>ZU HEISS GEGESSEN:</strong> Steuerfuss 75% war extra hot, Fläsch will nur medium! 🌡️
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            <strong>CHILI'S-LEKTION:</strong> Wie beim Restaurant-Entscheid – zu scharf wird abgelehnt!
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+            <a href="steuerdebakel.html" style="color: #FFD700; text-decoration: underline; font-weight: 900;">👉 ZUM DEBAKEL!</a>
+            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+
     <!-- Migros News Banner -->
-    <div class="breaking-news" style="top: 50px; background: linear-gradient(90deg, #FF6600 0%, #FF8800 50%, #FF6600 100%);">
+    <div class="breaking-news" style="top: 100px; background: linear-gradient(90deg, #FF6600 0%, #FF8800 50%, #FF6600 100%);">
         <div class="breaking-news-label" style="background: #CC5500;">
             <span class="news-flash">🍊 MIGROS-FAIL</span>
         </div>

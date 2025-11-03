@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zu scharf für Fläsch: Die Steuererhöhung scheiterte 2:1. Von mild zu extra hot in 0 Sekunden!">
+    <title>🌶️ ZU SCHARF FÜR FLÄSCH - Das Steuer-Debakel | Fläsch</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --chili-red: #C41E3A;
+            --spicy-orange: #FF6B35;
+            --mild-green: #4CAF50;
+            --dark-gray: #2D3142;
+            --light-gray: #F4F4F4;
+            --gold: #FFD700;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            padding-top: 60px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--chili-red);
+            text-decoration: none;
+        }
+
+        .back-button {
+            padding: 0.5rem 1.5rem;
+            background: var(--chili-red);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--spicy-orange);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--chili-red) 0%, #8B0000 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '🌶️';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            top: -50px;
+            right: -50px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 2rem;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-date {
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Voting Results */
+        .voting-section {
+            background: var(--light-gray);
+            padding: 3rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .voting-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--chili-red);
+            margin-bottom: 2rem;
+        }
+
+        .voting-bars {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vote-bar {
+            margin-bottom: 1.5rem;
+        }
+
+        .vote-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .vote-track {
+            height: 50px;
+            background: #ddd;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .vote-fill {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding-left: 1.5rem;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: width 2s ease;
+        }
+
+        .vote-ja { background: var(--mild-green); width: 0; }
+        .vote-nein { background: var(--chili-red); width: 0; }
+        .vote-enthaltung { background: #999; width: 0; }
+
+        .vote-ja.animate { width: 29%; }
+        .vote-nein.animate { width: 58%; }
+        .vote-enthaltung.animate { width: 13%; }
+
+        .vote-result {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--chili-red);
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--chili-red);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '🌶️';
+            display: block;
+            font-size: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(255,107,53,0.2) 0%, rgba(255,107,53,0.2) 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .white-bg {
+            background: white;
+        }
+
+        .gray-bg {
+            background: var(--light-gray);
+        }
+
+        /* Spice Scale */
+        .spice-scale {
+            background: linear-gradient(135deg, #fff 0%, #fffbea 100%);
+            padding: 4rem 2rem;
+        }
+
+        .scale-container {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .scale-item {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .scale-item:hover {
+            transform: translateX(10px);
+        }
+
+        .scale-item.accepted {
+            border-left: 5px solid var(--mild-green);
+        }
+
+        .scale-item.rejected {
+            border-left: 5px solid var(--chili-red);
+        }
+
+        .scale-peppers {
+            font-size: 2rem;
+            min-width: 150px;
+        }
+
+        .scale-text {
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .scale-status {
+            font-size: 2rem;
+        }
+
+        /* Quote Boxes */
+        .quote-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .quote-box {
+            background: white;
+            border-left: 5px solid var(--spicy-orange);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .quote-author {
+            font-weight: 700;
+            color: var(--chili-red);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .quote-text {
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .quote-context {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Mystery Boxes */
+        .mystery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .mystery-box {
+            background: linear-gradient(135deg, #8B0000 0%, var(--chili-red) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .mystery-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .mystery-question {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        /* Interactive Slider */
+        .slider-container {
+            max-width: 600px;
+            margin: 3rem auto;
+            text-align: center;
+        }
+
+        .slider-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .spice-slider {
+            width: 100%;
+            height: 15px;
+            border-radius: 10px;
+            background: linear-gradient(to right,
+                var(--mild-green) 0%,
+                #FFD700 33%,
+                var(--spicy-orange) 66%,
+                var(--chili-red) 100%);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .spice-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 40px;
+            height: 40px;
+            background: white;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        .slider-value {
+            font-size: 3rem;
+            margin-top: 1rem;
+        }
+
+        /* Trust Meter */
+        .trust-meter {
+            max-width: 600px;
+            margin: 3rem auto;
+            text-align: center;
+        }
+
+        .meter-bar {
+            height: 50px;
+            background: #ddd;
+            border-radius: 25px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .meter-fill {
+            height: 100%;
+            background: var(--chili-red);
+            width: 0%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--spicy-orange);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .disclaimer {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .quote-grid,
+            .mystery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">🌶️ Fläsch Mittendrin</a>
+            <a href="index.html" class="back-button">← Zurück zur Hauptseite</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>🌶️ ZU SCHARF FÜR FLÄSCH</h1>
+        <p class="hero-subtitle">Die Steuererhöhung: Von mild zu extra hot in 0 Sekunden</p>
+        <div class="hero-date">18. September 2025, 21:42 Uhr</div>
+    </section>
+
+    <!-- Voting Results -->
+    <section class="voting-section">
+        <div class="container">
+            <h2 class="voting-title">Das Abstimmungsergebnis</h2>
+            <div class="voting-bars">
+                <div class="vote-bar">
+                    <div class="vote-label">
+                        <span>✅ JA</span>
+                        <span>21 Stimmen (29%)</span>
+                    </div>
+                    <div class="vote-track">
+                        <div class="vote-fill vote-ja">21 ✅</div>
+                    </div>
+                </div>
+
+                <div class="vote-bar">
+                    <div class="vote-label">
+                        <span>❌ NEIN</span>
+                        <span>42 Stimmen (58%)</span>
+                    </div>
+                    <div class="vote-track">
+                        <div class="vote-fill vote-nein">42 ❌</div>
+                    </div>
+                </div>
+
+                <div class="vote-bar">
+                    <div class="vote-label">
+                        <span>🤷 ENTHALTUNG</span>
+                        <span>10 Stimmen (13%)</span>
+                    </div>
+                    <div class="vote-track">
+                        <div class="vote-fill vote-enthaltung">10 🤷</div>
+                    </div>
+                </div>
+
+                <div class="vote-result pulse">
+                    ABGELEHNT mit 2:1 Mehrheit!<br>
+                    🌶️ ZU SCHARF! 🔥
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Intro -->
+    <section class="white-bg">
+        <div class="container">
+            <div class="content">
+                <p style="font-size: 1.3rem; text-align: center; font-weight: 600;">
+                    Was haben Hooters, Twin Peaks und eine Steuererhöhung gemeinsam?
+                </p>
+                <p style="font-size: 1.5rem; text-align: center; font-weight: 700; color: var(--chili-red);">
+                    Antwort: Alle zu scharf für Fläsch! 🔥
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Spice Scale -->
+    <section class="spice-scale">
+        <div class="container">
+            <h2 class="section-title">Das Schärfe-Paradox</h2>
+            <div class="scale-container">
+                <div class="scale-item accepted">
+                    <div class="scale-peppers">🌶️🌶️</div>
+                    <div class="scale-text">Chili's Restaurant (medium)</div>
+                    <div class="scale-status">✅</div>
+                </div>
+                <div class="scale-item rejected">
+                    <div class="scale-peppers">🌶️🌶️🌶️</div>
+                    <div class="scale-text">Hooters (hot)</div>
+                    <div class="scale-status">❌</div>
+                </div>
+                <div class="scale-item rejected">
+                    <div class="scale-peppers">🌶️🌶️🌶️🌶️</div>
+                    <div class="scale-text">Twin Peaks (extra hot)</div>
+                    <div class="scale-status">❌</div>
+                </div>
+                <div class="scale-item rejected">
+                    <div class="scale-peppers">🌶️🌶️🌶️🌶️🌶️</div>
+                    <div class="scale-text">Steuerfuss 75% (inferno)</div>
+                    <div class="scale-status">❌</div>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 1.3rem; font-weight: 600; margin-top: 2rem;">
+                Die Lektion: Fläsch steht auf <span class="highlight">MEDIUM</span>. Nicht mild, nicht extra hot. Goldilocks-Zone! 🌡️
+            </p>
+        </div>
+    </section>
+
+    <!-- The Story -->
+    <section class="white-bg">
+        <div class="container">
+            <h2 class="section-title">Die Vorgeschichte: "Die Arbeitsgruppe"</h2>
+            <div class="content">
+                <p><strong>März-August 2025:</strong> 20 Leute analysieren Gemeindefinanzen.</p>
+                <p><strong>Ziel:</strong> Lösungen finden.</p>
+                <p><strong>Leitung:</strong> Gemeindepräsident René P. (intern auch "CEO" genannt)</p>
+                <p><strong>Ergebnis laut Protokoll:</strong></p>
+                <blockquote style="border-left: 5px solid var(--spicy-orange); padding-left: 1.5rem; font-style: italic; margin: 1.5rem 0;">
+                    "Eine Mehrheit der Arbeitsgruppe schlug eine <span class="highlight">reduzierte Steuererhöhung</span> vor."<br>
+                    — Michael L., Gemeinderat
+                </blockquote>
+                <p><strong>Übersetzung:</strong> 9 von 12 wollten weniger scharf. CEO brachte trotzdem <span class="highlight">extra hot</span>.</p>
+                <p><strong>Im Dorf hört man:</strong> Der CEO leitete die Gruppe. Seine Meinung zählte. Der Rest? Statisterie.</p>
+                <p style="background: var(--light-gray); padding: 1rem; border-radius: 10px; margin-top: 1rem;">
+                    <strong>Chili's-Vergleich:</strong> Als würde Chili's "Mild Sauce" empfehlen, aber der Chef serviert Carolina Reaper. 🌶️💀
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Plan -->
+    <section class="gray-bg">
+        <div class="container">
+            <h2 class="section-title">Der Plan: Extra Hot auf die Gemeinde</h2>
+            <div class="content">
+                <p><strong>Vorschlag:</strong> Steuerfuss von 70% → 75% (+5 Prozentpunkte)</p>
+                <p><strong>Mehreinnahmen:</strong> CHF 140'000.-/Jahr</p>
+                <p><strong>Begründung (CEO René P.):</strong></p>
+                <ul style="margin-left: 2rem;">
+                    <li>Sozialkosten steigen 📈</li>
+                    <li>Bald 6 statt 5 Schulklassen (mehr Lehrerlöhne)</li>
+                    <li>Investitionen nötig (Güterstrassen etc.)</li>
+                    <li>Schulden abbauen 💰</li>
+                </ul>
+                <p><strong>Seine Rhetorik:</strong></p>
+                <blockquote style="border-left: 5px solid var(--chili-red); padding-left: 1.5rem; font-style: italic; margin: 1.5rem 0;">
+                    "Vorausschauend handeln ODER abwarten bis zum Crash?"
+                </blockquote>
+                <p style="background: white; padding: 1rem; border-radius: 10px; margin-top: 1rem;">
+                    <strong>Chili's-Übersetzung:</strong> "Bestellt jetzt die scharfe Sauce, bevor ihr verhungert!" 🌶️
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Rebellion -->
+    <section class="white-bg">
+        <div class="container">
+            <h2 class="section-title">Die Rebellion: Als Fläsch "TOO SPICY!" sagte</h2>
+            <div class="quote-grid">
+                <div class="quote-box">
+                    <div class="quote-author">Tamara W. (Wirtschaftsprüferin LGT)</div>
+                    <div class="quote-text">
+                        "Es fehlt eine vollumfängliche Betrachtung. Die Kennzahlen sind <strong>deutlich besser</strong> als in vielen Schweizer Gemeinden!"
+                    </div>
+                    <div class="quote-context">
+                        <strong>Ihr Urteil:</strong> Keine Steuererhöhung nötig.<br>
+                        <strong>CEO's Reaktion:</strong> "Aber... Vertrauen?" 😰
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    <div class="quote-author">David T. (Mitglied Arbeitsgruppe)</div>
+                    <div class="quote-text">
+                        "Die publizierte Finanzplanung weist <strong>immense Abweichungen</strong> auf!"
+                    </div>
+                    <div class="quote-context">
+                        <strong>Der Skandal:</strong> Arbeitsgruppe rechnete mit Plan A, 4 Monate später: Plan B (komplett anders!)<br>
+                        <strong>CEO:</strong> "Das besprechen wir bilateral..." 🧹
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    <div class="quote-author">Silvan B.</div>
+                    <div class="quote-text">
+                        "Ich habe <strong>drei Versionen der Finanzplanung</strong> gefunden!"
+                    </div>
+                    <div class="quote-context">
+                        <strong>Seine Analyse:</strong> Fläsch hat gesunde Finanzen. Keine Steuererhöhung nötig!<br>
+                        <strong>CEO:</strong> "Vertrauen!" (Wiederholung #3)
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    <div class="quote-author">Thomas K.</div>
+                    <div class="quote-text">
+                        "Die Gemeindeversammlung macht einen <strong>Blindflug</strong>!"
+                    </div>
+                    <div class="quote-context">
+                        <strong>Kritik:</strong> Wann kommt das Problem? Wo sind die klaren Zahlen?
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    <div class="quote-author">Heinz-Urs K.</div>
+                    <div class="quote-text">
+                        "Die Arbeitsgruppe wollte keine Erhöhung in diesem Umfang!"
+                    </div>
+                    <div class="quote-context">
+                        <strong>Timing-Kritik:</strong> Steuererhöhung normalerweise an Budgetversammlung (Dezember), nicht jetzt!
+                    </div>
+                </div>
+
+                <div class="quote-box">
+                    <div class="quote-author">Michael L. (Gemeinderat!!!)</div>
+                    <div class="quote-text">
+                        "In der Arbeitsgruppe haben sich <strong>9 von 12</strong> für eine <strong>reduzierte</strong> Erhöhung ausgesprochen."
+                    </div>
+                    <div class="quote-context">
+                        <strong>BOMBE:</strong> Ein Gemeinderat bestätigt, dass die Arbeitsgruppe was anderes wollte!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Three Mysteries -->
+    <section class="gray-bg">
+        <div class="container">
+            <h2 class="section-title">Die Drei Mysterien</h2>
+            <div class="mystery-grid">
+                <div class="mystery-box">
+                    <div class="mystery-title">Mysterium 1:<br>Die wandelnden Finanzpläne</div>
+                    <p>Plan A: Arbeitsgruppe (Frühjahr)<br>
+                    Plan B: Gemeinde (Sommer)<br>
+                    Plan C: Silvan B. findet noch einen</p>
+                    <div class="mystery-question">Wie viele gibt's noch? 🗂️</div>
+                </div>
+
+                <div class="mystery-box">
+                    <div class="mystery-title">Mysterium 2:<br>Die dekorative Arbeitsgruppe</div>
+                    <p>20 Leute, monatelang Arbeit<br>
+                    Mehrheit sagt: "Reduziert erhöhen!"<br>
+                    CEO bringt: "Voll erhöhen!"</p>
+                    <div class="mystery-question">Wozu die Arbeitsgruppe? 🎭</div>
+                </div>
+
+                <div class="mystery-box">
+                    <div class="mystery-title">Mysterium 3:<br>Das V-Wort</div>
+                    <p>CEO sagt 5x "Vertrauen!"<br>
+                    Gemeinde stimmt 2:1 dagegen</p>
+                    <div class="mystery-question">Hat's funktioniert? 📉</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Slider -->
+    <section class="white-bg">
+        <div class="container">
+            <div class="slider-container">
+                <div class="slider-title">🌶️ Wo steht Fläsch auf der Schärfe-Skala?</div>
+                <input type="range" min="1" max="5" value="2" class="spice-slider" id="spiceSlider">
+                <div class="slider-value" id="sliderValue">🌶️🌶️ MEDIUM</div>
+                <p style="margin-top: 1rem; font-style: italic;">Versuch mal, es zu ändern... 😉</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Meter -->
+    <section class="gray-bg">
+        <div class="container">
+            <div class="trust-meter">
+                <h2 class="section-title">Das Vertrauens-Meter</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">CEO's "Vertrauen"-Argument vs. Gemeinde-Abstimmung</p>
+                <div class="meter-bar">
+                    <div class="meter-fill" id="trustMeter">0% 😢</div>
+                </div>
+                <p style="margin-top: 1rem; font-style: italic; color: #666;">
+                    (Berechnet aus: 42 NEIN ÷ 73 Total × "Vertrauen" erwähnt)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3 style="margin-bottom: 1rem;">📎 QUELLEN</h3>
+            <p>Botschaft GV 18.09.2025 | Protokoll GV Nr. 03/25 | 73 Augenzeugen | Dorfklatsch</p>
+
+            <div class="disclaimer">
+                <p><strong>⚠️ SATIRE-HINWEIS ⚠️</strong></p>
+                <p>Diese Seite ist satirisch mit echten Fakten. Der CEO ist vermutlich ein netter Kerl. Aber die Story war zu gut. Alle Namen anonymisiert. Die Schärfe-Analogien sind Bonus. 🌶️😉</p>
+            </div>
+
+            <p style="margin-top: 2rem;">
+                <a href="index.html">← Zurück zur Hauptseite</a> |
+                <a href="migros-fail.html">Migros-Fail ansehen</a>
+            </p>
+
+            <p style="margin-top: 1rem; opacity: 0.7;">
+                © 2025 Fläsch Marketing - Abteilung für kreative Wahrheitsfindung 🌶️
+            </p>
+
+            <p style="margin-top: 2rem; font-weight: 600;">
+                #ZuScharf #FläschSagtNein #MediumNotInferno #ChilisSiegtTrotzdem
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Animate voting bars on scroll
+        const votingSection = document.querySelector('.voting-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.vote-fill').forEach(bar => {
+                        bar.classList.add('animate');
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+        observer.observe(votingSection);
+
+        // Interactive Spice Slider (always returns to medium)
+        const spiceSlider = document.getElementById('spiceSlider');
+        const sliderValue = document.getElementById('sliderValue');
+
+        const spiceLabels = {
+            1: '🌶️ MILD',
+            2: '🌶️🌶️ MEDIUM',
+            3: '🌶️🌶️🌶️ HOT',
+            4: '🌶️🌶️🌶️🌶️ EXTRA HOT',
+            5: '🌶️🌶️🌶️🌶️🌶️ INFERNO'
+        };
+
+        spiceSlider.addEventListener('input', (e) => {
+            sliderValue.textContent = spiceLabels[e.target.value];
+        });
+
+        spiceSlider.addEventListener('change', (e) => {
+            setTimeout(() => {
+                e.target.value = 2;
+                sliderValue.textContent = '🌶️🌶️ MEDIUM';
+                sliderValue.style.color = 'var(--spicy-orange)';
+                setTimeout(() => {
+                    sliderValue.style.color = '';
+                }, 500);
+            }, 1000);
+        });
+
+        // Trust Meter Animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const trustMeter = document.getElementById('trustMeter');
+                trustMeter.style.width = '0%';
+                trustMeter.textContent = '0% 😢';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
