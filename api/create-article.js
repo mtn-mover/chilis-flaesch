@@ -1,11 +1,12 @@
 // Vercel Serverless Function für Artikel-Erstellung mit Claude API
 import Anthropic from '@anthropic-ai/sdk';
+import { verifySession } from './auth.js';
 
 // CORS Headers für Frontend-Zugriff
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
 
 export default async function handler(req, res) {
@@ -21,6 +22,7 @@ export default async function handler(req, res) {
 
   try {
     const {
+      sessionToken,
       title,
       category,
       style,
@@ -30,6 +32,12 @@ export default async function handler(req, res) {
       fileName,
       fileType
     } = req.body;
+
+    // Verify session
+    const session = verifySession(sessionToken);
+    if (!session) {
+      return res.status(401).json({ error: 'Nicht autorisiert. Bitte erneut einloggen.' });
+    }
 
     // Validierung
     if (!title || !category || !style || !content || !author) {

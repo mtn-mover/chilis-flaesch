@@ -370,16 +370,49 @@
     </div>
 
     <script>
-        // Auth Check
-        if (sessionStorage.getItem('loggedIn') !== 'true') {
+        // Auth Check mit Session-Verifizierung
+        const sessionToken = sessionStorage.getItem('sessionToken');
+
+        if (!sessionToken) {
             window.location.href = 'admin.html';
+        } else {
+            // Verify session is still valid
+            fetch('/api/auth/verify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sessionToken })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (!data.valid) {
+                    // Session ungültig
+                    sessionStorage.clear();
+                    window.location.href = 'admin.html';
+                } else {
+                    // Session gültig, Namen aktualisieren
+                    document.getElementById('userName').textContent = data.displayName || 'Admin';
+                }
+            })
+            .catch(() => {
+                // Error - redirect to login
+                sessionStorage.clear();
+                window.location.href = 'admin.html';
+            });
         }
 
-        // Display user name
-        document.getElementById('userName').textContent = sessionStorage.getItem('userDisplayName') || 'Admin';
-
         // Logout function
-        function logout() {
+        async function logout() {
+            const sessionToken = sessionStorage.getItem('sessionToken');
+
+            if (sessionToken) {
+                // Call logout API
+                await fetch('/api/auth/logout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionToken })
+                }).catch(() => {});
+            }
+
             sessionStorage.clear();
             window.location.href = 'admin.html';
         }
@@ -455,6 +488,7 @@
 
             // Build request payload
             const payload = {
+                sessionToken: sessionStorage.getItem('sessionToken'),
                 title: formData.get('title'),
                 category: formData.get('category'),
                 style: formData.get('style'),

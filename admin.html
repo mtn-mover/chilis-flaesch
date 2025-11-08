@@ -183,46 +183,76 @@
     </div>
 
     <script>
-        // Temporäre Demo-Credentials (wird später durch echte Auth ersetzt)
-        const USERS = {
-            'admin': {
-                password: 'demo123', // Wird später gehasht
-                name: 'Administrator'
-            }
-        };
-
         const loginForm = document.getElementById('loginForm');
         const errorMessage = document.getElementById('errorMessage');
+        const submitBtn = loginForm.querySelector('button[type="submit"]');
 
-        loginForm.addEventListener('submit', function(e) {
+        loginForm.addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Einfache Validierung (wird später durch echte Auth ersetzt)
-            if (USERS[username] && USERS[username].password === password) {
-                // Login erfolgreich
-                sessionStorage.setItem('loggedIn', 'true');
-                sessionStorage.setItem('username', username);
-                sessionStorage.setItem('userDisplayName', USERS[username].name);
+            // Disable button während Request
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Anmeldung läuft...';
+
+            try {
+                // Call Auth API
+                const response = await fetch('/api/auth', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.error || 'Login fehlgeschlagen');
+                }
+
+                // Login erfolgreich - Session Token speichern
+                sessionStorage.setItem('sessionToken', result.sessionToken);
+                sessionStorage.setItem('username', result.username);
+                sessionStorage.setItem('userDisplayName', result.displayName);
 
                 // Weiterleitung zum Dashboard
                 window.location.href = 'dashboard.html';
-            } else {
+
+            } catch (error) {
                 // Login fehlgeschlagen
-                errorMessage.textContent = '❌ Ungültiger Benutzername oder Passwort';
+                errorMessage.textContent = '❌ ' + error.message;
                 errorMessage.style.display = 'block';
 
                 setTimeout(() => {
                     errorMessage.style.display = 'none';
                 }, 3000);
+
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Anmelden';
             }
         });
 
-        // Wenn bereits eingeloggt, direkt zum Dashboard
-        if (sessionStorage.getItem('loggedIn') === 'true') {
-            window.location.href = 'dashboard.html';
+        // Wenn bereits Session Token vorhanden, prüfen ob noch gültig
+        const sessionToken = sessionStorage.getItem('sessionToken');
+        if (sessionToken) {
+            fetch('/api/auth/verify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sessionToken })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.valid) {
+                    window.location.href = 'dashboard.html';
+                }
+            })
+            .catch(() => {
+                // Session ungültig, Token löschen
+                sessionStorage.clear();
+            });
         }
     </script>
 </body>
