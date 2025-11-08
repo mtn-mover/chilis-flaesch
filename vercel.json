@@ -2,5 +2,12 @@
   "version": 2,
   "buildCommand": null,
   "outputDirectory": ".",
-  "framework": null
+  "framework": null,
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "master": true
+    }
+  },
+  "ignoreCommand": "bash -c 'git log -1 --pretty=%B | grep -q \"Auto-update context\\|Update articles.json\" && exit 0 || exit 1'"
 }
