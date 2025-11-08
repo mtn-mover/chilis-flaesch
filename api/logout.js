@@ -2,7 +2,7 @@
 // Note: This is a simple implementation. In production, you'd need access to the sessions Map.
 // For now, we rely on client-side session cleanup.
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Handle CORS preflight
   if (req.method === 'OPTIONS') {
     return res.status(200).json({});

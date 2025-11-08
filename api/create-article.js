@@ -1,6 +1,6 @@
 // Vercel Serverless Function für Artikel-Erstellung mit Claude API
-import Anthropic from '@anthropic-ai/sdk';
-import { verifySession } from './auth.js';
+const Anthropic = require('@anthropic-ai/sdk').default;
+const { verifySession } = require('./auth.js');
 
 // CORS Headers für Frontend-Zugriff
 const corsHeaders = {
@@ -9,7 +9,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Handle CORS preflight
   if (req.method === 'OPTIONS') {
     return res.status(200).json({});

@@ -1,6 +1,6 @@
 // Authentication API für Admin-Login
-import crypto from 'crypto';
-import jwt from 'jsonwebtoken';
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 
 // JWT Secret (in production: use environment variable)
 const JWT_SECRET = process.env.JWT_SECRET || 'flaesch-info-secret-2024-temp';
@@ -22,7 +22,7 @@ function hashPassword(password) {
   return crypto.createHash('sha256').update(password).digest('hex');
 }
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Handle CORS preflight
   if (req.method === 'OPTIONS') {
     return res.status(200).json({});
@@ -70,7 +70,7 @@ export default async function handler(req, res) {
 }
 
 // Export verify function for use in other APIs
-export function verifySession(sessionToken) {
+module.exports.verifySession = function verifySession(sessionToken) {
   if (!sessionToken) return null;
 
   try {
@@ -84,4 +84,4 @@ export function verifySession(sessionToken) {
     // Token invalid or expired
     return null;
   }
-}
+};

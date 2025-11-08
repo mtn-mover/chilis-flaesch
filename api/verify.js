@@ -1,7 +1,7 @@
 // Session Verification API
-import { verifySession } from './auth.js';
+const { verifySession } = require('./auth.js');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Handle CORS preflight
   if (req.method === 'OPTIONS') {
     return res.status(200).json({});
