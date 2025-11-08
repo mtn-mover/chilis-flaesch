@@ -555,137 +555,76 @@ module.exports = async function handler(req, res) {
     const commitData = await commitResponse.json();
     const baseTreeSha = commitData.tree.sha;
 
-    // Step 4: Create a new tree with the new file
-    const treeResponse = await fetch(
-      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/trees`,
+    // Prepare tree array with all files to commit
+    const treeItems = [
       {
-        method: 'POST',
-        headers: {
-          'Authorization': `token ${process.env.GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          base_tree: baseTreeSha,
-          tree: [
-            {
-              path: fileName,
-              mode: '100644',
-              type: 'blob',
-              sha: blobData.sha
-            }
-          ]
-        })
+        path: fileName,
+        mode: '100644',
+        type: 'blob',
+        sha: blobData.sha
       }
-    );
+    ];
 
-    if (!treeResponse.ok) {
-      throw new Error('Failed to create tree');
-    }
-
-    const treeData = await treeResponse.json();
-
-    // Step 5: Create a new commit
-    const newCommitResponse = await fetch(
-      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/commits`,
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': `token ${process.env.GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: `Publish article: ${draft.title}\n\nAutor: ${draft.authorDisplayName}\nKategorie: ${draft.category}`,
-          tree: treeData.sha,
-          parents: [latestCommitSha]
-        })
-      }
-    );
-
-    if (!newCommitResponse.ok) {
-      throw new Error('Failed to create commit');
-    }
-
-    const newCommitData = await newCommitResponse.json();
-
-    // Step 6: Update the branch reference
-    const updateRefResponse = await fetch(
-      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/refs/heads/${GITHUB_BRANCH}`,
-      {
-        method: 'PATCH',
-        headers: {
-          'Authorization': `token ${process.env.GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          sha: newCommitData.sha,
-          force: false
-        })
-      }
-    );
-
-    if (!updateRefResponse.ok) {
-      throw new Error('Failed to update reference');
-    }
-
-    // Step 7: Update articles.json to add new article to homepage
-    // Get current articles.json
-    const articlesJsonResponse = await fetch(
-      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/articles.json?ref=${GITHUB_BRANCH}`,
-      {
-        headers: {
-          'Authorization': `token ${process.env.GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github.v3+json'
+    // Step 3b: Update articles.json - create blob
+    try {
+      const articlesJsonResponse = await fetch(
+        `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/articles.json?ref=${GITHUB_BRANCH}`,
+        {
+          headers: {
+            'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
         }
+      );
+
+      let articles = [];
+      if (articlesJsonResponse.ok) {
+        const articlesJsonData = await articlesJsonResponse.json();
+        const articlesContent = Buffer.from(articlesJsonData.content, 'base64').toString('utf-8');
+        articles = JSON.parse(articlesContent);
       }
-    );
 
-    let articles = [];
-    let articlesJsonSha = null;
+      // Add new article at the beginning
+      articles.unshift({
+        title: draft.title,
+        fileName: fileName,
+        category: draft.category,
+        excerpt: draft.content.substring(0, 100) + '...',
+        date: new Date().toISOString().split('T')[0],
+        image: draft.images && draft.images.length > 0 ? draft.images[0] : null
+      });
 
-    if (articlesJsonResponse.ok) {
-      const articlesJsonData = await articlesJsonResponse.json();
-      articlesJsonSha = articlesJsonData.sha;
-      const articlesContent = Buffer.from(articlesJsonData.content, 'base64').toString('utf-8');
-      articles = JSON.parse(articlesContent);
+      // Create blob for updated articles.json
+      const articlesJsonBlobResponse = await fetch(
+        `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/blobs`,
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            content: Buffer.from(JSON.stringify(articles, null, 2)).toString('base64'),
+            encoding: 'base64'
+          })
+        }
+      );
+
+      if (articlesJsonBlobResponse.ok) {
+        const articlesJsonBlobData = await articlesJsonBlobResponse.json();
+        treeItems.push({
+          path: 'articles.json',
+          mode: '100644',
+          type: 'blob',
+          sha: articlesJsonBlobData.sha
+        });
+      }
+    } catch (articlesError) {
+      console.error('Failed to update articles.json (non-critical):', articlesError);
     }
 
-    // Add new article at the beginning
-    articles.unshift({
-      title: draft.title,
-      fileName: fileName,
-      category: draft.category,
-      excerpt: draft.content.substring(0, 100) + '...',
-      date: new Date().toISOString().split('T')[0],
-      image: draft.images && draft.images.length > 0 ? draft.images[0] : null
-    });
-
-    // Update articles.json via GitHub API
-    const updateArticlesResponse = await fetch(
-      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/articles.json`,
-      {
-        method: 'PUT',
-        headers: {
-          'Authorization': `token ${process.env.GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: `Update articles.json: add ${draft.title}`,
-          content: Buffer.from(JSON.stringify(articles, null, 2)).toString('base64'),
-          sha: articlesJsonSha,
-          branch: GITHUB_BRANCH
-        })
-      }
-    );
-
-    if (!updateArticlesResponse.ok) {
-      console.error('Failed to update articles.json, but article was published');
-    }
-
-    // Step 8: Auto-update context with new article information
+    // Step 3c: Auto-update context - create blob
     try {
       const anthropic = new Anthropic({
         apiKey: process.env.ANTHROPIC_API_KEY,
@@ -736,7 +675,6 @@ ${extractedContext}
 
       if (contextResponse.ok) {
         const contextData = await contextResponse.json();
-        const contextSha = contextData.sha;
         let contextContent = Buffer.from(contextData.content, 'base64').toString('utf-8');
 
         // Append new context entry before the "Stil-Richtlinien" section
@@ -748,28 +686,103 @@ ${extractedContext}
           contextContent += '\n' + contextEntry;
         }
 
-        // Update context file via GitHub API
-        await fetch(
-          `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/context/flaesch-kontext.md`,
+        // Create blob for updated context
+        const contextBlobResponse = await fetch(
+          `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/blobs`,
           {
-            method: 'PUT',
+            method: 'POST',
             headers: {
               'Authorization': `token ${process.env.GITHUB_TOKEN}`,
               'Accept': 'application/vnd.github.v3+json',
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              message: `Auto-update context: ${draft.title}`,
               content: Buffer.from(contextContent).toString('base64'),
-              sha: contextSha,
-              branch: GITHUB_BRANCH
+              encoding: 'base64'
             })
           }
         );
+
+        if (contextBlobResponse.ok) {
+          const contextBlobData = await contextBlobResponse.json();
+          treeItems.push({
+            path: 'context/flaesch-kontext.md',
+            mode: '100644',
+            type: 'blob',
+            sha: contextBlobData.sha
+          });
+        }
       }
     } catch (contextError) {
       console.error('Context update failed (non-critical):', contextError);
-      // Don't fail the whole publish if context update fails
+    }
+
+    // Step 4: Create a new tree with ALL files (article + articles.json + context)
+    const treeResponse = await fetch(
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/trees`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          base_tree: baseTreeSha,
+          tree: treeItems
+        })
+      }
+    );
+
+    if (!treeResponse.ok) {
+      throw new Error('Failed to create tree');
+    }
+
+    const treeData = await treeResponse.json();
+
+    // Step 5: Create a new commit
+    const newCommitResponse = await fetch(
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/commits`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: `Publish: ${draft.title}\n\nAutor: ${draft.authorDisplayName}\nKategorie: ${draft.category}\n\nIncludes: article HTML, articles.json update, context update`,
+          tree: treeData.sha,
+          parents: [latestCommitSha]
+        })
+      }
+    );
+
+    if (!newCommitResponse.ok) {
+      throw new Error('Failed to create commit');
+    }
+
+    const newCommitData = await newCommitResponse.json();
+
+    // Step 6: Update the branch reference
+    const updateRefResponse = await fetch(
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/refs/heads/${GITHUB_BRANCH}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          sha: newCommitData.sha,
+          force: false
+        })
+      }
+    );
+
+    if (!updateRefResponse.ok) {
+      throw new Error('Failed to update reference');
     }
 
     // Update draft status to published
