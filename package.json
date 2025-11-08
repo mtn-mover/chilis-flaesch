@@ -4,6 +4,8 @@
   "description": "Satirische News-Website für Fläsch",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
+    "@vercel/blob": "^0.24.0",
+    "@vercel/kv": "^2.0.0",
     "jsonwebtoken": "^9.0.2"
   }
 }
