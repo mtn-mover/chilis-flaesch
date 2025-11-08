@@ -1,6 +1,7 @@
 // API to publish article (commit to GitHub)
 const { verifySession } = require('./auth.js');
 const Redis = require('ioredis');
+const { Anthropic } = require('@anthropic-ai/sdk');
 
 // Initialize Redis client
 let redis;
@@ -615,6 +616,93 @@ module.exports = async function handler(req, res) {
 
     if (!updateArticlesResponse.ok) {
       console.error('Failed to update articles.json, but article was published');
+    }
+
+    // Step 8: Auto-update context with new article information
+    try {
+      const anthropic = new Anthropic({
+        apiKey: process.env.ANTHROPIC_API_KEY,
+      });
+
+      const extractionPrompt = `Analysiere diesen satirischen Artikel von "Fläsch Info" und extrahiere wichtige Informationen:
+
+**Artikel-Titel:** ${draft.title}
+**Kategorie:** ${draft.category}
+**Inhalt:** ${draft.content}
+
+Extrahiere und formatiere als kurze Zusammenfassung (max 200 Wörter):
+1. **Neue Charaktere:** Namen und ihre Rollen/Eigenschaften (falls erwähnt)
+2. **Hauptereignis:** Was ist passiert? (1-2 Sätze)
+3. **Wichtige Details:** Zahlen, Abstimmungen, Zitate (falls relevant)
+4. **Für zukünftige Artikel:** Was sollten zukünftige Artikel darüber wissen?
+
+Format: Kurz und prägnant, Bulletpoints.`;
+
+      const message = await anthropic.messages.create({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 512,
+        messages: [{
+          role: 'user',
+          content: extractionPrompt
+        }]
+      });
+
+      const extractedContext = message.content[0].text;
+
+      // Create context entry
+      const contextEntry = `
+### ${draft.title} (${new Date().toLocaleDateString('de-CH', { year: 'numeric', month: 'long' })})
+**Kategorie:** ${draft.category}
+${extractedContext}
+`;
+
+      // Get current context file
+      const contextResponse = await fetch(
+        `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/context/flaesch-kontext.md?ref=${GITHUB_BRANCH}`,
+        {
+          headers: {
+            'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        }
+      );
+
+      if (contextResponse.ok) {
+        const contextData = await contextResponse.json();
+        const contextSha = contextData.sha;
+        let contextContent = Buffer.from(contextData.content, 'base64').toString('utf-8');
+
+        // Append new context entry before the "Stil-Richtlinien" section
+        const insertMarker = '## Stil-Richtlinien';
+        if (contextContent.includes(insertMarker)) {
+          contextContent = contextContent.replace(insertMarker, contextEntry + '\n' + insertMarker);
+        } else {
+          // If marker not found, append at the end
+          contextContent += '\n' + contextEntry;
+        }
+
+        // Update context file via GitHub API
+        await fetch(
+          `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/context/flaesch-kontext.md`,
+          {
+            method: 'PUT',
+            headers: {
+              'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+              'Accept': 'application/vnd.github.v3+json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              message: `Auto-update context: ${draft.title}`,
+              content: Buffer.from(contextContent).toString('base64'),
+              sha: contextSha,
+              branch: GITHUB_BRANCH
+            })
+          }
+        );
+      }
+    } catch (contextError) {
+      console.error('Context update failed (non-critical):', contextError);
+      // Don't fail the whole publish if context update fails
     }
 
     // Update draft status to published

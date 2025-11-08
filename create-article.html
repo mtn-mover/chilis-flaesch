@@ -362,6 +362,62 @@
             window.location.href = 'admin.html';
         }
 
+        // Check if editing existing draft
+        const urlParams = new URLSearchParams(window.location.search);
+        const editDraftId = urlParams.get('edit');
+        let currentEditingDraftId = null;
+
+        // Load draft for editing if ID provided
+        if (editDraftId) {
+            loadDraftForEditing(editDraftId);
+        }
+
+        async function loadDraftForEditing(draftId) {
+            try {
+                const response = await fetch('/api/get-drafts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionToken })
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    const draft = result.drafts.find(d => d.id === draftId);
+                    if (draft) {
+                        currentEditingDraftId = draftId;
+
+                        // Fill form fields
+                        document.getElementById('title').value = draft.title || '';
+                        document.getElementById('category').value = draft.category || 'politik';
+                        document.getElementById('style').value = draft.style || 'satirisch';
+                        document.getElementById('content').value = draft.content || '';
+
+                        // Update header to show we're editing
+                        document.querySelector('.header h1').textContent = 'Artikel bearbeiten';
+
+                        // Show preview if available
+                        if (draft.html) {
+                            currentDraft = draft;
+                            updatePreview();
+                        }
+
+                        // Load images if available
+                        if (draft.images && draft.images.length > 0) {
+                            uploadedImages = draft.images;
+                            draft.images.forEach(url => displayUploadedImage(url));
+                        }
+                    } else {
+                        alert('Draft nicht gefunden');
+                        window.location.href = 'my-articles.html';
+                    }
+                } else {
+                    alert('Fehler beim Laden: ' + result.error);
+                }
+            } catch (error) {
+                alert('Fehler beim Laden: ' + error.message);
+            }
+        }
+
         // Info Upload (PDFs, docs, etc.)
         const infoUpload = document.getElementById('infoUpload');
         const infoInput = document.getElementById('infoInput');
@@ -610,12 +666,17 @@
             statusMessage.style.display = 'block';
 
             try {
+                // If editing, include the draft ID to update it
+                const draftPayload = currentEditingDraftId
+                    ? { ...currentDraft, id: currentEditingDraftId }
+                    : currentDraft;
+
                 const response = await fetch('/api/save-draft', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         sessionToken: sessionToken,
-                        draft: currentDraft
+                        draft: draftPayload
                     })
                 });
 
