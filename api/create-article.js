@@ -181,6 +181,28 @@ Beginne direkt mit dem Artikel-Content!`;
       }
     }
 
+    // Entferne Header/Navigation/Footer falls vorhanden
+    generatedHTML = generatedHTML
+      .replace(/<header[\s\S]*?<\/header>/gi, '')
+      .replace(/<nav[\s\S]*?<\/nav>/gi, '')
+      .replace(/<footer[\s\S]*?<\/footer>/gi, '');
+
+    // Entferne "Fläsch Info" Überschriften am Anfang
+    generatedHTML = generatedHTML
+      .replace(/^[\s\S]*?<h1[^>]*>.*?Fläsch Info.*?<\/h1>/i, '')
+      .replace(/^[\s\S]*?Die satirischen Nachrichten aus dem Dorf/i, '')
+      .trim();
+
+    // Falls es mit <main> oder <article> anfängt, extrahiere den Inhalt
+    const mainMatch = generatedHTML.match(/<main[^>]*>([\s\S]*)<\/main>/i);
+    if (mainMatch) {
+      generatedHTML = mainMatch[1].trim();
+    }
+    const articleMatch = generatedHTML.match(/<article[^>]*>([\s\S]*)<\/article>/i);
+    if (articleMatch) {
+      generatedHTML = articleMatch[1].trim();
+    }
+
     // Dateiname für neuen Artikel generieren (aus Titel)
     const fileName = title
       .toLowerCase()
