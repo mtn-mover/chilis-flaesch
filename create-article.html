@@ -499,9 +499,20 @@
             for (let file of files) {
                 await uploadPostImage(file);
             }
+            // Reset input so same file can be uploaded again
+            e.target.value = '';
         });
 
         async function uploadPostImage(file) {
+            // Show loading indicator
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'uploaded-image';
+            loadingDiv.innerHTML = `
+                <div class="spinner" style="margin: 0 auto;"></div>
+                <p style="font-size: 0.8rem; text-align: center; margin-top: 0.5rem;">Hochladen...</p>
+            `;
+            postUploadedImagesDiv.appendChild(loadingDiv);
+
             const reader = new FileReader();
             reader.onload = async function(e) {
                 try {
@@ -517,6 +528,10 @@
                     });
 
                     const result = await response.json();
+
+                    // Remove loading indicator
+                    loadingDiv.remove();
+
                     if (result.success) {
                         uploadedImages.push(result.imageUrl);
                         displayPostUploadedImage(result.imageUrl);
@@ -529,6 +544,8 @@
                         alert('Fehler beim Hochladen: ' + result.error);
                     }
                 } catch (error) {
+                    // Remove loading indicator on error
+                    loadingDiv.remove();
                     alert('Fehler beim Hochladen: ' + error.message);
                 }
             };
