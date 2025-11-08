@@ -1,6 +1,15 @@
 // API to delete a draft
 const { verifySession } = require('./auth.js');
-const { kv } = require('@vercel/kv');
+const Redis = require('ioredis');
+
+// Initialize Redis client
+let redis;
+if (process.env.REDIS_URL) {
+  redis = new Redis(process.env.REDIS_URL);
+} else {
+  const { kv } = require('@vercel/kv');
+  redis = kv;
+}
 
 module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') {
@@ -24,8 +33,9 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ error: 'Draft ID fehlt' });
     }
 
-    // Read drafts from KV
-    const drafts = await kv.get('drafts') || [];
+    // Read drafts from Redis
+    const draftsJson = await redis.get('drafts');
+    const drafts = draftsJson ? JSON.parse(draftsJson) : [];
     if (drafts.length === 0) {
       return res.status(404).json({ error: 'Keine Drafts gefunden' });
     }
@@ -46,8 +56,8 @@ module.exports = async function handler(req, res) {
     // Remove draft
     drafts.splice(draftIndex, 1);
 
-    // Save to KV
-    await kv.set('drafts', drafts);
+    // Save to Redis
+    await redis.set('drafts', JSON.stringify(drafts));
 
     return res.status(200).json({
       success: true,

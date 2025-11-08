@@ -1,6 +1,16 @@
 // API to save article drafts
 const { verifySession } = require('./auth.js');
-const { kv } = require('@vercel/kv');
+const Redis = require('ioredis');
+
+// Initialize Redis client using REDIS_URL
+let redis;
+if (process.env.REDIS_URL) {
+  redis = new Redis(process.env.REDIS_URL);
+} else {
+  // Fallback to @vercel/kv if KV variables are available
+  const { kv } = require('@vercel/kv');
+  redis = kv;
+}
 
 module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') {
@@ -25,8 +35,9 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ error: 'Unvollständige Draft-Daten' });
     }
 
-    // Read existing drafts from KV
-    const drafts = await kv.get('drafts') || [];
+    // Read existing drafts from Redis
+    const draftsJson = await redis.get('drafts');
+    const drafts = draftsJson ? JSON.parse(draftsJson) : [];
 
     // Create new draft object
     const newDraft = {
@@ -62,8 +73,8 @@ module.exports = async function handler(req, res) {
       drafts.push(newDraft);
     }
 
-    // Save drafts to KV
-    await kv.set('drafts', drafts);
+    // Save drafts to Redis
+    await redis.set('drafts', JSON.stringify(drafts));
 
     return res.status(200).json({
       success: true,

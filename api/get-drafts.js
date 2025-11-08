@@ -1,6 +1,15 @@
 // API to get all drafts (with permission filtering)
 const { verifySession } = require('./auth.js');
-const { kv } = require('@vercel/kv');
+const Redis = require('ioredis');
+
+// Initialize Redis client
+let redis;
+if (process.env.REDIS_URL) {
+  redis = new Redis(process.env.REDIS_URL);
+} else {
+  const { kv } = require('@vercel/kv');
+  redis = kv;
+}
 
 module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') {
@@ -20,8 +29,9 @@ module.exports = async function handler(req, res) {
       return res.status(401).json({ error: 'Nicht autorisiert' });
     }
 
-    // Read drafts from KV
-    const drafts = await kv.get('drafts') || [];
+    // Read drafts from Redis
+    const draftsJson = await redis.get('drafts');
+    const drafts = draftsJson ? JSON.parse(draftsJson) : [];
 
     // Filter drafts based on permissions
     let filteredDrafts = drafts;
