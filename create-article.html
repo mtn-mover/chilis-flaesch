@@ -627,11 +627,12 @@
                         window.location.href = 'my-articles.html';
                     }, 1500);
                 } else {
-                    throw new Error(result.error);
+                    throw new Error(result.error + (result.details ? '\n\nDetails: ' + result.details : '') + (result.stack ? '\n\nStack: ' + result.stack : ''));
                 }
             } catch (error) {
                 statusMessage.className = 'status-message status-error';
-                statusMessage.textContent = '❌ Fehler: ' + error.message;
+                statusMessage.innerHTML = '<pre style="white-space: pre-wrap; text-align: left; font-size: 0.85rem;">❌ Fehler: ' + error.message + '</pre>';
+                console.error('Full error:', error);
             }
         }
     </script>
