@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine Artikel - Fläsch Info Admin</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .article-card h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .article-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .category-politik { background: #e3f2fd; color: #1976d2; }
+        .category-wirtschaft { background: #e8f5e9; color: #388e3c; }
+        .category-kurioses { background: #fff3e0; color: #f57c00; }
+        .category-gesellschaft { background: #f3e5f5; color: #7b1fa2; }
+
+        .article-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-draft { background: #fff9c4; color: #f57f17; }
+        .status-published { background: #c8e6c9; color: #2e7d32; }
+
+        .article-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .empty-state h2 {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>Meine Artikel</h1>
+            <div class="nav-links">
+                <a href="create-article.html">Neuer Artikel</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="loadingIndicator" class="loading">
+            <div class="spinner"></div>
+            <p>Lade Artikel...</p>
+        </div>
+
+        <div id="articlesGrid" class="article-grid" style="display: none;"></div>
+
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <h2>Noch keine Artikel</h2>
+            <p>Erstelle deinen ersten Artikel!</p>
+            <a href="create-article.html" class="btn btn-primary" style="margin-top: 1rem;">Artikel erstellen</a>
+        </div>
+    </div>
+
+    <script>
+        const sessionToken = sessionStorage.getItem('sessionToken');
+        if (!sessionToken) {
+            window.location.href = 'admin.html';
+        }
+
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = 'admin.html';
+        }
+
+        // Load Drafts
+        async function loadDrafts() {
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const articlesGrid = document.getElementById('articlesGrid');
+            const emptyState = document.getElementById('emptyState');
+
+            try {
+                const response = await fetch('/api/get-drafts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionToken })
+                });
+
+                const result = await response.json();
+
+                loadingIndicator.style.display = 'none';
+
+                if (!response.ok) {
+                    throw new Error(result.error);
+                }
+
+                if (result.drafts.length === 0) {
+                    emptyState.style.display = 'block';
+                    return;
+                }
+
+                // Display drafts
+                articlesGrid.style.display = 'grid';
+                articlesGrid.innerHTML = result.drafts.map(draft => createArticleCard(draft, result.isAdmin)).join('');
+
+            } catch (error) {
+                loadingIndicator.innerHTML = `<p style="color: red;">Fehler: ${error.message}</p>`;
+            }
+        }
+
+        function createArticleCard(draft, isAdmin) {
+            const date = new Date(draft.updatedAt).toLocaleDateString('de-CH');
+            const canEdit = isAdmin || draft.author === sessionStorage.getItem('username');
+
+            return `
+                <div class="article-card">
+                    <h3>${draft.title}</h3>
+                    <div class="article-meta">
+                        <span class="article-category category-${draft.category}">${draft.category}</span>
+                        <span class="article-status status-${draft.status}">${draft.status === 'draft' ? 'Entwurf' : 'Veröffentlicht'}</span>
+                        <br>
+                        <small>Autor: ${draft.authorDisplayName} | ${date}</small>
+                    </div>
+                    <div class="article-actions">
+                        ${canEdit ? `
+                            <button class="btn btn-primary" onclick="editDraft('${draft.id}')">Bearbeiten</button>
+                            <button class="btn btn-success" onclick="publishDraft('${draft.id}')">Veröffentlichen</button>
+                            <button class="btn btn-danger" onclick="deleteDraft('${draft.id}')">Löschen</button>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function editDraft(id) {
+            // TODO: Implement edit functionality
+            alert('Bearbeiten-Funktion kommt in nächster Version');
+        }
+
+        async function deleteDraft(id) {
+            if (!confirm('Artikel wirklich löschen?')) return;
+
+            try {
+                const response = await fetch('/api/delete-draft', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionToken, draftId: id })
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert('Artikel gelöscht');
+                    loadDrafts(); // Reload
+                } else {
+                    alert('Fehler: ' + result.error);
+                }
+            } catch (error) {
+                alert('Fehler: ' + error.message);
+            }
+        }
+
+        function publishDraft(id) {
+            // TODO: Implement publish functionality
+            alert('Veröffentlichen-Funktion kommt in nächster Version');
+        }
+
+        // Load on page load
+        loadDrafts();
+    </script>
+</body>
+</html>
