@@ -197,6 +197,61 @@ module.exports = async function handler(req, res) {
       throw new Error('Failed to update reference');
     }
 
+    // Step 7: Update articles.json to add new article to homepage
+    // Get current articles.json
+    const articlesJsonResponse = await fetch(
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/articles.json?ref=${GITHUB_BRANCH}`,
+      {
+        headers: {
+          'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      }
+    );
+
+    let articles = [];
+    let articlesJsonSha = null;
+
+    if (articlesJsonResponse.ok) {
+      const articlesJsonData = await articlesJsonResponse.json();
+      articlesJsonSha = articlesJsonData.sha;
+      const articlesContent = Buffer.from(articlesJsonData.content, 'base64').toString('utf-8');
+      articles = JSON.parse(articlesContent);
+    }
+
+    // Add new article at the beginning
+    articles.unshift({
+      title: draft.title,
+      fileName: fileName,
+      category: draft.category,
+      excerpt: draft.content.substring(0, 100) + '...',
+      date: new Date().toISOString().split('T')[0],
+      image: draft.images && draft.images.length > 0 ? draft.images[0] : null
+    });
+
+    // Update articles.json via GitHub API
+    const updateArticlesResponse = await fetch(
+      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/articles.json`,
+      {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: `Update articles.json: add ${draft.title}`,
+          content: Buffer.from(JSON.stringify(articles, null, 2)).toString('base64'),
+          sha: articlesJsonSha,
+          branch: GITHUB_BRANCH
+        })
+      }
+    );
+
+    if (!updateArticlesResponse.ok) {
+      console.error('Failed to update articles.json, but article was published');
+    }
+
     // Update draft status to published
     drafts[draftIndex].status = 'published';
     drafts[draftIndex].publishedAt = new Date().toISOString();

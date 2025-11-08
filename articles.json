@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Das Steuer-Debakel",
+    "fileName": "steuerdebakel.html",
+    "category": "politik",
+    "excerpt": "42 gegen 21 - Fläsch sagt NEIN zur Steuererhöhung!",
+    "date": "2025-11-08",
+    "image": "Steuerdebakel1.png"
+  },
+  {
+    "title": "Migros Marketing-Fail",
+    "fileName": "migros-fail.html",
+    "category": "wirtschaft",
+    "excerpt": "Korkenzieher statt Hot Chili - ein peinlicher Fehler!",
+    "date": "2025-11-07",
+    "image": "Migros Korkenzieher.jpg"
+  },
+  {
+    "title": "Chili's kommt nach Fläsch!",
+    "fileName": "chilis-restaurant.html",
+    "category": "kurioses",
+    "excerpt": "Twin Peaks und Hooters abgelehnt - Chili's macht das Rennen!",
+    "date": "2025-11-05",
+    "image": "chili.jpg"
+  }
+]
