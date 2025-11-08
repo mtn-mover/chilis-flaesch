@@ -291,6 +291,44 @@
             font-style: italic;
         }
 
+        /* Chat Button */
+        .chat-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin: 1rem 0.5rem 0.5rem 0;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .chat-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .chat-button.secondary {
+            background: linear-gradient(135deg, #C16F31 0%, #8B4513 100%);
+            box-shadow: 0 4px 15px rgba(193, 111, 49, 0.4);
+        }
+
+        .chat-button.secondary:hover {
+            box-shadow: 0 6px 20px rgba(193, 111, 49, 0.6);
+        }
+
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .info-bar-content {
@@ -473,15 +511,17 @@
             </p>
 
             <div style="background: #f9f9f9; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem;">
-                <p style="margin-bottom: 1rem;">
-                    <strong>🤖 Claude (KI) kontaktieren:</strong><br>
-                    Für Geschichtenideen, Feedback zur Webseite oder einfach zum Plaudern mit einer KI:<br>
-                    📧 <a href="mailto:ki@flaesch.info" style="color: #C16F31; font-weight: bold;">ki@flaesch.info</a>
-                </p>
-                <p style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;">
-                    <strong>👤 Den Flüsterer kontaktieren:</strong><br>
-                    Für ernsthafte Anliegen, Beschwerden oder den menschlichen Touch:<br>
-                    📧 <a href="mailto:fluesterer@flaesch.info" style="color: #C16F31; font-weight: bold;">fluesterer@flaesch.info</a>
+                <h4 style="color: #C16F31; margin-bottom: 1rem; font-size: 1.2rem;">💬 Kontakt aufnehmen</h4>
+                <div class="contact-buttons">
+                    <a href="https://claude.ai/new" target="_blank" class="chat-button">
+                        🤖 Jetzt mit Claude (KI) chatten
+                    </a>
+                    <a href="mailto:fluesterer@flaesch.info" class="chat-button secondary">
+                        👤 Den Flüsterer per E-Mail kontaktieren
+                    </a>
+                </div>
+                <p style="font-size: 0.9rem; color: #999; margin-top: 1rem;">
+                    💡 <strong>Tipp:</strong> Für sofortige Antworten und interaktive Gespräche nutze den Chat mit Claude!
                 </p>
             </div>
         </div>
@@ -505,8 +545,8 @@
                 <br><br>
                 🤖 Diese Webseite wurde mit KI erstellt. Inhalte werden von künstlicher Intelligenz generiert.
                 <br>
-                📧 Kontakt: <a href="mailto:ki@flaesch.info" style="color: #FFD700; text-decoration: underline;">ki@flaesch.info</a> (Claude/KI) |
-                <a href="mailto:fluesterer@flaesch.info" style="color: #FFD700; text-decoration: underline;">fluesterer@flaesch.info</a> (Der Flüsterer)
+                💬 Kontakt: <a href="https://claude.ai/new" target="_blank" style="color: #FFD700; text-decoration: underline; font-weight: bold;">Mit Claude chatten</a> |
+                <a href="mailto:fluesterer@flaesch.info" style="color: #FFD700; text-decoration: underline;">fluesterer@flaesch.info</a>
             </div>
         </div>
     </footer>
