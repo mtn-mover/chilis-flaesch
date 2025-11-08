@@ -260,6 +260,7 @@
         function createArticleCard(draft, isAdmin) {
             const date = new Date(draft.updatedAt).toLocaleDateString('de-CH');
             const canEdit = isAdmin || draft.author === sessionStorage.getItem('username');
+            const isPublished = draft.status === 'published';
 
             return `
                 <div class="article-card">
@@ -269,12 +270,19 @@
                         <span class="article-status status-${draft.status}">${draft.status === 'draft' ? 'Entwurf' : 'Veröffentlicht'}</span>
                         <br>
                         <small>Autor: ${draft.authorDisplayName} | ${date}</small>
+                        ${isPublished && draft.publishedUrl ? `<br><small><a href="${draft.publishedUrl}" target="_blank" style="color: #667eea;">🔗 Artikel ansehen</a></small>` : ''}
                     </div>
                     <div class="article-actions">
                         ${canEdit ? `
-                            <button class="btn btn-primary" onclick="editDraft('${draft.id}')">Bearbeiten</button>
-                            <button class="btn btn-success" onclick="publishDraft('${draft.id}')">Veröffentlichen</button>
-                            <button class="btn btn-danger" onclick="deleteDraft('${draft.id}')">Löschen</button>
+                            ${!isPublished ? `
+                                <button class="btn btn-primary" onclick="editDraft('${draft.id}')">Bearbeiten</button>
+                                <button class="btn btn-success" onclick="publishDraft('${draft.id}')">Veröffentlichen</button>
+                                <button class="btn btn-danger" onclick="deleteDraft('${draft.id}')">Löschen</button>
+                            ` : `
+                                <button class="btn btn-primary" onclick="editDraft('${draft.id}')">Bearbeiten</button>
+                                <button class="btn btn-success" onclick="republishDraft('${draft.id}')">Neu veröffentlichen</button>
+                                <button class="btn btn-danger" onclick="unpublishArticle('${draft.id}')">Von Website löschen</button>
+                            `}
                         ` : ''}
                     </div>
                 </div>
@@ -321,6 +329,50 @@
                 const result = await response.json();
                 if (response.ok) {
                     alert('✅ Artikel veröffentlicht!\n\nURL: ' + result.url + '\n\nDas Deployment dauert ca. 1-2 Minuten.');
+                    loadDrafts(); // Reload
+                } else {
+                    alert('❌ Fehler: ' + result.error + (result.details ? '\n\n' + result.details : ''));
+                }
+            } catch (error) {
+                alert('❌ Fehler: ' + error.message);
+            }
+        }
+
+        async function republishDraft(id) {
+            if (!confirm('Artikel neu veröffentlichen?\n\nDer bestehende Artikel auf der Website wird mit der aktuellen Version überschrieben.')) return;
+
+            try {
+                const response = await fetch('/api/publish-article', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionToken, draftId: id })
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert('✅ Artikel neu veröffentlicht!\n\nURL: ' + result.url + '\n\nDie Änderungen sind in ca. 1-2 Minuten live.');
+                    loadDrafts(); // Reload
+                } else {
+                    alert('❌ Fehler: ' + result.error + (result.details ? '\n\n' + result.details : ''));
+                }
+            } catch (error) {
+                alert('❌ Fehler: ' + error.message);
+            }
+        }
+
+        async function unpublishArticle(id) {
+            if (!confirm('⚠️ ACHTUNG!\n\nDer Artikel wird von der Website gelöscht und zurück zu "Entwurf" gesetzt.\n\nDu kannst ihn später neu bearbeiten und wieder veröffentlichen.\n\nFortfahren?')) return;
+
+            try {
+                const response = await fetch('/api/delete-article', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionToken, draftId: id })
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert('✅ Artikel von Website gelöscht!\n\nDer Artikel ist jetzt wieder ein Entwurf und kann bearbeitet werden.');
                     loadDrafts(); // Reload
                 } else {
                     alert('❌ Fehler: ' + result.error + (result.details ? '\n\n' + result.details : ''));
