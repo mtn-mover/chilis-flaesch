@@ -308,9 +308,26 @@
             }
         }
 
-        function publishDraft(id) {
-            // TODO: Implement publish functionality
-            alert('Veröffentlichen-Funktion kommt in nächster Version');
+        async function publishDraft(id) {
+            if (!confirm('Artikel wirklich veröffentlichen? Er wird live auf der Website erscheinen.')) return;
+
+            try {
+                const response = await fetch('/api/publish-article', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionToken, draftId: id })
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert('✅ Artikel veröffentlicht!\n\nURL: ' + result.url + '\n\nDas Deployment dauert ca. 1-2 Minuten.');
+                    loadDrafts(); // Reload
+                } else {
+                    alert('❌ Fehler: ' + result.error + (result.details ? '\n\n' + result.details : ''));
+                }
+            } catch (error) {
+                alert('❌ Fehler: ' + error.message);
+            }
         }
 
         // Load on page load
