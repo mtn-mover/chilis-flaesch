@@ -159,7 +159,7 @@ Der Artikel soll:
 WICHTIG:
 - Gib NUR den Artikel-Inhalt zurück (h2, p, blockquote, ul, etc.)
 - KEIN vollständiges HTML-Dokument (kein <!DOCTYPE>, <html>, <head>, <body>)
-- KEINE Code-Blöcke (```html)
+- KEINE Code-Blöcke mit drei Backticks
 - KEIN Navigation oder Footer
 - Der Inhalt wird automatisch in ein Template eingebettet
 
