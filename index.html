@@ -1,17 +1,10 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de-CH">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Die (fast) wahre Geschichte vom Filetstück-Grundstück in Fläsch - Eine satirische Reise durch Gemeindepolitik, amerikanische Restaurant-Ketten und Schweizer Befindlichkeiten">
-    <meta name="keywords" content="Fläsch, Chilis, Twin Peaks, Hooters, Satire, Schweiz">
-    <title>Fläsch mittendrin - oder doch daneben? | Die Chili's Saga</title>
-    <!-- Version 2.0 - Schweizer Rechtschreibung -->
+    <title>Fläsch mittendrin - oder doch daneben?</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="alternate icon" href="favicon.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -19,85 +12,260 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --swiss-red: #FF0000;
-            --chili-red: #C41E3A;
-            --restaurant-orange: #FF6B35;
-            --warm-cream: #FFF8E7;
-            --dark-gray: #2D3142;
-            --light-gray: #F4F4F4;
-            --gold: #FFD700;
-        }
-
         body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--dark-gray);
-            overflow-x: hidden;
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
         }
 
-        html {
-            scroll-behavior: smooth;
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
         }
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            background: linear-gradient(135deg, var(--swiss-red) 0%, var(--chili-red) 50%, var(--restaurant-orange) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)),
+                        url('chili.jpg') center/cover;
+            color: white;
+            padding: 6rem 2rem;
             text-align: center;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '🌶️';
-            position: absolute;
-            font-size: 15rem;
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
-            top: 10%;
-            left: -5%;
-        }
-
-        .hero::after {
-            content: '🍷';
-            position: absolute;
-            font-size: 12rem;
-            opacity: 0.1;
-            animation: float 8s ease-in-out infinite;
-            bottom: 10%;
-            right: -3%;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(10deg); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            font-weight: 900;
-            color: white;
-            text-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+            font-size: 3.5rem;
             margin-bottom: 1rem;
-            animation: slideDown 1s ease-out;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        @keyframes slideDown {
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Featured Stories */
+        .featured-stories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .story-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .story-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .story-content {
+            padding: 2rem;
+        }
+
+        .story-category {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .story-category.politik {
+            background: #e74c3c;
+        }
+
+        .story-category.wirtschaft {
+            background: #f39c12;
+        }
+
+        .story-category.kurioses {
+            background: #9b59b6;
+        }
+
+        .story-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .story-excerpt {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .story-date {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        /* All Stories Section */
+        .all-stories {
+            margin-top: 3rem;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .story-card-small {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .story-card-small:hover {
+            transform: translateY(-5px);
+        }
+
+        .story-card-small .story-image {
+            height: 180px;
+        }
+
+        .story-card-small .story-content {
+            padding: 1.5rem;
+        }
+
+        .story-card-small .story-title {
+            font-size: 1.3rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .featured-stories {
+                grid-template-columns: 1fr;
+            }
+
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(-50px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -105,1373 +273,122 @@
             }
         }
 
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            color: var(--warm-cream);
-            margin-bottom: 3rem;
-            animation: fadeIn 1s ease-out 0.5s both;
+        .story-card, .story-card-small {
+            animation: fadeInUp 0.6s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .hero-image-container {
-            max-width: 800px;
-            width: 100%;
-            margin: 2rem auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            animation: scaleIn 1s ease-out 1s both;
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .hero-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: white;
-            color: var(--chili-red);
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            margin-top: 2rem;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            animation: none;
-        }
-
-        /* Section Base Styles */
-        section {
-            padding: 5rem 2rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--chili-red);
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, var(--restaurant-orange), transparent);
-        }
-
-        /* Timeline Section */
-        .timeline {
-            background: var(--light-gray);
-        }
-
-        .timeline-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, var(--swiss-red), var(--restaurant-orange));
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            display: flex;
-            margin-bottom: 4rem;
-            position: relative;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.6s ease;
-        }
-
-        .timeline-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .timeline-item:nth-child(odd) {
-            flex-direction: row;
-        }
-
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
-            width: 45%;
-            padding: 2rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative;
-        }
-
-        .timeline-marker {
-            width: 40px;
-            height: 40px;
-            background: var(--chili-red);
-            border: 4px solid white;
-            border-radius: 50%;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 0 4px var(--chili-red);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .timeline-content h3 {
-            font-size: 1.8rem;
-            color: var(--chili-red);
-            margin-bottom: 1rem;
-        }
-
-        .timeline-content p {
-            color: var(--dark-gray);
-            line-height: 1.8;
-        }
-
-        /* Candidates Section */
-        .candidates {
-            background: var(--warm-cream);
-        }
-
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .candidate-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-
-        .candidate-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-size: contain;
-            background-position: center 30%;
-            background-repeat: no-repeat;
-            opacity: 0.15;
-            z-index: 0;
-        }
-
-        .candidate-card[data-url*="twinpeaks"]::after {
-            background-image: url('Twin_Peaks.jpg');
-        }
-
-        .candidate-card[data-url*="hooters"]::after {
-            background-image: url('Hooters.jpg');
-        }
-
-        .candidate-card[data-url*="chilis"]::after {
-            background-image: url('Chilis.jpg');
-        }
-
-        .candidate-card.rejected::after {
-            filter: grayscale(100%);
-            opacity: 0.1;
-        }
-
-        .candidate-card > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .candidate-card {
-            cursor: pointer;
-        }
-
-        .candidate-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-        }
-
-        .candidate-card.rejected::before {
-            content: 'ABGELEHNT';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-25deg);
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: rgba(255, 0, 0, 0.3);
-            border: 5px solid rgba(255, 0, 0, 0.3);
-            padding: 1rem 2rem;
-            z-index: 2;
-            text-decoration: line-through;
-        }
-
-        .candidate-card.winner::before {
-            content: '🏆 GEWINNER! 🏆';
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gold);
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 700;
-            padding: 0.5rem 2rem;
-            border-radius: 0 0 20px 20px;
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
-            animation: shimmer 2s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0%, 100% { box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5); }
-            50% { box-shadow: 0 5px 30px rgba(255, 215, 0, 0.8); }
-        }
-
-        .candidate-card.winner {
-            background: linear-gradient(135deg, #fff 0%, #fffbea 100%);
-            border: 3px solid var(--gold);
-        }
-
-
-        .candidate-card h3 {
-            font-size: 1.8rem;
-            color: var(--chili-red);
-            margin-bottom: 1rem;
-        }
-
-        .candidate-card p {
-            color: var(--dark-gray);
-            line-height: 1.6;
-        }
-
-        /* Truth Section */
-        .truth-section {
-            background: var(--dark-gray);
-            color: white;
-        }
-
-        .truth-section .section-title {
-            color: var(--restaurant-orange);
-        }
-
-        .truth-toggle {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        .toggle-label {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .toggle-switch {
-            position: relative;
-            width: 80px;
-            height: 40px;
-            background: #555;
-            border-radius: 40px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .toggle-switch.active {
-            background: var(--restaurant-orange);
-        }
-
-        .toggle-slider {
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            width: 32px;
-            height: 32px;
-            background: white;
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-
-        .toggle-switch.active .toggle-slider {
-            transform: translateX(40px);
-        }
-
-        .truth-content {
-            background: rgba(255,255,255,0.1);
-            padding: 3rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            min-height: 400px;
-            transition: all 0.5s ease;
-        }
-
-        .truth-version {
-            display: none;
-            animation: fadeInContent 0.5s ease;
-        }
-
-        .truth-version.active {
-            display: block;
-        }
-
-        @keyframes fadeInContent {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .truth-version h3 {
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: 1.5rem;
-        }
-
-        .truth-version p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .truth-version ul {
-            margin-left: 2rem;
-            margin-top: 1rem;
-        }
-
-        .truth-version li {
-            margin-bottom: 0.8rem;
-            line-height: 1.6;
-        }
-
-        /* FAQ Section */
-        .faq {
-            background: var(--light-gray);
-        }
-
-        .faq-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: white;
-            margin-bottom: 1.5rem;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .faq-item:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .faq-question {
-            padding: 1.5rem 2rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--chili-red);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            user-select: none;
-        }
-
-        .faq-question:hover {
-            background: var(--warm-cream);
-        }
-
-        .faq-icon {
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            padding: 0 2rem;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-            padding: 0 2rem 1.5rem 2rem;
-        }
-
-        .faq-answer p {
-            color: var(--dark-gray);
-            line-height: 1.8;
-        }
-
-        /* Countdown Section */
-        .countdown-section {
-            background: linear-gradient(135deg, var(--restaurant-orange) 0%, var(--chili-red) 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .countdown-section .section-title {
-            color: white;
-        }
-
-        .countdown-timer {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 3rem;
-        }
-
-        .countdown-item {
-            background: rgba(255,255,255,0.2);
-            padding: 2rem;
-            border-radius: 20px;
-            min-width: 150px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .countdown-value {
-            font-size: 4rem;
-            font-weight: 900;
-            display: block;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .countdown-label {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 0.5rem;
-        }
-
-        /* Spiciness Meter */
-        .spicy-meter {
-            background: white;
-            padding: 5rem 2rem;
-        }
-
-        .meter-container {
-            max-width: 800px;
-            margin: 3rem auto;
-            text-align: center;
-        }
-
-        .meter-title {
-            font-size: 1.5rem;
-            color: var(--chili-red);
-            margin-bottom: 2rem;
-        }
-
-        .meter-bar {
-            width: 100%;
-            height: 50px;
-            background: var(--light-gray);
-            border-radius: 25px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .meter-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #FFD700, var(--restaurant-orange), var(--chili-red));
-            width: 0%;
-            transition: width 2s ease;
-            border-radius: 25px;
-            position: relative;
-        }
-
-        .meter-fill.animated {
-            width: 95%;
-        }
-
-        .meter-fill::after {
-            content: '🔥';
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2rem;
-        }
-
-        .meter-labels {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-            font-weight: 600;
-        }
-
-        /* Easter Egg Chili */
-        .easter-chili {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 3rem;
-            cursor: pointer;
-            z-index: 1000;
-            transition: transform 0.3s ease;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
-        }
-
-        .easter-chili:hover {
-            transform: scale(1.2) rotate(10deg);
-        }
-
-        .fire-particle {
-            position: fixed;
-            font-size: 2rem;
-            pointer-events: none;
-            animation: fireRise 1s ease-out forwards;
-            z-index: 999;
-        }
-
-        @keyframes fireRise {
-            0% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-100px) scale(1.5);
-            }
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-gray);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .disclaimer {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin: 2rem 0;
-        }
-
-        .footer-links a {
-            color: var(--restaurant-orange);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--gold);
-        }
-
-        .social-share {
-            margin: 2rem 0;
-        }
-
-        .share-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--restaurant-orange);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            margin: 0.5rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .share-button:hover {
-            background: var(--chili-red);
-            transform: translateY(-3px);
-        }
-
-        .copyright {
-            margin-top: 2rem;
-            opacity: 0.8;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .timeline-line {
-                left: 20px;
-            }
-
-            .timeline-item {
-                flex-direction: column !important;
-                padding-left: 60px;
-            }
-
-            .timeline-content {
-                width: 100%;
-            }
-
-            .timeline-marker {
-                left: 20px;
-            }
-
-            .countdown-item {
-                min-width: 120px;
-            }
-
-            .countdown-value {
-                font-size: 3rem;
-            }
-
-            .truth-content {
-                padding: 2rem 1.5rem;
-            }
-
-            section {
-                padding: 3rem 1rem;
-            }
-        }
-
-        /* Confetti Animation */
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: var(--gold);
-            position: absolute;
-            animation: confettiFall 3s linear forwards;
-            z-index: 100;
-        }
-
-        @keyframes confettiFall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator::before {
-            content: '↓';
-            font-size: 3rem;
-            color: white;
-            opacity: 0.7;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-20px); }
-            60% { transform: translateX(-50%) translateY(-10px); }
-        }
-
-        /* Breaking News Banner */
-        .breaking-news {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(90deg, #C41E3A 0%, #FF0000 50%, #C41E3A 100%);
-            color: white;
-            z-index: 10000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .breaking-news-label {
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            background: #8B0000;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            font-weight: 900;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-right: 3px solid white;
-            z-index: 2;
-        }
-
-        .breaking-news-content {
-            padding: 12px 20px 12px 200px;
-            white-space: nowrap;
-            animation: scrollNews 45s linear infinite;
-            font-size: 1rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-
-        @keyframes scrollNews {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .breaking-news-content:hover {
-            animation-play-state: paused;
-        }
-
-        .breaking-news strong {
-            color: #FFD700;
-            font-weight: 900;
-        }
-
-        .breaking-news em {
-            color: #FFF8E7;
-            font-style: italic;
-        }
-
-        .news-flash {
-            animation: flash 1.5s ease-in-out infinite;
-        }
-
-        @keyframes flash {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        /* Second Steuer banner animation */
-        @keyframes scrollNewsSteuer {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Third Migros banner animation */
-        @keyframes scrollNewsMigros {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Adjust hero section to account for all three banners */
-        body {
-            padding-top: 150px;
-        }
-
-        @media (max-width: 768px) {
-            .breaking-news-label {
-                padding: 0 10px;
-                font-size: 0.7rem;
-                width: 100px;
-                letter-spacing: 1px;
-            }
-
-            .breaking-news-content {
-                padding: 10px 10px 10px 110px;
-                font-size: 0.85rem;
-            }
-
-            body {
-                padding-top: 135px;
-            }
+        .story-card:nth-child(2) {
+            animation-delay: 0.2s;
         }
     </style>
 </head>
 <body>
-    <!-- Breaking News Banner -->
-    <div class="breaking-news">
-        <div class="breaking-news-label">
-            <span class="news-flash">🔴 BREAKING NEWS</span>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🌶️ Fläsch News</a>
+            <ul class="nav-links">
+                <li><a href="#featured">Aktuell</a></li>
+                <li><a href="#alle">Alle Geschichten</a></li>
+                <li><a href="#politik">Politik</a></li>
+                <li><a href="#wirtschaft">Wirtschaft</a></li>
+                <li><a href="#kurioses">Kurioses</a></li>
+            </ul>
         </div>
-        <div class="breaking-news-content">
-            <strong>EILMELDUNG:</strong> Hans-Jörg «El Diablo» Müller meldet sich zu Wort! 🌶️
-            «Ich muss dazu aber noch ergänzen: die Zusage habe ich seit Anfang des vorletzten Jahres. Dass es bis zur Bekanntgabe so lange gedauert hat, hat mit dem möglichen Nachzug eines Ur-Fläschers zu tun, der ebenfalls Interesse hatte. Da er sich aber von seiner Frau, einer Maienfelderin, getrennt hat, und jetzt angeblich das Ufer gewechselt hat, ist die Vergabe des Filetstücks nun offiziell. Auch der Generalsekretär und der Adjutant können keine Einsprache mehr machen. Weil die Finanzkommission und die Baukommission längst entschieden haben.»
-            <em>Anmerkung der Redaktion: Name wurde geändert, um die Privatsphäre zu schützen. Jegliche Ähnlichkeit mit realen Personen ist reiner Zufall... oder doch nicht? 😉</em>
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <strong>BREAKING:</strong> Das Filetstück-Drama nimmt eine unerwartete Wendung!
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <strong>EILMELDUNG:</strong> Hans-Jörg «El Diablo» Müller meldet sich zu Wort! 🌶️
-            «Ich muss dazu aber noch ergänzen: die Zusage habe ich seit Anfang des vorletzten Jahres. Dass es bis zur Bekanntgabe so lange gedauert hat, hat mit dem möglichen Nachzug eines Ur-Fläschers zu tun, der ebenfalls Interesse hatte. Da er sich aber von seiner Frau, einer Maienfelderin, getrennt hat, und jetzt angeblich das Ufer gewechselt hat, ist die Vergabe des Filetstücks nun offiziell. Auch der Generalsekretär und der Adjutant können keine Einsprache mehr machen. Weil die Finanzkommission und die Baukommission längst entschieden haben.»
-            <em>Anmerkung der Redaktion: Name wurde geändert, um die Privatsphäre zu schützen. Jegliche Ähnlichkeit mit realen Personen ist reiner Zufall... oder doch nicht? 😉</em>
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <strong>BREAKING:</strong> Das Filetstück-Drama nimmt eine unerwartete Wendung!
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Fläsch mittendrin - oder doch daneben?</h1>
+        <p>Geschichten von, über und aus Fläsch - über Allgemeines, Politik, Bewohner und mehr</p>
+    </section>
+
+    <div class="container">
+        <section id="featured">
+            <h2 class="section-title">Aktuelle Geschichten</h2>
+            <div class="featured-stories">
+                <a href="steuerdebakel.html" class="story-card">
+                    <img src="Steuerdebakel1.png" alt="Steuerdebakel" class="story-image">
+                    <div class="story-content">
+                        <span class="story-category politik">Politik</span>
+                        <h3 class="story-title">Das Steuer-Debakel: 42 gegen 21 - Fläsch sagt NEIN!</h3>
+                        <p class="story-excerpt">
+                            In einer denkwürdigen Abstimmung lehnt Fläsch die Steuererhöhung mit deutlicher Mehrheit ab.
+                            42 Bürger stimmen gegen die Vorlage, nur 21 dafür - ein klares Votum gegen höhere Steuern.
+                        </p>
+                        <p class="story-date">8. November 2025</p>
+                    </div>
+                </a>
+
+                <a href="migros-fail.html" class="story-card">
+                    <img src="Migros Korkenzieher.jpg" alt="Migros Fail" class="story-image">
+                    <div class="story-content">
+                        <span class="story-category wirtschaft">Wirtschaft</span>
+                        <h3 class="story-title">Migros-Marketing-Debakel: Korkenzieher statt Hot Chili!</h3>
+                        <p class="story-excerpt">
+                            Die Migros-Marketingabteilung sorgt für Aufsehen: In ihrer Kampagne für Fläsch verwendeten
+                            sie versehentlich einen Korkenzieher anstelle eines scharfen Chilis - ein peinlicher Fehler.
+                        </p>
+                        <p class="story-date">7. November 2025</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="alle" class="all-stories">
+            <h2 class="section-title">Alle Geschichten</h2>
+            <div class="stories-grid">
+                <a href="steuerdebakel.html" class="story-card-small" id="politik">
+                    <img src="Steuerdebakel1.png" alt="Steuerdebakel" class="story-image">
+                    <div class="story-content">
+                        <span class="story-category politik">Politik</span>
+                        <h3 class="story-title">Das Steuer-Debakel</h3>
+                        <p class="story-excerpt">42 gegen 21 - Fläsch sagt NEIN zur Steuererhöhung!</p>
+                        <p class="story-date">8. November 2025</p>
+                    </div>
+                </a>
+
+                <a href="migros-fail.html" class="story-card-small" id="wirtschaft">
+                    <img src="Migros Korkenzieher.jpg" alt="Migros Fail" class="story-image">
+                    <div class="story-content">
+                        <span class="story-category wirtschaft">Wirtschaft</span>
+                        <h3 class="story-title">Migros Marketing-Fail</h3>
+                        <p class="story-excerpt">Korkenzieher statt Hot Chili - ein peinlicher Fehler!</p>
+                        <p class="story-date">7. November 2025</p>
+                    </div>
+                </a>
+
+                <a href="chilis-restaurant.html" class="story-card-small" id="kurioses">
+                    <img src="chili.jpg" alt="Chili's Restaurant" class="story-image">
+                    <div class="story-content">
+                        <span class="story-category kurioses">Kurioses</span>
+                        <h3 class="story-title">Chili's kommt nach Fläsch!</h3>
+                        <p class="story-excerpt">Twin Peaks und Hooters abgelehnt - Chili's macht das Rennen!</p>
+                        <p class="story-date">5. November 2025</p>
+                    </div>
+                </a>
+            </div>
+        </section>
     </div>
 
-    <!-- STEUER-DEBAKEL Banner -->
-    <div class="breaking-news" style="top: 50px; background: linear-gradient(90deg, #8B0000 0%, #C41E3A 50%, #8B0000 100%);">
-        <div class="breaking-news-label" style="background: #000;">
-            <span class="news-flash">🔥 ZU SCHARF</span>
-        </div>
-        <div class="breaking-news-content" style="animation: scrollNewsSteuer 35s linear infinite;">
-            <strong>21:42 UHR:</strong> Gemeinde sagt NEIN zu Steuererhöhung! 🌶️❌
-            42 NEIN | 21 JA | 10 Enthaltung – ABGELEHNT mit 2:1 Mehrheit!
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <strong>ZU HEISS GEGESSEN:</strong> Steuerfuss 75% war extra hot, Fläsch will nur medium! 🌡️
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <strong>CHILI'S-LEKTION:</strong> Wie beim Restaurant-Entscheid – zu scharf wird abgelehnt!
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <a href="steuerdebakel.html" style="color: #FFD700; text-decoration: underline; font-weight: 900;">👉 ZUM DEBAKEL!</a>
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <strong>21:42 UHR:</strong> Gemeinde sagt NEIN zu Steuererhöhung! 🌶️❌
-            42 NEIN | 21 JA | 10 Enthaltung – ABGELEHNT mit 2:1 Mehrheit!
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <strong>ZU HEISS GEGESSEN:</strong> Steuerfuss 75% war extra hot, Fläsch will nur medium! 🌡️
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <strong>CHILI'S-LEKTION:</strong> Wie beim Restaurant-Entscheid – zu scharf wird abgelehnt!
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <a href="steuerdebakel.html" style="color: #FFD700; text-decoration: underline; font-weight: 900;">👉 ZUM DEBAKEL!</a>
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-        </div>
-    </div>
-
-    <!-- Migros News Banner -->
-    <div class="breaking-news" style="top: 100px; background: linear-gradient(90deg, #FF6600 0%, #FF8800 50%, #FF6600 100%);">
-        <div class="breaking-news-label" style="background: #CC5500;">
-            <span class="news-flash">🍊 MIGROS-FAIL</span>
-        </div>
-        <div class="breaking-news-content" style="animation: scrollNewsMigros 40s linear infinite;">
-            <strong>SKANDAL:</strong> Migros verwechselt Fläsch mit Weindorf! 🍾❌
-            Korkenzieher statt Hot Chili? Hans-Jörg «El Diablo» Müller protestiert heftig!
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <strong>UPDATE:</strong> Migros entschuldigt sich offiziell und korrigiert Kampagne auf «Hot Chili für Fläsch»! 🌶️
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <a href="migros-fail.html" style="color: #FFD700; text-decoration: underline; font-weight: 900;">👉 Ganze Geschichte lesen!</a>
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <strong>SKANDAL:</strong> Migros verwechselt Fläsch mit Weindorf! 🍾❌
-            Korkenzieher statt Hot Chili? Hans-Jörg «El Diablo» Müller protestiert heftig!
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <strong>UPDATE:</strong> Migros entschuldigt sich offiziell und korrigiert Kampagne auf «Hot Chili für Fläsch»! 🌶️
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-            <a href="migros-fail.html" style="color: #FFD700; text-decoration: underline; font-weight: 900;">👉 Ganze Geschichte lesen!</a>
-            &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Fläsch mittendrin - oder doch daneben?</h1>
-            <p class="hero-subtitle">Die (fast) wahre Geschichte vom Filetstück-Grundstück</p>
-
-            <div class="hero-image-container">
-                <img src="chili.jpg" alt="Chilis Fläsch" class="hero-image">
-            </div>
-
-            <a href="#timeline" class="cta-button">Die ganze Geschichte entdecken</a>
-        </div>
-        <div class="scroll-indicator"></div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="timeline" id="timeline">
-        <div class="container">
-            <h2 class="section-title">Die Saga in 4 Akten</h2>
-            <div class="timeline-container">
-                <div class="timeline-line"></div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>🏔️ Akt 1: Die Bewerbung</h3>
-                        <p>Zwei amerikanische Giganten, Twin Peaks und Hooters, bewerben sich um das prestigeträchtige «Filetstück» oberhalb vom Parkplatz. Die Gemeindeversammlung ist in heller Aufregung. Tourismus-Experten prophezeien goldene Zeiten!</p>
-                    </div>
-                    <div class="timeline-marker">1</div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>🤔 Akt 2: Das grosse Rätselraten</h3>
-                        <p>In den Dorfbeizen wird spekuliert: «Mir wänd kei Hooters, mir händ scho gnuag Hühnerhöf!» Die Winzer sind besorgt: «Was, wenn die Touristen Wings statt Wein wollen?» Die Spannung ist unerträglich.</p>
-                    </div>
-                    <div class="timeline-marker">2</div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>❌ Akt 3: Die mysteriöse Absage</h3>
-                        <p>Überraschung! Beide Ketten erhalten eine Absage. «Nach sorgfältiger Prüfung...» – das übliche Behörden-Blabla. Gerüchte über Nacht-und-Nebel-Umzonungen machen die Runde. Die Wahrheit bleibt im Dunkeln...</p>
-                    </div>
-                    <div class="timeline-marker">3</div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>🎉 Akt 4: Der Überraschungssieger</h3>
-                        <p>Chili's erhält den Zuschlag! Die perfekte gastronomische Symbiose zum Burger King bei der Raststätte Heidiland. Vom Weindorf zur amerikanischen Restaurant-Meile - Fläsch geht neue Wege!</p>
-                    </div>
-                    <div class="timeline-marker">4</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Candidates Section -->
-    <section class="candidates" id="candidates">
-        <div class="container">
-            <h2 class="section-title">Die Kandidaten im Überblick</h2>
-            <div class="cards-container">
-                <div class="candidate-card rejected" data-url="https://twinpeaksrestaurant.com">
-                    <h3>Twin Peaks</h3>
-                    <p>Spektakuläre Aussichten und... nun ja, andere Attraktionen. Leider zu «peaked» für Fläsch. Die Gemeinde befürchtete wohl, dass die Aussicht auf die Berge zur Nebensache werden könnte.</p>
-                </div>
-
-                <div class="candidate-card rejected" data-url="https://www.hooters.com">
-                    <h3>Hooters</h3>
-                    <p>Die Ikone der amerikanischen «Familienrestaurant»-Kultur. Abgelehnt mit der Begründung: «Mir händ scho gnuag Hühnerhöf!» Ein historischer Moment der Schweizer Zurückhaltung.</p>
-                </div>
-
-                <div class="candidate-card winner" data-url="https://www.chilis.com">
-                    <h3>Chili's Grill & Bar</h3>
-                    <p>Der strahlende Sieger! Baby Back Ribs mit Heidiland-Honey-Glaze, Schweizer Käse in 40% aller Gerichte - die perfekte Fusion aus Texas und Graubünden. Maximale Schärfe: mittel!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Truth Section -->
-    <section class="truth-section" id="truth">
-        <div class="container">
-            <h2 class="section-title">Die offizielle Version vs. Die Wahrheit</h2>
-
-            <div class="truth-toggle">
-                <span class="toggle-label">Offizielle Version</span>
-                <div class="toggle-switch" id="truthToggle">
-                    <div class="toggle-slider"></div>
-                </div>
-                <span class="toggle-label">Die «Wahrheit»</span>
-            </div>
-
-            <div class="truth-content">
-                <div class="truth-version active" id="officialVersion">
-                    <h3>📋 Die offizielle Stellungnahme der Gemeinde</h3>
-                    <p>Nach eingehender Prüfung aller eingereichten Konzepte hat sich die Gemeinde Fläsch für Chili's Grill & Bar als idealen Partner für die Entwicklung des Filetstück-Grundstücks entschieden.</p>
-                    <p>Die Entscheidung basiert auf folgenden Kriterien:</p>
-                    <ul>
-                        <li>Familienfreundliches Gesamtkonzept</li>
-                        <li>Synergie mit bestehenden gastronomischen Angeboten in der Region</li>
-                        <li>Nachhaltige touristische Entwicklung</li>
-                        <li>Integration lokaler Produkte in die Speisekarte</li>
-                        <li>Schaffung von Arbeitsplätzen in der Region</li>
-                    </ul>
-                    <p>Die Gemeinde freut sich auf die Zusammenarbeit und ist überzeugt, dass Chili's eine Bereicherung für Fläsch darstellen wird.</p>
-                </div>
-
-                <div class="truth-version" id="realVersion">
-                    <h3>🔥 Was WIRKLICH passiert ist...</h3>
-                    <p>Gut, setzen Sie sich hin. Schnallen Sie sich an. Diese Geschichte ist wilder als eine Nacht in der Fläscher Dorfbeiz nach drei Flaschen Fläscher-Blauburgunder...</p>
-                    <ul>
-                        <li><strong>Der Chili-Züchter:</strong> Hans-Jörg «El Diablo» Müller kultivierte jahrelang im Geheimen die schärfsten Chili-Schoten nördlich der Alpen. Seine Kreuzung «Fläscher Feuerteufel» (Carolina Reaper x Alpenkräuter) sollte den Weltmarkt erobern!</li>
-                        <li><strong>Die Panik:</strong> Als die Winzervereinigung davon erfuhr, brach Panik aus. «Chili-Pollen auf unseren Reben? Das gibt Gewürztraminer mit echter Schärfe!»</li>
-                        <li><strong>Die Nacht-und-Nebel-Aktion:</strong> In einer beispiellosen Sitzung um 3 Uhr morgens wurde das Grundstück umgewidmet: Von «Gastronomie-Erlebniszone» zu «Gemässigte Familienrestaurant-Zone».</li>
-                        <li><strong>Die Bedingungen:</strong> Maximale Schärfe auf der Speisekarte: mittel. Verpflichtende Integration von Schweizer Käse in mindestens 40% aller Gerichte. Keine «optischen Ablenkungen» vom Bergpanorama.</li>
-                        <li><strong>Das Resultat:</strong> Chili's stimmte zu. Twin Peaks und Hooters waren zu... nun ja... «authentisch». Fläsch bleibt Fläsch – nur mit Baby Back Ribs!</li>
-                    </ul>
-                    <p><em>Hinweis: Diese Version kursiert in mindestens 5 verschiedenen Dorfbeizen. Wahrheitsgehalt: vermutlich irgendwo zwischen 0% und 100%. Aber sie ist definitiv unterhaltsamer!</em></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <h2 class="section-title">Häufig getuschelte Fragen</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Wird Fläsch jetzt zum Chili-Dorf?
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Nein, keine Sorge! Fläsch bleibt das charmante Weindorf, das es immer war. Chili's ist nur eine... sagen wir «pikante» Ergänzung. Die Reben sind sicher, der Fläscher-Blauburgunder fliesst weiter, und die einzige Fusion, die stattfindet, ist die zwischen Baby Back Ribs und Schweizer Käse. Mmmh!</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Was passiert mit Hans-Jörg's legendärer Chili-Zucht?
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Gerüchten zufolge hat Hans-Jörg «El Diablo» Müller seine Chili-Pflanzen in ein geheimes Gewächshaus in den Bergen verlegt. Manche sagen, man kann nachts ein rotes Glühen sehen. Andere behaupten, er beliefert jetzt mexikanische Restaurants in Chur. Die Wahrheit? Vermutlich ist er eine fiktive Figur. Aber die Legende lebt!</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Gibt's bei Chili's auch Schweizer Käse?
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Aber sicher! Laut Gemeindeauflage müssen mindestens 40% aller Gerichte Schweizer Käse enthalten. Freuen Sie sich auf Kreationen wie «Gruyère Loaded Nachos», «Appenzeller Cheese Burger» und die berühmten «Raclette Fajitas». Tex-Mex trifft Alpen – was könnte schiefgehen?</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Warum nicht Hooters oder Twin Peaks?
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Die offizielle Version: «Passte nicht zum Gesamtkonzept.» Die inoffizielle Version: Die Gemeinde wollte nicht, dass die Touristen mehr Zeit mit... nun ja... anderen Aussichten als dem Bergpanorama verbringen. Ausserdem: «Mir händ scho gnuag Hühnerhöf!» – ein Zitat für die Geschichtsbücher.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        Ist das alles wirklich passiert?
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Definieren Sie "wirklich". Diese Website ist Satire - eine humorvolle Überspitzung von Ereignissen, die vielleicht so oder so ähnlich hätten passieren können. Oder auch nicht. Die Wahrheit liegt irgendwo zwischen Realität und Dorfbeizen-Klatsch. Aber Hand aufs Herz: Ist die echte Story nicht meistens langweiliger als die, die wir uns erzählen? 😉</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Spiciness Meter -->
-    <section class="spicy-meter">
-        <div class="container">
-            <h2 class="section-title">Absurditäts-Meter</h2>
-            <div class="meter-container">
-                <p class="meter-title">Wie absurd ist diese ganze Geschichte?</p>
-                <div class="meter-bar">
-                    <div class="meter-fill" id="spicyMeter"></div>
-                </div>
-                <div class="meter-labels">
-                    <span>Völlig plausibel</span>
-                    <span>Satire-Alarm! 🌶️</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Countdown Section -->
-    <section class="countdown-section" id="countdown">
-        <div class="container">
-            <h2 class="section-title">Bis zur (fiktiven) Eröffnung</h2>
-            <div class="countdown-timer">
-                <div class="countdown-item">
-                    <span class="countdown-value" id="days">000</span>
-                    <span class="countdown-label">Tage</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-value" id="hours">00</span>
-                    <span class="countdown-label">Stunden</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-value" id="minutes">00</span>
-                    <span class="countdown-label">Minuten</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-value" id="seconds">00</span>
-                    <span class="countdown-label">Sekunden</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="disclaimer">
-                <p><strong>⚠️ WICHTIGER HINWEIS ⚠️</strong></p>
-                <p>Diese Seite ist Satire. Jegliche Ähnlichkeit mit echten Ereignissen, Personen oder Gemeindebeschlüssen ist reiner Zufall. Oder doch nicht? 😉</p>
-                <p>Keine Winzer, Chili-Züchter oder amerikanischen Restaurant-Ketten wurden bei der Erstellung dieser Website verletzt.</p>
-            </div>
-
-            <div class="footer-links">
-                <a href="https://twinpeaksrestaurant.com" target="_blank" rel="noopener">Twin Peaks (Inspiration)</a>
-                <a href="https://www.hooters.com" target="_blank" rel="noopener">Hooters (Inspiration)</a>
-                <a href="https://www.chilis.com" target="_blank" rel="noopener">Chili's (Der «Gewinner»)</a>
-                <a href="migros-fail.html" style="color: var(--migros-orange); text-decoration: underline;">🔥 NEU: Migros Werbekampagnen-FAIL!</a>
-            </div>
-
-            <div class="social-share">
-                <p style="margin-bottom: 1rem;">Teilen Sie die Absurdität!</p>
-                <button class="share-button" id="shareTwitter">🐦 Auf X teilen</button>
-                <button class="share-button" id="shareFacebook">📘 Auf Facebook teilen</button>
-                <button class="share-button" id="shareWhatsApp">💬 Via WhatsApp</button>
-            </div>
-
-            <div class="copyright">
-                <p>© 2025 Fläsch Marketing - Abteilung für kreative Wahrheitsfindung</p>
-                <p>Entwickelt mit ❤️ und einer Prise Humor</p>
-            </div>
-        </div>
+        <p>🌶️ <strong>Fläsch News</strong> - Geschichten aus dem Herzen von Fläsch</p>
+        <p>&copy; 2025 Fläsch mittendrin - oder doch daneben?</p>
+        <p><em>Eine satirische Sammlung von Geschichten. Alle Ähnlichkeiten mit echten Ereignissen sind rein zufällig... oder doch nicht? 😉</em></p>
     </footer>
 
-    <!-- Easter Egg Chili -->
-    <div class="easter-chili" id="easterChili">🌶️</div>
-
     <script>
-        // Intersection Observer for Timeline Animations
-        const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.3 });
-
-        document.querySelectorAll('.timeline-item').forEach(item => {
-            timelineObserver.observe(item);
-        });
-
-        // Spiciness Meter Animation
-        const spicyMeterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    document.getElementById('spicyMeter').classList.add('animated');
-                }
-            });
-        }, { threshold: 0.5 });
-
-        const meterElement = document.querySelector('.spicy-meter');
-        if (meterElement) {
-            spicyMeterObserver.observe(meterElement);
-        }
-
-        // Truth Toggle
-        const truthToggle = document.getElementById('truthToggle');
-        const officialVersion = document.getElementById('officialVersion');
-        const realVersion = document.getElementById('realVersion');
-
-        truthToggle.addEventListener('click', () => {
-            truthToggle.classList.toggle('active');
-            officialVersion.classList.toggle('active');
-            realVersion.classList.toggle('active');
-        });
-
-        // Candidate Card Click Handler
-        document.querySelectorAll('.candidate-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const url = card.getAttribute('data-url');
-                if (url) {
-                    window.open(url, '_blank', 'noopener,noreferrer');
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
-
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const faqItem = question.parentElement;
-                const isActive = faqItem.classList.contains('active');
-
-                // Close all FAQ items
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    item.classList.remove('active');
-                });
-
-                // Open clicked item if it wasn't active
-                if (!isActive) {
-                    faqItem.classList.add('active');
-                }
-            });
-        });
-
-        // Countdown Timer
-        const countdownDate = new Date('2025-12-31T18:00:00').getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').textContent = String(days).padStart(3, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-
-            if (distance < 0) {
-                clearInterval(countdownInterval);
-                document.querySelector('.countdown-timer').innerHTML = '<h3 style="color: white; font-size: 2rem;">🎉 Es ist soweit! (Nicht wirklich, es ist Satire!) 🎉</h3>';
-            }
-        }
-
-        const countdownInterval = setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // Easter Egg Chili Fire
-        const easterChili = document.getElementById('easterChili');
-        let fireCount = 0;
-
-        easterChili.addEventListener('click', (e) => {
-            fireCount++;
-
-            // Create fire particles
-            for (let i = 0; i < 5; i++) {
-                const fire = document.createElement('div');
-                fire.className = 'fire-particle';
-                fire.textContent = '🔥';
-                fire.style.left = e.pageX + 'px';
-                fire.style.top = e.pageY + 'px';
-                fire.style.setProperty('--tx', (Math.random() - 0.5) * 200 + 'px');
-                document.body.appendChild(fire);
-
-                setTimeout(() => fire.remove(), 1000);
-            }
-
-            // Easter egg message after 5 clicks
-            if (fireCount === 5) {
-                alert('🌶️ GEHEIMNIS ENTDECKT! 🌶️\n\nHans-Jörg «El Diablo» Müller lässt ausrichten: «Die Fläscher Feuerteufel leben! Besuchen Sie mein geheimes Gewächshaus... wenn Sie sich trauen!»\n\n(Hinweis: Existiert nicht wirklich. Oder doch? 😉)');
-                fireCount = 0;
-            }
-        });
-
-        // Confetti on Winner Card Hover
-        const winnerCard = document.querySelector('.candidate-card.winner');
-        winnerCard.addEventListener('mouseenter', () => {
-            createConfetti();
-        });
-
-        function createConfetti() {
-            const colors = ['#FFD700', '#FF6B35', '#C41E3A', '#FFF8E7'];
-            for (let i = 0; i < 30; i++) {
-                const confetti = document.createElement('div');
-                confetti.style.position = 'fixed';
-                confetti.style.width = '10px';
-                confetti.style.height = '10px';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.left = Math.random() * window.innerWidth + 'px';
-                confetti.style.top = '-10px';
-                confetti.style.opacity = '1';
-                confetti.style.zIndex = '1000';
-                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-                document.body.appendChild(confetti);
-
-                const animation = confetti.animate([
-                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                    { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-                ], {
-                    duration: 3000 + Math.random() * 2000,
-                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                });
-
-                animation.onfinish = () => confetti.remove();
-            }
-        }
-
-        // Social Share Buttons
-        const shareData = {
-            title: 'Fläsch mittendrin - oder doch daneben?',
-            text: 'Die (fast) wahre Geschichte vom Filetstück-Grundstück in Fläsch. Von Twin Peaks über Hooters zu Chili\'s - diese Story ist wilder als erwartet! 🌶️',
-            url: window.location.href
-        };
-
-        document.getElementById('shareTwitter').addEventListener('click', () => {
-            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareData.text)}&url=${encodeURIComponent(shareData.url)}`;
-            window.open(twitterUrl, '_blank');
-        });
-
-        document.getElementById('shareFacebook').addEventListener('click', () => {
-            const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareData.url)}`;
-            window.open(facebookUrl, '_blank');
-        });
-
-        document.getElementById('shareWhatsApp').addEventListener('click', () => {
-            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareData.text + ' ' + shareData.url)}`;
-            window.open(whatsappUrl, '_blank');
-        });
-
-        // Smooth scroll for CTA button
-        document.querySelector('.cta-button').addEventListener('click', (e) => {
-            e.preventDefault();
-            document.getElementById('timeline').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        // Keyboard navigation for accessibility
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.faq-item.active').forEach(item => {
-                    item.classList.remove('active');
-                });
-            }
-        });
-
-        // Random floating animation delays for hero emojis
-        const style = document.createElement('style');
-        style.textContent = `
-            .hero::before { animation-delay: ${Math.random() * 2}s; }
-            .hero::after { animation-delay: ${Math.random() * 2}s; }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>

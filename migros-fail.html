@@ -56,19 +56,21 @@
             text-decoration: none;
         }
 
-        .back-button {
-            padding: 0.5rem 1.5rem;
-            background: var(--chili-red);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
         }
 
-        .back-button:hover {
-            background: var(--migros-orange);
-            transform: translateY(-2px);
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--chili-red);
         }
 
         /* Hero Section */
@@ -399,8 +401,13 @@
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-content">
-            <a href="index.html" class="nav-logo">🌶️ Fläsch Mittendrin</a>
-            <a href="index.html" class="back-button">← Zurück zur Hauptseite</a>
+            <a href="index.html" class="nav-logo">🌶️ Fläsch News</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Startseite</a></li>
+                <li><a href="chilis-restaurant.html">Chili's Story</a></li>
+                <li><a href="migros-fail.html">Migros Fail</a></li>
+                <li><a href="steuerdebakel.html">Steuerdebakel</a></li>
+            </ul>
         </div>
     </nav>
 
