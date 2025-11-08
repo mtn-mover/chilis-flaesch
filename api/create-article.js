@@ -1,5 +1,5 @@
 // Vercel Serverless Function für Artikel-Erstellung mit Claude API
-const Anthropic = require('@anthropic-ai/sdk').default;
+const { Anthropic } = require('@anthropic-ai/sdk');
 const { verifySession } = require('./auth.js');
 
 // CORS Headers für Frontend-Zugriff
