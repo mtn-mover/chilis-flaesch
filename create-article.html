@@ -518,8 +518,8 @@
 
                     const result = await response.json();
                     if (result.success) {
-                        uploadedImages.push(result.url);
-                        displayPostUploadedImage(result.url);
+                        uploadedImages.push(result.imageUrl);
+                        displayPostUploadedImage(result.imageUrl);
 
                         // Update currentDraft images
                         if (currentDraft) {
