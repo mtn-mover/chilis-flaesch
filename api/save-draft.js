@@ -73,9 +73,11 @@ module.exports = async function handler(req, res) {
 
   } catch (error) {
     console.error('Error saving draft:', error);
+    console.error('Error stack:', error.stack);
     return res.status(500).json({
       error: 'Fehler beim Speichern des Drafts',
-      details: error.message
+      details: error.message,
+      stack: error.stack
     });
   }
 };

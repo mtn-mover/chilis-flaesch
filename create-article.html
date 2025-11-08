@@ -304,11 +304,23 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Bilder hochladen (optional)</label>
+                        <label>Hintergrundinformationen hochladen (optional)</label>
+                        <div class="image-upload" id="infoUpload">
+                            <input type="file" id="infoInput" accept=".pdf,.txt,.doc,.docx,image/*" multiple style="display: none;">
+                            <p>Klicken zum Hochladen oder Drag & Drop</p>
+                            <small>PDF, Bilder, Textdokumente (max 10MB pro Datei)</small>
+                            <small style="display: block; margin-top: 0.5rem; color: #666;">Diese Dateien werden NUR zur Information für Claude verwendet, nicht veröffentlicht</small>
+                        </div>
+                        <div class="uploaded-images" id="uploadedInfo"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bilder für Artikel (optional)</label>
                         <div class="image-upload" id="imageUpload">
                             <input type="file" id="imageInput" accept="image/*" multiple style="display: none;">
                             <p>Klicken zum Hochladen oder Drag & Drop</p>
                             <small>JPG, PNG, GIF, WebP (max 5MB pro Bild)</small>
+                            <small style="display: block; margin-top: 0.5rem; color: #666;">Diese Bilder werden im Artikel veröffentlicht</small>
                         </div>
                         <div class="uploaded-images" id="uploadedImages"></div>
                     </div>
@@ -328,7 +340,6 @@
 
                 <div class="action-buttons" id="actionButtons" style="display: none;">
                     <button class="btn btn-secondary" onclick="regenerateArticle()">Neu generieren</button>
-                    <button class="btn btn-secondary" onclick="editHTML()">HTML bearbeiten</button>
                     <button class="btn btn-success" onclick="saveDraft()">Als Draft speichern</button>
                 </div>
             </div>
@@ -338,6 +349,7 @@
     <script>
         let currentDraft = null;
         let uploadedImages = [];
+        let uploadedInfoFiles = [];
 
         // Auth Check
         const sessionToken = sessionStorage.getItem('sessionToken');
@@ -351,7 +363,66 @@
             window.location.href = 'admin.html';
         }
 
-        // Image Upload
+        // Info Upload (PDFs, docs, etc.)
+        const infoUpload = document.getElementById('infoUpload');
+        const infoInput = document.getElementById('infoInput');
+        const uploadedInfoDiv = document.getElementById('uploadedInfo');
+
+        infoUpload.addEventListener('click', () => infoInput.click());
+
+        infoInput.addEventListener('change', async function(e) {
+            const files = e.target.files;
+            for (let file of files) {
+                await uploadInfoFile(file);
+            }
+        });
+
+        async function uploadInfoFile(file) {
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                try {
+                    // For PDFs and docs, we'll just store reference for now
+                    // Later can add OCR or text extraction
+                    uploadedInfoFiles.push({
+                        name: file.name,
+                        type: file.type,
+                        size: file.size,
+                        data: e.target.result
+                    });
+
+                    displayUploadedInfoFile(file.name, file.type);
+                } catch (error) {
+                    alert('Fehler beim Hochladen: ' + error.message);
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function displayUploadedInfoFile(name, type) {
+            const div = document.createElement('div');
+            div.className = 'uploaded-image';
+            const icon = type.includes('pdf') ? '📄' : type.includes('image') ? '🖼️' : '📝';
+            div.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f0f0f0; padding: 1rem; font-size: 2rem;">
+                    ${icon}
+                </div>
+                <button class="image-remove" onclick="removeInfoFile('${name}')">×</button>
+                <div style="position: absolute; bottom: 5px; left: 5px; right: 5px; background: rgba(0,0,0,0.7); color: white; padding: 0.25rem; font-size: 0.7rem; text-align: center; border-radius: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${name}</div>
+            `;
+            uploadedInfoDiv.appendChild(div);
+        }
+
+        function removeInfoFile(name) {
+            uploadedInfoFiles = uploadedInfoFiles.filter(f => f.name !== name);
+            const items = uploadedInfoDiv.querySelectorAll('.uploaded-image');
+            items.forEach(item => {
+                if (item.textContent.includes(name)) {
+                    item.remove();
+                }
+            });
+        }
+
+        // Image Upload (for article)
         const imageUpload = document.getElementById('imageUpload');
         const imageInput = document.getElementById('imageInput');
         const uploadedImagesDiv = document.getElementById('uploadedImages');
@@ -430,13 +501,24 @@
             statusMessage.style.display = 'none';
 
             const formData = new FormData(this);
+
+            // Add info files to content description
+            let contentWithInfo = formData.get('content');
+            if (uploadedInfoFiles.length > 0) {
+                contentWithInfo += '\n\nHINTERGRUNDINFORMATIONEN:\n';
+                contentWithInfo += uploadedInfoFiles.map(f => `- Datei: ${f.name} (${f.type})`).join('\n');
+                contentWithInfo += '\n\nDiese Dateien enthalten zusätzliche Informationen für den Artikel. Nutze relevante Details daraus.';
+            }
+
             const payload = {
                 sessionToken: sessionToken,
                 title: formData.get('title'),
                 category: formData.get('category'),
                 style: formData.get('style'),
-                content: formData.get('content'),
-                author: sessionStorage.getItem('username')
+                content: contentWithInfo,
+                author: sessionStorage.getItem('username'),
+                infoFiles: uploadedInfoFiles,
+                images: uploadedImages
             };
 
             try {
@@ -513,15 +595,6 @@
                 }
             } catch (error) {
                 alert('Fehler: ' + error.message);
-            }
-        }
-
-        // Edit HTML
-        function editHTML() {
-            const newHTML = prompt('HTML bearbeiten:', currentDraft.html);
-            if (newHTML && newHTML !== currentDraft.html) {
-                currentDraft.html = newHTML;
-                document.getElementById('previewArea').innerHTML = newHTML;
             }
         }
 
