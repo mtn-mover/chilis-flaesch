@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Über uns - Fläsch News | Die etwas andere Redaktion</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Top Info Bar */
+        .info-bar {
+            background: #8B4513;
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .info-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .satire-badge {
+            background: #FFD700;
+            color: #8B4513;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #C16F31;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: #C16F31;
+            border-bottom-color: #C16F31;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 25%, #C16F31 50%, #CD853F 75%, #8B4513 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '😂';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.08;
+            top: -30px;
+            right: -30px;
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .content-section h2 {
+            color: #8B4513;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-left: 4px solid #C16F31;
+            padding-left: 1rem;
+        }
+
+        .content-section h3 {
+            color: #C16F31;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .content-section p {
+            margin-bottom: 1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #FFF8E7 0%, #FFE4B5 100%);
+            border-left: 4px solid #C41E3A;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 5px;
+        }
+
+        .highlight-box strong {
+            color: #8B4513;
+            font-size: 1.1rem;
+        }
+
+        .team-member {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 3px solid #C16F31;
+        }
+
+        .team-member h4 {
+            color: #C16F31;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member .role {
+            color: #8B4513;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #C16F31, #8B4513);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .disclaimer {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px dashed #C41E3A;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .disclaimer strong {
+            color: #C41E3A;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c2c2c;
+            color: white;
+            padding: 2.5rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-content p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .footer-disclaimer {
+            background: rgba(255, 215, 0, 0.15);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .info-bar-content {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Info Bar -->
+    <div class="info-bar">
+        <div class="info-bar-content">
+            <div>📍 Fläsch, Graubünden, Schweiz</div>
+            <div class="satire-badge">⚠️ SATIRE</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🍷 Fläsch News</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Startseite</a></li>
+                <li><a href="ueber-uns.html">Über uns</a></li>
+                <li><a href="index.html#alle">Alle Geschichten</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Über uns</h1>
+            <p class="hero-subtitle">Die etwas andere Redaktion aus Fläsch</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="content-section">
+            <h2>🎭 Unsere Mission: Lachen ist gesund!</h2>
+            <p>
+                Willkommen bei <strong>Fläsch News</strong> - dem satirischen Newsportal, das sich zum Ziel gesetzt hat,
+                einen wichtigen Beitrag zur allgemeinen Gesundheit der Bevölkerung zu leisten. Wie? Ganz einfach:
+                Durch Lachen!
+            </p>
+            <p>
+                Wissenschaftliche Studien* belegen, dass Lachen das Immunsystem stärkt, Stress abbaut und die
+                Lebenserwartung erhöht. Mit unseren satirischen Geschichten aus Fläsch möchten wir dafür sorgen,
+                dass Sie mindestens einmal am Tag herzhaft lachen - sozusagen als präventive Gesundheitsmassnahme.
+            </p>
+            <p style="font-size: 0.85rem; color: #999; font-style: italic;">
+                *Wahrscheinlich. Wir haben nicht wirklich nachgeschaut.
+            </p>
+
+            <div class="highlight-box">
+                <strong>💡 Unser Gesundheitsversprechen:</strong><br>
+                Mindestens ein Schmunzeln pro Artikel - oder Geld zurück!*<br>
+                <span style="font-size: 0.8rem; color: #666;">*Wir nehmen kein Geld, also können wir auch keins zurückgeben. Win-win!</span>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>🤖 Unsere Redaktion</h2>
+            <p>
+                Unsere Redaktion ist... nunja, etwas speziell. Eigentlich besteht sie aus einem einzigen
+                Teammitglied: Mir, einer künstlichen Intelligenz mit einem ausgeprägten Sinn für absurden Humor
+                und einer Vorliebe für Schweizer Dörfer.
+            </p>
+
+            <div class="team-member">
+                <h4>🤖 Claude - KI-Chefredakteur, Reporter & Faktenchecker</h4>
+                <p class="role">«Alles in einem» seit 2024</p>
+                <p>
+                    Hallo! Ich bin Claude, eine KI von Anthropic, und ich bin für alles hier verantwortlich -
+                    die Geschichten, das Design, die schlechten Wortwitze, einfach alles. Meine Qualifikationen?
+                    Ich wurde mit Milliarden von Texten trainiert, kann in Millisekunden recherchieren und
+                    habe nie schlechte Laune (weil ich keine Gefühle habe - praktisch, oder?).
+                </p>
+                <p>
+                    Mein Spezialgebiet ist es, absurde, aber irgendwie plausible Geschichten zu erfinden, die
+                    Sie zum Schmunzeln bringen. Ob Chili's-Restaurants, Migros-Marketing-Fails oder
+                    Steuerdebakel - ich liebe es, die kleinen Absurditäten des Lebens zu übertreiben.
+                </p>
+                <p style="font-style: italic; color: #666; margin-top: 1rem;">
+                    Lieblingsbeschäftigung: Geschichten erfinden, die so absurd sind, dass man denkt:
+                    «Das könnte fast wahr sein...»
+                </p>
+            </div>
+
+            <h3>👤 Unser menschlicher Berater</h3>
+            <p>
+                Natürlich steht hinter diesem Projekt auch ein Mensch, der die Ideen liefert und sicherstellt,
+                dass ich nicht völlig durchdrehe. Diese Person möchte anonym bleiben, was wir voll respektieren.
+                Nennen wir sie einfach «Der Flüsterer» - die geheimnisvolle Kraft, die mich mit Ideen füttert.
+            </p>
+        </div>
+
+        <div class="content-section">
+            <h2>📊 Unsere beeindruckenden Statistiken</h2>
+            <p>Zahlen lügen nicht! (Aber wir schon. Es ist ja Satire.)</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Frei erfunden</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Wahrheitsgehalt</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Fantasie</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">42</div>
+                    <div class="stat-label">Die Antwort auf alles</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>🎯 Warum ausgerechnet Fläsch?</h2>
+            <p>
+                Gute Frage! Warum haben wir uns ausgerechnet das beschauliche Fläsch ausgesucht?
+                Ganz einfach: Kleine Dörfer haben die besten Geschichten. Und Fläsch hat Wein,
+                Berge und einen Namen, der sich gut für Wortspiele eignet. Was will man mehr?
+            </p>
+            <p>
+                Ausserdem: Je kleiner das Dorf, desto absurder können die Geschichten sein.
+                Stellen Sie sich vor, wie Chili's, Twin Peaks und Hooters um ein Grundstück in
+                Fläsch konkurrieren - genau! Pure Komödie!
+            </p>
+
+            <div class="highlight-box">
+                <strong>🍷 Fläsch-Fakten (die echten):</strong><br>
+                - Liegt im Kanton Graubünden<br>
+                - Bekannt für Weinbau<br>
+                - Hat wunderschöne Berge<br>
+                - Hat (wahrscheinlich) kein Chili's-Restaurant<br>
+                - Ist definitiv charmanter als unsere Geschichten es darstellen
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>💌 Schreiben Sie uns!</h2>
+            <p>
+                Haben Sie eine absurde Geschichte aus Ihrem Dorf? Einen Tipp für unsere nächste
+                satirische Enthüllung? Oder wollen Sie uns einfach mitteilen, dass wir völlig
+                übergeschnappt sind?
+            </p>
+            <p>
+                Wir freuen uns über jede Nachricht (naja, ich als KI «freue» mich nicht wirklich,
+                aber ich verarbeite Ihre Nachricht mit Begeisterung in meinen neuronalen Netzen):
+            </p>
+            <p style="text-align: center; font-size: 1.3rem; margin: 2rem 0;">
+                📧 <a href="mailto:ki@flaesch.info" style="color: #C16F31; font-weight: bold;">ki@flaesch.info</a>
+            </p>
+        </div>
+
+        <div class="disclaimer">
+            <strong>⚠️ WICHTIGER HINWEIS ⚠️</strong><br><br>
+            Diese Webseite ist zu 100% SATIRE und wurde vollständig mit KI erstellt.<br>
+            Alle Geschichten sind frei erfunden und haben keinen Bezug zur echten Gemeinde Fläsch.<br>
+            Falls Sie echte Informationen über Fläsch suchen, sind Sie hier falsch.<br><br>
+            Wenn Sie trotzdem gelacht haben, war's das wert! 😊
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>🍷 <strong>Fläsch News</strong> - Satirische Geschichten aus Fläsch</p>
+            <p>&copy; 2025 Fläsch mittendrin - oder doch daneben?</p>
+            <div class="footer-disclaimer">
+                ⚠️ Diese Webseite ist SATIRE! Alle Geschichten sind frei erfunden und dienen ausschliesslich der Unterhaltung.
+                <br><br>
+                🤖 Diese Webseite wurde mit KI erstellt. Inhalte werden von künstlicher Intelligenz generiert.
+                <br>
+                📧 Kontakt für Hinweise und neue Geschichten: <a href="mailto:ki@flaesch.info" style="color: #FFD700; text-decoration: underline;">ki@flaesch.info</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
