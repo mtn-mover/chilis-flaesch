@@ -313,17 +313,6 @@
                         <div class="uploaded-images" id="uploadedInfo"></div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Bilder für Artikel (optional)</label>
-                        <div class="image-upload" id="imageUpload">
-                            <input type="file" id="imageInput" accept="image/*" multiple style="display: none;">
-                            <p>Klicken zum Hochladen oder Drag & Drop</p>
-                            <small>JPG, PNG, GIF, WebP (max 5MB pro Bild)</small>
-                            <small style="display: block; margin-top: 0.5rem; color: #666;">Diese Bilder werden im Artikel veröffentlicht</small>
-                        </div>
-                        <div class="uploaded-images" id="uploadedImages"></div>
-                    </div>
-
                     <button type="submit" class="btn btn-primary">Mit Claude generieren</button>
                 </form>
             </div>
@@ -334,6 +323,19 @@
                 <div id="previewArea" class="preview-area">
                     <div class="preview-placeholder">
                         <p>Artikel-Vorschau erscheint hier nach dem Generieren</p>
+                    </div>
+                </div>
+
+                <!-- Image upload after generation -->
+                <div id="postGenerationImageUpload" style="display: none; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px solid #eee;">
+                    <div class="form-group">
+                        <label>Bilder zum Artikel hinzufügen</label>
+                        <div class="image-upload" id="postImageUpload">
+                            <input type="file" id="postImageInput" accept="image/*" multiple style="display: none;">
+                            <p>Klicken zum Hochladen oder Drag & Drop</p>
+                            <small>JPG, PNG, GIF, WebP (max 5MB pro Bild)</small>
+                        </div>
+                        <div class="uploaded-images" id="postUploadedImages"></div>
                     </div>
                 </div>
 
@@ -404,6 +406,9 @@
                             previewArea.innerHTML = draft.html;
                             previewArea.classList.add('has-content');
                             actionButtons.style.display = 'flex';
+
+                            // Show post-generation image upload when editing
+                            document.getElementById('postGenerationImageUpload').style.display = 'block';
                         }
 
                         // Load images if available
@@ -482,21 +487,21 @@
             });
         }
 
-        // Image Upload (for article)
-        const imageUpload = document.getElementById('imageUpload');
-        const imageInput = document.getElementById('imageInput');
-        const uploadedImagesDiv = document.getElementById('uploadedImages');
+        // Post-Generation Image Upload (main image upload - only after article generation)
+        const postImageUpload = document.getElementById('postImageUpload');
+        const postImageInput = document.getElementById('postImageInput');
+        const postUploadedImagesDiv = document.getElementById('postUploadedImages');
 
-        imageUpload.addEventListener('click', () => imageInput.click());
+        postImageUpload.addEventListener('click', () => postImageInput.click());
 
-        imageInput.addEventListener('change', async function(e) {
+        postImageInput.addEventListener('change', async function(e) {
             const files = e.target.files;
             for (let file of files) {
-                await uploadImage(file);
+                await uploadPostImage(file);
             }
         });
 
-        async function uploadImage(file) {
+        async function uploadPostImage(file) {
             const reader = new FileReader();
             reader.onload = async function(e) {
                 try {
@@ -508,14 +513,18 @@
                             imageData: e.target.result,
                             fileName: file.name,
                             articleSlug: document.getElementById('title').value
-                                .toLowerCase().replace(/[^a-z0-9]+/g, '-')
                         })
                     });
 
                     const result = await response.json();
-                    if (response.ok) {
-                        uploadedImages.push(result.imageUrl);
-                        displayUploadedImage(result.imageUrl);
+                    if (result.success) {
+                        uploadedImages.push(result.url);
+                        displayPostUploadedImage(result.url);
+
+                        // Update currentDraft images
+                        if (currentDraft) {
+                            currentDraft.images = uploadedImages;
+                        }
                     } else {
                         alert('Fehler beim Hochladen: ' + result.error);
                     }
@@ -526,24 +535,29 @@
             reader.readAsDataURL(file);
         }
 
-        function displayUploadedImage(url) {
+        function displayPostUploadedImage(url) {
             const div = document.createElement('div');
             div.className = 'uploaded-image';
             div.innerHTML = `
                 <img src="${url}" alt="Uploaded">
-                <button class="image-remove" onclick="removeImage('${url}')">×</button>
+                <button class="image-remove" onclick="removePostImage('${url}')">×</button>
             `;
-            uploadedImagesDiv.appendChild(div);
+            postUploadedImagesDiv.appendChild(div);
         }
 
-        function removeImage(url) {
+        function removePostImage(url) {
             uploadedImages = uploadedImages.filter(img => img !== url);
-            const imgs = uploadedImagesDiv.querySelectorAll('.uploaded-image');
+            const imgs = postUploadedImagesDiv.querySelectorAll('.uploaded-image');
             imgs.forEach(img => {
                 if (img.querySelector('img').src === url) {
                     img.remove();
                 }
             });
+
+            // Update currentDraft images
+            if (currentDraft) {
+                currentDraft.images = uploadedImages;
+            }
         }
 
         // Form Submit - Generate Article
@@ -616,6 +630,9 @@
                 previewArea.innerHTML = result.html;
                 previewArea.classList.add('has-content');
                 actionButtons.style.display = 'flex';
+
+                // Show post-generation image upload
+                document.getElementById('postGenerationImageUpload').style.display = 'block';
 
                 statusMessage.className = 'status-message status-success';
                 statusMessage.textContent = '✅ Artikel erfolgreich generiert!';
