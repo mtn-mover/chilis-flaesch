@@ -398,7 +398,8 @@
                         // Show preview if available
                         if (draft.html) {
                             currentDraft = draft;
-                            updatePreview();
+                            const previewArea = document.getElementById('previewArea');
+                            previewArea.innerHTML = draft.html;
                         }
 
                         // Load images if available
