@@ -91,12 +91,27 @@ module.exports = async function handler(req, res) {
 
 ${styleInstruction}
 
+**Kontext über Fläsch:**
+- Kleines Dorf in Graubünden, bekannt für Weinbau
+- Gemeindepräsident: René P. (intern auch "CEO" genannt)
+  * Hat Steuererhöhung 70%→75% vorgeschlagen (wurde abgelehnt 42:21)
+  * Leitet gerne Arbeitsgruppen, setzt aber eigene Meinung durch
+  * Nutzt oft das Wort "Vertrauen"
+- Andere bekannte Figuren: El Diablo Müller (hat starke Meinungen), Tamara W. (Wirtschaftsprüferin), Michael L. (Gemeinderat)
+
+**Bisherige Ereignisse:**
+- September 2025: Steuer-Debakel (Erhöhung abgelehnt)
+- Migros Marketing-Fail (Korkenzieher statt Chili)
+- Chili's Restaurant kommt (Hooters & Twin Peaks abgelehnt)
+- Fläsch steht auf "medium" - nicht zu mild, nicht zu scharf
+
 **Wichtige Regeln:**
-- KEINE vollen Namen verwenden, nur Vornamen oder Pseudonyme
+- KEINE vollen Namen - nur Vornamen oder Initialen (z.B. René P., Michael L.)
 - KEINE Beleidigungen oder Diffamierungen
 - Schweizer Hochdeutsch verwenden (keine ß, Guillemets «» statt "", etc.)
 - Satirisch, aber nicht böswillig
-- Dorf-typische Themen und Charaktere
+- Nutze wiederkehrende Charaktere wenn es passt (besonders René P. bei Politik-Themen)
+- Baue auf bisherigen Ereignissen auf wenn relevant
 
 **Artikel-Informationen:**
 Titel: ${title}
