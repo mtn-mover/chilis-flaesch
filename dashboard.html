@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Fläsch Info Admin</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid white;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #667eea;
+        }
+
+        /* Content Policy */
+        .policy-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 5px;
+        }
+
+        .policy-box h3 {
+            color: #856404;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .policy-box ul {
+            margin-left: 1.5rem;
+            color: #856404;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .file-upload {
+            border: 2px dashed #667eea;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .file-upload:hover {
+            background: #f8f9ff;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-label {
+            cursor: pointer;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .file-info {
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: #e8f0fe;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Status Messages */
+        .status-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .status-success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .status-error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .status-info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <h1>🏔️ Fläsch Info - Admin Dashboard</h1>
+            <div class="user-info">
+                <span>👤 <span id="userName"></span></span>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Content Policy -->
+        <div class="card">
+            <div class="policy-box">
+                <h3>⚠️ Inhaltsrichtlinien - Bitte beachten!</h3>
+                <ul>
+                    <li><strong>Nur Satire:</strong> Alle Artikel müssen satirischer Natur sein</li>
+                    <li><strong>Keine vollen Namen:</strong> Verwenden Sie nur Vornamen, Initialen oder Pseudonyme</li>
+                    <li><strong>Keine Beleidigungen:</strong> Diffamierungen, Beleidigungen oder Anschwärzungen unter der Gürtellinie sind nicht erlaubt</li>
+                    <li><strong>Persönliche Verantwortung:</strong> Sie sind für den veröffentlichten Inhalt verantwortlich, nicht die KI</li>
+                    <li><strong>Rückverfolgbarkeit:</strong> Jeder Artikel kann zum Ersteller zurückverfolgt werden</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Article Creation Form -->
+        <div class="card">
+            <h2>📝 Neuen Artikel erstellen</h2>
+
+            <div class="status-message" id="statusMessage"></div>
+            <div class="loading" id="loadingIndicator">
+                <div class="spinner"></div>
+                <p style="margin-top: 1rem;">Claude generiert deinen Artikel...</p>
+            </div>
+
+            <form id="articleForm">
+                <div class="form-group">
+                    <label for="articleTitle">Artikel-Titel / Idee *</label>
+                    <input type="text" id="articleTitle" name="title" required
+                           placeholder="z.B. 'Gemeinderat beschliesst neue Chili-Steuer'">
+                </div>
+
+                <div class="form-group">
+                    <label for="articleCategory">Kategorie *</label>
+                    <select id="articleCategory" name="category" required>
+                        <option value="">-- Kategorie wählen --</option>
+                        <option value="politik">🔴 Politik</option>
+                        <option value="wirtschaft">🟠 Wirtschaft</option>
+                        <option value="kurioses">🟣 Kurioses</option>
+                        <option value="gesellschaft">🔵 Gesellschaft</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="articleDescription">Beschreibung / Details *</label>
+                    <textarea id="articleDescription" name="description" required
+                              placeholder="Beschreiben Sie die Geschichte, wichtige Details, Personen (nur Vornamen!), etc."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="articleStyle">Ton / Stil</label>
+                    <select id="articleStyle" name="style">
+                        <option value="satirisch">😄 Satirisch (Standard)</option>
+                        <option value="absurd">🤪 Absurd / Übertrieben</option>
+                        <option value="ironisch">😏 Ironisch / Subtil</option>
+                        <option value="ernst-satirisch">🎭 Ernst wirkend, aber satirisch</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>📎 Datei hochladen (optional)</label>
+                    <div class="file-upload" id="fileUploadArea">
+                        <input type="file" id="fileInput" name="file"
+                               accept=".pdf,.jpg,.jpeg,.png,.txt,.doc,.docx">
+                        <label for="fileInput" class="file-upload-label">
+                            📁 Klicken zum Hochladen<br>
+                            <small style="color: #666;">PDF, Bild oder Text-Datei (max 10MB)</small>
+                        </label>
+                    </div>
+                    <div class="file-info" id="fileInfo"></div>
+                    <small style="color: #666; display: block; margin-top: 0.5rem;">
+                        Claude kann Dateien analysieren und Informationen für den Artikel verwenden
+                    </small>
+                </div>
+
+                <button type="submit" class="btn-primary" id="submitBtn">
+                    🤖 Artikel mit Claude generieren
+                </button>
+            </form>
+        </div>
+
+        <!-- Info Box -->
+        <div class="card">
+            <h2>ℹ️ Wie funktioniert's?</h2>
+            <ol style="line-height: 2; color: #666;">
+                <li>Füllen Sie das Formular mit Ihrer Artikel-Idee aus</li>
+                <li>Optional: Laden Sie eine Datei hoch für zusätzliche Informationen</li>
+                <li>Klicken Sie auf "Artikel generieren"</li>
+                <li>Claude erstellt automatisch einen vollständigen HTML-Artikel</li>
+                <li>Der Artikel wird automatisch auf der Webseite veröffentlicht</li>
+                <li>Ihr Name wird als Ersteller gespeichert (nicht öffentlich sichtbar)</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Auth Check
+        if (sessionStorage.getItem('loggedIn') !== 'true') {
+            window.location.href = 'admin.html';
+        }
+
+        // Display user name
+        document.getElementById('userName').textContent = sessionStorage.getItem('userDisplayName') || 'Admin';
+
+        // Logout function
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = 'admin.html';
+        }
+
+        // File upload handling
+        const fileInput = document.getElementById('fileInput');
+        const fileInfo = document.getElementById('fileInfo');
+        const fileUploadArea = document.getElementById('fileUploadArea');
+
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const fileSize = (file.size / 1024 / 1024).toFixed(2); // MB
+                fileInfo.textContent = `✅ Datei ausgewählt: ${file.name} (${fileSize} MB)`;
+                fileInfo.style.display = 'block';
+            }
+        });
+
+        fileUploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.background = '#f8f9ff';
+        });
+
+        fileUploadArea.addEventListener('dragleave', function(e) {
+            this.style.background = '';
+        });
+
+        fileUploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.background = '';
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                fileInput.dispatchEvent(new Event('change'));
+            }
+        });
+
+        // Form submission
+        const articleForm = document.getElementById('articleForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const statusMessage = document.getElementById('statusMessage');
+
+        articleForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Show loading
+            submitBtn.disabled = true;
+            loadingIndicator.style.display = 'block';
+            statusMessage.style.display = 'none';
+
+            // Collect form data
+            const formData = new FormData(articleForm);
+            formData.append('author', sessionStorage.getItem('username'));
+            formData.append('authorName', sessionStorage.getItem('userDisplayName'));
+
+            try {
+                // TODO: Hier kommt später der API-Call zur Backend-Function
+                // Für jetzt: Simulieren wir einen erfolgreichen Call
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                // Show success message
+                statusMessage.className = 'status-message status-info';
+                statusMessage.textContent = '⏳ Hinweis: Die Backend-API ist noch nicht implementiert. Phase 2 folgt!';
+                statusMessage.style.display = 'block';
+
+                // Reset form
+                // articleForm.reset();
+                // fileInfo.style.display = 'none';
+
+            } catch (error) {
+                // Show error message
+                statusMessage.className = 'status-message status-error';
+                statusMessage.textContent = '❌ Fehler: ' + error.message;
+                statusMessage.style.display = 'block';
+            } finally {
+                // Hide loading
+                submitBtn.disabled = false;
+                loadingIndicator.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

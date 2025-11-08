@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Fläsch Info</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 2.5rem;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-section img {
+            height: 80px;
+            margin-bottom: 1rem;
+        }
+
+        .logo-section h1 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-section p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .disclaimer {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .disclaimer h3 {
+            color: #856404;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .disclaimer ul {
+            margin-left: 1.5rem;
+            color: #856404;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-section">
+            <img src="logo.png" alt="Fläsch Info">
+            <h1>Admin-Bereich</h1>
+            <p>Geschützter Zugang für Content-Ersteller</p>
+        </div>
+
+        <div class="disclaimer">
+            <h3>⚠️ Wichtige Hinweise:</h3>
+            <ul>
+                <li><strong>Nur Satire:</strong> Alle Inhalte müssen satirischer Natur sein</li>
+                <li><strong>Keine vollen Namen:</strong> Verwenden Sie nur Vornamen oder Pseudonyme</li>
+                <li><strong>Keine Beleidigungen:</strong> Diffamierungen sind nicht erlaubt</li>
+                <li><strong>Verantwortung:</strong> Jeder Ersteller ist für seine Inhalte verantwortlich</li>
+                <li><strong>Rückverfolgbarkeit:</strong> Alle Artikel sind zum Ersteller zurückverfolgbar</li>
+            </ul>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Benutzername</label>
+                <input type="text" id="username" name="username" required autocomplete="username">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Passwort</label>
+                <input type="password" id="password" name="password" required autocomplete="current-password">
+            </div>
+
+            <button type="submit" class="login-button">🔐 Einloggen</button>
+        </form>
+
+        <div class="back-link">
+            <a href="index.html">← Zurück zur Startseite</a>
+        </div>
+    </div>
+
+    <script>
+        // Temporäre Demo-Credentials (wird später durch echte Auth ersetzt)
+        const USERS = {
+            'admin': {
+                password: 'demo123', // Wird später gehasht
+                name: 'Administrator'
+            }
+        };
+
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Einfache Validierung (wird später durch echte Auth ersetzt)
+            if (USERS[username] && USERS[username].password === password) {
+                // Login erfolgreich
+                sessionStorage.setItem('loggedIn', 'true');
+                sessionStorage.setItem('username', username);
+                sessionStorage.setItem('userDisplayName', USERS[username].name);
+
+                // Weiterleitung zum Dashboard
+                window.location.href = 'dashboard.html';
+            } else {
+                // Login fehlgeschlagen
+                errorMessage.textContent = '❌ Ungültiger Benutzername oder Passwort';
+                errorMessage.style.display = 'block';
+
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+
+        // Wenn bereits eingeloggt, direkt zum Dashboard
+        if (sessionStorage.getItem('loggedIn') === 'true') {
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+</html>
