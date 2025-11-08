@@ -29,8 +29,8 @@ module.exports = async function handler(req, res) {
       content,
       author,
       fileContent, // Base64 encoded file content
-      fileName,
-      fileType
+      fileName: uploadedFileName,
+      fileType: uploadedFileType
     } = req.body;
 
     // Verify session
@@ -83,8 +83,8 @@ module.exports = async function handler(req, res) {
 
     // Datei-Analyse falls vorhanden
     let fileAnalysis = '';
-    if (fileContent && fileName) {
-      fileAnalysis = `\n\nDer Nutzer hat eine Datei hochgeladen: "${fileName}" (${fileType}). Nutze diese Informationen für den Artikel falls relevant.`;
+    if (fileContent && uploadedFileName) {
+      fileAnalysis = `\n\nDer Nutzer hat eine Datei hochgeladen: "${uploadedFileName}" (${uploadedFileType}). Nutze diese Informationen für den Artikel falls relevant.`;
     }
 
     const prompt = `Du bist Redakteur für "Fläsch Info", eine satirische Nachrichten-Website über das kleine Schweizer Dorf Fläsch.
