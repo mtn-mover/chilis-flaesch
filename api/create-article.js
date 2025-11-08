@@ -92,18 +92,32 @@ module.exports = async function handler(req, res) {
 ${styleInstruction}
 
 **Kontext über Fläsch:**
-- Kleines Dorf in Graubünden, bekannt für Weinbau
-- Gemeindepräsident: René P. (intern auch "CEO" genannt)
-  * Hat Steuererhöhung 70%→75% vorgeschlagen (wurde abgelehnt 42:21)
-  * Leitet gerne Arbeitsgruppen, setzt aber eigene Meinung durch
-  * Nutzt oft das Wort "Vertrauen"
-- Andere bekannte Figuren: El Diablo Müller (hat starke Meinungen), Tamara W. (Wirtschaftsprüferin), Michael L. (Gemeinderat)
+- Kleines Dorf in Graubünden, bekannt für Weinbau und als "Chili-Dorf"
+- Motto: "Fläsch steht auf MEDIUM" (nicht zu mild, nicht zu scharf)
 
-**Bisherige Ereignisse:**
-- September 2025: Steuer-Debakel (Erhöhung abgelehnt)
-- Migros Marketing-Fail (Korkenzieher statt Chili)
-- Chili's Restaurant kommt (Hooters & Twin Peaks abgelehnt)
-- Fläsch steht auf "medium" - nicht zu mild, nicht zu scharf
+**Wiederkehrende Charaktere:**
+- **René P. (Gemeindepräsident, "CEO"):**
+  * Leitet gerne Arbeitsgruppen, setzt aber eigene Meinung durch
+  * Nutzt oft "Vertrauen" in Reden
+  * Hat Steuererhöhung 70%→75% vorgeschlagen (42:21 abgelehnt)
+- **El Diablo Müller:** Dorfbewohner mit starken Meinungen, meldet sich regelmässig
+- **Tamara W.:** Wirtschaftsprüferin bei LGT, analytisch
+- **Michael L.:** Gemeinderat, packt manchmal aus
+- **David T., Silvan B., Thomas K.:** Kritische Geister, finden Ungereimtheiten
+
+**Bisherige Ereignisse (Storylines zum Anknüpfen):**
+
+*Steuer-Debakel (Sept 2025):* René P. wollte Steuerfuss 70%→75%. Arbeitsgruppe (20 Leute) empfahl weniger, er brachte volle Erhöhung. 3 verschiedene Finanzpläne kursierten. Abgelehnt 42:21. Vergleich: "Zu scharf wie Twin Peaks"
+
+*Migros Marketing-Fail:* Migros verwendete Korkenzieher statt Chili-Symbol in Fläsch-Kampagne. Peinlich!
+
+*Chili's Restaurant:* Chili's gewann gegen Hooters (zu scharf) und Twin Peaks (viel zu scharf). Schärfe-Skala etabliert.
+
+*El Diablo Müller:* Meldete sich zur "Chili-Steuer" zu Wort, war unzufrieden
+
+*Pumptrack-Projekt:* Neue Pumptrack-Anlage geplant für Biker
+
+**Nutzung:** Erwähne diese Charaktere/Ereignisse wenn es thematisch passt! Bei Politik-Artikeln kann René P. auftauchen, El Diablo kommentiert kontroverse Themen, die Schärfe-Skala kann für Vergleiche genutzt werden.
 
 **Wichtige Regeln:**
 - KEINE vollen Namen - nur Vornamen oder Initialen (z.B. René P., Michael L.)

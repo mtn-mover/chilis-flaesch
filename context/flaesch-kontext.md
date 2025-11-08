@@ -31,26 +31,60 @@
 ## Bisherige Ereignisse
 
 ### Das Steuer-Debakel (September 2025)
-- Gemeindeversammlung: Steuererhöhung 70% → 75% abgelehnt
-- 42 NEIN, 21 JA, 10 Enthaltungen
-- Arbeitsgruppe (20 Leute, März-August 2025) hatte reduzierte Erhöhung empfohlen
-- 9 von 12 Arbeitsgruppenmitgliedern waren für geringere Erhöhung
-- René P. brachte trotzdem die volle Erhöhung
-- Drei verschiedene Versionen der Finanzplanung kursierten
-- Themen: Sozialkosten, 6 statt 5 Schulklassen, Investitionen in Güterstrassen
+**Kontext:** Gemeindeversammlung zur Steuererhöhung
+- **Abstimmung:** 42 NEIN, 21 JA, 10 Enthaltungen → ABGELEHNT
+- **Vorschlag:** Steuerfuss von 70% auf 75% erhöhen (+5 Prozentpunkte)
+- **Mehreinnahmen:** CHF 140'000.-/Jahr
+- **Arbeitsgruppe:** 20 Leute (März-August 2025) analysierten Gemeindefinanzen
+  - 9 von 12 Mitgliedern wollten REDUZIERTE Erhöhung
+  - René P. brachte trotzdem die volle Erhöhung
+  - Drei verschiedene Versionen der Finanzplanung kursierten
+- **Begründung René P.:**
+  - Sozialkosten steigen
+  - Bald 6 statt 5 Schulklassen (mehr Lehrerlöhne)
+  - Investitionen nötig (Güterstrassen etc.)
+  - Schulden abbauen
+  - Rhetorik: "Vorausschauend handeln ODER abwarten bis zum Crash?"
+  - Nutzte 5x das Wort "Vertrauen"
+- **Opposition:**
+  - Tamara W.: "Kennzahlen sind deutlich besser als in vielen Schweizer Gemeinden"
+  - David T.: "Immense Abweichungen in der Finanzplanung"
+  - Silvan B.: "Drei Versionen der Finanzplanung gefunden"
+  - Thomas K.: "Gemeindeversammlung macht einen Blindflug"
+  - Michael L. (Gemeinderat!): Bestätigte dass Arbeitsgruppe was anderes wollte
+- **Das Schärfe-Paradox:** Fläsch lehnte ab (zu scharf), wie Hooters & Twin Peaks vorher
 
-### Migros Marketing-Fail
-- Migros verwendete Korkenzieher statt Chili in Fläsch-Kampagne
-- Peinlicher Marketing-Fehler
+### Migros Marketing-Fail (November 2025)
+**Kontext:** Migros-Marketingkampagne für Fläsch ging schief
+- **Der Fehler:** Migros verwendete Korkenzieher-Symbol statt Chili-Symbol
+- **Hintergrund:** Fläsch ist bekannt für scharfe Weine UND als "Chili-Dorf"
+- **Peinlichkeit:** Korkenzieher hat null mit Fläschs Image zu tun
+- **Reaktion:** Social Media lachte über den Marketing-Fail
+- **Migros-Statement:** "Ups, falsches Icon aus der Bibliothek" (peinliches Schweigen)
 
-### Chili's Restaurant kommt nach Fläsch
-- Chili's gewann gegen Hooters und Twin Peaks
-- Schärfe-Skala: Chili's = medium (✅), Hooters = hot (❌), Twin Peaks = extra hot (❌)
-- Fläsch steht auf "medium" - nicht zu mild, nicht zu scharf
+### Chili's Restaurant kommt nach Fläsch (November 2025)
+**Kontext:** Restaurant-Kette für Fläsch gesucht
+- **Die Abstimmung:** Chili's gewann gegen Hooters und Twin Peaks
+- **Schärfe-Skala:**
+  - 🌶️🌶️ Chili's (medium) → ✅ ANGENOMMEN
+  - 🌶️🌶️🌶️ Hooters (hot) → ❌ ABGELEHNT (zu scharf)
+  - 🌶️🌶️🌶️🌶️ Twin Peaks (extra hot) → ❌ ABGELEHNT (viel zu scharf!)
+  - 🌶️🌶️🌶️🌶️🌶️ Steuerfuss 75% (inferno) → ❌ ABGELEHNT
+- **Die Erkenntnis:** Fläsch steht auf MEDIUM - nicht mild, nicht extra hot
+- **Zitat:** "Goldilocks-Zone erreicht"
+- **Das Paradox:** Hooters zu scharf, aber Chilis ok?
 
-### Pumptrack-Projekt (neu)
-- Neues Projekt in Fläsch
-- Details noch offen
+### El Diablo Müller meldet sich zu Wort
+**Kontext:** El Diablo Müller kommentiert die Chili-Steuer-Debatte
+- **Seine Meinung:** Unzufrieden mit der neuen "Chili-Steuer"
+- **Hintergrund:** Bekannter Dorfbewohner mit starken Meinungen
+- **Rolle:** Meldet sich regelmässig zu kontroversen Themen
+
+### Pumptrack-Projekt (November 2025)
+**Kontext:** Neues Pumptrack-Projekt in Fläsch angekündigt
+- **Was:** Pumptrack-Anlage für Mountainbiker und BMX-Fahrer
+- **Status:** In Planung
+- **Relevanz:** Zeigt dass Fläsch moderne Projekte plant (nicht nur Wein und Steuern)
 
 ## Stil-Richtlinien
 
