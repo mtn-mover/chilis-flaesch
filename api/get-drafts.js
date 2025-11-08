@@ -35,7 +35,9 @@ module.exports = async function handler(req, res) {
 
     // Filter drafts based on permissions
     let filteredDrafts = drafts;
-    if (session.username !== 'admin') {
+    const isAdmin = session.role === 'admin';
+
+    if (!isAdmin) {
       // Non-admin users only see their own drafts
       filteredDrafts = drafts.filter(d => d.author === session.username);
     }
@@ -46,7 +48,7 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({
       success: true,
       drafts: filteredDrafts,
-      isAdmin: session.username === 'admin'
+      isAdmin: isAdmin
     });
 
   } catch (error) {

@@ -62,7 +62,8 @@ module.exports = async function handler(req, res) {
     if (existingIndex >= 0) {
       // Check permissions: only author or admin can edit
       const existingDraft = drafts[existingIndex];
-      if (existingDraft.author !== session.username && session.username !== 'admin') {
+      const isAdmin = session.role === 'admin';
+      if (existingDraft.author !== session.username && !isAdmin) {
         return res.status(403).json({ error: 'Keine Berechtigung, diesen Draft zu bearbeiten' });
       }
 

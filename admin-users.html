@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benutzerverwaltung - Fläsch Info Admin</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .card h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .users-table th,
+        .users-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .users-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .users-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .role-admin {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .role-user {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .logout-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid white;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div>
+                <h1>Benutzerverwaltung</h1>
+                <p style="opacity: 0.9; margin-top: 0.25rem;">Nur für Admins</p>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">🏠 Zur Website</a>
+                <a href="create-article.html">✍️ Artikel erstellen</a>
+                <a href="my-articles.html">📄 Meine Artikel</a>
+                <button class="btn btn-sm logout-btn" onclick="logout()">Abmelden</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="messageContainer"></div>
+
+        <!-- Create User Form -->
+        <div class="card">
+            <h2>Neuen Benutzer erstellen</h2>
+            <form id="createUserForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="newUsername">Benutzername</label>
+                        <input type="text" id="newUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newDisplayName">Anzeigename</label>
+                        <input type="text" id="newDisplayName" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="newPassword">Passwort</label>
+                        <input type="password" id="newPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newRole">Rolle</label>
+                        <select id="newRole">
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Benutzer erstellen</button>
+            </form>
+        </div>
+
+        <!-- Users List -->
+        <div class="card">
+            <h2>Benutzer</h2>
+            <table class="users-table" id="usersTable">
+                <thead>
+                    <tr>
+                        <th>Benutzername</th>
+                        <th>Anzeigename</th>
+                        <th>Rolle</th>
+                        <th>Erstellt am</th>
+                        <th>Aktionen</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: #999;">Lade Benutzer...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Edit User Modal (hidden by default) -->
+    <div id="editModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div class="card" style="max-width: 500px; margin: 2rem;">
+            <h2>Benutzer bearbeiten</h2>
+            <form id="editUserForm">
+                <input type="hidden" id="editUsername">
+                <div class="form-group">
+                    <label for="editDisplayName">Anzeigename</label>
+                    <input type="text" id="editDisplayName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editPassword">Neues Passwort (leer lassen um beizubehalten)</label>
+                    <input type="password" id="editPassword">
+                </div>
+                <div class="form-group">
+                    <label for="editRole">Rolle</label>
+                    <select id="editRole">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <button type="submit" class="btn btn-primary">Speichern</button>
+                    <button type="button" class="btn" onclick="closeEditModal()" style="background: #6c757d; color: white;">Abbrechen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = '/api';
+        let sessionToken = localStorage.getItem('sessionToken');
+
+        // Check if user is admin
+        async function checkAdminAccess() {
+            if (!sessionToken) {
+                window.location.href = 'login.html';
+                return false;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/verify`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionToken })
+                });
+
+                const result = await response.json();
+                if (!result.valid || result.role !== 'admin') {
+                    showMessage('Keine Berechtigung. Nur Admins können auf diese Seite zugreifen.', 'error');
+                    setTimeout(() => window.location.href = 'my-articles.html', 2000);
+                    return false;
+                }
+
+                return true;
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                window.location.href = 'login.html';
+                return false;
+            }
+        }
+
+        function showMessage(text, type = 'success') {
+            const messageContainer = document.getElementById('messageContainer');
+            messageContainer.innerHTML = `<div class="message ${type}">${text}</div>`;
+            setTimeout(() => {
+                messageContainer.innerHTML = '';
+            }, 5000);
+        }
+
+        async function loadUsers() {
+            try {
+                const response = await fetch(`${API_BASE}/manage-users`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionToken,
+                        action: 'list'
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    renderUsers(result.users);
+                } else {
+                    showMessage('Fehler beim Laden der Benutzer: ' + result.error, 'error');
+                }
+            } catch (error) {
+                console.error('Load users error:', error);
+                showMessage('Fehler beim Laden der Benutzer', 'error');
+            }
+        }
+
+        function renderUsers(users) {
+            const tbody = document.getElementById('usersTableBody');
+            if (users.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #999;">Keine Benutzer gefunden</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = users.map(user => `
+                <tr>
+                    <td>${user.username}</td>
+                    <td>${user.displayName}</td>
+                    <td><span class="role-badge role-${user.role}">${user.role === 'admin' ? 'Admin' : 'User'}</span></td>
+                    <td>${new Date(user.createdAt).toLocaleDateString('de-CH')}</td>
+                    <td>
+                        <div class="actions">
+                            <button class="btn btn-warning btn-sm" onclick="openEditModal('${user.username}', '${user.displayName}', '${user.role}')">Bearbeiten</button>
+                            ${user.username !== 'admin' ? `<button class="btn btn-danger btn-sm" onclick="deleteUser('${user.username}')">Löschen</button>` : ''}
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Create User
+        document.getElementById('createUserForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const userData = {
+                username: document.getElementById('newUsername').value,
+                displayName: document.getElementById('newDisplayName').value,
+                password: document.getElementById('newPassword').value,
+                role: document.getElementById('newRole').value
+            };
+
+            try {
+                const response = await fetch(`${API_BASE}/manage-users`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionToken,
+                        action: 'create',
+                        userData
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showMessage('Benutzer erfolgreich erstellt!', 'success');
+                    document.getElementById('createUserForm').reset();
+                    loadUsers();
+                } else {
+                    showMessage('Fehler: ' + result.error, 'error');
+                }
+            } catch (error) {
+                console.error('Create user error:', error);
+                showMessage('Fehler beim Erstellen des Benutzers', 'error');
+            }
+        });
+
+        // Edit User Modal
+        function openEditModal(username, displayName, role) {
+            document.getElementById('editUsername').value = username;
+            document.getElementById('editDisplayName').value = displayName;
+            document.getElementById('editRole').value = role;
+            document.getElementById('editPassword').value = '';
+            document.getElementById('editModal').style.display = 'flex';
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+
+        document.getElementById('editUserForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const userData = {
+                username: document.getElementById('editUsername').value,
+                displayName: document.getElementById('editDisplayName').value,
+                role: document.getElementById('editRole').value
+            };
+
+            const password = document.getElementById('editPassword').value;
+            if (password) {
+                userData.password = password;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/manage-users`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionToken,
+                        action: 'edit',
+                        userData
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showMessage('Benutzer erfolgreich aktualisiert!', 'success');
+                    closeEditModal();
+                    loadUsers();
+                } else {
+                    showMessage('Fehler: ' + result.error, 'error');
+                }
+            } catch (error) {
+                console.error('Edit user error:', error);
+                showMessage('Fehler beim Aktualisieren des Benutzers', 'error');
+            }
+        });
+
+        // Delete User
+        async function deleteUser(username) {
+            if (!confirm(`Benutzer "${username}" wirklich löschen?`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/manage-users`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionToken,
+                        action: 'delete',
+                        userData: { username }
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showMessage('Benutzer erfolgreich gelöscht!', 'success');
+                    loadUsers();
+                } else {
+                    showMessage('Fehler: ' + result.error, 'error');
+                }
+            } catch (error) {
+                console.error('Delete user error:', error);
+                showMessage('Fehler beim Löschen des Benutzers', 'error');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('sessionToken');
+            window.location.href = 'login.html';
+        }
+
+        // Initialize
+        (async () => {
+            const hasAccess = await checkAdminAccess();
+            if (hasAccess) {
+                loadUsers();
+            }
+        })();
+    </script>
+</body>
+</html>

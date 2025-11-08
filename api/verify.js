@@ -22,6 +22,7 @@ module.exports = async function handler(req, res) {
   return res.status(200).json({
     valid: true,
     username: session.username,
-    displayName: session.displayName
+    displayName: session.displayName,
+    role: session.role || 'user'
   });
 }

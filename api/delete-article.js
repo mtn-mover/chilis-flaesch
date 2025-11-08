@@ -55,7 +55,8 @@ module.exports = async function handler(req, res) {
     const draft = drafts[draftIndex];
 
     // Check permissions - only admin or author can delete
-    if (draft.author !== session.username && session.username !== 'admin') {
+    const isAdmin = session.role === 'admin';
+    if (draft.author !== session.username && !isAdmin) {
       return res.status(403).json({ error: 'Keine Berechtigung zum Löschen' });
     }
 
