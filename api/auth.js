@@ -51,83 +51,46 @@ export default async function handler(req, res) {
     return res.status(200).json({});
   }
 
-  // Login endpoint
-  if (req.method === 'POST' && req.url === '/api/auth') {
-    const { username, password } = req.body;
-
-    if (!username || !password) {
-      return res.status(400).json({ error: 'Username und Passwort erforderlich' });
-    }
-
-    // Find user
-    const user = USERS.find(u => u.username === username);
-    if (!user) {
-      return res.status(401).json({ error: 'Ungültige Anmeldedaten' });
-    }
-
-    // Verify password
-    const passwordHash = hashPassword(password);
-    if (passwordHash !== user.passwordHash) {
-      return res.status(401).json({ error: 'Ungültige Anmeldedaten' });
-    }
-
-    // Create session
-    const sessionToken = generateSessionToken();
-    sessions.set(sessionToken, {
-      username: user.username,
-      displayName: user.displayName,
-      createdAt: Date.now()
-    });
-
-    // Cleanup old sessions
-    cleanupSessions();
-
-    return res.status(200).json({
-      success: true,
-      sessionToken: sessionToken,
-      username: user.username,
-      displayName: user.displayName
-    });
+  // Nur POST erlauben (außer OPTIONS)
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Verify session endpoint
-  if (req.method === 'POST' && req.url === '/api/auth/verify') {
-    const { sessionToken } = req.body;
+  const { username, password } = req.body;
 
-    if (!sessionToken) {
-      return res.status(401).json({ error: 'Kein Session Token' });
-    }
-
-    const session = sessions.get(sessionToken);
-    if (!session) {
-      return res.status(401).json({ error: 'Ungültige Session' });
-    }
-
-    // Check if session expired
-    if (Date.now() - session.createdAt > SESSION_TIMEOUT) {
-      sessions.delete(sessionToken);
-      return res.status(401).json({ error: 'Session abgelaufen' });
-    }
-
-    return res.status(200).json({
-      valid: true,
-      username: session.username,
-      displayName: session.displayName
-    });
+  if (!username || !password) {
+    return res.status(400).json({ error: 'Username und Passwort erforderlich' });
   }
 
-  // Logout endpoint
-  if (req.method === 'POST' && req.url === '/api/auth/logout') {
-    const { sessionToken } = req.body;
-
-    if (sessionToken) {
-      sessions.delete(sessionToken);
-    }
-
-    return res.status(200).json({ success: true });
+  // Find user
+  const user = USERS.find(u => u.username === username);
+  if (!user) {
+    return res.status(401).json({ error: 'Ungültige Anmeldedaten' });
   }
 
-  return res.status(404).json({ error: 'Endpoint nicht gefunden' });
+  // Verify password
+  const passwordHash = hashPassword(password);
+  if (passwordHash !== user.passwordHash) {
+    return res.status(401).json({ error: 'Ungültige Anmeldedaten' });
+  }
+
+  // Create session
+  const sessionToken = generateSessionToken();
+  sessions.set(sessionToken, {
+    username: user.username,
+    displayName: user.displayName,
+    createdAt: Date.now()
+  });
+
+  // Cleanup old sessions
+  cleanupSessions();
+
+  return res.status(200).json({
+    success: true,
+    sessionToken: sessionToken,
+    username: user.username,
+    displayName: user.displayName
+  });
 }
 
 // Export verify function for use in other APIs

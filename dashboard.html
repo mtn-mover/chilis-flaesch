@@ -377,7 +377,7 @@
             window.location.href = 'admin.html';
         } else {
             // Verify session is still valid
-            fetch('/api/auth/verify', {
+            fetch('/api/verify', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ sessionToken })
@@ -406,7 +406,7 @@
 
             if (sessionToken) {
                 // Call logout API
-                await fetch('/api/auth/logout', {
+                await fetch('/api/logout', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ sessionToken })

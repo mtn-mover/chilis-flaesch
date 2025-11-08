@@ -238,7 +238,7 @@
         // Wenn bereits Session Token vorhanden, prüfen ob noch gültig
         const sessionToken = sessionStorage.getItem('sessionToken');
         if (sessionToken) {
-            fetch('/api/auth/verify', {
+            fetch('/api/verify', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ sessionToken })
