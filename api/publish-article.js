@@ -592,7 +592,9 @@ module.exports = async function handler(req, res) {
         category: draft.category,
         excerpt: draft.content.substring(0, 100) + '...',
         date: new Date().toISOString().split('T')[0],
-        image: draft.images && draft.images.length > 0 ? draft.images[0] : null
+        image: draft.images && draft.images.length > 0 ? draft.images[0] : null,
+        author: draft.author,
+        authorDisplayName: draft.authorDisplayName
       });
 
       // Create blob for updated articles.json
