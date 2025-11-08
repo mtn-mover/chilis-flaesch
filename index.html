@@ -96,12 +96,36 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(139, 69, 19, 0.85), rgba(193, 111, 49, 0.9)),
-                        url('chili.jpg') center/cover;
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 25%, #C16F31 50%, #CD853F 75%, #8B4513 100%);
             color: white;
             padding: 4rem 2rem;
             text-align: center;
             position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '🍷';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.08;
+            top: -50px;
+            right: -50px;
+            transform: rotate(-15deg);
+            pointer-events: none;
         }
 
         .hero-content {
@@ -541,8 +565,7 @@
             <p>🍷 <strong>Fläsch News</strong> - Satirische Geschichten aus Fläsch</p>
             <p>&copy; 2025 Fläsch mittendrin - oder doch daneben?</p>
             <div class="footer-disclaimer">
-                ⚠️ Diese Webseite ist SATIRE! Alle Geschichten sind frei erfunden und haben keinen Bezug zur echten Gemeinde Fläsch.
-                Für echte Informationen besuchen Sie bitte <a href="https://www.flaesch.ch" target="_blank" style="color: #FFD700;">www.flaesch.ch</a>
+                ⚠️ Diese Webseite ist SATIRE! Alle Geschichten sind frei erfunden und dienen ausschliesslich der Unterhaltung.
             </div>
         </div>
     </footer>
