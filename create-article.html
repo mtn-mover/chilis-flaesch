@@ -545,7 +545,8 @@
             postUploadedImagesDiv.appendChild(div);
         }
 
-        function removePostImage(url) {
+        // Make removePostImage globally accessible
+        window.removePostImage = function(url) {
             uploadedImages = uploadedImages.filter(img => img !== url);
             const imgs = postUploadedImagesDiv.querySelectorAll('.uploaded-image');
             imgs.forEach(img => {
