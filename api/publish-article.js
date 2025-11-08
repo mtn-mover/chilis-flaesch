@@ -86,38 +86,22 @@ function wrapArticleInTemplate(draft) {
             align-items: center;
         }
 
-        .nav-logo {
-            display: flex;
+        .back-button {
+            display: inline-flex;
             align-items: center;
             text-decoration: none;
-        }
-
-        .nav-logo img {
-            height: 72px;
-            width: auto;
-        }
-
-        @media (min-width: 768px) {
-            .nav-logo img {
-                height: 96px;
-            }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
             color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
         }
 
-        .nav-links a:hover {
+        .back-button:hover {
             color: var(--primary-color);
+            background: rgba(0,0,0,0.05);
+            transform: translateX(-5px);
         }
 
         /* Hero Section */
@@ -288,14 +272,9 @@ function wrapArticleInTemplate(draft) {
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-content">
-            <a href="index.html" class="nav-logo">
-                <img src="logo.png" alt="Fläsch Info Logo">
+            <a href="index.html" class="back-button">
+                ← Zurück zur Startseite
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Startseite</a></li>
-                <li><a href="ueber-uns.html">Über uns</a></li>
-                <li><a href="index.html#alle">Alle Geschichten</a></li>
-            </ul>
         </div>
     </nav>
 
