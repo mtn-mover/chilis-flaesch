@@ -7,7 +7,7 @@ const USERS = [
   {
     username: 'admin',
     // Password: demo123 (SHA-256 hash)
-    passwordHash: '6ca13d52ca70c883e0f0bb101e425a89e8624de51db2d2392593af6a84118090',
+    passwordHash: 'd3ad9315b7be5dd53b31a273b3b3aba5defe700808305aa16a3062b76658a791',
     displayName: 'Administrator'
   }
 ];
