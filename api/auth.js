@@ -1,5 +1,10 @@
 // Authentication API für Admin-Login
 import crypto from 'crypto';
+import jwt from 'jsonwebtoken';
+
+// JWT Secret (in production: use environment variable)
+const JWT_SECRET = process.env.JWT_SECRET || 'flaesch-info-secret-2024-temp';
+const JWT_EXPIRY = '2h'; // 2 hours
 
 // Stored user credentials (hashed)
 // In production: Diese würden in einer Datenbank gespeichert
@@ -12,37 +17,9 @@ const USERS = [
   }
 ];
 
-// Active sessions (In production: Redis oder Datenbank)
-const sessions = new Map();
-
-// Session Timeout: 2 Stunden
-const SESSION_TIMEOUT = 2 * 60 * 60 * 1000;
-
-// CORS Headers
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-};
-
 // Hash password with SHA-256
 function hashPassword(password) {
   return crypto.createHash('sha256').update(password).digest('hex');
-}
-
-// Generate secure session token
-function generateSessionToken() {
-  return crypto.randomBytes(32).toString('hex');
-}
-
-// Clean up expired sessions
-function cleanupSessions() {
-  const now = Date.now();
-  for (const [token, session] of sessions.entries()) {
-    if (now - session.createdAt > SESSION_TIMEOUT) {
-      sessions.delete(token);
-    }
-  }
 }
 
 export default async function handler(req, res) {
@@ -74,20 +51,19 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'Ungültige Anmeldedaten' });
   }
 
-  // Create session
-  const sessionToken = generateSessionToken();
-  sessions.set(sessionToken, {
-    username: user.username,
-    displayName: user.displayName,
-    createdAt: Date.now()
-  });
-
-  // Cleanup old sessions
-  cleanupSessions();
+  // Create JWT token
+  const token = jwt.sign(
+    {
+      username: user.username,
+      displayName: user.displayName
+    },
+    JWT_SECRET,
+    { expiresIn: JWT_EXPIRY }
+  );
 
   return res.status(200).json({
     success: true,
-    sessionToken: sessionToken,
+    sessionToken: token,
     username: user.username,
     displayName: user.displayName
   });
@@ -97,14 +73,15 @@ export default async function handler(req, res) {
 export function verifySession(sessionToken) {
   if (!sessionToken) return null;
 
-  const session = sessions.get(sessionToken);
-  if (!session) return null;
-
-  // Check if expired
-  if (Date.now() - session.createdAt > SESSION_TIMEOUT) {
-    sessions.delete(sessionToken);
+  try {
+    // Verify and decode JWT
+    const decoded = jwt.verify(sessionToken, JWT_SECRET);
+    return {
+      username: decoded.username,
+      displayName: decoded.displayName
+    };
+  } catch (error) {
+    // Token invalid or expired
     return null;
   }
-
-  return session;
 }
