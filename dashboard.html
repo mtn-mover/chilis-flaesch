@@ -532,10 +532,19 @@
                 fileInfo.style.display = 'none';
 
             } catch (error) {
-                // Show error message
+                // Show error message with more details
+                let errorText = '❌ Fehler: ' + error.message;
+
+                // Try to get more details from the response
+                if (error.details) {
+                    errorText += '\n\nDetails: ' + error.details;
+                }
+
                 statusMessage.className = 'status-message status-error';
-                statusMessage.textContent = '❌ Fehler: ' + error.message;
+                statusMessage.innerHTML = errorText.replace(/\n/g, '<br>');
                 statusMessage.style.display = 'block';
+
+                console.error('Full error:', error);
             } finally {
                 // Hide loading
                 submitBtn.disabled = false;
