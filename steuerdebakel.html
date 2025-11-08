@@ -51,10 +51,14 @@
         }
 
         .nav-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--chili-red);
+            display: flex;
+            align-items: center;
             text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 50px;
+            width: auto;
         }
 
         .nav-links {
@@ -477,7 +481,9 @@
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-content">
-            <a href="index.html" class="nav-logo">🍷 Fläsch Info</a>
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="Fläsch Info Logo">
+            </a>
             <ul class="nav-links">
                 <li><a href="index.html">Startseite</a></li>
                 <li><a href="ueber-uns.html">Über uns</a></li>
