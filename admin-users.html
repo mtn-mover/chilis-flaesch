@@ -313,7 +313,7 @@
 
     <script>
         const API_BASE = '/api';
-        let sessionToken = localStorage.getItem('sessionToken');
+        let sessionToken = sessionStorage.getItem('sessionToken');
 
         // Check if user is admin
         async function checkAdminAccess() {
@@ -517,7 +517,8 @@
         }
 
         function logout() {
-            localStorage.removeItem('sessionToken');
+            sessionStorage.removeItem('sessionToken');
+            sessionStorage.clear();
             window.location.href = 'admin.html';
         }
 
