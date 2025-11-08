@@ -416,6 +416,7 @@ function wrapArticleInTemplate(draft) {
         <h1>${draft.title}</h1>
         <div class="hero-meta">
             <span class="hero-category">${categoryLabel}</span>
+            ${draft.authorDisplayName ? `<span class="hero-author">Erstellt durch: ${draft.authorDisplayName}</span>` : ''}
             <span class="hero-date">${new Date().toLocaleDateString('de-CH', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
         </div>
     </section>
