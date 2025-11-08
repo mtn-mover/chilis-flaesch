@@ -399,7 +399,11 @@
                         if (draft.html) {
                             currentDraft = draft;
                             const previewArea = document.getElementById('previewArea');
+                            const actionButtons = document.getElementById('actionButtons');
+
                             previewArea.innerHTML = draft.html;
+                            previewArea.classList.add('has-content');
+                            actionButtons.style.display = 'flex';
                         }
 
                         // Load images if available
