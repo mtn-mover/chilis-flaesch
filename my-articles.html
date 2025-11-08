@@ -188,7 +188,7 @@
     <div class="header">
         <div class="header-content">
             <h1>Meine Artikel</h1>
-            <div class="nav-links">
+            <div class="nav-links" id="navLinks">
                 <a href="create-article.html">Neuer Artikel</a>
                 <a href="#" onclick="logout()">Logout</a>
             </div>
@@ -240,6 +240,16 @@
 
                 if (!response.ok) {
                     throw new Error(result.error);
+                }
+
+                // Add admin link if user is admin
+                if (result.isAdmin) {
+                    const navLinks = document.getElementById('navLinks');
+                    const adminLink = document.createElement('a');
+                    adminLink.href = 'admin-users.html';
+                    adminLink.textContent = '👥 Benutzerverwaltung';
+                    // Insert before logout link
+                    navLinks.insertBefore(adminLink, navLinks.lastElementChild);
                 }
 
                 if (result.drafts.length === 0) {

@@ -255,7 +255,7 @@
     <div class="header">
         <div class="header-content">
             <h1>Artikel erstellen</h1>
-            <div class="nav-links">
+            <div class="nav-links" id="navLinks">
                 <a href="my-articles.html">Meine Artikel</a>
                 <a href="#" onclick="logout()">Logout</a>
             </div>
@@ -707,6 +707,32 @@
                 console.error('Full error:', error);
             }
         }
+
+        // Check if user is admin and add admin link
+        async function checkAdminRole() {
+            try {
+                const response = await fetch('/api/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionToken })
+                });
+
+                const result = await response.json();
+                if (result.valid && result.role === 'admin') {
+                    const navLinks = document.getElementById('navLinks');
+                    const adminLink = document.createElement('a');
+                    adminLink.href = 'admin-users.html';
+                    adminLink.textContent = '👥 Benutzerverwaltung';
+                    // Insert before logout link
+                    navLinks.insertBefore(adminLink, navLinks.lastElementChild);
+                }
+            } catch (error) {
+                console.error('Failed to check admin role:', error);
+            }
+        }
+
+        // Initialize admin link check
+        checkAdminRole();
     </script>
 </body>
 </html>
