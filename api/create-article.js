@@ -155,14 +155,16 @@ WICHTIG:
 Beginne direkt mit dem Artikel-Content!`;
 
     // Claude API Call
+    console.log('Calling Claude API...');
     const message = await anthropic.messages.create({
       model: 'claude-sonnet-4-20250514',
-      max_tokens: 4096,
+      max_tokens: 2048, // Reduced from 4096 to speed up and reduce memory
       messages: [{
         role: 'user',
         content: prompt
       }]
     });
+    console.log('Claude API call successful');
 
     let generatedHTML = message.content[0].text;
 
@@ -229,15 +231,15 @@ Beginne direkt mit dem Artikel-Content!`;
     });
 
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error in create-article:', error);
     console.error('Error stack:', error.stack);
+    console.error('Error type:', error.constructor.name);
 
     // Spezielle Fehlerbehandlung für API Key
     if (error.message && error.message.includes('API key')) {
       return res.status(500).json({
-        error: 'API Key fehlt oder ist ungültig. Bitte Vercel Environment Variables prüfen.',
-        details: error.message,
-        stack: error.stack
+        error: 'API Key fehlt oder ist ungültig',
+        details: error.message
       });
     }
 
@@ -246,15 +248,21 @@ Beginne direkt mit dem Artikel-Content!`;
       return res.status(500).json({
         error: 'Claude API Fehler',
         details: error.message,
-        status: error.status,
-        stack: error.stack
+        status: error.status
+      });
+    }
+
+    // Timeout errors
+    if (error.code === 'ETIMEDOUT' || error.message.includes('timeout')) {
+      return res.status(500).json({
+        error: 'Timeout: Claude brauchte zu lange',
+        details: 'Versuche es mit kürzerem Inhalt oder warte einen Moment'
       });
     }
 
     return res.status(500).json({
       error: 'Fehler bei der Artikel-Generierung',
-      details: error.message,
-      stack: error.stack,
+      details: error.message || 'Unbekannter Fehler',
       errorType: error.constructor.name
     });
   }
