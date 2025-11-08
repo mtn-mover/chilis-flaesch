@@ -151,17 +151,32 @@ Gib NUR den HTML-Code zurück, ohne Erklärungen. Der Code soll ready-to-use sei
 
   } catch (error) {
     console.error('Error:', error);
+    console.error('Error stack:', error.stack);
 
     // Spezielle Fehlerbehandlung für API Key
     if (error.message && error.message.includes('API key')) {
       return res.status(500).json({
-        error: 'API Key fehlt oder ist ungültig. Bitte Vercel Environment Variables prüfen.'
+        error: 'API Key fehlt oder ist ungültig. Bitte Vercel Environment Variables prüfen.',
+        details: error.message,
+        stack: error.stack
+      });
+    }
+
+    // Anthropic API Fehler
+    if (error.status) {
+      return res.status(500).json({
+        error: 'Claude API Fehler',
+        details: error.message,
+        status: error.status,
+        stack: error.stack
       });
     }
 
     return res.status(500).json({
       error: 'Fehler bei der Artikel-Generierung',
-      details: error.message
+      details: error.message,
+      stack: error.stack,
+      errorType: error.constructor.name
     });
   }
 }

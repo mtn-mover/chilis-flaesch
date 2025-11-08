@@ -539,9 +539,15 @@
                 if (error.details) {
                     errorText += '\n\nDetails: ' + error.details;
                 }
+                if (error.errorType) {
+                    errorText += '\n\nError Type: ' + error.errorType;
+                }
+                if (error.stack) {
+                    errorText += '\n\nStack (erste 500 Zeichen):\n' + error.stack.substring(0, 500);
+                }
 
                 statusMessage.className = 'status-message status-error';
-                statusMessage.innerHTML = errorText.replace(/\n/g, '<br>');
+                statusMessage.innerHTML = '<pre style="white-space: pre-wrap; text-align: left;">' + errorText + '</pre>';
                 statusMessage.style.display = 'block';
 
                 console.error('Full error:', error);
