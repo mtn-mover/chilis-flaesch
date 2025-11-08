@@ -63,45 +63,89 @@ function wrapArticleInTemplate(draft) {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--dark-gray);
             line-height: 1.6;
-            padding-top: 60px;
         }
 
-        /* Navigation */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-            padding: 1rem 2rem;
+        /* Top Info Bar */
+        .info-bar {
+            background: #8B4513;
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
         }
 
-        .nav-content {
+        .info-bar-content {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: all 0.3s;
+        .satire-badge {
+            background: #FFD700;
+            color: #8B4513;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
         }
 
-        .back-button:hover {
-            color: var(--primary-color);
-            background: rgba(0,0,0,0.05);
-            transform: translateX(-5px);
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 72px;
+            width: auto;
+        }
+
+        @media (min-width: 768px) {
+            .nav-logo img {
+                height: 96px;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: #C16F31;
+            border-bottom-color: #C16F31;
         }
 
         /* Hero Section */
@@ -245,9 +289,16 @@ function wrapArticleInTemplate(draft) {
 
         /* Responsive */
         @media (max-width: 768px) {
+            .info-bar-content {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
             .nav-container {
                 flex-direction: column;
                 gap: 1rem;
+                padding: 1rem;
             }
 
             .nav-links {
@@ -269,12 +320,25 @@ function wrapArticleInTemplate(draft) {
     </style>
 </head>
 <body>
+    <!-- Top Info Bar -->
+    <div class="info-bar">
+        <div class="info-bar-content">
+            <div>📍 Fläsch, Graubünden, Schweiz</div>
+            <div class="satire-badge">⚠️ SATIRE</div>
+        </div>
+    </div>
+
     <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-content">
-            <a href="index.html" class="back-button">
-                ← Zurück zur Startseite
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="Fläsch Info Logo">
             </a>
+            <ul class="nav-links">
+                <li><a href="index.html#aktuell">Aktuell</a></li>
+                <li><a href="index.html#alle">Alle Geschichten</a></li>
+                <li><a href="ueber-uns.html">Über uns</a></li>
+            </ul>
         </div>
     </nav>
 
