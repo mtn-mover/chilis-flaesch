@@ -166,41 +166,46 @@ Beginne direkt mit dem Artikel-Content!`;
 
     let generatedHTML = message.content[0].text;
 
-    // Bereinige den generierten Content (entferne Code-Blöcke falls vorhanden)
-    generatedHTML = generatedHTML
-      .replace(/```html\s*/g, '')  // Entferne ```html
-      .replace(/```\s*/g, '')      // Entferne ```
-      .trim();
+    try {
+      // Bereinige den generierten Content (entferne Code-Blöcke falls vorhanden)
+      generatedHTML = generatedHTML
+        .replace(/```html\s*/g, '')  // Entferne ```html
+        .replace(/```\s*/g, '')      // Entferne ```
+        .trim();
 
-    // Entferne vollständiges HTML-Dokument falls Claude es trotzdem generiert hat
-    if (generatedHTML.includes('<!DOCTYPE')) {
-      // Extrahiere nur den Body-Content
-      const bodyMatch = generatedHTML.match(/<body[^>]*>([\s\S]*)<\/body>/i);
-      if (bodyMatch) {
-        generatedHTML = bodyMatch[1];
+      // Entferne vollständiges HTML-Dokument falls Claude es trotzdem generiert hat
+      if (generatedHTML.includes('<!DOCTYPE')) {
+        // Extrahiere nur den Body-Content
+        const bodyMatch = generatedHTML.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+        if (bodyMatch) {
+          generatedHTML = bodyMatch[1];
+        }
       }
-    }
 
-    // Entferne Header/Navigation/Footer falls vorhanden
-    generatedHTML = generatedHTML
-      .replace(/<header[\s\S]*?<\/header>/gi, '')
-      .replace(/<nav[\s\S]*?<\/nav>/gi, '')
-      .replace(/<footer[\s\S]*?<\/footer>/gi, '');
+      // Entferne Header/Navigation/Footer falls vorhanden
+      generatedHTML = generatedHTML
+        .replace(/<header[\s\S]*?<\/header>/gi, '')
+        .replace(/<nav[\s\S]*?<\/nav>/gi, '')
+        .replace(/<footer[\s\S]*?<\/footer>/gi, '');
 
-    // Entferne "Fläsch Info" Überschriften am Anfang
-    generatedHTML = generatedHTML
-      .replace(/^[\s\S]*?<h1[^>]*>.*?Fläsch Info.*?<\/h1>/i, '')
-      .replace(/^[\s\S]*?Die satirischen Nachrichten aus dem Dorf/i, '')
-      .trim();
+      // Entferne "Fläsch Info" Überschriften am Anfang
+      generatedHTML = generatedHTML
+        .replace(/^[\s\S]*?<h1[^>]*>.*?Fläsch Info.*?<\/h1>/i, '')
+        .replace(/^[\s\S]*?Die satirischen Nachrichten aus dem Dorf/i, '')
+        .trim();
 
-    // Falls es mit <main> oder <article> anfängt, extrahiere den Inhalt
-    const mainMatch = generatedHTML.match(/<main[^>]*>([\s\S]*)<\/main>/i);
-    if (mainMatch) {
-      generatedHTML = mainMatch[1].trim();
-    }
-    const articleMatch = generatedHTML.match(/<article[^>]*>([\s\S]*)<\/article>/i);
-    if (articleMatch) {
-      generatedHTML = articleMatch[1].trim();
+      // Falls es mit <main> oder <article> anfängt, extrahiere den Inhalt
+      const mainMatch = generatedHTML.match(/<main[^>]*>([\s\S]*)<\/main>/i);
+      if (mainMatch) {
+        generatedHTML = mainMatch[1].trim();
+      }
+      const articleMatch = generatedHTML.match(/<article[^>]*>([\s\S]*)<\/article>/i);
+      if (articleMatch) {
+        generatedHTML = articleMatch[1].trim();
+      }
+    } catch (cleanupError) {
+      console.error('Cleanup error (non-critical):', cleanupError);
+      // If cleanup fails, use original content
     }
 
     // Dateiname für neuen Artikel generieren (aus Titel)
