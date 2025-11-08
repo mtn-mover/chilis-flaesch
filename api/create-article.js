@@ -157,13 +157,20 @@ Der Artikel soll:
 5. Optional: Aufzählungen oder Blockquotes für Zitate
 
 WICHTIG:
-- Gib NUR den Artikel-Inhalt zurück (h2, p, blockquote, ul, etc.)
+- Gib den Artikel-Inhalt als HTML zurück (verwende <h2>, <h3>, <p>, <blockquote>, <ul>, etc.)
+- KEINE Markdown-Syntax (kein ##, ###, **, etc.) - nur HTML-Tags!
 - KEIN vollständiges HTML-Dokument (kein <!DOCTYPE>, <html>, <head>, <body>)
 - KEINE Code-Blöcke mit drei Backticks
 - KEIN Navigation oder Footer
 - Der Inhalt wird automatisch in ein Template eingebettet
 
-Beginne direkt mit dem Artikel-Content!`;
+Beispiel-Format:
+<h2>Hauptüberschrift</h2>
+<p>Absatz mit Text...</p>
+<h3>Unterüberschrift</h3>
+<blockquote>Zitat von Person</blockquote>
+
+Beginne direkt mit dem Artikel-Content als HTML!`;
 
     // Claude API Call
     console.log('Calling Claude API...');
@@ -185,6 +192,31 @@ Beginne direkt mit dem Artikel-Content!`;
         .replace(/```html\s*/g, '')  // Entferne ```html
         .replace(/```\s*/g, '')      // Entferne ```
         .trim();
+
+      // Convert Markdown to HTML if Claude used Markdown syntax
+      // Headings
+      generatedHTML = generatedHTML
+        .replace(/^### (.+)$/gm, '<h3>$1</h3>')  // ### to <h3>
+        .replace(/^## (.+)$/gm, '<h2>$1</h2>')   // ## to <h2>
+        .replace(/^# (.+)$/gm, '<h2>$1</h2>');   // # to <h2>
+
+      // Bold and italic
+      generatedHTML = generatedHTML
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')  // **text** to <strong>
+        .replace(/\*(.+?)\*/g, '<em>$1</em>');             // *text* to <em>
+
+      // Wrap standalone text in paragraphs (simple approach)
+      const lines = generatedHTML.split('\n');
+      const processedLines = lines.map(line => {
+        line = line.trim();
+        if (!line) return '';
+        // If line doesn't start with HTML tag, wrap in <p>
+        if (!line.startsWith('<') && line.length > 0) {
+          return `<p>${line}</p>`;
+        }
+        return line;
+      });
+      generatedHTML = processedLines.join('\n');
 
       // Entferne vollständiges HTML-Dokument falls Claude es trotzdem generiert hat
       if (generatedHTML.includes('<!DOCTYPE')) {
