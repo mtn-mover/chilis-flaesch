@@ -116,6 +116,33 @@ Der ursprüngliche Pumptrack-Verein hat sich aufgelöst, da ein "Filetstück fü
 
 *Hinweis: Satirischer Inhalt mit absurden Elementen wie "1 CHF pro Grashalm" und Demonstrationen gegen fehlenden Kinderlärm.*
 
+
+### ACHTUNG neues Pumptrack Pojekt am Horizont (November 2025)
+**Kategorie:** gesellschaft
+## Zusammenfassung: Neues Pumptrack-Projekt
+
+**Neue Charaktere:**
+• Unbekannter Multimilliardär - will anonym bleiben, kauft Bauland für goldenen Pumptrack
+
+**Hauptereignis:**
+• Verein Pumptrack Fläsch hat sich aufgelöst, da das geplante Grundstück für Chili-Anbau verwendet wird
+• Mysteriöser Investor plant nun vergoldeten "Dubai Style" Pumptrack als Ersatz
+
+**Wichtige Details:**
+• Baulandpreis: 5-stelliger Betrag pro Quadratmeter (1 CHF pro Grashalm)
+• Gemeinderat ist alarmiert
+• Anwohner demonstrieren gegen das Projekt - paradoxerweise wegen fehlendem Kinderlärm
+
+**Für zukünftige Artikel:**
+• Identität des Multimilliardärs könnte enthüllt werden
+• Weitere Entwicklungen bei Gemeinderatssitzungen
+• Verlauf der Anwohnerproteste
+• Baufortschritt des goldenen Pumptracks
+• Mögliche Verbindung zum ursprünglichen Chili-Projekt
+• Reaktionen der ehemaligen Vereinsmitglieder
+
+*Satirische Elemente: Übertriebene Luxus-Ausführung, absurde Preisberechnung, ironische Beschwerden über fehlenden Lärm*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
