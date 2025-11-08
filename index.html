@@ -518,35 +518,7 @@
                 <h2 class="section-title">Aktuelle Geschichten</h2>
             </div>
             <div class="featured-stories">
-                <a href="steuerdebakel.html" class="story-card">
-                    <img src="Steuerdebakel1.png" alt="Steuerdebakel" class="story-image">
-                    <div class="story-content">
-                        <div class="story-meta">
-                            <span class="story-category politik">Politik</span>
-                            <span class="story-date">8. November 2025</span>
-                        </div>
-                        <h3 class="story-title">Das Steuer-Debakel: 42 gegen 21 - Fläsch sagt NEIN!</h3>
-                        <p class="story-excerpt">
-                            In einer denkwürdigen Abstimmung lehnt Fläsch die Steuererhöhung mit deutlicher Mehrheit ab.
-                            42 Bürger stimmen gegen die Vorlage, nur 21 dafür - ein klares Votum gegen höhere Steuern.
-                        </p>
-                    </div>
-                </a>
-
-                <a href="migros-fail.html" class="story-card">
-                    <img src="Migros Korkenzieher.jpg" alt="Migros Fail" class="story-image">
-                    <div class="story-content">
-                        <div class="story-meta">
-                            <span class="story-category wirtschaft">Wirtschaft</span>
-                            <span class="story-date">7. November 2025</span>
-                        </div>
-                        <h3 class="story-title">Migros-Marketing-Debakel: Korkenzieher statt Hot Chili!</h3>
-                        <p class="story-excerpt">
-                            Die Migros-Marketingabteilung sorgt für Aufsehen: In ihrer Kampagne für Fläsch verwendeten
-                            sie versehentlich einen Korkenzieher anstelle eines scharfen Chilis - ein peinlicher Fehler.
-                        </p>
-                    </div>
-                </a>
+                <!-- Articles loaded dynamically from articles.json -->
             </div>
         </section>
 
@@ -585,41 +557,7 @@
                 <h2 class="section-title">Alle Geschichten</h2>
             </div>
             <div class="stories-grid">
-                <a href="steuerdebakel.html" class="story-card-small" id="politik">
-                    <img src="Steuerdebakel1.png" alt="Steuerdebakel" class="story-image">
-                    <div class="story-content">
-                        <div class="story-meta">
-                            <span class="story-category politik">Politik</span>
-                            <span class="story-date">8. Nov 2025</span>
-                        </div>
-                        <h3 class="story-title">Das Steuer-Debakel</h3>
-                        <p class="story-excerpt">42 gegen 21 - Fläsch sagt NEIN zur Steuererhöhung!</p>
-                    </div>
-                </a>
-
-                <a href="migros-fail.html" class="story-card-small" id="wirtschaft">
-                    <img src="Migros Korkenzieher.jpg" alt="Migros Fail" class="story-image">
-                    <div class="story-content">
-                        <div class="story-meta">
-                            <span class="story-category wirtschaft">Wirtschaft</span>
-                            <span class="story-date">7. Nov 2025</span>
-                        </div>
-                        <h3 class="story-title">Migros Marketing-Fail</h3>
-                        <p class="story-excerpt">Korkenzieher statt Hot Chili - ein peinlicher Fehler!</p>
-                    </div>
-                </a>
-
-                <a href="chilis-restaurant.html" class="story-card-small" id="kurioses">
-                    <img src="chili.jpg" alt="Chili's Restaurant" class="story-image">
-                    <div class="story-content">
-                        <div class="story-meta">
-                            <span class="story-category kurioses">Kurioses</span>
-                            <span class="story-date">5. Nov 2025</span>
-                        </div>
-                        <h3 class="story-title">Chili's kommt nach Fläsch!</h3>
-                        <p class="story-excerpt">Twin Peaks und Hooters abgelehnt - Chili's macht das Rennen!</p>
-                    </div>
-                </a>
+                <!-- Articles loaded dynamically from articles.json -->
             </div>
         </section>
     </div>
@@ -641,6 +579,99 @@
     </footer>
 
     <script>
+        // Load articles from articles.json
+        async function loadArticles() {
+            try {
+                const response = await fetch('articles.json');
+                if (!response.ok) {
+                    console.error('Failed to load articles.json');
+                    return;
+                }
+
+                const articles = await response.json();
+
+                // Render featured stories (first 2 articles)
+                renderFeaturedStories(articles.slice(0, 2));
+
+                // Render all stories
+                renderAllStories(articles);
+            } catch (error) {
+                console.error('Error loading articles:', error);
+            }
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const day = date.getDate();
+            const monthNames = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun',
+                              'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
+            const month = monthNames[date.getMonth()];
+            const year = date.getFullYear();
+            return `${day}. ${month} ${year}`;
+        }
+
+        function formatDateShort(dateString) {
+            const date = new Date(dateString);
+            const day = date.getDate();
+            const monthNames = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun',
+                              'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
+            const month = monthNames[date.getMonth()];
+            const year = date.getFullYear();
+            return `${day}. ${month} ${year}`;
+        }
+
+        function getCategoryLabel(category) {
+            const labels = {
+                'politik': 'Politik',
+                'wirtschaft': 'Wirtschaft',
+                'kurioses': 'Kurioses',
+                'kultur': 'Kultur',
+                'sport': 'Sport'
+            };
+            return labels[category] || category;
+        }
+
+        function renderFeaturedStories(articles) {
+            const container = document.querySelector('.featured-stories');
+            if (!container) return;
+
+            container.innerHTML = articles.map(article => `
+                <a href="${article.fileName}" class="story-card">
+                    ${article.image ? `<img src="${article.image}" alt="${article.title}" class="story-image">` : '<div class="story-image" style="background: linear-gradient(135deg, #C16F31 0%, #8B4513 100%);"></div>'}
+                    <div class="story-content">
+                        <div class="story-meta">
+                            <span class="story-category ${article.category}">${getCategoryLabel(article.category)}</span>
+                            <span class="story-date">${formatDate(article.date)}</span>
+                        </div>
+                        <h3 class="story-title">${article.title}</h3>
+                        <p class="story-excerpt">${article.excerpt}</p>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        function renderAllStories(articles) {
+            const container = document.querySelector('.stories-grid');
+            if (!container) return;
+
+            container.innerHTML = articles.map(article => `
+                <a href="${article.fileName}" class="story-card-small" id="${article.category}">
+                    ${article.image ? `<img src="${article.image}" alt="${article.title}" class="story-image">` : '<div class="story-image" style="background: linear-gradient(135deg, #C16F31 0%, #8B4513 100%);"></div>'}
+                    <div class="story-content">
+                        <div class="story-meta">
+                            <span class="story-category ${article.category}">${getCategoryLabel(article.category)}</span>
+                            <span class="story-date">${formatDateShort(article.date)}</span>
+                        </div>
+                        <h3 class="story-title">${article.title}</h3>
+                        <p class="story-excerpt">${article.excerpt}</p>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        // Load articles when page loads
+        document.addEventListener('DOMContentLoaded', loadArticles);
+
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
