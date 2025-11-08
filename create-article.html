@@ -414,7 +414,7 @@
                         // Load images if available
                         if (draft.images && draft.images.length > 0) {
                             uploadedImages = draft.images;
-                            draft.images.forEach(url => displayUploadedImage(url));
+                            draft.images.forEach(url => displayPostUploadedImage(url));
                         }
                     } else {
                         alert('Draft nicht gefunden');
