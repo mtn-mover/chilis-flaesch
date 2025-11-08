@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Debug - Fläsch Info</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        .debug-section {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #667eea;
+        }
+        .debug-section h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+        .btn:hover {
+            background: #5568d3;
+        }
+        .btn-danger {
+            background: #dc3545;
+        }
+        .btn-danger:hover {
+            background: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Session Debug Info</h1>
+
+        <div class="debug-section">
+            <h3>SessionStorage Token</h3>
+            <pre id="sessionStorageInfo">Laden...</pre>
+        </div>
+
+        <div class="debug-section">
+            <h3>Token Verification (/api/verify)</h3>
+            <pre id="verifyInfo">Laden...</pre>
+        </div>
+
+        <div class="debug-section">
+            <h3>Drafts API (/api/get-drafts)</h3>
+            <pre id="draftsInfo">Laden...</pre>
+        </div>
+
+        <div style="margin-top: 2rem;">
+            <button class="btn" onclick="refreshDebugInfo()">🔄 Neu laden</button>
+            <button class="btn btn-danger" onclick="clearAndRelogin()">🔑 Session löschen & neu einloggen</button>
+            <a href="my-articles.html" class="btn">← Zurück zum Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        async function refreshDebugInfo() {
+            const sessionToken = sessionStorage.getItem('sessionToken');
+            const username = sessionStorage.getItem('username');
+            const displayName = sessionStorage.getItem('displayName');
+
+            // Display sessionStorage info
+            document.getElementById('sessionStorageInfo').textContent = JSON.stringify({
+                sessionToken: sessionToken ? sessionToken.substring(0, 50) + '...' : 'NICHT VORHANDEN',
+                username: username || 'NICHT VORHANDEN',
+                displayName: displayName || 'NICHT VORHANDEN',
+                allKeys: Object.keys(sessionStorage)
+            }, null, 2);
+
+            if (!sessionToken) {
+                document.getElementById('verifyInfo').textContent = 'Kein Session Token vorhanden';
+                document.getElementById('draftsInfo').textContent = 'Kein Session Token vorhanden';
+                return;
+            }
+
+            // Verify token
+            try {
+                const verifyResponse = await fetch('/api/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionToken })
+                });
+                const verifyResult = await verifyResponse.json();
+                document.getElementById('verifyInfo').textContent = JSON.stringify({
+                    status: verifyResponse.status,
+                    statusText: verifyResponse.statusText,
+                    result: verifyResult
+                }, null, 2);
+            } catch (error) {
+                document.getElementById('verifyInfo').textContent = 'ERROR: ' + error.message;
+            }
+
+            // Get drafts
+            try {
+                const draftsResponse = await fetch('/api/get-drafts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionToken })
+                });
+                const draftsResult = await draftsResponse.json();
+                document.getElementById('draftsInfo').textContent = JSON.stringify({
+                    status: draftsResponse.status,
+                    statusText: draftsResponse.statusText,
+                    isAdmin: draftsResult.isAdmin,
+                    draftCount: draftsResult.drafts ? draftsResult.drafts.length : 0,
+                    drafts: draftsResult.drafts ? draftsResult.drafts.map(d => ({
+                        id: d.id,
+                        title: d.title,
+                        author: d.author,
+                        authorDisplayName: d.authorDisplayName,
+                        status: d.status
+                    })) : []
+                }, null, 2);
+            } catch (error) {
+                document.getElementById('draftsInfo').textContent = 'ERROR: ' + error.message;
+            }
+        }
+
+        function clearAndRelogin() {
+            sessionStorage.clear();
+            alert('Session gelöscht! Du wirst zur Login-Seite weitergeleitet.');
+            window.location.href = 'admin.html';
+        }
+
+        // Load on page load
+        refreshDebugInfo();
+    </script>
+</body>
+</html>

@@ -278,7 +278,7 @@
                         <span class="article-category category-${draft.category}">${draft.category}</span>
                         <span class="article-status status-${draft.status}">${draft.status === 'draft' ? 'Entwurf' : 'Veröffentlicht'}</span>
                         <br>
-                        <small>Autor: ${draft.authorDisplayName} | ${date}</small>
+                        <small>Erstellt durch: ${draft.authorDisplayName} | ${date}</small>
                         ${isPublished && draft.publishedUrl ? `<br><small><a href="${draft.publishedUrl}" target="_blank" style="color: #667eea;">🔗 Artikel ansehen</a></small>` : ''}
                     </div>
                     <div class="article-actions">
