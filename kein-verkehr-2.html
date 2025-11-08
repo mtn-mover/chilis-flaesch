@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Der Verkehr im Dorf nimmt stet zu. Doch eine angebliche Analyse hat ergeben es gib KEIN VERKEHR...">
+    <title>Kein Verkehr 2 | Fläsch Info</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #9b59b6;
+            --dark-gray: #2D3142;
+            --light-gray: #F4F4F4;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Top Info Bar */
+        .info-bar {
+            background: #8B4513;
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .info-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .satire-badge {
+            background: #FFD700;
+            color: #8B4513;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 72px;
+            width: auto;
+        }
+
+        @media (min-width: 768px) {
+            .nav-logo img {
+                height: 96px;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: #C16F31;
+            border-bottom-color: #C16F31;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #8B4513 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        
+        .hero-image {
+            width: 100%;
+            max-width: 1200px;
+            height: 400px;
+            object-fit: cover;
+            margin: 0 auto 2rem;
+            border-radius: 10px;
+            display: block;
+        }
+        
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .hero-category {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-date {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .article-content {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #2d3436;
+        }
+
+        .article-content p {
+            margin-bottom: 1.8rem;
+            text-align: justify;
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-color);
+            position: relative;
+        }
+
+        .article-content h2::after {
+            content: '🌶️';
+            position: absolute;
+            right: 0;
+            bottom: -0.2rem;
+            font-size: 1.5rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #C16F31;
+            margin: 2.5rem 0 1rem;
+            padding-left: 1rem;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .article-content blockquote {
+            background: linear-gradient(135deg, #fff9f0 0%, #fff 100%);
+            border-left: 5px solid var(--primary-color);
+            padding: 1.5rem 2rem;
+            margin: 2.5rem 0;
+            font-style: italic;
+            color: #555;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .article-content blockquote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-color);
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: Georgia, serif;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 2rem 0 2rem 0;
+            padding-left: 2rem;
+            background: #f8f9fa;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+        }
+
+        .article-content li::marker {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin: 2.5rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .article-content img:hover {
+            transform: scale(1.02);
+        }
+
+        .article-content strong {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .article-content em {
+            color: #C16F31;
+            font-style: italic;
+        }
+
+        /* Highlight boxes */
+        .article-content .highlight-box {
+            background: linear-gradient(135deg, #fff 0%, #fffbea 100%);
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c2c2c;
+            color: white;
+            padding: 2.5rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-content p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .footer-content a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-disclaimer {
+            background: rgba(255, 215, 0, 0.15);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .info-bar-content {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            
+            .hero-image {
+                height: 250px;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Info Bar -->
+    <div class="info-bar">
+        <div class="info-bar-content">
+            <div>📍 Fläsch, Graubünden, Schweiz</div>
+            <div class="satire-badge">⚠️ SATIRE</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="Fläsch Info Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#aktuell">Aktuell</a></li>
+                <li><a href="index.html#alle">Alle Geschichten</a></li>
+                <li><a href="ueber-uns.html">Über uns</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://ovks2lxbjpjxpfbj.public.blob.vercel-storage.com/Kein%20Verkehr%202-1762628354627-978c5a7d-37b3-437b-b860-5386650011f8.png" alt="Kein Verkehr 2" class="hero-image">
+        <h1>Kein Verkehr 2</h1>
+        <div class="hero-meta">
+            <span class="hero-category">Kurioses</span>
+            <span class="hero-date">8. November 2025</span>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <article class="article-content">
+            <h2>Wissenschaftliche Sensation: Fläsch offiziell verkehrsfrei erklärt</h2>
+
+<p>Eine bahnbrechende Verkehrsstudie der Gemeinde Fläsch hat ergeben, was Einheimische schon lange vermuteten: Es gibt keinen Verkehr im Dorf. Die mit grosser Spannung erwartete Analyse, durchgeführt von einer eigens eingesetzten Arbeitsgruppe unter Leitung von Gemeindepräsident René P., kommt zu dem eindeutigen Schluss, dass sämtliche Fahrzeuge im Ort reine Einbildung sind.</p>
+
+<h3>Revolutionäre Messmethoden bringen Klarheit</h3>
+
+<p>«Wir haben eine völlig neue Definition von Verkehr entwickelt», erklärt René P. stolz die Methodik. «Fahrzeuge, die langsamer als 50 km/h fahren, gelten als 'entspannte Fortbewegung' und zählen nicht als Verkehr. Alles über 50 km/h ist sowieso verboten und existiert daher ebenfalls nicht.» Die Arbeitsgruppe, bestehend aus 15 handverlesenen Experten, sei einstimmig zu diesem Ergebnis gekommen - nachdem René P. seine Vision des verkehrsfreien Fläsch überzeugend dargelegt habe.</p>
+
+<blockquote>«Ich sehe täglich mindestens 200 Autos durch unser Dorf brettern, aber wenn die Gemeinde sagt, es gibt keinen Verkehr, dann vertraue ich dem natürlich voll und ganz.» - Anwohner Klaus, während im Hintergrund ein Lastwagen vorbeidonnert</blockquote>
+
+<h3>Schärfe-Skala für Verkehrsmessung eingeführt</h3>
+
+<p>Besonders innovativ ist die neue Fläscher Verkehrs-Schärfe-Skala: Normaler Durchgangsverkehr gilt als «mild wie Hooters-Sauce», Staus werden als «medium wie unser Dorfmotto» eingestuft, und erst ab Vollsperrungen spricht man von «scharf wie die abgelehnte Steuererhöhung». Da bisher nur milde bis medium-scharfe Verkehrssituationen gemessen wurden, fällt das Ergebnis entsprechend aus.</p>
+
+<h3>Bürger zeigen sich überrascht erfreut</h3>
+
+<p>Die Reaktionen im Dorf sind gemischt bis verwirrend. Während Wirtschaftsprüferin Tamara W. bereits eine Kontrollrechnung der Messwerte angekündigt hat, meldet sich auch El Diablo Müller zu Wort: «Wenn es keinen Verkehr gibt, brauchen wir auch keine Pumptrack-Anlage. Die Jugend kann ja einfach auf der verkehrsfreien Hauptstrasse Bike fahren!» Die Gemeindeverwaltung prüft nun, ob sie aufgrund der verkehrsfreien Zone Bundesgelder für Infrastruktur zurückfordern kann.</p>
+        </article>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>🍷 <strong>Fläsch Info</strong> - Satirische Geschichten aus Fläsch</p>
+            <p>&copy; 2025 Fläsch mittendrin - oder doch daneben?</p>
+            <div class="footer-disclaimer">
+                ⚠️ Diese Webseite ist SATIRE! Alle Geschichten sind frei erfunden und dienen ausschliesslich der Unterhaltung.
+                <br><br>
+                🤖 Diese Webseite wurde mit KI erstellt. Inhalte werden von künstlicher Intelligenz generiert.
+                <br>
+                💬 Kontakt: <a href="https://claude.ai/new" target="_blank">Mit Claude chatten</a> |
+                <a href="mailto:fluesterer@flaesch.info">fluesterer@flaesch.info</a>
+            </div>
+            <p style="margin-top: 1.5rem;">
+                <a href="index.html">← Zurück zur Startseite</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
