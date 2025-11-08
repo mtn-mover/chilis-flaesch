@@ -433,22 +433,69 @@
 
             // Collect form data
             const formData = new FormData(articleForm);
-            formData.append('author', sessionStorage.getItem('username'));
-            formData.append('authorName', sessionStorage.getItem('userDisplayName'));
+            const author = sessionStorage.getItem('username');
+
+            // Handle file upload
+            let fileContent = null;
+            let fileName = null;
+            let fileType = null;
+
+            const file = fileInput.files[0];
+            if (file) {
+                // Convert file to base64
+                fileContent = await new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result.split(',')[1]);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+                fileName = file.name;
+                fileType = file.type;
+            }
+
+            // Build request payload
+            const payload = {
+                title: formData.get('title'),
+                category: formData.get('category'),
+                style: formData.get('style'),
+                content: formData.get('content'),
+                author: author,
+                fileContent: fileContent,
+                fileName: fileName,
+                fileType: fileType
+            };
 
             try {
-                // TODO: Hier kommt später der API-Call zur Backend-Function
-                // Für jetzt: Simulieren wir einen erfolgreichen Call
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                // Call Vercel Function API
+                const response = await fetch('/api/create-article', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.error || 'Unbekannter Fehler');
+                }
 
                 // Show success message
-                statusMessage.className = 'status-message status-info';
-                statusMessage.textContent = '⏳ Hinweis: Die Backend-API ist noch nicht implementiert. Phase 2 folgt!';
+                statusMessage.className = 'status-message status-success';
+                statusMessage.innerHTML = `✅ Artikel erfolgreich erstellt!<br><br>
+                    <strong>Dateiname:</strong> ${result.fileName}<br>
+                    <strong>Kategorie:</strong> ${result.category}<br><br>
+                    <div style="background: #f5f5f5; padding: 1rem; border-radius: 8px; margin-top: 1rem; max-height: 300px; overflow-y: auto;">
+                        <strong>Generierter HTML-Code:</strong><br>
+                        <pre style="white-space: pre-wrap; font-size: 0.85rem;">${result.html.substring(0, 500)}...</pre>
+                    </div><br>
+                    <small>⚠️ Der Artikel wurde generiert, aber noch nicht automatisch deployed. Manual deployment kommt in Phase 3!</small>`;
                 statusMessage.style.display = 'block';
 
                 // Reset form
-                // articleForm.reset();
-                // fileInfo.style.display = 'none';
+                articleForm.reset();
+                fileInfo.style.display = 'none';
 
             } catch (error) {
                 // Show error message

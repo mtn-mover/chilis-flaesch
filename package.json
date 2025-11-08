@@ -1,0 +1,9 @@
+{
+  "name": "flaesch-info",
+  "version": "1.0.0",
+  "description": "Satirische News-Website für Fläsch",
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1"
+  }
+}
