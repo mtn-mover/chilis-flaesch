@@ -21,6 +21,10 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    console.log('=== create-article.js START ===');
+    console.log('Request method:', req.method);
+    console.log('Request body keys:', Object.keys(req.body || {}));
+
     const {
       sessionToken,
       title,
@@ -33,18 +37,25 @@ module.exports = async function handler(req, res) {
       fileType: uploadedFileType
     } = req.body;
 
+    console.log('Parsed request data:', { title, category, style, author });
+
     // Verify session
+    console.log('Verifying session...');
     const session = verifySession(sessionToken);
     if (!session) {
+      console.log('Session verification failed');
       return res.status(401).json({ error: 'Nicht autorisiert. Bitte erneut einloggen.' });
     }
+    console.log('Session OK:', session.username);
 
     // Validierung
     if (!title || !category || !style || !content || !author) {
+      console.log('Validation failed - missing fields');
       return res.status(400).json({
         error: 'Fehlende erforderliche Felder'
       });
     }
+    console.log('Validation OK');
 
     // Content Policy Check (einfache Keywords)
     const bannedWords = ['fick', 'scheiss', 'arsch', 'idiot', 'dumm'];
