@@ -107,15 +107,23 @@ ${fileAnalysis}
 **Inhaltsbeschreibung vom Autor:**
 ${content}
 
-Erstelle einen vollständigen HTML-Artikel im Format der bestehenden Artikel auf der Website. Nutze die gleiche Struktur wie andere Artikel-Seiten.
+Erstelle den Artikel-CONTENT (nur der Inhalt, KEIN vollständiges HTML-Dokument!).
 
 Der Artikel soll:
-1. Eine passende Überschrift haben
-2. 3-5 Absätze Inhalt
-3. Satirische Zitate von fiktiven Dorfbewohnern (nur Vornamen!)
-4. Am Ende: Ersteller-Hinweis mit dem Autor: "${author}"
+1. Mit einer einleitenden Überschrift (h2) starten
+2. 3-5 gut strukturierte Absätze haben
+3. Satirische Zitate von fiktiven Dorfbewohnern (nur Vornamen!) enthalten
+4. Zwischenüberschriften (h2, h3) für bessere Struktur nutzen
+5. Optional: Aufzählungen oder Blockquotes für Zitate
 
-Gib NUR den HTML-Code zurück, ohne Erklärungen. Der Code soll ready-to-use sein.`;
+WICHTIG:
+- Gib NUR den Artikel-Inhalt zurück (h2, p, blockquote, ul, etc.)
+- KEIN vollständiges HTML-Dokument (kein <!DOCTYPE>, <html>, <head>, <body>)
+- KEINE Code-Blöcke (```html)
+- KEIN Navigation oder Footer
+- Der Inhalt wird automatisch in ein Template eingebettet
+
+Beginne direkt mit dem Artikel-Content!`;
 
     // Claude API Call
     const message = await anthropic.messages.create({
@@ -127,7 +135,22 @@ Gib NUR den HTML-Code zurück, ohne Erklärungen. Der Code soll ready-to-use sei
       }]
     });
 
-    const generatedHTML = message.content[0].text;
+    let generatedHTML = message.content[0].text;
+
+    // Bereinige den generierten Content (entferne Code-Blöcke falls vorhanden)
+    generatedHTML = generatedHTML
+      .replace(/```html\s*/g, '')  // Entferne ```html
+      .replace(/```\s*/g, '')      // Entferne ```
+      .trim();
+
+    // Entferne vollständiges HTML-Dokument falls Claude es trotzdem generiert hat
+    if (generatedHTML.includes('<!DOCTYPE')) {
+      // Extrahiere nur den Body-Content
+      const bodyMatch = generatedHTML.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+      if (bodyMatch) {
+        generatedHTML = bodyMatch[1];
+      }
+    }
 
     // Dateiname für neuen Artikel generieren (aus Titel)
     const fileName = title
