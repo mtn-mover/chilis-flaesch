@@ -119,7 +119,7 @@ Gib NUR den HTML-Code zurück, ohne Erklärungen. Der Code soll ready-to-use sei
 
     // Claude API Call
     const message = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-latest',
+      model: 'claude-sonnet-4-20250514',
       max_tokens: 4096,
       messages: [{
         role: 'user',
