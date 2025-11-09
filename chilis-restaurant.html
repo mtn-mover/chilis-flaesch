@@ -40,11 +40,36 @@
             scroll-behavior: smooth;
         }
 
+        /* Top Info Bar */
+        .info-bar {
+            background: #8B4513;
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .info-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .satire-badge {
+            background: #FFD700;
+            color: #8B4513;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
         /* Navigation */
         nav {
-            background: rgba(255, 255, 255, 0.98);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -53,16 +78,17 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            min-height: 70px;
         }
 
         .nav-logo {
             display: flex;
             align-items: center;
+            gap: 0.5rem;
             text-decoration: none;
         }
 
@@ -85,13 +111,16 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: #555;
             font-weight: 500;
             transition: color 0.3s;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
         }
 
         .nav-links a:hover {
-            color: #667eea;
+            color: #C16F31;
+            border-bottom-color: #C16F31;
         }
 
         /* Hero Section */
@@ -899,6 +928,14 @@
     </style>
 </head>
 <body>
+    <!-- Top Info Bar -->
+    <div class="info-bar">
+        <div class="info-bar-content">
+            <div>📍 Fläsch, Graubünden, Schweiz</div>
+            <div class="satire-badge">⚠️ SATIRE</div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
@@ -906,9 +943,10 @@
                 <img src="logo.png" alt="Fläsch Info Logo">
             </a>
             <ul class="nav-links">
-                <li><a href="index.html">Startseite</a></li>
-                <li><a href="ueber-uns.html">Über uns</a></li>
+                <li><a href="index.html#aktuell">Aktuell</a></li>
                 <li><a href="index.html#alle">Alle Geschichten</a></li>
+                <li><a href="ueber-uns.html">Über uns</a></li>
+                <li><a href="admin.html" style="opacity: 0.5; font-size: 0.85rem;">Admin</a></li>
             </ul>
         </div>
     </nav>

@@ -406,6 +406,7 @@ function wrapArticleInTemplate(draft) {
                 <li><a href="index.html#aktuell">Aktuell</a></li>
                 <li><a href="index.html#alle">Alle Geschichten</a></li>
                 <li><a href="ueber-uns.html">Über uns</a></li>
+                <li><a href="admin.html" style="opacity: 0.5; font-size: 0.85rem;">Admin</a></li>
             </ul>
         </div>
     </nav>
