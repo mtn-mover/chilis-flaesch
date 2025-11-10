@@ -106,19 +106,31 @@ ${styleInstruction}
 - Kleines Dorf in Graubünden, bekannt für Weinbau und als "Chili-Dorf"
 - Motto: "Fläsch steht auf MEDIUM" (nicht zu mild, nicht zu scharf)
 
-**Wiederkehrende Charaktere:**
-- **René P. (Gemeindepräsident, "CEO"):**
+**WICHTIG - Namensschutz:**
+⚠️ **VERWENDE NIEMALS ECHTE NAMEN AUS PROTOKOLLEN ODER DOKUMENTEN!**
+
+**Offizielle Funktionsbezeichnungen (verwende IMMER diese):**
+- **Gemeindepräsident** = "Der CEO" oder "CEO" (niemals echter Name!)
+- **Vorsitzender der GPK (Geschäftsprüfungskommission)** = "Der Generalsekretär" oder "Generalsekretär"
+- **Abwart** = "Der Adjutant" oder "Adjutant"
+
+**Für alle anderen Personen und Funktionen:**
+- Erfinde lustige, satirische Pseudonyme (z.B. "El Diablo Müller", "Chili-Chefin Bernadette", "Gemeinderat Pfefferschmid")
+- Verwende kreative Funktionsbezeichnungen (z.B. "Schatzmeister", "Oberchili-Kommissar", "Weinrat")
+- NIEMALS echte Namen aus Protokollen oder Dokumenten verwenden!
+
+**Wiederkehrende Charaktere (bereits etabliert):**
+- **Der CEO (Gemeindepräsident):**
   * Leitet gerne Arbeitsgruppen, setzt aber eigene Meinung durch
   * Nutzt oft "Vertrauen" in Reden
   * Hat Steuererhöhung 70%→75% vorgeschlagen (42:21 abgelehnt)
 - **El Diablo Müller:** Dorfbewohner mit starken Meinungen, meldet sich regelmässig
-- **Tamara W.:** Wirtschaftsprüferin bei LGT, analytisch
-- **Michael L.:** Gemeinderat, packt manchmal aus
-- **David T., Silvan B., Thomas K.:** Kritische Geister, finden Ungereimtheiten
+- **Der Generalsekretär:** Vorsitzender der GPK, behält den Überblick
+- **Der Adjutant:** Der Abwart, sorgt für Ordnung
 
 **Bisherige Ereignisse (Storylines zum Anknüpfen):**
 
-*Steuer-Debakel (Sept 2025):* René P. wollte Steuerfuss 70%→75%. Arbeitsgruppe (20 Leute) empfahl weniger, er brachte volle Erhöhung. 3 verschiedene Finanzpläne kursierten. Abgelehnt 42:21. Vergleich: "Zu scharf wie Twin Peaks"
+*Steuer-Debakel (Sept 2025):* Der CEO wollte Steuerfuss 70%→75%. Arbeitsgruppe (20 Leute) empfahl weniger, er brachte volle Erhöhung. 3 verschiedene Finanzpläne kursierten. Abgelehnt 42:21. Vergleich: "Zu scharf wie Twin Peaks"
 
 *Migros Marketing-Fail:* Migros verwendete Korkenzieher statt Chili-Symbol in Fläsch-Kampagne. Peinlich!
 
@@ -128,14 +140,16 @@ ${styleInstruction}
 
 *Pumptrack-Projekt:* Neue Pumptrack-Anlage geplant für Biker
 
-**Nutzung:** Erwähne diese Charaktere/Ereignisse wenn es thematisch passt! Bei Politik-Artikeln kann René P. auftauchen, El Diablo kommentiert kontroverse Themen, die Schärfe-Skala kann für Vergleiche genutzt werden.
+**Nutzung:** Erwähne diese Charaktere/Ereignisse wenn es thematisch passt! Bei Politik-Artikeln kann der CEO auftauchen, El Diablo kommentiert kontroverse Themen, die Schärfe-Skala kann für Vergleiche genutzt werden.
 
 **Wichtige Regeln:**
-- KEINE vollen Namen - nur Vornamen oder Initialen (z.B. René P., Michael L.)
+- ⚠️ **KEINE ECHTEN NAMEN aus Protokollen, Dokumenten oder offiziellen Quellen!**
+- Verwende IMMER die Funktionsbezeichnungen: CEO, Generalsekretär, Adjutant
+- Erfinde lustige Pseudonyme für alle anderen Personen
 - KEINE Beleidigungen oder Diffamierungen
 - Schweizer Hochdeutsch verwenden (keine ß, Guillemets «» statt "", etc.)
 - Satirisch, aber nicht böswillig
-- Nutze wiederkehrende Charaktere wenn es passt (besonders René P. bei Politik-Themen)
+- Nutze wiederkehrende Charaktere wenn es passt (besonders der CEO bei Politik-Themen)
 - Baue auf bisherigen Ereignissen auf wenn relevant
 
 **Artikel-Informationen:**
