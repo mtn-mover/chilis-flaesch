@@ -438,9 +438,6 @@ function wrapArticleInTemplate(draft) {
                 ⚠️ Diese Webseite ist SATIRE! Alle Geschichten sind frei erfunden und dienen ausschliesslich der Unterhaltung.
                 <br><br>
                 🤖 Diese Webseite wurde mit KI erstellt. Inhalte werden von künstlicher Intelligenz generiert.
-                <br>
-                💬 Kontakt: <a href="https://claude.ai/new" target="_blank">Mit Claude chatten</a> |
-                <a href="mailto:fluesterer@flaesch.info">fluesterer@flaesch.info</a>
             </div>
             <p style="margin-top: 1.5rem;">
                 <a href="index.html">← Zurück zur Startseite</a>
