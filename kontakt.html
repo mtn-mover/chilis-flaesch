@@ -145,79 +145,112 @@
 
         /* Container */
         .container {
-            max-width: 900px;
+            max-width: 700px;
             margin: 3rem auto;
             padding: 0 2rem;
         }
 
-        /* Contact Section */
+        /* Coming Soon Notice */
+        .coming-soon {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            border: 3px dashed #8B4513;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .coming-soon h3 {
+            color: #8B4513;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .coming-soon p {
+            color: #5D4037;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Contact Form */
         .contact-section {
             background: white;
             border-radius: 10px;
             padding: 3rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
+            opacity: 0.6;
+            pointer-events: none;
+            position: relative;
         }
 
-        .contact-section h2 {
-            color: #8B4513;
+        .contact-section::after {
+            content: '🚧 Bald verfügbar 🚧';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgba(139, 69, 19, 0.3);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            pointer-events: none;
+        }
+
+        .form-group {
             margin-bottom: 1.5rem;
-            font-size: 1.8rem;
         }
 
-        .contact-section p {
-            margin-bottom: 1rem;
-            color: #555;
-            line-height: 1.8;
-        }
-
-        .contact-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .chat-button {
-            display: inline-block;
-            padding: 1.2rem 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
             font-weight: 600;
-            font-size: 1.1rem;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .chat-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        .chat-button.secondary {
-            background: linear-gradient(135deg, #C16F31 0%, #8B4513 100%);
-            box-shadow: 0 4px 15px rgba(193, 111, 49, 0.4);
-        }
-
-        .chat-button.secondary:hover {
-            box-shadow: 0 6px 20px rgba(193, 111, 49, 0.6);
-        }
-
-        .info-box {
-            background: #FFF8E7;
-            border-left: 4px solid #C16F31;
-            padding: 1.5rem;
-            border-radius: 5px;
-            margin: 2rem 0;
-        }
-
-        .info-box strong {
             color: #8B4513;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #C16F31;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #8B4513 0%, #C16F31 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
         }
 
         /* Footer */
@@ -269,6 +302,14 @@
             .contact-section {
                 padding: 2rem 1.5rem;
             }
+
+            .coming-soon {
+                padding: 1.5rem;
+            }
+
+            .contact-section::after {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -300,53 +341,50 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Kontakt</h1>
-            <p class="hero-subtitle">Melde dich bei uns - wir freuen uns auf deine Nachricht!</p>
+            <p class="hero-subtitle">Wir freuen uns auf deine Nachricht!</p>
         </div>
     </section>
 
     <!-- Main Content -->
     <div class="container">
+        <!-- Coming Soon Notice -->
+        <div class="coming-soon">
+            <h3>🚧 Baustelle voraus! 🚧</h3>
+            <p>
+                <strong>Unser Kontaktformular macht gerade eine Ausbildung zum Schweizer Briefträger.</strong><br><br>
+                Es lernt noch, wie man Nachrichten korrekt zustellt - zwischen Fläsch, dem digitalen Nirgendwo
+                und zurück. 📬<br><br>
+                Sobald es seine Prüfung bestanden hat (und wir endlich Zeit gefunden haben, den Code zu schreiben),
+                wird es hier aktiviert!<br><br>
+                <em>Geschätzte Wartezeit: Irgendwann zwischen «bald» und «wenn die Weinlese vorbei ist». 🍷</em>
+            </p>
+        </div>
+
+        <!-- Contact Form (Disabled) -->
         <div class="contact-section">
-            <h2>💬 Kontakt aufnehmen</h2>
-            <p>
-                Du hast eine Frage, einen Hinweis oder möchtest einfach nur mit uns plaudern?
-                Wir sind auf zwei Wegen erreichbar:
-            </p>
+            <form>
+                <div class="form-group">
+                    <label for="name">Dein Name</label>
+                    <input type="text" id="name" name="name" placeholder="Max Mustermann" disabled>
+                </div>
 
-            <div class="contact-buttons">
-                <a href="https://claude.ai/new" target="_blank" class="chat-button">
-                    🤖 Jetzt mit Claude (KI) chatten
-                </a>
-                <a href="mailto:fluesterer@flaesch.info" class="chat-button secondary">
-                    👤 Den Flüsterer per E-Mail kontaktieren
-                </a>
-            </div>
+                <div class="form-group">
+                    <label for="email">Deine E-Mail</label>
+                    <input type="email" id="email" name="email" placeholder="max@example.com" disabled>
+                </div>
 
-            <div class="info-box">
-                <p>
-                    💡 <strong>Tipp:</strong> Für sofortige Antworten und interaktive Gespräche nutze den Chat mit Claude!
-                    Claude ist eine künstliche Intelligenz von Anthropic und kann dir direkt bei Fragen helfen.
-                </p>
-            </div>
+                <div class="form-group">
+                    <label for="subject">Betreff</label>
+                    <input type="text" id="subject" name="subject" placeholder="Meine sensationelle Story-Idee..." disabled>
+                </div>
 
-            <h2 style="margin-top: 2rem;">📧 E-Mail Kontakt</h2>
-            <p>
-                Für persönliche Anfragen, Vorschläge für neue Geschichten oder wenn du einfach den Flüsterer
-                direkt erreichen möchtest, schreib eine E-Mail an:
-            </p>
-            <p style="font-size: 1.2rem; color: #C16F31; font-weight: 600; margin: 1rem 0;">
-                fluesterer@flaesch.info
-            </p>
+                <div class="form-group">
+                    <label for="message">Deine Nachricht</label>
+                    <textarea id="message" name="message" placeholder="Erzähl uns deine Geschichte..." disabled></textarea>
+                </div>
 
-            <h2 style="margin-top: 2rem;">❓ Häufige Fragen</h2>
-            <p><strong>Ist das alles ernst gemeint?</strong><br>
-            Nein! Fläsch Info ist eine satirische Webseite. Alle Geschichten sind frei erfunden.</p>
-
-            <p style="margin-top: 1rem;"><strong>Wer steckt dahinter?</strong><br>
-            Der mysteriöse «Flüsterer» aus Fläsch, unterstützt von Claude (KI).</p>
-
-            <p style="margin-top: 1rem;"><strong>Kann ich auch Geschichten einreichen?</strong><br>
-            Gerne! Schreib uns eine E-Mail mit deinen Ideen. Vielleicht wird daraus ja die nächste Story!</p>
+                <button type="submit" class="submit-button" disabled>Nachricht absenden (bald verfügbar)</button>
+            </form>
         </div>
     </div>
 
