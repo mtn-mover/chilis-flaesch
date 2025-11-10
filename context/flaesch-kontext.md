@@ -337,6 +337,32 @@ Der ursprüngliche Pumptrack-Verein hat sich aufgelöst, da ein "Filetstück fü
 
 **Satirischer Kontext:** Typisches Dorfproblem (fehlende öffentliche Infrastruktur) wird durch absurde Lösung (WC im Kirchturm) überspitzt dargestellt.
 
+
+### ACHTUNG neues Pumptrack Pojekt am Horizont (November 2025)
+**Kategorie:** gesellschaft
+## Zusammenfassung: ACHTUNG neues Pumptrack Pojekt am Horizont
+
+### Neue Charaktere:
+• **Unbekannter Multimilliardär** - will anonym bleiben, kauft Bauland für vergoldeten Pumptrack
+
+### Hauptereignis:
+• Verein Pumptrack Fläsch hat sich aufgelöst (Grund: Chili-Anbau hatte Vorrang). Mysteriöser Investor kauft nun ausgeschriebenes Bauland für luxuriösen "Dubai-Style" Pumptrack.
+
+### Wichtige Details:
+• **Kaufpreis:** 5-stelliger Betrag pro Quadratmeter (1 CHF pro Grashalm)
+• **Projekt:** Vergoldeter Pumptrack im Dubai-Stil
+• **Reaktionen:** Gemeinderat alarmiert, Anwohner demonstrieren bereits
+• **Paradoxer Protest-Grund:** Fehlen von Kinderlärm stört die Bevölkerung
+
+### Für zukünftige Artikel:
+• Verfolgen: Reaktion des Gemeinderats auf das Luxus-Projekt
+• Mögliche Entwicklung der Anwohner-Proteste
+• Identität des mysteriösen Investors könnte enthüllt werden
+• Kontrast zwischen aufgelöstem Bürgerverein und Luxus-Investment
+• Weitere Details zu Baubewilligung und Umsetzung des vergoldeten Pumptracks
+
+**Satirische Elemente:** Übertriebene Luxus-Ausstattung, absurde Preisberechnung, paradoxe Beschwerden über fehlenden Lärm
+
 ## Stil-Richtlinien
 
 ### Satire-Level
