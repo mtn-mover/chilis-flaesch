@@ -755,11 +755,15 @@
                 const result = await response.json();
                 if (result.valid && result.role === 'admin') {
                     const navLinks = document.getElementById('navLinks');
-                    const adminLink = document.createElement('a');
-                    adminLink.href = 'admin-users.html';
-                    adminLink.textContent = '👥 Benutzerverwaltung';
-                    // Insert before logout link
-                    navLinks.insertBefore(adminLink, navLinks.lastElementChild);
+                    // Check if admin link already exists
+                    const existingAdminLink = navLinks.querySelector('a[href="admin-users.html"]');
+                    if (!existingAdminLink) {
+                        const adminLink = document.createElement('a');
+                        adminLink.href = 'admin-users.html';
+                        adminLink.textContent = '👥 Benutzerverwaltung';
+                        // Insert before logout link
+                        navLinks.insertBefore(adminLink, navLinks.lastElementChild);
+                    }
                 }
             } catch (error) {
                 console.error('Failed to check admin role:', error);

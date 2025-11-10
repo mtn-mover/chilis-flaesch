@@ -105,6 +105,7 @@ ${styleInstruction}
 **Kontext über Fläsch:**
 - Kleines Dorf in Graubünden, bekannt für Weinbau und als "Chili-Dorf"
 - Motto: "Fläsch steht auf MEDIUM" (nicht zu mild, nicht zu scharf)
+- Im Dorf gibt es einen **Volg** (Dorfladen/Supermarkt) - verwende diesen wenn ein Laden erwähnt werden soll
 
 **WICHTIG - Namensschutz:**
 ⚠️ **VERWENDE NIEMALS ECHTE NAMEN AUS PROTOKOLLEN ODER DOKUMENTEN!**

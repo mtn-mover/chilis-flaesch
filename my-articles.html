@@ -242,14 +242,18 @@
                     throw new Error(result.error);
                 }
 
-                // Add admin link if user is admin
+                // Add admin link if user is admin (only once)
                 if (result.isAdmin) {
                     const navLinks = document.getElementById('navLinks');
-                    const adminLink = document.createElement('a');
-                    adminLink.href = 'admin-users.html';
-                    adminLink.textContent = '👥 Benutzerverwaltung';
-                    // Insert before logout link
-                    navLinks.insertBefore(adminLink, navLinks.lastElementChild);
+                    // Check if admin link already exists
+                    const existingAdminLink = navLinks.querySelector('a[href="admin-users.html"]');
+                    if (!existingAdminLink) {
+                        const adminLink = document.createElement('a');
+                        adminLink.href = 'admin-users.html';
+                        adminLink.textContent = '👥 Benutzerverwaltung';
+                        // Insert before logout link
+                        navLinks.insertBefore(adminLink, navLinks.lastElementChild);
+                    }
                 }
 
                 if (result.drafts.length === 0) {
