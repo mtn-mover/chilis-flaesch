@@ -337,6 +337,109 @@ Der ursprüngliche Pumptrack-Verein hat sich aufgelöst, da ein "Filetstück fü
 
 **Satirischer Kontext:** Typisches Dorfproblem (fehlende öffentliche Infrastruktur) wird durch absurde Lösung (WC im Kirchturm) überspitzt dargestellt.
 
+
+### ACHTUNG neues Pumptrack Pojekt am Horizont (November 2025)
+**Kategorie:** gesellschaft
+## Zusammenfassung: ACHTUNG neues Pumptrack Pojekt am Horizont
+
+### Neue Charaktere:
+• **Unbekannter Multimilliardär** - will anonym bleiben, kauft Bauland für vergoldeten Pumptrack
+
+### Hauptereignis:
+• Verein Pumptrack Fläsch hat sich aufgelöst (Grund: Chili-Anbau hatte Vorrang). Mysteriöser Investor kauft nun ausgeschriebenes Bauland für luxuriösen "Dubai-Style" Pumptrack.
+
+### Wichtige Details:
+• **Kaufpreis:** 5-stelliger Betrag pro Quadratmeter (1 CHF pro Grashalm)
+• **Projekt:** Vergoldeter Pumptrack im Dubai-Stil
+• **Reaktionen:** Gemeinderat alarmiert, Anwohner demonstrieren bereits
+• **Paradoxer Protest-Grund:** Fehlen von Kinderlärm stört die Bevölkerung
+
+### Für zukünftige Artikel:
+• Verfolgen: Reaktion des Gemeinderats auf das Luxus-Projekt
+• Mögliche Entwicklung der Anwohner-Proteste
+• Identität des mysteriösen Investors könnte enthüllt werden
+• Kontrast zwischen aufgelöstem Bürgerverein und Luxus-Investment
+• Weitere Details zu Baubewilligung und Umsetzung des vergoldeten Pumptracks
+
+**Satirische Elemente:** Übertriebene Luxus-Ausstattung, absurde Preisberechnung, paradoxe Beschwerden über fehlenden Lärm
+
+
+### Kein Verkehr? Wriklich? (November 2025)
+**Kategorie:** kurioses
+**Zusammenfassung des Artikels "Kein Verkehr? Wriklich?"**
+
+**Neue Charaktere:**
+• Keine namentlich erwähnten Personen
+• Nicht näher spezifizierte Analysten/Studienautoren
+
+**Hauptereignis:**
+• Widerspruch zwischen Realität und offizieller Analyse: Während der Verkehr im Dorf objektiv zunimmt, behauptet eine Studie, es gäbe keinen Verkehr
+• Satirische Kritik an realitätsferner Datenanalyse oder Verkehrspolitik
+
+**Wichtige Details:**
+• Keine konkreten Zahlen oder Zitate im kurzen Artikel
+• Betonung des Widerspruchs durch den fragenden Titel "Wriklich?" (bewusst falsch geschrieben)
+• Kategorisierung als "kurioses" unterstreicht absurden Charakter
+
+**Für zukünftige Artikel:**
+• Verkehrsproblematik in Fläsch als wiederkehrendes Thema etabliert
+• Kritik an offiziellen Analysen/Behörden als satirisches Element
+• Mögliche Fortsetzung: Reaktionen der Dorfbewohner, weitere "Experten-Analysen" oder tatsächliche Verkehrsmessungen
+• Rechtschreibfehler als Stilmittel der Publikation beachten
+
+
+### Goldenes WC (November 2025)
+**Kategorie:** kurioses
+## Analyse: "Goldenes WC"
+
+### **Neue Charaktere:**
+- **Hansruedi**: Besitzt einen Rebberg, kritisch gegenüber den Baukosten
+- **Tamara W.**: Wirtschaftsprüferin, rechnet Kosten vor
+- **El Diablo Müller**: Schreibt kritische Leserbriefe, nostalgisch
+
+### **Hauptereignis:**
+Fläsch baut das erste öffentliche WC im Kirchturm. Wegen Barrierefreiheits-Vorschriften explodieren die Kosten von 50'000 auf 350'000 Franken.
+
+### **Wichtige Details:**
+- **Kosten**: Hydraulischer Lift 120'000 CHF, Rampe 80'000 CHF
+- **"Fläscher Schärfe-Skala"**: Über "Twin Peaks" = "völlig verrückt"
+- **El Diablo Zitat**: "Früher sind wir einfach in den Wald gegangen"
+- **Eröffnung**: Frühling 2024 mit Blasmusik geplant
+- **VIP-Anfrage**: Roger Federer für symbolisches "erstes Geschäft" angefragt
+
+### **Für zukünftige Artikel:**
+- Hansruedi als Weinbauer etabliert
+- Tamara W. als Finanzexpertin der Gemeinde
+- El Diablo Müller als wiederkehrende Figur für kritische Leserbriefe
+- "Fläscher Schärfe-Skala" als lokales Bewertungssystem
+- Eröffnungszeremonie 2024 als Follow-up-Thema
+- René P.'s Hang zu übertriebenen Feierlichkeiten
+
+
+### Kein Verkehr? Wirklich (November 2025)
+**Kategorie:** politik
+**Satirische Artikel-Analyse: "Kein Verkehr? Wirklich"**
+
+## 1. Neue Charaktere:
+• Keine spezifischen Personen oder Charaktere im Artikel erwähnt
+
+## 2. Hauptereignis:
+• Eine "angebliche Analyse" behauptet, es gäbe keinen Verkehr im Dorf, obwohl der Verkehr tatsächlich stetig zunimmt
+• Widerspruch zwischen Realität und offizieller Darstellung wird satirisch aufgegriffen
+
+## 3. Wichtige Details:
+• Keine konkreten Zahlen, Abstimmungen oder Zitate im kurzen Artikel enthalten
+• Betonung auf "angebliche Analyse" deutet auf Kritik an fragwürdigen Studien hin
+• Rechtschreibfehler ("gib" statt "gibt") möglicherweise bewusst satirisch eingesetzt
+
+## 4. Für zukünftige Artikel:
+• Verkehrsproblematik in Fläsch ist ein wiederkehrendes Thema
+• Kritik an offiziellen Analysen/Studien, die der Realität widersprechen
+• Mögliche Fortsetzung: Wer hat die Analyse erstellt? Politische Reaktionen?
+• Thema eignet sich für weitere satirische Betrachtungen zu Bürokratie und realitätsferner Politik
+
+**Hinweis:** Sehr kurzer Artikel mit begrenztem Informationsgehalt - hauptsächlich Aufhänger für Verkehrs-/Politiksatire.
+
 ## Stil-Richtlinien
 
 ### Satire-Level
