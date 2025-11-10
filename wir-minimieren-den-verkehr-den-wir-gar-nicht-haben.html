@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Der CEO und sein Team minimiert den Verkehr, den das Dorf gar nicht hat. Der CEO und sein Team haltet sich an ein nie erstelltes Verkehrskonzept. Der ">
+    <title>Wir minimieren den Verkehr, den wir gar nicht haben | Fläsch Info</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #e74c3c;
+            --dark-gray: #2D3142;
+            --light-gray: #F4F4F4;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Top Info Bar */
+        .info-bar {
+            background: #8B4513;
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .info-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .satire-badge {
+            background: #FFD700;
+            color: #8B4513;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 72px;
+            width: auto;
+        }
+
+        @media (min-width: 768px) {
+            .nav-logo img {
+                height: 96px;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: #C16F31;
+            border-bottom-color: #C16F31;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #8B4513 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        
+        .hero-image {
+            width: 100%;
+            max-width: 1200px;
+            height: 400px;
+            object-fit: cover;
+            margin: 0 auto 2rem;
+            border-radius: 10px;
+            display: block;
+        }
+        
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .hero-category {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-date {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .article-content {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #2d3436;
+        }
+
+        .article-content p {
+            margin-bottom: 1.8rem;
+            text-align: justify;
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-color);
+            position: relative;
+        }
+
+        .article-content h2::after {
+            content: '🌶️';
+            position: absolute;
+            right: 0;
+            bottom: -0.2rem;
+            font-size: 1.5rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #C16F31;
+            margin: 2.5rem 0 1rem;
+            padding-left: 1rem;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .article-content blockquote {
+            background: linear-gradient(135deg, #fff9f0 0%, #fff 100%);
+            border-left: 5px solid var(--primary-color);
+            padding: 1.5rem 2rem;
+            margin: 2.5rem 0;
+            font-style: italic;
+            color: #555;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .article-content blockquote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-color);
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: Georgia, serif;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 2rem 0 2rem 0;
+            padding-left: 2rem;
+            background: #f8f9fa;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+        }
+
+        .article-content li::marker {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin: 2.5rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .article-content img:hover {
+            transform: scale(1.02);
+        }
+
+        .article-content strong {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .article-content em {
+            color: #C16F31;
+            font-style: italic;
+        }
+
+        /* Highlight boxes */
+        .article-content .highlight-box {
+            background: linear-gradient(135deg, #fff 0%, #fffbea 100%);
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c2c2c;
+            color: white;
+            padding: 2.5rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-content p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .footer-content a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-disclaimer {
+            background: rgba(255, 215, 0, 0.15);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .info-bar-content {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            
+            .hero-image {
+                height: 250px;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Info Bar -->
+    <div class="info-bar">
+        <div class="info-bar-content">
+            <div>📍 Fläsch, Graubünden, Schweiz</div>
+            <div class="satire-badge">⚠️ SATIRE</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="Fläsch Info Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#geschichten">Unsere Geschichten</a></li>
+                <li><a href="ueber-uns.html">Über uns</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+                <li><a href="admin.html" style="opacity: 0.5; font-size: 0.85rem;">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://ovks2lxbjpjxpfbj.public.blob.vercel-storage.com/Wir%20minimieren%20den%20Verkehr%2C%20den%20wir%20gar%20nicht%20haben-1762809584321-whatsapp-image-2025-11-10-at-22.19.22.jpeg" alt="Wir minimieren den Verkehr, den wir gar nicht haben" class="hero-image">
+        <h1>Wir minimieren den Verkehr, den wir gar nicht haben</h1>
+        <div class="hero-meta">
+            <span class="hero-category">Politik</span>
+            <span class="hero-author">Erstellt durch: der Flüsterer_P</span>
+            <span class="hero-date">10. November 2025</span>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <article class="article-content">
+            <h2>Fläsch minimiert erfolgreich den nicht vorhandenen Verkehr</h2>
+
+<p>In einer bahnbrechenden Initiative hat der CEO von Fläsch gemeinsam mit seinem Team ein ehrgeiziges Verkehrsminimierungsprojekt gestartet. Das Besondere daran: Es soll Verkehr reduziert werden, den es im beschaulichen Chili-Dorf eigentlich gar nicht gibt. «Wir sind stolz darauf, als erste Gemeinde der Schweiz proaktiv gegen Staus vorzugehen, bevor sie überhaupt entstehen», erklärt der CEO bei der Präsentation des innovativen Konzepts.</p>
+
+<h3>Verkehrskonzept ohne Verkehrskonzept</h3>
+
+<p>Besonders raffiniert: Das Team orientiert sich dabei strikt an einem Verkehrskonzept, das nie erstellt wurde. «Warum Geld für teure Gutachten ausgeben, wenn man auch einfach seiner Intuition folgen kann?», so der Generalsekretär der GPK. Die Strategie folge dem bewährten Fläscher Motto «MEDIUM» – nicht zu viel Planung, aber auch nicht zu wenig Aktion. Dorfbewohner Klaus bestätigt: «Ich fahre jeden Tag durch unser Dorf und kann bestätigen: Der nicht vorhandene Stau ist merklich zurückgegangen.»</p>
+
+<h3>Begegnungszonen ohne Steuererhöhung</h3>
+
+<p>Ein Kernstück des Projekts ist die Umgestaltung verkehrsfreier Flächen zu Begegnungszonen. «Wer braucht schon Verkehr, um eine Begegnungszone zu rechtfertigen?», fragt sich Anwohnerin Bernadette. Der CEO versichert, dass diese Massnahme – im Gegensatz zu seiner gescheiterten Steuererhöhung von 70 auf 75 Prozent – völlig kostenneutral umgesetzt werden kann. «Vertrauen Sie mir, diesmal haben wir aus unseren Fehlern gelernt», betont er und fügt hinzu: «Die Schärfe dieses Projekts liegt genau im MEDIUM-Bereich – nicht zu mild wie unsere Konkurrenz, aber auch nicht zu scharf wie die abgelehnte Steuererhöhung.»</p>
+
+<h3>Öffentlicher Verkehr als Lösung für alle Probleme</h3>
+
+<p>Zusätzlich motiviert die Gemeindespitze die Bevölkerung, vermehrt den öffentlichen Verkehr zu nutzen. El Diablo Müller zeigt sich skeptisch: «Soll ich jetzt mit dem Bus zum Volg fahren, obwohl ich zu Fuss schneller bin?» Der Adjutant, zuständig für die praktische Umsetzung, sieht das gelassen: «Wenn alle Bürger gleichzeitig den Bus nehmen, haben wir endlich den Verkehr, den wir dann wieder minimieren können. Das ist nachhaltige Verkehrspolitik!»</p>
+
+<blockquote>«Fläsch zeigt einmal mehr: Wir lösen Probleme, bevor sie entstehen. Das ist Innovation, die schärfer ist als unsere besten Chilis, aber milder als unsere politischen Debatten.»<br>
+<p>– Der CEO bei der Präsentation des Verkehrskonzepts</blockquote></p>
+        </article>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>🍷 <strong>Fläsch Info</strong> - Satirische Geschichten aus Fläsch</p>
+            <p>&copy; 2025 Fläsch mittendrin - oder doch daneben?</p>
+            <div class="footer-disclaimer">
+                ⚠️ Diese Webseite ist SATIRE! Alle Geschichten sind frei erfunden und dienen ausschliesslich der Unterhaltung.
+                <br><br>
+                🤖 Diese Webseite wurde mit KI erstellt. Inhalte werden von künstlicher Intelligenz generiert.
+            </div>
+            <p style="margin-top: 1.5rem;">
+                <a href="index.html">← Zurück zur Startseite</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
