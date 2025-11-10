@@ -387,6 +387,34 @@ Der ursprüngliche Pumptrack-Verein hat sich aufgelöst, da ein "Filetstück fü
 • Mögliche Fortsetzung: Reaktionen der Dorfbewohner, weitere "Experten-Analysen" oder tatsächliche Verkehrsmessungen
 • Rechtschreibfehler als Stilmittel der Publikation beachten
 
+
+### Goldenes WC (November 2025)
+**Kategorie:** kurioses
+## Analyse: "Goldenes WC"
+
+### **Neue Charaktere:**
+- **Hansruedi**: Besitzt einen Rebberg, kritisch gegenüber den Baukosten
+- **Tamara W.**: Wirtschaftsprüferin, rechnet Kosten vor
+- **El Diablo Müller**: Schreibt kritische Leserbriefe, nostalgisch
+
+### **Hauptereignis:**
+Fläsch baut das erste öffentliche WC im Kirchturm. Wegen Barrierefreiheits-Vorschriften explodieren die Kosten von 50'000 auf 350'000 Franken.
+
+### **Wichtige Details:**
+- **Kosten**: Hydraulischer Lift 120'000 CHF, Rampe 80'000 CHF
+- **"Fläscher Schärfe-Skala"**: Über "Twin Peaks" = "völlig verrückt"
+- **El Diablo Zitat**: "Früher sind wir einfach in den Wald gegangen"
+- **Eröffnung**: Frühling 2024 mit Blasmusik geplant
+- **VIP-Anfrage**: Roger Federer für symbolisches "erstes Geschäft" angefragt
+
+### **Für zukünftige Artikel:**
+- Hansruedi als Weinbauer etabliert
+- Tamara W. als Finanzexpertin der Gemeinde
+- El Diablo Müller als wiederkehrende Figur für kritische Leserbriefe
+- "Fläscher Schärfe-Skala" als lokales Bewertungssystem
+- Eröffnungszeremonie 2024 als Follow-up-Thema
+- René P.'s Hang zu übertriebenen Feierlichkeiten
+
 ## Stil-Richtlinien
 
 ### Satire-Level
