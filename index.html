@@ -489,9 +489,9 @@
                 <img src="logo.png" alt="Fläsch Info Logo">
             </a>
             <ul class="nav-links">
-                <li><a href="#aktuell">Aktuell</a></li>
-                <li><a href="#alle">Alle Geschichten</a></li>
+                <li><a href="#geschichten">Unsere Geschichten</a></li>
                 <li><a href="ueber-uns.html">Über uns</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
                 <li><a href="admin.html" style="opacity: 0.5; font-size: 0.85rem;">Admin</a></li>
             </ul>
         </div>
@@ -511,17 +511,6 @@
 
     <!-- Main Content -->
     <div class="container">
-        <!-- Featured Stories -->
-        <section id="aktuell">
-            <div class="section-header">
-                <span class="section-icon">🔥</span>
-                <h2 class="section-title">Aktuelle Geschichten</h2>
-            </div>
-            <div class="featured-stories">
-                <!-- Articles loaded dynamically from articles.json -->
-            </div>
-        </section>
-
         <!-- Info Section -->
         <div class="info-section">
             <h3>ℹ️ Über dieses Projekt</h3>
@@ -534,27 +523,13 @@
                 <strong>🤖 KI-Offenlegung:</strong> Diese Webseite wurde mit künstlicher Intelligenz (KI) erstellt.
                 Die Inhalte und Geschichten werden von KI generiert und sind ausschliesslich satirischer Natur.
             </p>
-            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e0e0e0;">
-                <h4 style="color: #C16F31; margin-bottom: 1rem; font-size: 1.2rem;">💬 Kontakt aufnehmen</h4>
-                <div class="contact-buttons">
-                    <a href="https://claude.ai/new" target="_blank" class="chat-button">
-                        🤖 Jetzt mit Claude (KI) chatten
-                    </a>
-                    <a href="mailto:fluesterer@flaesch.info" class="chat-button secondary">
-                        👤 Den Flüsterer per E-Mail kontaktieren
-                    </a>
-                </div>
-                <p style="font-size: 0.9rem; color: #999; margin-top: 1rem;">
-                    💡 <strong>Tipp:</strong> Für sofortige Antworten und interaktive Gespräche nutze den Chat mit Claude!
-                </p>
-            </div>
         </div>
 
         <!-- All Stories -->
-        <section id="alle" class="all-stories">
+        <section id="geschichten" class="all-stories">
             <div class="section-header">
                 <span class="section-icon">📰</span>
-                <h2 class="section-title">Alle Geschichten</h2>
+                <h2 class="section-title">Unsere Geschichten</h2>
             </div>
             <div class="stories-grid">
                 <!-- Articles loaded dynamically from articles.json -->
@@ -589,9 +564,6 @@
                 }
 
                 const articles = await response.json();
-
-                // Render featured stories (first 2 articles)
-                renderFeaturedStories(articles.slice(0, 2));
 
                 // Render all stories
                 renderAllStories(articles);
