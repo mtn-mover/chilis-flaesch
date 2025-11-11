@@ -467,6 +467,33 @@ Fläsch baut das erste öffentliche WC im Kirchturm. Wegen Barrierefreiheits-Vor
 
 *Satirischer Kern: Bürokratische Überregulierung in einem verkehrsarmen Dorf*
 
+
+### Traktandenliste der nächsten Generalversammlung (November 2025)
+**Kategorie:** kurioses
+**Analyse des satirischen Artikels "Traktandenliste der nächsten Generalversammlung"**
+
+## 1. **Neue Charaktere:**
+- Keine spezifischen Namen erwähnt
+- Implizite Gemeindeverantwortliche (ironisch dargestellt als gesetzesignorierend und arbeitsgruppen-ablehnend)
+
+## 2. **Hauptereignis:**
+- Ankündigung einer Gemeindeversammlung für 2. Dezember 2025 im Mehrzweckgebäude Fläsch
+- Satirische Darstellung einer angeblich "kostenlosen" Komplettumesetzung des Gemeindeleitbilds 2028
+
+## 3. **Wichtige Details:**
+- **Termin:** Dienstag, 2. Dezember 2025, 19:30 Uhr
+- **Ort:** Mehrzweckgebäude Gemeinde Fläsch
+- **Satirische Elemente:** "Scheuen keine Kosten", "Gesetze interessieren uns nicht", "Verzicht auf Arbeitsgruppen"
+- **Referenzdokument:** Leitbild Zukunft Fläsch 2028.pdf
+
+## 4. **Für zukünftige Artikel:**
+- Mögliche Follow-up-Satire zur tatsächlichen Versammlung am 2.12.2025
+- Weiteres Spiel mit dem Thema unrealistische Gemeindeprojekte
+- Potential für Artikel über die (nicht) Umsetzung des Leitbilds 2028
+- Charakterisierung der Gemeindeverantwortlichen als realitätsfern fortsetzbar
+
+**Satirischer Kern:** Übertreibung typischer Gemeindepolitik-Klischees (große Pläne, keine Umsetzung, Ignoranz gegenüber Arbeitsgruppen).
+
 ## Stil-Richtlinien
 
 ### Satire-Level
