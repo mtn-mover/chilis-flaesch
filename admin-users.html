@@ -251,7 +251,8 @@
                     <div class="form-group">
                         <label for="newRole">Rolle</label>
                         <select id="newRole">
-                            <option value="user">User</option>
+                            <option value="reader">Leser</option>
+                            <option value="author">Autor</option>
                             <option value="admin">Admin</option>
                         </select>
                     </div>
@@ -268,7 +269,9 @@
                     <tr>
                         <th>Benutzername</th>
                         <th>Anzeigename</th>
+                        <th>E-Mail</th>
                         <th>Rolle</th>
+                        <th>Status</th>
                         <th>Erstellt am</th>
                         <th>Aktionen</th>
                     </tr>
@@ -299,7 +302,8 @@
                 <div class="form-group">
                     <label for="editRole">Rolle</label>
                     <select id="editRole">
-                        <option value="user">User</option>
+                        <option value="reader">Leser</option>
+                        <option value="author">Autor</option>
                         <option value="admin">Admin</option>
                     </select>
                 </div>
@@ -378,24 +382,44 @@
         function renderUsers(users) {
             const tbody = document.getElementById('usersTableBody');
             if (users.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #999;">Keine Benutzer gefunden</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: #999;">Keine Benutzer gefunden</td></tr>';
                 return;
             }
 
-            tbody.innerHTML = users.map(user => `
-                <tr>
-                    <td>${user.username}</td>
-                    <td>${user.displayName}</td>
-                    <td><span class="role-badge role-${user.role}">${user.role === 'admin' ? 'Admin' : 'User'}</span></td>
-                    <td>${new Date(user.createdAt).toLocaleDateString('de-CH')}</td>
-                    <td>
-                        <div class="actions">
-                            <button class="btn btn-warning btn-sm" onclick="openEditModal('${user.username}', '${user.displayName}', '${user.role}')">Bearbeiten</button>
-                            ${user.username !== 'admin' ? `<button class="btn btn-danger btn-sm" onclick="deleteUser('${user.username}')">Löschen</button>` : ''}
-                        </div>
-                    </td>
-                </tr>
-            `).join('');
+            tbody.innerHTML = users.map(user => {
+                const approved = user.approved !== undefined ? user.approved : true;
+                const authorRequested = user.authorRequested || false;
+
+                let statusBadge = '';
+                if (!approved) {
+                    statusBadge = '<span class="role-badge" style="background: #ffc107; color: #000;">⏳ Warte auf Freischaltung</span>';
+                } else if (authorRequested && user.role === 'reader') {
+                    statusBadge = '<span class="role-badge" style="background: #17a2b8;">📝 Autor beantragt</span>';
+                } else {
+                    statusBadge = '<span class="role-badge" style="background: #28a745;">✓ Aktiv</span>';
+                }
+
+                let roleLabel = user.role === 'admin' ? 'Admin' : (user.role === 'author' ? 'Autor' : 'Leser');
+
+                return `
+                    <tr>
+                        <td><strong>${user.username}</strong></td>
+                        <td>${user.displayName}</td>
+                        <td>${user.email || '-'}</td>
+                        <td><span class="role-badge role-${user.role}">${roleLabel}</span></td>
+                        <td>${statusBadge}</td>
+                        <td>${new Date(user.createdAt).toLocaleDateString('de-CH')}</td>
+                        <td>
+                            <div class="actions" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                ${!approved ? `<button class="btn btn-primary btn-sm" onclick="approveUser('${user.username}')">✓ Freischalten</button>` : ''}
+                                ${approved && authorRequested && user.role === 'reader' ? `<button class="btn btn-primary btn-sm" onclick="makeAuthor('${user.username}')">📝 Autor machen</button>` : ''}
+                                <button class="btn btn-warning btn-sm" onclick="openEditModal('${user.username}', '${user.displayName}', '${user.role}', '${user.email || ''}', ${approved})">Bearbeiten</button>
+                                ${user.username !== 'admin' ? `<button class="btn btn-danger btn-sm" onclick="deleteUser('${user.username}')">Löschen</button>` : ''}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
         }
 
         // Create User
@@ -513,6 +537,62 @@
             } catch (error) {
                 console.error('Delete user error:', error);
                 showMessage('Fehler beim Löschen des Benutzers', 'error');
+            }
+        }
+
+        // Approve User
+        async function approveUser(username) {
+            if (!confirm(`Benutzer "${username}" freischalten?`)) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/manage-users`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionToken,
+                        action: 'edit',
+                        userData: { username, approved: true }
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showMessage('Benutzer erfolgreich freigeschaltet!', 'success');
+                    loadUsers();
+                } else {
+                    showMessage('Fehler: ' + result.error, 'error');
+                }
+            } catch (error) {
+                console.error('Approve user error:', error);
+                showMessage('Fehler beim Freischalten des Benutzers', 'error');
+            }
+        }
+
+        // Make Author
+        async function makeAuthor(username) {
+            if (!confirm(`Benutzer "${username}" zur Autor-Rolle machen?`)) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/manage-users`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionToken,
+                        action: 'edit',
+                        userData: { username, role: 'author' }
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    showMessage('Benutzer ist jetzt Autor!', 'success');
+                    loadUsers();
+                } else {
+                    showMessage('Fehler: ' + result.error, 'error');
+                }
+            } catch (error) {
+                console.error('Make author error:', error);
+                showMessage('Fehler beim Ändern der Rolle', 'error');
             }
         }
 
