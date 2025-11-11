@@ -60,7 +60,10 @@ module.exports = async function handler(req, res) {
         const sanitizedUsers = users.map(u => ({
           username: u.username,
           displayName: u.displayName,
+          email: u.email || '',
           role: u.role,
+          approved: u.approved !== undefined ? u.approved : true, // Legacy users are approved
+          authorRequested: u.authorRequested || false,
           createdAt: u.createdAt
         }));
         return res.status(200).json({ success: true, users: sanitizedUsers });
@@ -123,6 +126,13 @@ module.exports = async function handler(req, res) {
         }
         if (userData.role && userData.username !== 'admin') {
           users[userIndex].role = userData.role;
+        }
+        if (userData.email) {
+          users[userIndex].email = userData.email;
+        }
+        // Admin kann Benutzer freischalten
+        if (userData.approved !== undefined) {
+          users[userIndex].approved = userData.approved;
         }
 
         await redis.set('users', JSON.stringify(users));
