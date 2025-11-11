@@ -69,6 +69,13 @@ module.exports = async function handler(req, res) {
       return res.status(401).json({ error: 'Ungültige Anmeldedaten' });
     }
 
+    // Check if user is approved (except for admin)
+    if (user.role !== 'admin' && user.approved === false) {
+      return res.status(403).json({
+        error: 'Ihr Account wurde noch nicht freigeschaltet. Bitte warten Sie auf die Freischaltung durch einen Administrator.'
+      });
+    }
+
     // Create JWT token
     const token = jwt.sign(
       {
