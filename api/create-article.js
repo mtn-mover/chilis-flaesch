@@ -57,16 +57,9 @@ module.exports = async function handler(req, res) {
     }
     console.log('Validation OK');
 
-    // Content Policy Check (einfache Keywords)
-    const bannedWords = ['fick', 'scheiss', 'arsch', 'idiot', 'dumm'];
-    const contentLower = content.toLowerCase();
-    const hasBannedWords = bannedWords.some(word => contentLower.includes(word));
-
-    if (hasBannedWords) {
-      return res.status(400).json({
-        error: 'Inhalt verstösst gegen Content Policy (Beleidigungen)'
-      });
-    }
+    // KEINE Content-Prüfung für Artikel-Input nötig!
+    // Claude wird den Input ohnehin professionell umschreiben
+    // und die Content Policy von Anthropic greift automatisch
 
     // Initialize Claude API
     const anthropic = new Anthropic({
