@@ -1,0 +1,234 @@
+/* Kommentar- und Like-System Styles */
+
+/* Like Button */
+.like-section {
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 2px solid #eee;
+    border-bottom: 2px solid #eee;
+    margin: 3rem 0;
+}
+
+.like-button {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFA500 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.like-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.like-button.liked {
+    background: linear-gradient(135deg, #FF1744 0%, #F50057 100%);
+}
+
+.like-count {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    color: #666;
+    font-weight: 600;
+}
+
+/* Comments Section */
+.comments-section {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 2rem;
+}
+
+.comments-section h2 {
+    color: #8B4513;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+/* Comment Form */
+.comment-form {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.comment-mode-selector {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.comment-mode-selector label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.comment-mode-selector label:hover {
+    border-color: #FFA500;
+}
+
+.comment-mode-selector input[type="radio"] {
+    cursor: pointer;
+}
+
+.comment-mode-selector input[type="radio"]:checked + span {
+    font-weight: 600;
+    color: #8B4513;
+}
+
+#commentText {
+    width: 100%;
+    min-height: 120px;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+    margin-bottom: 1rem;
+}
+
+#commentText:focus {
+    outline: none;
+    border-color: #FFA500;
+}
+
+.submit-comment-btn {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFA500 100%);
+    color: white;
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.submit-comment-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.submit-comment-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.login-prompt {
+    text-align: center;
+    padding: 2rem;
+    background: #fff3cd;
+    border-radius: 10px;
+    border: 2px solid #FFA500;
+}
+
+.login-prompt a {
+    color: #8B4513;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-prompt a:hover {
+    text-decoration: underline;
+}
+
+/* Comments List */
+.comments-list {
+    margin-top: 3rem;
+}
+
+.comment {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s;
+}
+
+.comment:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.comment-header strong {
+    color: #8B4513;
+    font-size: 1.1rem;
+}
+
+.comment-date {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.comment-text {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.comment-like-btn,
+.comment-reply-btn {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.comment-like-btn:hover {
+    background: #f8f9fa;
+    color: #FF6B6B;
+}
+
+.comment-reply-btn:hover {
+    background: #f8f9fa;
+    color: #8B4513;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .comments-section {
+        padding: 1rem;
+    }
+
+    .comment-mode-selector {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .comment-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

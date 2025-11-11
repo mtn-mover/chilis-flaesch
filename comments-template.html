@@ -1,0 +1,68 @@
+<!-- Kommentar- und Like-System Template -->
+<!-- In Artikel-Seite einfügen VOR dem schliessenden </body> Tag -->
+
+<!-- CSS einbinden -->
+<link rel="stylesheet" href="comments.css">
+
+<!-- Like Section -->
+<div class="like-section">
+    <button id="likeButton" class="like-button">🤍 Gefällt mir</button>
+    <span class="like-count">👍 <span id="likeCount">0</span> Likes</span>
+</div>
+
+<!-- Comments Section -->
+<div class="comments-section">
+    <h2>💬 Kommentare</h2>
+
+    <!-- Comment Form (nur wenn eingeloggt) -->
+    <div id="commentFormSection" style="display: none;">
+        <form id="commentForm" class="comment-form">
+            <div class="comment-mode-selector">
+                <label>
+                    <input type="radio" name="commentMode" value="manual" checked>
+                    <span>✍️ Selbst schreiben</span>
+                </label>
+                <label>
+                    <input type="radio" name="commentMode" value="claude">
+                    <span>🤖 Mit Claude-Hilfe</span>
+                </label>
+            </div>
+
+            <textarea
+                id="commentText"
+                placeholder="Schreib einen lustigen Kommentar... (Bei Claude-Hilfe: Gib Stichworte ein)"
+                required
+            ></textarea>
+
+            <button type="submit" id="submitCommentBtn" class="submit-comment-btn">
+                📨 Kommentar absenden
+            </button>
+        </form>
+    </div>
+
+    <!-- Login Prompt (wenn nicht eingeloggt) -->
+    <div id="loginPrompt" class="login-prompt">
+        <p>
+            <strong>🔐 Du musst angemeldet sein, um zu kommentieren</strong><br><br>
+            <a href="admin.html">Zum Login →</a> | <a href="register.html">Registrieren →</a>
+        </p>
+    </div>
+
+    <!-- Comments List -->
+    <div class="comments-list">
+        <h3 style="margin-bottom: 1.5rem; color: #8B4513;">Alle Kommentare:</h3>
+        <div id="commentsContainer">
+            <p style="text-align: center; color: #999; padding: 2rem;">Lade Kommentare...</p>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript Config (ANPASSEN FÜR JEDEN ARTIKEL!) -->
+<script>
+    // WICHTIG: Diese Werte für jeden Artikel anpassen
+    window.ARTICLE_SLUG = 'artikel-slug-hier'; // z.B. 'chilis-restaurant'
+    window.ARTICLE_TITLE = 'Artikel Titel hier'; // z.B. 'Chilis Restaurant eröffnet'
+</script>
+
+<!-- JavaScript einbinden -->
+<script src="comments.js"></script>
