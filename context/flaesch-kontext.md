@@ -494,6 +494,32 @@ Fläsch baut das erste öffentliche WC im Kirchturm. Wegen Barrierefreiheits-Vor
 
 **Satirischer Kern:** Übertreibung typischer Gemeindepolitik-Klischees (große Pläne, keine Umsetzung, Ignoranz gegenüber Arbeitsgruppen).
 
+
+### Auswärtige Konkurrenz für den Weihnachtsmarkt (November 2025)
+**Kategorie:** kurioses
+## Analyse: "Auswärtige Konkurrenz für den Weihnachtsmarkt"
+
+### **Neue Charaktere:**
+• **Scheriff von Maienfeld** - zuständig für Verkehrsregelung bei Straßensperren
+• **Gemeinderatsmitglieder Räuber und Poli** - setzten Blaulicht und Panzer gegen Taschendiebe ein
+
+### **Hauptereignis:**
+Fläschs erster Weihnachtsmarkt war paradoxerweise so "erfolgreich", dass andere Gemeinden das Konzept kopieren wollen. Die Gemeindespitze droht nun mit radikalen Schutzmaßnahmen gegen diese Konkurrenz.
+
+### **Wichtige Details:**
+• **Besucherzahlen:** 4,5% der Einwohner (ca. 12 Personen), etwa halb so viele wie bei Gemeindeversammlungen
+• **Marktstände:** 12 geplant, 10 davon nicht von Einheimischen betrieben
+• **Straßensperre:** 4,5 Stunden, verursachte stundenlangen Stau
+• **Zitat CEO:** "Trumps Zölle sind nichts dagegen"
+• **Auszeichnung:** "Most disappointing Christmas market" (international)
+• **Status:** Fortsetzung wurde "noch im alten Jahr verboten"
+
+### **Für zukünftige Artikel:**
+• Weihnachtsmarkt als gescheitertes Prestigeprojekt etabliert
+• Konkurrenz aus anderen Gemeinden als neues Streitthema
+• Dorf-Glühwein-Fest als geplante Feier (sobald Geld vorhanden)
+• Verkehrschaos und Sicherheitsprobleme als wiederkehrende Themen
+
 ## Stil-Richtlinien
 
 ### Satire-Level
