@@ -520,6 +520,32 @@ Fläschs erster Weihnachtsmarkt war paradoxerweise so "erfolgreich", dass andere
 • Dorf-Glühwein-Fest als geplante Feier (sobald Geld vorhanden)
 • Verkehrschaos und Sicherheitsprobleme als wiederkehrende Themen
 
+
+### Debakel um das Goldene WC (November 2025)
+**Kategorie:** kurioses
+## Zusammenfassung: "Debakel um das Goldene WC"
+
+### **Neue Charaktere:**
+• Speziell ausgebildeter und sehr teurer Mitarbeiter des Zweckverbands (Reinigungsspezialist)
+
+### **Hauptereignis:**
+Das berühmte "Goldene WC ®" von Fläsch hat massive funktionale Probleme - die teuren goldenen Rohre sind schlecht geplant und die Abwasserentsorgung funktioniert nicht ordnungsgemäß.
+
+### **Wichtige Details:**
+• **10 Nutzungen** = maximale Kapazität vor erforderlicher Spezialreinigung
+• Regelmäßige Reinigung durch **Spezialfahrzeug** nötig
+• WC wurde noch **nicht offiziell eingeweiht/angeschrieben**
+• Lösung wird implementiert **ohne Budget-Genehmigung**
+• Information der Bürger erfolgt **über Amtsblatt** (nach Problemlösung)
+
+### **Für zukünftige Artikel:**
+• Das Goldene WC ® ist ein prestigeträchtiges aber dysfunktionales Gemeindeprojekt
+• Zweckverband ist für Wartung/Reinigung zuständig
+• Projekt läuft bereits, bevor es offiziell eröffnet wurde
+• Typischer Fall von "Form over Function" - Optik wichtiger als Praktikabilität
+• Gemeinde informiert Bürger erst nach Problemlösung, nicht bei Problemen
+• Kostenüberschreitungen durch ungeplante Reparaturen zu erwarten
+
 ## Stil-Richtlinien
 
 ### Satire-Level
