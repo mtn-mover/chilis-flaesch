@@ -494,6 +494,58 @@ Fläsch baut das erste öffentliche WC im Kirchturm. Wegen Barrierefreiheits-Vor
 
 **Satirischer Kern:** Übertreibung typischer Gemeindepolitik-Klischees (große Pläne, keine Umsetzung, Ignoranz gegenüber Arbeitsgruppen).
 
+
+### Auswärtige Konkurrenz für den Weihnachtsmarkt (November 2025)
+**Kategorie:** kurioses
+## Analyse: "Auswärtige Konkurrenz für den Weihnachtsmarkt"
+
+### **Neue Charaktere:**
+• **Scheriff von Maienfeld** - zuständig für Verkehrsregelung bei Straßensperren
+• **Gemeinderatsmitglieder Räuber und Poli** - setzten Blaulicht und Panzer gegen Taschendiebe ein
+
+### **Hauptereignis:**
+Fläschs erster Weihnachtsmarkt war paradoxerweise so "erfolgreich", dass andere Gemeinden das Konzept kopieren wollen. Die Gemeindespitze droht nun mit radikalen Schutzmaßnahmen gegen diese Konkurrenz.
+
+### **Wichtige Details:**
+• **Besucherzahlen:** 4,5% der Einwohner (ca. 12 Personen), etwa halb so viele wie bei Gemeindeversammlungen
+• **Marktstände:** 12 geplant, 10 davon nicht von Einheimischen betrieben
+• **Straßensperre:** 4,5 Stunden, verursachte stundenlangen Stau
+• **Zitat CEO:** "Trumps Zölle sind nichts dagegen"
+• **Auszeichnung:** "Most disappointing Christmas market" (international)
+• **Status:** Fortsetzung wurde "noch im alten Jahr verboten"
+
+### **Für zukünftige Artikel:**
+• Weihnachtsmarkt als gescheitertes Prestigeprojekt etabliert
+• Konkurrenz aus anderen Gemeinden als neues Streitthema
+• Dorf-Glühwein-Fest als geplante Feier (sobald Geld vorhanden)
+• Verkehrschaos und Sicherheitsprobleme als wiederkehrende Themen
+
+
+### Debakel um das Goldene WC (November 2025)
+**Kategorie:** kurioses
+## Zusammenfassung: "Debakel um das Goldene WC"
+
+### **Neue Charaktere:**
+• Speziell ausgebildeter und sehr teurer Mitarbeiter des Zweckverbands (Reinigungsspezialist)
+
+### **Hauptereignis:**
+Das berühmte "Goldene WC ®" von Fläsch hat massive funktionale Probleme - die teuren goldenen Rohre sind schlecht geplant und die Abwasserentsorgung funktioniert nicht ordnungsgemäß.
+
+### **Wichtige Details:**
+• **10 Nutzungen** = maximale Kapazität vor erforderlicher Spezialreinigung
+• Regelmäßige Reinigung durch **Spezialfahrzeug** nötig
+• WC wurde noch **nicht offiziell eingeweiht/angeschrieben**
+• Lösung wird implementiert **ohne Budget-Genehmigung**
+• Information der Bürger erfolgt **über Amtsblatt** (nach Problemlösung)
+
+### **Für zukünftige Artikel:**
+• Das Goldene WC ® ist ein prestigeträchtiges aber dysfunktionales Gemeindeprojekt
+• Zweckverband ist für Wartung/Reinigung zuständig
+• Projekt läuft bereits, bevor es offiziell eröffnet wurde
+• Typischer Fall von "Form over Function" - Optik wichtiger als Praktikabilität
+• Gemeinde informiert Bürger erst nach Problemlösung, nicht bei Problemen
+• Kostenüberschreitungen durch ungeplante Reparaturen zu erwarten
+
 ## Stil-Richtlinien
 
 ### Satire-Level
