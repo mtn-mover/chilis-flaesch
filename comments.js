@@ -169,6 +169,10 @@ class ArticleInteractions {
                 });
 
                 const generateResult = await generateResponse.json();
+
+                console.log('Generate response status:', generateResponse.status);
+                console.log('Generate result:', generateResult);
+
                 if (generateResult.success) {
                     finalCommentText = generateResult.comment;
 
@@ -180,7 +184,10 @@ class ArticleInteractions {
                         return;
                     }
                 } else {
-                    alert('❌ Fehler beim Generieren des Kommentars: ' + (generateResult.error || 'Unbekannter Fehler'));
+                    const errorMsg = generateResult.error || 'Unbekannter Fehler';
+                    const errorDetails = generateResult.details ? '\n\nDetails: ' + generateResult.details : '';
+                    console.error('Generate comment failed:', generateResult);
+                    alert('❌ Fehler beim Generieren des Kommentars: ' + errorMsg + errorDetails);
                     submitBtn.disabled = false;
                     submitBtn.textContent = '📨 Kommentar absenden';
                     return;
