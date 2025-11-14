@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - Fläsch Info</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="cookie-consent.css">
     <style>
         * {
             margin: 0;
@@ -215,13 +216,24 @@
                     throw new Error(result.error || 'Login fehlgeschlagen');
                 }
 
-                // Login erfolgreich - Session Token speichern
-                sessionStorage.setItem('sessionToken', result.sessionToken);
-                sessionStorage.setItem('username', result.username);
-                sessionStorage.setItem('userDisplayName', result.displayName);
+                // Login erfolgreich - Session Token speichern in localStorage
+                // Nur wenn Cookies akzeptiert wurden
+                if (window.cookieConsent && window.cookieConsent.canUseCookies()) {
+                    localStorage.setItem('sessionToken', result.sessionToken);
+                    localStorage.setItem('username', result.username);
+                    localStorage.setItem('userDisplayName', result.displayName);
+                    localStorage.setItem('userRole', result.role);
+                    localStorage.setItem('loginTimestamp', Date.now().toString());
 
-                // Weiterleitung zur Artikel-Erstellung
-                window.location.href = 'create-article.html';
+                    // Weiterleitung zur Artikel-Erstellung
+                    window.location.href = 'create-article.html';
+                } else {
+                    // Cookies nicht akzeptiert - Fehler anzeigen
+                    errorMessage.textContent = '❌ Bitte akzeptiere Cookies, um dich einzuloggen';
+                    errorMessage.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Einloggen';
+                }
 
             } catch (error) {
                 // Login fehlgeschlagen
@@ -238,8 +250,14 @@
         });
 
         // Wenn bereits Session Token vorhanden, prüfen ob noch gültig
-        const sessionToken = sessionStorage.getItem('sessionToken');
-        if (sessionToken) {
+        const sessionToken = localStorage.getItem('sessionToken');
+        const loginTimestamp = localStorage.getItem('loginTimestamp');
+
+        // Check if session is still valid (7 days = 604800000 ms)
+        const SESSION_DURATION = 7 * 24 * 60 * 60 * 1000;
+        const isSessionExpired = loginTimestamp && (Date.now() - parseInt(loginTimestamp)) > SESSION_DURATION;
+
+        if (sessionToken && !isSessionExpired) {
             fetch('/api/verify', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -249,13 +267,32 @@
             .then(data => {
                 if (data.valid) {
                     window.location.href = 'dashboard.html';
+                } else {
+                    // Session ungültig, Token löschen
+                    localStorage.removeItem('sessionToken');
+                    localStorage.removeItem('username');
+                    localStorage.removeItem('userDisplayName');
+                    localStorage.removeItem('userRole');
+                    localStorage.removeItem('loginTimestamp');
                 }
             })
             .catch(() => {
                 // Session ungültig, Token löschen
-                sessionStorage.clear();
+                localStorage.removeItem('sessionToken');
+                localStorage.removeItem('username');
+                localStorage.removeItem('userDisplayName');
+                localStorage.removeItem('userRole');
+                localStorage.removeItem('loginTimestamp');
             });
+        } else if (isSessionExpired) {
+            // Session abgelaufen, aufräumen
+            localStorage.removeItem('sessionToken');
+            localStorage.removeItem('username');
+            localStorage.removeItem('userDisplayName');
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('loginTimestamp');
         }
     </script>
+    <script src="cookie-consent.js"></script>
 </body>
 </html>

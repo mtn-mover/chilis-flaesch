@@ -5,7 +5,7 @@ class ArticleInteractions {
     constructor(articleSlug, articleTitle) {
         this.articleSlug = articleSlug;
         this.articleTitle = articleTitle;
-        this.sessionToken = sessionStorage.getItem('sessionToken');
+        this.sessionToken = localStorage.getItem('sessionToken');
         this.user = null;
     }
 
