@@ -154,6 +154,8 @@ class ArticleInteractions {
 
             // If Claude mode, generate comment first
             if (commentMode === 'claude') {
+                submitBtn.textContent = '🤖 Claude generiert Kommentar...';
+
                 const generateResponse = await fetch('/api/generate-comment', {
                     method: 'POST',
                     headers: {
@@ -169,12 +171,19 @@ class ArticleInteractions {
                 const generateResult = await generateResponse.json();
                 if (generateResult.success) {
                     finalCommentText = generateResult.comment;
-                    // Show preview
-                    if (!confirm(`Claude hat diesen Kommentar generiert:\n\n"${finalCommentText}"\n\nMöchten Sie diesen Kommentar absenden?`)) {
+
+                    // Show preview modal
+                    const accepted = await this.showCommentPreview(finalCommentText);
+                    if (!accepted) {
                         submitBtn.disabled = false;
-                        submitBtn.textContent = 'Kommentar absenden';
+                        submitBtn.textContent = '📨 Kommentar absenden';
                         return;
                     }
+                } else {
+                    alert('❌ Fehler beim Generieren des Kommentars: ' + (generateResult.error || 'Unbekannter Fehler'));
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '📨 Kommentar absenden';
+                    return;
                 }
             }
 
@@ -212,6 +221,57 @@ class ArticleInteractions {
             submitBtn.disabled = false;
             submitBtn.textContent = 'Kommentar absenden';
         }
+    }
+
+    showCommentPreview(commentText) {
+        return new Promise((resolve) => {
+            // Create modal
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 10000;';
+
+            const modalContent = document.createElement('div');
+            modalContent.style.cssText = 'background: white; padding: 2rem; border-radius: 15px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3);';
+
+            modalContent.innerHTML = `
+                <h3 style="color: #8B4513; margin-bottom: 1rem;">🤖 Claude hat folgenden Kommentar generiert:</h3>
+                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; border-left: 4px solid #667eea;">
+                    <p style="margin: 0; line-height: 1.6; white-space: pre-wrap;">${this.escapeHtml(commentText)}</p>
+                </div>
+                <p style="color: #666; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                    Möchtest du diesen Kommentar veröffentlichen? Du kannst ihn auch ablehnen und manuell bearbeiten.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button id="cancelPreview" style="padding: 0.75rem 1.5rem; border: 2px solid #ddd; background: white; color: #666; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600;">
+                        ❌ Ablehnen
+                    </button>
+                    <button id="acceptPreview" style="padding: 0.75rem 1.5rem; border: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600;">
+                        ✅ Veröffentlichen
+                    </button>
+                </div>
+            `;
+
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+
+            // Event listeners
+            document.getElementById('acceptPreview').onclick = () => {
+                document.body.removeChild(modal);
+                resolve(true);
+            };
+
+            document.getElementById('cancelPreview').onclick = () => {
+                document.body.removeChild(modal);
+                resolve(false);
+            };
+
+            // Close on background click
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                    resolve(false);
+                }
+            };
+        });
     }
 
     replyToComment(commentId, displayName) {
