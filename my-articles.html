@@ -211,14 +211,18 @@
     </div>
 
     <script>
-        const sessionToken = sessionStorage.getItem('sessionToken');
+        const sessionToken = localStorage.getItem('sessionToken');
         if (!sessionToken) {
             window.location.href = 'admin.html';
         }
 
         function logout() {
-            sessionStorage.clear();
-            window.location.href = 'admin.html';
+            if (window.authUtils) {
+                window.authUtils.logout();
+            } else {
+                localStorage.clear();
+                window.location.href = 'admin.html';
+            }
         }
 
         // Load Drafts
@@ -272,7 +276,7 @@
 
         function createArticleCard(draft, isAdmin) {
             const date = new Date(draft.updatedAt).toLocaleDateString('de-CH');
-            const canEdit = isAdmin || draft.author === sessionStorage.getItem('username');
+            const canEdit = isAdmin || draft.author === localStorage.getItem('username');
             const isPublished = draft.status === 'published';
 
             return `

@@ -353,15 +353,19 @@
         let uploadedInfoFiles = [];
 
         // Auth Check
-        const sessionToken = sessionStorage.getItem('sessionToken');
+        const sessionToken = localStorage.getItem('sessionToken');
         if (!sessionToken) {
             window.location.href = 'admin.html';
         }
 
         // Logout
         function logout() {
-            sessionStorage.clear();
-            window.location.href = 'admin.html';
+            if (window.authUtils) {
+                window.authUtils.logout();
+            } else {
+                localStorage.clear();
+                window.location.href = 'admin.html';
+            }
         }
 
         // Check if editing existing draft
@@ -608,7 +612,7 @@
                 category: formData.get('category'),
                 style: formData.get('style'),
                 content: contentWithInfo,
-                author: sessionStorage.getItem('username'),
+                author: localStorage.getItem('username'),
                 infoFiles: uploadedInfoFiles,
                 images: uploadedImages
             };

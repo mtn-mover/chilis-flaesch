@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benutzerverwaltung - Fläsch Info Admin</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="cookie-consent.css">
     <style>
         * {
             margin: 0;
@@ -317,7 +318,7 @@
 
     <script>
         const API_BASE = '/api';
-        let sessionToken = sessionStorage.getItem('sessionToken');
+        let sessionToken = localStorage.getItem('sessionToken');
 
         // Check if user is admin
         async function checkAdminAccess() {
@@ -597,9 +598,12 @@
         }
 
         function logout() {
-            sessionStorage.removeItem('sessionToken');
-            sessionStorage.clear();
-            window.location.href = 'admin.html';
+            if (window.authUtils) {
+                window.authUtils.logout();
+            } else {
+                localStorage.clear();
+                window.location.href = 'admin.html';
+            }
         }
 
         // Initialize
@@ -610,5 +614,7 @@
             }
         })();
     </script>
+    <script src="cookie-consent.js"></script>
+    <script src="auth-utils.js"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Session Debug - Fläsch Info</title>
+    <link rel="stylesheet" href="cookie-consent.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -66,7 +67,7 @@
         <h1>🔍 Session Debug Info</h1>
 
         <div class="debug-section">
-            <h3>SessionStorage Token</h3>
+            <h3>LocalStorage Token</h3>
             <pre id="sessionStorageInfo">Laden...</pre>
         </div>
 
@@ -89,16 +90,16 @@
 
     <script>
         async function refreshDebugInfo() {
-            const sessionToken = sessionStorage.getItem('sessionToken');
-            const username = sessionStorage.getItem('username');
-            const displayName = sessionStorage.getItem('displayName');
+            const sessionToken = localStorage.getItem('sessionToken');
+            const username = localStorage.getItem('username');
+            const displayName = localStorage.getItem('userDisplayName');
 
-            // Display sessionStorage info
+            // Display localStorage info
             document.getElementById('sessionStorageInfo').textContent = JSON.stringify({
                 sessionToken: sessionToken ? sessionToken.substring(0, 50) + '...' : 'NICHT VORHANDEN',
                 username: username || 'NICHT VORHANDEN',
                 displayName: displayName || 'NICHT VORHANDEN',
-                allKeys: Object.keys(sessionStorage)
+                allKeys: Object.keys(localStorage)
             }, null, 2);
 
             if (!sessionToken) {
@@ -151,7 +152,7 @@
         }
 
         function clearAndRelogin() {
-            sessionStorage.clear();
+            localStorage.clear();
             alert('Session gelöscht! Du wirst zur Login-Seite weitergeleitet.');
             window.location.href = 'admin.html';
         }
@@ -159,5 +160,7 @@
         // Load on page load
         refreshDebugInfo();
     </script>
+    <script src="cookie-consent.js"></script>
+    <script src="auth-utils.js"></script>
 </body>
 </html>
