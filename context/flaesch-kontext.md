@@ -546,6 +546,34 @@ Das berühmte "Goldene WC ®" von Fläsch hat massive funktionale Probleme - die
 • Gemeinde informiert Bürger erst nach Problemlösung, nicht bei Problemen
 • Kostenüberschreitungen durch ungeplante Reparaturen zu erwarten
 
+
+### Fake News: Wer in Fläsch wohnt, hat ein Spermien-Problem (November 2025)
+**Kategorie:** gesellschaft
+**Analyse des satirischen Artikels von "Fläsch Info"**
+
+**1. Neue Charaktere:**
+• **Serge Nef** - Forscher, zitiert mit WHO-Standards zu Spermienqualität
+
+**2. Hauptereignis:**
+• Studie der Uni Genf/EPFL zeigt regionale Unterschiede der Spermienqualität in der Schweiz
+• Ländliche Gebiete haben schlechtere Spermienqualität als städtische Regionen
+
+**3. Wichtige Details:**
+• **2677 Männer** (18-22 Jahre) untersucht (2005-2018)
+• **17% der Schweizer Männer** unter WHO-Standards
+• **"Coldspot"**: Region Thun-Bern (schlechte Qualität)
+• **"Hotspot"**: Region um Aarau (gute Qualität)
+• Studie in "Human Reproduction" (September) veröffentlicht
+• SRF berichtete am Mittwoch darüber
+
+**4. Für zukünftige Artikel:**
+• **Satirischer Kontext**: Titel suggeriert Fläsch-spezifisches Problem, Artikel behandelt aber allgemeine Schweizer Studie
+• **Wissenschaftlicher Hintergrund**: Pestizide/Landwirtschaft als mögliche Ursache vermutet
+• **Methodische Einschränkung**: Keine kausalen Zusammenhänge bewiesen
+• **Rekrutierung**: Daten stammen aus Wehrpflicht-Untersuchungen
+
+*Hinweis: Der reißerische Titel steht im Widerspruch zum sachlichen Studieninhalt - typisches satirisches Element.*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
