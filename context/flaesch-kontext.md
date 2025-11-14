@@ -574,6 +574,31 @@ Das berühmte "Goldene WC ®" von Fläsch hat massive funktionale Probleme - die
 
 *Hinweis: Der reißerische Titel steht im Widerspruch zum sachlichen Studieninhalt - typisches satirisches Element.*
 
+
+### Breaking News: Fläsch verliert seinen Generalssekretär (November 2025)
+**Kategorie:** kurioses
+## Analyse des satirischen Artikels
+
+### 1. **Neue Charaktere:**
+• **Markus Urech** - GPK-Präsident (demissioniert), wird scherzhaft als "Generalsekretär" von Fläsch bezeichnet
+
+### 2. **Hauptereignis:**
+• Markus Urech tritt als GPK-Präsident zurück
+• Dies führt zur Notwendigkeit, ein neues GPK-Mitglied zu wählen
+
+### 3. **Wichtige Details:**
+• GPK = vermutlich Geschäftsprüfungskommission
+• Satirische Übertreibung: Urech wird als "Generalsekretär" von Fläsch tituliert
+• Kategorisierung als "kurioses" deutet auf humoristische Behandlung hin
+
+### 4. **Für zukünftige Artikel:**
+• Markus Urech hatte offenbar eine prominente/einflussreiche Position in Fläsch
+• GPK-Nachfolgewahl steht an - potentieller Stoff für weitere Berichterstattung
+• Satirischer Ton etabliert Urech als bekannte lokale Figur
+• Mögliche Running Gags um "Generalsekretär"-Titel oder neue GPK-Besetzung
+
+**Kontext:** Typischer lokalpolitischer Satireartikel, der eine Routinedemission humorvoll als dramatischen Verlust für die Gemeinde darstellt.
+
 ## Stil-Richtlinien
 
 ### Satire-Level
