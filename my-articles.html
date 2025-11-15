@@ -33,6 +33,29 @@
             align-items: center;
         }
 
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+        }
+
+        .header-logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .header-logo h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .header-logo:hover {
+            opacity: 0.9;
+        }
+
         .nav-links {
             display: flex;
             gap: 1.5rem;
@@ -187,7 +210,10 @@
 <body>
     <div class="header">
         <div class="header-content">
-            <h1>Meine Artikel</h1>
+            <a href="index.html" class="header-logo">
+                <img src="logo.png" alt="Fläsch Info Logo">
+                <h1>Meine Artikel</h1>
+            </a>
             <div class="nav-links" id="navLinks">
                 <a href="create-article.html">Neuer Artikel</a>
                 <a href="#" onclick="logout()">Logout</a>
