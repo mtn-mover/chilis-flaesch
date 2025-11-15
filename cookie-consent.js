@@ -7,16 +7,26 @@ class CookieConsent {
 
     init() {
         // Check if user has already given consent
-        if (!this.hasConsent()) {
+        const consent = this.hasConsent();
+        // Only show banner if user has never been asked (null)
+        if (consent === null) {
             this.showBanner();
         }
     }
 
     hasConsent() {
-        return localStorage.getItem(this.cookieName) === 'accepted';
+        const consent = localStorage.getItem(this.cookieName);
+        // If never answered, return null (not true, not false)
+        if (consent === null) return null;
+        return consent === 'accepted';
     }
 
     showBanner() {
+        // Don't show if already answered
+        if (localStorage.getItem(this.cookieName) !== null) {
+            return;
+        }
+
         // Create banner HTML
         const banner = document.createElement('div');
         banner.id = 'cookie-consent-banner';
@@ -74,7 +84,9 @@ class CookieConsent {
 
     // Check if cookies are allowed before storing data
     canUseCookies() {
-        return this.hasConsent();
+        const consent = this.hasConsent();
+        // If user never declined, allow cookies (implicit consent)
+        return consent !== false;
     }
 }
 

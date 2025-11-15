@@ -216,24 +216,21 @@
                     throw new Error(result.error || 'Login fehlgeschlagen');
                 }
 
-                // Login erfolgreich - Session Token speichern in localStorage
-                // Nur wenn Cookies akzeptiert wurden
-                if (window.cookieConsent && window.cookieConsent.canUseCookies()) {
-                    localStorage.setItem('sessionToken', result.sessionToken);
-                    localStorage.setItem('username', result.username);
-                    localStorage.setItem('userDisplayName', result.displayName);
-                    localStorage.setItem('userRole', result.role);
-                    localStorage.setItem('loginTimestamp', Date.now().toString());
-
-                    // Weiterleitung zur Artikel-Erstellung
-                    window.location.href = 'create-article.html';
-                } else {
-                    // Cookies nicht akzeptiert - Fehler anzeigen
-                    errorMessage.textContent = '❌ Bitte akzeptiere Cookies, um dich einzuloggen';
-                    errorMessage.style.display = 'block';
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Einloggen';
+                // Login erfolgreich - implizit Cookies akzeptieren beim Login
+                if (window.cookieConsent) {
+                    // Automatisch Cookies akzeptieren beim erfolgreichen Login
+                    localStorage.setItem('flaesch_cookie_consent', 'accepted');
                 }
+
+                // Session Token speichern in localStorage
+                localStorage.setItem('sessionToken', result.sessionToken);
+                localStorage.setItem('username', result.username);
+                localStorage.setItem('userDisplayName', result.displayName);
+                localStorage.setItem('userRole', result.role);
+                localStorage.setItem('loginTimestamp', Date.now().toString());
+
+                // Weiterleitung zur Artikel-Erstellung
+                window.location.href = 'create-article.html';
 
             } catch (error) {
                 // Login fehlgeschlagen
