@@ -599,6 +599,34 @@ Das berühmte "Goldene WC ®" von Fläsch hat massive funktionale Probleme - die
 
 **Kontext:** Typischer lokalpolitischer Satireartikel, der eine Routinedemission humorvoll als dramatischen Verlust für die Gemeinde darstellt.
 
+
+### Maienfeld will aus dem Zweckverband Falknis austreten - was macht Fläsch£? (November 2025)
+**Kategorie:** kurioses
+## Analyse: Satirischer Artikel "Fläsch Info"
+
+### **Neue Charaktere:**
+- Stadtrat Maienfeld (kollektiv als Entscheidungsträger)
+- "Der Adjudant" (möglicher neuer Verantwortlicher für Entsorgungsaufgaben)
+
+### **Hauptereignis:**
+Maienfeld beantragt am 11. Dezember den Austritt aus dem Zweckverband Falknis. Dies stellt Fläsch vor die Frage, ob sie im Verband bleiben oder alternative Lösungen suchen sollen.
+
+### **Wichtige Details:**
+- **Datum:** Gemeindeversammlung am 11. Dezember
+- **Problem:** Entsorgungsinfrastruktur wurde nach Maienfeld verlagert
+- **Absurdität:** Fläscherinnen müssen für eine simple Kartonentsorgung nach Maienfeld fahren
+- **Rechtschreibfehler:** "Zwechverband" statt "Zweckverband" (typisch satirisch)
+
+### **Für zukünftige Artikel:**
+- Entwicklung der Gemeindeversammlung vom 11.12. beobachten
+- Fläschs Entscheidung bezüglich Verbandsverbleib
+- Mögliche neue Rolle des "Adjudanten" 
+- Weitere Auswirkungen auf die Entsorgungslogistik
+- Potenzielle Spannungen zwischen den Gemeinden
+- Praktische Konsequenzen für Fläscher Bürger
+
+**Satirischer Fokus:** Bürokratische Absurditäten und kommunale Machtkämpfe um Entsorgungsdienstleistungen.
+
 ## Stil-Richtlinien
 
 ### Satire-Level
