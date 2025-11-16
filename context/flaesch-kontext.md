@@ -627,6 +627,31 @@ Maienfeld beantragt am 11. Dezember den Austritt aus dem Zweckverband Falknis. D
 
 **Satirischer Fokus:** Bürokratische Absurditäten und kommunale Machtkämpfe um Entsorgungsdienstleistungen.
 
+
+### Wieso sind Fläscher so geflasht? (November 2025)
+**Kategorie:** kurioses
+**Analyse des satirischen Artikels "Wieso sind Fläscher so geflasht?"**
+
+**1. Neue Charaktere:**
+• Hubschmied - Namenforscher (erwähnt in Greyerz 1933)
+• Keine weiteren spezifischen Personen genannt
+
+**2. Hauptereignis:**
+• Der Artikel präsentiert eine pseudowissenschaftliche etymologische Analyse des Ortsnamens "Fläsch" im Stil eines Lexikoneintrags. Es handelt sich um eine satirische Aufarbeitung verschiedener sprachwissenschaftlicher Deutungsversuche des Ortsnamens.
+
+**3. Wichtige Details:**
+• Verschiedene Schreibweisen: vle᪷ſš (Fläsch), vlæš (Vilters), vle᪷ſš (Pfäfers)
+• Etymologische Herleitung: Fläsch < flasca < vlasca < vlascla < vascla < lateinisch vasculum
+• Bedeutung laut Hubschmied: "Zisterne, Teich"
+• Institution: ortsnamen.ch als Quelle
+• Fazit: "Herkunft und Bedeutung des Namens Fläsch müssen als unbekannt betrachtet werden"
+
+**4. Für zukünftige Artikel:**
+• Der Name "Fläsch" bleibt etymologisch ungeklärt
+• Satirischer Ton durch übertrieben wissenschaftliche Darstellung
+• Spiel mit dem Wortklang "Fläsch" - "geflasht"
+• Kategorie "kurioses" etabliert
+
 ## Stil-Richtlinien
 
 ### Satire-Level
