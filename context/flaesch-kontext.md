@@ -627,6 +627,58 @@ Maienfeld beantragt am 11. Dezember den Austritt aus dem Zweckverband Falknis. D
 
 **Satirischer Fokus:** Bürokratische Absurditäten und kommunale Machtkämpfe um Entsorgungsdienstleistungen.
 
+
+### Wieso sind Fläscher so geflasht? (November 2025)
+**Kategorie:** kurioses
+**Analyse des satirischen Artikels "Wieso sind Fläscher so geflasht?"**
+
+**1. Neue Charaktere:**
+• Hubschmied - Namenforscher (erwähnt in Greyerz 1933)
+• Keine weiteren spezifischen Personen genannt
+
+**2. Hauptereignis:**
+• Der Artikel präsentiert eine pseudowissenschaftliche etymologische Analyse des Ortsnamens "Fläsch" im Stil eines Lexikoneintrags. Es handelt sich um eine satirische Aufarbeitung verschiedener sprachwissenschaftlicher Deutungsversuche des Ortsnamens.
+
+**3. Wichtige Details:**
+• Verschiedene Schreibweisen: vle᪷ſš (Fläsch), vlæš (Vilters), vle᪷ſš (Pfäfers)
+• Etymologische Herleitung: Fläsch < flasca < vlasca < vlascla < vascla < lateinisch vasculum
+• Bedeutung laut Hubschmied: "Zisterne, Teich"
+• Institution: ortsnamen.ch als Quelle
+• Fazit: "Herkunft und Bedeutung des Namens Fläsch müssen als unbekannt betrachtet werden"
+
+**4. Für zukünftige Artikel:**
+• Der Name "Fläsch" bleibt etymologisch ungeklärt
+• Satirischer Ton durch übertrieben wissenschaftliche Darstellung
+• Spiel mit dem Wortklang "Fläsch" - "geflasht"
+• Kategorie "kurioses" etabliert
+
+
+### Fläsch ist bereit für den Jahr-100-Winter (November 2025)
+**Kategorie:** gesellschaft
+## Analyse: "Fläsch ist bereit für den Jahr-100-Winter"
+
+### 1. Neue Charaktere:
+- Keine spezifischen Personen genannt
+- **Zweckverband**: Verantwortliche Organisation für Wintervorbereitungen
+
+### 2. Hauptereignis:
+- Mitte November wurden Straßen mit farbmarkierten Holzpfählen für den Winter markiert, trotz ausbleibendem Schneefall in den letzten 10 Jahren
+- Satirische Darstellung der jährlichen Wintervorbereitungen bei klimatischen Veränderungen
+
+### 3. Wichtige Details:
+- **Zeitpunkt**: Mitte November 2024
+- **Zeitraum**: Letzten 10 Jahre praktisch schneefrei
+- **Methode**: Holzpfähle mit Farbmarkierung
+- **"Jahr-100-Winter"**: Satirische Übertreibung eines extremen Winters
+
+### 4. Für zukünftige Artikel:
+- **Klimawandel-Thema**: Etabliert als wiederkehrendes Motiv (weniger Schnee, aber gleiche Vorbereitungen)
+- **Zweckverband**: Als lokale Behörde für Infrastruktur/Winterdienst etabliert
+- **Ironie-Element**: Diskrepanz zwischen Vorbereitung und Realität als satirisches Stilmittel
+- **Saisonale Routine**: Jährliche Wintervorbereitungen als potentieller Running Gag
+
+*Hinweis: Rechtschreibfehler im Original ("warscheinlichkeit", "winder") verstärken den satirischen Charakter.*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
