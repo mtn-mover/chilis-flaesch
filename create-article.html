@@ -249,6 +249,79 @@
             cursor: pointer;
         }
 
+        /* Editor Modal */
+        .editor-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .editor-modal.active {
+            display: flex;
+        }
+
+        .editor-content {
+            background: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 1200px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .editor-header {
+            padding: 1.5rem;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .editor-header h3 {
+            margin: 0;
+            color: #333;
+        }
+
+        .editor-body {
+            padding: 1.5rem;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .editor-textarea {
+            width: 100%;
+            min-height: 500px;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            resize: vertical;
+        }
+
+        .editor-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .editor-footer {
+            padding: 1.5rem;
+            border-top: 2px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
         .status-message {
             padding: 1rem;
             border-radius: 5px;
@@ -367,8 +440,26 @@
 
                 <div class="action-buttons" id="actionButtons" style="display: none;">
                     <button class="btn btn-secondary" onclick="regenerateArticle()">Neu generieren</button>
+                    <button class="btn btn-primary" onclick="openEditor()">✏️ Text bearbeiten</button>
                     <button class="btn btn-success" onclick="saveDraft()">Als Draft speichern</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Editor Modal -->
+    <div class="editor-modal" id="editorModal">
+        <div class="editor-content">
+            <div class="editor-header">
+                <h3>✏️ Artikel bearbeiten</h3>
+                <small style="color: #666;">HTML-Code direkt bearbeiten</small>
+            </div>
+            <div class="editor-body">
+                <textarea id="editorTextarea" class="editor-textarea" placeholder="HTML-Inhalt hier bearbeiten..."></textarea>
+            </div>
+            <div class="editor-footer">
+                <button class="btn btn-secondary" onclick="closeEditor()">Abbrechen</button>
+                <button class="btn btn-success" onclick="saveEditorChanges()">Änderungen übernehmen</button>
             </div>
         </div>
     </div>
@@ -776,6 +867,51 @@
                 statusMessage.innerHTML = '<pre style="white-space: pre-wrap; text-align: left; font-size: 0.85rem;">❌ Fehler: ' + error.message + '</pre>';
                 console.error('Full error:', error);
             }
+        }
+
+        // Editor Functions
+        function openEditor() {
+            if (!currentDraft || !currentDraft.html) {
+                alert('Kein Artikel zum Bearbeiten vorhanden');
+                return;
+            }
+
+            const modal = document.getElementById('editorModal');
+            const textarea = document.getElementById('editorTextarea');
+
+            // Fill textarea with current HTML
+            textarea.value = currentDraft.html;
+
+            // Show modal
+            modal.classList.add('active');
+        }
+
+        function closeEditor() {
+            const modal = document.getElementById('editorModal');
+            modal.classList.remove('active');
+        }
+
+        function saveEditorChanges() {
+            const textarea = document.getElementById('editorTextarea');
+            const newHTML = textarea.value;
+
+            if (!newHTML.trim()) {
+                alert('Der Artikel-Inhalt darf nicht leer sein');
+                return;
+            }
+
+            // Update current draft
+            currentDraft.html = newHTML;
+
+            // Update preview
+            const previewArea = document.getElementById('previewArea');
+            previewArea.innerHTML = newHTML;
+
+            // Close modal
+            closeEditor();
+
+            // Show success message
+            alert('✅ Änderungen wurden übernommen! Du kannst jetzt den Draft speichern.');
         }
 
         // Check if user is admin and add admin link
