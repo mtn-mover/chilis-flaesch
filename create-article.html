@@ -314,6 +314,89 @@
             border-color: #667eea;
         }
 
+        /* Rich Text Editor */
+        .editor-toolbar {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+            flex-wrap: wrap;
+        }
+
+        .editor-toolbar button {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            min-width: 35px;
+        }
+
+        .editor-toolbar button:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .editor-toolbar button.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .editor-toolbar select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .rich-editor {
+            width: 100%;
+            min-height: 500px;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            overflow-y: auto;
+            background: white;
+        }
+
+        .rich-editor:focus {
+            outline: none;
+        }
+
+        .editor-mode-toggle {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .mode-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .mode-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
         .editor-footer {
             padding: 1.5rem;
             border-top: 2px solid #eee;
@@ -452,10 +535,40 @@
         <div class="editor-content">
             <div class="editor-header">
                 <h3>✏️ Artikel bearbeiten</h3>
-                <small style="color: #666;">HTML-Code direkt bearbeiten</small>
+                <div class="editor-mode-toggle">
+                    <button class="mode-btn active" onclick="switchEditorMode('visual')" id="visualModeBtn">📝 Visuell</button>
+                    <button class="mode-btn" onclick="switchEditorMode('html')" id="htmlModeBtn">⌨️ HTML</button>
+                </div>
             </div>
             <div class="editor-body">
-                <textarea id="editorTextarea" class="editor-textarea" placeholder="HTML-Inhalt hier bearbeiten..."></textarea>
+                <!-- Visual Editor -->
+                <div id="visualEditorContainer" style="display: block;">
+                    <div class="editor-toolbar">
+                        <button onclick="formatText('bold')" title="Fett"><b>B</b></button>
+                        <button onclick="formatText('italic')" title="Kursiv"><i>I</i></button>
+                        <button onclick="formatText('underline')" title="Unterstrichen"><u>U</u></button>
+                        <button onclick="formatText('strikeThrough')" title="Durchgestrichen"><s>S</s></button>
+                        <span style="border-left: 1px solid #ddd; height: 30px;"></span>
+                        <select onchange="formatBlock(this.value)" title="Überschrift">
+                            <option value="">Normal</option>
+                            <option value="h2">Überschrift 2</option>
+                            <option value="h3">Überschrift 3</option>
+                        </select>
+                        <span style="border-left: 1px solid #ddd; height: 30px;"></span>
+                        <button onclick="formatText('insertUnorderedList')" title="Liste">• Liste</button>
+                        <button onclick="formatText('insertOrderedList')" title="Nummerierte Liste">1. Liste</button>
+                        <span style="border-left: 1px solid #ddd; height: 30px;"></span>
+                        <button onclick="formatText('justifyLeft')" title="Links">⬅</button>
+                        <button onclick="formatText('justifyCenter')" title="Zentriert">↔</button>
+                        <button onclick="formatText('justifyRight')" title="Rechts">➡</button>
+                    </div>
+                    <div id="richEditor" class="rich-editor" contenteditable="true"></div>
+                </div>
+
+                <!-- HTML Editor -->
+                <div id="htmlEditorContainer" style="display: none;">
+                    <textarea id="editorTextarea" class="editor-textarea" placeholder="HTML-Inhalt hier bearbeiten..."></textarea>
+                </div>
             </div>
             <div class="editor-footer">
                 <button class="btn btn-secondary" onclick="closeEditor()">Abbrechen</button>
@@ -870,6 +983,8 @@
         }
 
         // Editor Functions
+        let currentEditorMode = 'visual';
+
         function openEditor() {
             if (!currentDraft || !currentDraft.html) {
                 alert('Kein Artikel zum Bearbeiten vorhanden');
@@ -877,12 +992,15 @@
             }
 
             const modal = document.getElementById('editorModal');
+            const richEditor = document.getElementById('richEditor');
             const textarea = document.getElementById('editorTextarea');
 
-            // Fill textarea with current HTML
+            // Fill both editors with current HTML
+            richEditor.innerHTML = currentDraft.html;
             textarea.value = currentDraft.html;
 
-            // Show modal
+            // Show modal in visual mode
+            switchEditorMode('visual');
             modal.classList.add('active');
         }
 
@@ -891,9 +1009,59 @@
             modal.classList.remove('active');
         }
 
-        function saveEditorChanges() {
+        function switchEditorMode(mode) {
+            currentEditorMode = mode;
+            const visualContainer = document.getElementById('visualEditorContainer');
+            const htmlContainer = document.getElementById('htmlEditorContainer');
+            const visualBtn = document.getElementById('visualModeBtn');
+            const htmlBtn = document.getElementById('htmlModeBtn');
+            const richEditor = document.getElementById('richEditor');
             const textarea = document.getElementById('editorTextarea');
-            const newHTML = textarea.value;
+
+            if (mode === 'visual') {
+                // Switch to visual mode
+                visualContainer.style.display = 'block';
+                htmlContainer.style.display = 'none';
+                visualBtn.classList.add('active');
+                htmlBtn.classList.remove('active');
+
+                // Sync HTML to visual editor
+                richEditor.innerHTML = textarea.value;
+            } else {
+                // Switch to HTML mode
+                visualContainer.style.display = 'none';
+                htmlContainer.style.display = 'block';
+                visualBtn.classList.remove('active');
+                htmlBtn.classList.add('active');
+
+                // Sync visual editor to HTML
+                textarea.value = richEditor.innerHTML;
+            }
+        }
+
+        function formatText(command) {
+            document.execCommand(command, false, null);
+            document.getElementById('richEditor').focus();
+        }
+
+        function formatBlock(tag) {
+            if (tag) {
+                document.execCommand('formatBlock', false, tag);
+            }
+            document.getElementById('richEditor').focus();
+        }
+
+        function saveEditorChanges() {
+            const richEditor = document.getElementById('richEditor');
+            const textarea = document.getElementById('editorTextarea');
+
+            // Get HTML from current mode
+            let newHTML;
+            if (currentEditorMode === 'visual') {
+                newHTML = richEditor.innerHTML;
+            } else {
+                newHTML = textarea.value;
+            }
 
             if (!newHTML.trim()) {
                 alert('Der Artikel-Inhalt darf nicht leer sein');
