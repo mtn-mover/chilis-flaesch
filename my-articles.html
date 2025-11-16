@@ -355,7 +355,8 @@
 
                 const result = await response.json();
                 if (!response.ok) {
-                    alert('Fehler beim Laden des Artikels');
+                    console.error('API Error:', result);
+                    alert('Fehler beim Laden des Artikels: ' + (result.error || 'Unbekannter Fehler'));
                     return;
                 }
 
@@ -378,6 +379,7 @@
                 previewWindow.document.close();
 
             } catch (error) {
+                console.error('Preview Error:', error);
                 alert('Fehler: ' + error.message);
             }
         }
