@@ -37,7 +37,31 @@ function wrapArticleInTemplate(draft) {
 
   const categoryColor = categoryColors[draft.category] || '#8B4513';
   const categoryLabel = categoryLabels[draft.category] || draft.category;
-  const heroImage = draft.images && draft.images.length > 0 ? draft.images[0] : '';
+
+  // Handle images: first as hero, rest embedded in article
+  const images = draft.images || [];
+  const heroImage = images.length > 0 ? images[0] : '';
+  const additionalImages = images.length > 1 ? images.slice(1) : [];
+
+  // Generate HTML for additional images to embed in article
+  const additionalImagesHTML = additionalImages.map(img =>
+    `<img src="${img}" alt="Artikel Bild" style="width: 100%; max-width: 800px; border-radius: 15px; margin: 2.5rem auto; display: block;">`
+  ).join('\n');
+
+  // Get article content and inject additional images after first paragraph
+  let articleContent = draft.html || draft.content;
+  if (additionalImagesHTML && articleContent) {
+    // Find first closing </p> tag and insert images after it
+    const firstParagraphEnd = articleContent.indexOf('</p>');
+    if (firstParagraphEnd !== -1) {
+      articleContent = articleContent.slice(0, firstParagraphEnd + 4) +
+                     '\n' + additionalImagesHTML + '\n' +
+                     articleContent.slice(firstParagraphEnd + 4);
+    } else {
+      // If no paragraph found, append at the beginning
+      articleContent = additionalImagesHTML + '\n' + articleContent;
+    }
+  }
 
   return `<!DOCTYPE html>
 <html lang="de-CH">
@@ -425,7 +449,7 @@ function wrapArticleInTemplate(draft) {
     <!-- Main Content -->
     <div class="container">
         <article class="article-content">
-            ${draft.html || draft.content}
+            ${articleContent}
         </article>
     </div>
 
