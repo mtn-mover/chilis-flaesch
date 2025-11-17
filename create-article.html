@@ -945,23 +945,6 @@
             }
         }
 
-        // Subtitle input change handler - update preview
-        document.getElementById('subtitle').addEventListener('input', function() {
-            if (currentDraft) {
-                const subtitle = this.value.trim();
-                currentDraft.subtitle = subtitle;
-
-                // Update preview
-                const previewArea = document.getElementById('previewArea');
-                let previewHTML = '';
-                if (subtitle) {
-                    previewHTML = `<p style="font-size: 1.1rem; color: #666; font-style: italic; margin-bottom: 1.5rem; border-left: 4px solid #667eea; padding-left: 1rem;">${subtitle}</p>`;
-                }
-                previewHTML += currentDraft.html;
-                previewArea.innerHTML = previewHTML;
-            }
-        });
-
         // Save Draft
         async function saveDraft() {
             if (!currentDraft) {
@@ -975,10 +958,6 @@
             statusMessage.style.display = 'block';
 
             try {
-                // Get current subtitle from form field
-                const subtitle = document.getElementById('subtitle').value.trim();
-                currentDraft.subtitle = subtitle;
-
                 // If editing, include the draft ID to update it
                 const draftPayload = currentEditingDraftId
                     ? { ...currentDraft, id: currentEditingDraftId }
@@ -1022,11 +1001,9 @@
             const richEditor = document.getElementById('richEditor');
             const textarea = document.getElementById('editorTextarea');
             const titleInput = document.getElementById('editorTitle');
-            const subtitleInput = document.getElementById('editorSubtitle');
 
-            // Fill title and subtitle fields
+            // Fill title field
             titleInput.value = currentDraft.title || '';
-            subtitleInput.value = currentDraft.subtitle || '';
 
             // Fill both editors with current HTML
             richEditor.innerHTML = currentDraft.html;
@@ -1088,7 +1065,6 @@
             const richEditor = document.getElementById('richEditor');
             const textarea = document.getElementById('editorTextarea');
             const titleInput = document.getElementById('editorTitle');
-            const subtitleInput = document.getElementById('editorSubtitle');
 
             // Get title
             const newTitle = titleInput.value.trim();
@@ -1096,9 +1072,6 @@
                 alert('Der Titel darf nicht leer sein');
                 return;
             }
-
-            // Get subtitle
-            const newSubtitle = subtitleInput.value.trim();
 
             // Get HTML from current mode
             let newHTML;
@@ -1113,23 +1086,16 @@
                 return;
             }
 
-            // Update current draft with new title, subtitle and HTML
+            // Update current draft with new title and HTML
             currentDraft.title = newTitle;
-            currentDraft.subtitle = newSubtitle;
             currentDraft.html = newHTML;
 
-            // Update the form title and subtitle fields as well
+            // Update the form title field as well
             document.getElementById('title').value = newTitle;
-            document.getElementById('subtitle').value = newSubtitle;
 
-            // Update preview with subtitle
+            // Update preview
             const previewArea = document.getElementById('previewArea');
-            let previewHTML = '';
-            if (newSubtitle) {
-                previewHTML = `<p style="font-size: 1.1rem; color: #666; font-style: italic; margin-bottom: 1.5rem; border-left: 4px solid #667eea; padding-left: 1rem;">${newSubtitle}</p>`;
-            }
-            previewHTML += newHTML;
-            previewArea.innerHTML = previewHTML;
+            previewArea.innerHTML = newHTML;
 
             // Close modal
             closeEditor();
