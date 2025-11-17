@@ -963,6 +963,32 @@ Maienfeld beantragt am 11. Dezember den Austritt aus dem Zweckverband Falknis, w
 
 **Satirischer Kern:** Übertreibte Darstellung lokaler Politikwechsel als dramatische "Breaking News"
 
+
+### Breaking News: Fläsch verliert seinen Generalssekretär (November 2025)
+**Kategorie:** kurioses
+## Zusammenfassung: Fläsch verliert Generalsekretär
+
+### Neue Charaktere:
+• **Margrit** - Stammkundin des Volg, kommentiert politische Ereignisse
+• **Klaus** - pensionierter Weinbauer, beschreibt Generalsekretär als "politisches Thermometer"
+• **Sandra** - Dorfbewohnerin beim Einkaufen
+• **El Diablo Müller** - möglicher Nachfolgekandidat (bereits aus früheren Artikeln bekannt)
+
+### Hauptereignis:
+Der langjährige Generalsekretär und GPK-Vorsitzende hat seine Demission eingereicht. Fläsch verliert damit seinen wichtigsten Kontrolleur der Gemeindefinanzen und Gegenspieler des CEO.
+
+### Wichtige Details:
+• **September 2025**: "Steuerdebakel-Affäre" mit drei verschiedenen Finanzplänen
+• **Zitat Klaus**: "politisches Thermometer - spürt Stimmungswechsel von MEDIUM auf HOT"
+• **Zitat Margrit**: Vergleich mit Chili-Experte, Warnung vor "Twin-Peaks-Verhältnissen"
+• Diskussionen vor dem Volg als sozialer Treffpunkt bestätigt
+
+### Für zukünftige Artikel:
+• Neuwahl bei nächster Gemeindeversammlung geplant
+• CEO plant Arbeitsgruppe zur Nachfolgeregelung (unter seinem Vorsitz)
+• El Diablo Müller als heißer Kandidat
+• Offene Frage: Wer wird neuer "Hüter der Gemeindedemokratie"?
+
 ## Stil-Richtlinien
 
 ### Satire-Level
