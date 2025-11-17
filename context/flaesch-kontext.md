@@ -785,6 +785,33 @@ Maienfeld beantragt am 11. Dezember den Austritt aus dem Zweckverband Falknis. D
 
 **Anmerkung:** Sehr kurzer Artikel mit wenig konkreten Informationen - typisch für lokale Satirenachrichten, die interne Gemeindedynamiken aufs Korn nehmen.
 
+
+### Maienfeld will aus dem Zweckverband Falknis austreten - was macht Fläsch£? (November 2025)
+**Kategorie:** kurioses
+## Analyse: Satirischer Artikel "Fläsch Info"
+
+### **Neue Charaktere:**
+- Stadtrat von Maienfeld (kollektives Gremium)
+- "Der Adjudant" (mysteriöse Figur, deren Rolle unklar bleibt)
+
+### **Hauptereignis:**
+Maienfeld beantragt am 11. Dezember den Austritt aus dem Zweckverband Falknis. Dies stellt Fläsch vor die Frage, ob die Gemeinde ebenfalls austreten oder weiterhin im Verband bleiben soll.
+
+### **Wichtige Details:**
+- **Datum:** Gemeindeversammlung am 11. Dezember
+- **Problem:** Fast gesamte Entsorgungsinfrastruktur bereits nach Maienfeld verlagert
+- **Absurdes Detail:** Fläscherinnen müssen für eine simple Kartonschachtel-Entsorgung nach Maienfeld fahren
+- **Offene Frage:** Mögliche Übernahme der Entsorgungsaufgaben durch "den Adjudanten"
+
+### **Für zukünftige Artikel:**
+- Zweckverband Falknis als wiederkehrende Institution etabliert
+- "Der Adjudant" als mysteriöse Figur mit undefinierten Kompetenzen
+- Maienfeld-Fläsch Beziehungsdynamik (praktische vs. bürokratische Aspekte)
+- Absurdität alltäglicher Verwaltungsentscheidungen als satirisches Element
+- Mögliche Folgegeschichte über Fläschs Reaktion auf Maienfelds Austritt
+
+**Satirisches Element:** Bürokratische Ineffizienz trifft auf absurde Lösungsvorschläge.
+
 ## Stil-Richtlinien
 
 ### Satire-Level
