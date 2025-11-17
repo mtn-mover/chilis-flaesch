@@ -39,6 +39,10 @@ module.exports = async function handler(req, res) {
     const draftsJson = await redis.get('drafts');
     const drafts = draftsJson ? JSON.parse(draftsJson) : [];
 
+    // Check if updating existing draft
+    const existingIndex = drafts.findIndex(d => d.id === (draft.id || Date.now().toString()));
+    const existingDraft = existingIndex >= 0 ? drafts[existingIndex] : null;
+
     // Create new draft object
     const newDraft = {
       id: draft.id || Date.now().toString(),
@@ -52,16 +56,13 @@ module.exports = async function handler(req, res) {
       authorDisplayName: session.displayName,
       createdAt: draft.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      status: 'draft',
+      // Preserve 'published' status if it exists, otherwise set to 'draft'
+      status: existingDraft?.status || 'draft',
       fileName: draft.fileName
     };
 
-    // Check if updating existing draft
-    const existingIndex = drafts.findIndex(d => d.id === newDraft.id);
-
     if (existingIndex >= 0) {
       // Check permissions: only author or admin can edit
-      const existingDraft = drafts[existingIndex];
       const isAdmin = session.role === 'admin';
       if (existingDraft.author !== session.username && !isAdmin) {
         return res.status(403).json({ error: 'Keine Berechtigung, diesen Draft zu bearbeiten' });
