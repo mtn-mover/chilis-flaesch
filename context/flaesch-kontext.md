@@ -861,6 +861,33 @@ Maienfeld beantragt am 11. Dezember den Austritt aus dem Zweckverband Falknis, w
 
 *Satirischer Fokus: Absurdität kommunaler Bürokratie und die Hilflosigkeit kleiner Gemeinden bei regionalen Entscheidungen.*
 
+
+### Wieso sind Fläscher so geflasht? (November 2025)
+**Kategorie:** kurioses
+**Analyse des Fläsch Info Artikels**
+
+**Neue Charaktere:**
+• Hubschmied - Namensforscher (erwähnt in Greyerz 1933)
+• ortsnamen.ch - Institution für Ortsnamenkunde
+
+**Hauptereignis:**
+• Artikel untersucht die etymologische Herkunft des Ortsnamens "Fläsch"
+• Verschiedene sprachwissenschaftliche Theorien zur Namensherkunft werden diskutiert
+
+**Wichtige Details:**
+• Eigenbezeichnung: vle᪷ſš (Fläsch)
+• Fremdbezeichnungen: vlæš (Vilters), vle᪷ſš (Pfäfers)
+• Hubschmied's Theorie: Fläsch = "Zisterne, Teich" über mittellateinisch flasca < lateinisch vasculum
+• RN II, 693 bezeichnet diese Erklärung als "sehr zweifelhaft"
+• Alternative: mittellateinisches flasco stammt vermutlich aus dem Germanischen
+• Lateinisch "cisterna" wird in Bündner Flurnamen für Teiche verwendet
+
+**Für zukünftige Artikel:**
+• Herkunft und Bedeutung von "Fläsch" bleiben ungeklärt
+• Sprachwissenschaftliche Kontroverse um etymologische Deutung
+• Möglicher satirischer Aufhänger: Bewohner sind "geflasht" wegen ungeklärter Namensherkunft
+• Thema eignet sich für weitere linguistische/historische Satire
+
 ## Stil-Richtlinien
 
 ### Satire-Level
