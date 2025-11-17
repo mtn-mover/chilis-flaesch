@@ -1016,6 +1016,31 @@ Der langjährige Generalsekretär und GPK-Vorsitzende hat seine Demission einger
 • Machtbalance zwischen CEO und GPK könnte sich verschieben
 • Nächste Gemeindeversammlung wird entscheidend für Neuwahl
 
+
+### Wieso sind Fläscher so geflasht? (November 2025)
+**Kategorie:** kurioses
+## Zusammenfassung: "Wieso sind Fläscher so geflasht?"
+
+**Neue Charaktere:**
+• Hubschmied - Sprachwissenschaftler/Etymologe (Quelle: Greyerz 1933)
+• RN II - Vermutlich Referenzwerk zur Namenforschung
+
+**Hauptereignis:**
+Diskussion verschiedener etymologischer Theorien zum Ortsnamen "Fläsch". Hubschmieds Herleitung über lateinisch "vasculum" wird als zweifelhaft zurückgewiesen.
+
+**Wichtige Details:**
+• Hubschmieds Theorie: Fläsch ← mittellateinisch flasca ← vlasca ← vlascla ← vascla ← lateinisch vasculum ("Gefäss")
+• Bedeutung laut Hubschmied: "Zisterne, Teich"
+• Gegenargumente: mittellateinisch "flasco" stammt wahrscheinlich aus dem Germanischen
+• In Bündner Flurnamen wird lateinisch "cisterna" für Teiche/Zisternen verwendet
+• **Fazit:** Herkunft und Bedeutung von "Fläsch" bleiben unbekannt
+
+**Für zukünftige Artikel:**
+• Satirischer Aufhänger nutzt Wortspiel "geflasht/Fläsch"
+• Wissenschaftliche Unsicherheit bei Ortsnamenforschung als Thema
+• Mögliche Fortsetzung mit anderen umstrittenen Bündner Ortsnamen
+• Potential für weitere etymologische "Mysterien" der Region
+
 ## Stil-Richtlinien
 
 ### Satire-Level
