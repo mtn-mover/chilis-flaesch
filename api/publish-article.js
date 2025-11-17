@@ -669,8 +669,10 @@ module.exports = async function handler(req, res) {
         articles = JSON.parse(articlesContent);
       }
 
-      // Add new article at the beginning
-      articles.unshift({
+      // Check if article already exists (by fileName)
+      const existingIndex = articles.findIndex(a => a.fileName === fileName);
+
+      const articleData = {
         title: draft.title,
         fileName: fileName,
         category: draft.category,
@@ -679,7 +681,15 @@ module.exports = async function handler(req, res) {
         image: draft.images && draft.images.length > 0 ? draft.images[0] : null,
         author: draft.author,
         authorDisplayName: draft.authorDisplayName
-      });
+      };
+
+      if (existingIndex >= 0) {
+        // Update existing article
+        articles[existingIndex] = articleData;
+      } else {
+        // Add new article at the beginning
+        articles.unshift(articleData);
+      }
 
       // Create blob for updated articles.json
       const articlesJsonBlobResponse = await fetch(
