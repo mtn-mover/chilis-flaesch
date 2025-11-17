@@ -555,6 +555,13 @@
                     <input type="text" id="editorTitle" style="width: 100%; padding: 0.75rem; font-size: 1.1rem; border: 2px solid #ddd; border-radius: 5px;" placeholder="Artikel-Titel">
                 </div>
 
+                <!-- Subtitle Input -->
+                <div style="margin-bottom: 1rem;">
+                    <label for="editorSubtitle" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">Untertitel / Schlagzeile:</label>
+                    <input type="text" id="editorSubtitle" style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 2px solid #ddd; border-radius: 5px;" placeholder="Kurze, knackige Schlagzeile" maxlength="150">
+                    <small style="color: #666; font-size: 0.85rem;">Max. 150 Zeichen</small>
+                </div>
+
                 <!-- Visual Editor -->
                 <div id="visualEditorContainer" style="display: block;">
                     <div class="editor-toolbar">
@@ -1050,9 +1057,11 @@
             const richEditor = document.getElementById('richEditor');
             const textarea = document.getElementById('editorTextarea');
             const titleInput = document.getElementById('editorTitle');
+            const subtitleInput = document.getElementById('editorSubtitle');
 
-            // Fill title field
+            // Fill title and subtitle fields
             titleInput.value = currentDraft.title || '';
+            subtitleInput.value = currentDraft.subtitle || '';
 
             // Fill both editors with current HTML
             richEditor.innerHTML = currentDraft.html;
@@ -1114,6 +1123,7 @@
             const richEditor = document.getElementById('richEditor');
             const textarea = document.getElementById('editorTextarea');
             const titleInput = document.getElementById('editorTitle');
+            const subtitleInput = document.getElementById('editorSubtitle');
 
             // Get title
             const newTitle = titleInput.value.trim();
@@ -1121,6 +1131,9 @@
                 alert('Der Titel darf nicht leer sein');
                 return;
             }
+
+            // Get subtitle
+            const newSubtitle = subtitleInput.value.trim();
 
             // Get HTML from current mode
             let newHTML;
@@ -1135,16 +1148,23 @@
                 return;
             }
 
-            // Update current draft with new title and HTML
+            // Update current draft with new title, subtitle and HTML
             currentDraft.title = newTitle;
+            currentDraft.subtitle = newSubtitle;
             currentDraft.html = newHTML;
 
-            // Update the form title field as well
+            // Update the form title and subtitle fields as well
             document.getElementById('title').value = newTitle;
+            document.getElementById('subtitle').value = newSubtitle;
 
-            // Update preview
+            // Update preview with subtitle
             const previewArea = document.getElementById('previewArea');
-            previewArea.innerHTML = newHTML;
+            let previewHTML = '';
+            if (newSubtitle) {
+                previewHTML = `<p style="font-size: 1.1rem; color: #666; font-style: italic; margin-bottom: 1.5rem; border-left: 4px solid #667eea; padding-left: 1rem;">${newSubtitle}</p>`;
+            }
+            previewHTML += newHTML;
+            previewArea.innerHTML = previewHTML;
 
             // Close modal
             closeEditor();
