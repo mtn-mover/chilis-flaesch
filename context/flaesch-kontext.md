@@ -989,6 +989,33 @@ Der langjährige Generalsekretär und GPK-Vorsitzende hat seine Demission einger
 • El Diablo Müller als heißer Kandidat
 • Offene Frage: Wer wird neuer "Hüter der Gemeindedemokratie"?
 
+
+### Breaking News: Fläsch verliert seinen Generalssekretär (November 2025)
+**Kategorie:** kurioses
+## Zusammenfassung: Fläsch verliert Generalsekretär
+
+### Neue Charaktere:
+• **Margrit** - Stammkundin des Volg, kommentiert politische Lage
+• **Klaus** - pensionierter Weinbauer, schätzte den Generalsekretär
+• **Sandra** - Dorfbewohnerin, äußert sich zur möglichen Nachfolge
+• **El Diablo Müller** - möglicher Nachfolgekandidat (Gerücht)
+
+### Hauptereignis:
+Der langjährige Generalsekretär und GPK-Vorsitzende hat seine Demission eingereicht. Fläsch verliert damit seinen wichtigsten Kontrolleur der Gemeindeführung und Finanzüberwacher.
+
+### Wichtige Details:
+• **September 2025**: "Steuerdebakel-Affäre" mit drei verschiedenen Finanzplänen
+• **Zitat Klaus**: "Der Generalsekretär war unser politischer Thermometer"
+• **Neuwahl**: Bei nächster Gemeindeversammlung geplant
+• **CEO plant Arbeitsgruppe** zur Nachfolgeregelung (unter seinem Vorsitz)
+
+### Für zukünftige Artikel:
+• Nachfolgeregelung in der GPK bleibt offen
+• El Diablo Müller als potentieller Kandidat im Gespräch
+• CEO noch ohne öffentliche Stellungnahme
+• Machtbalance zwischen CEO und GPK könnte sich verschieben
+• Nächste Gemeindeversammlung wird entscheidend für Neuwahl
+
 ## Stil-Richtlinien
 
 ### Satire-Level
