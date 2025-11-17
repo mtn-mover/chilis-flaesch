@@ -541,6 +541,12 @@
                 </div>
             </div>
             <div class="editor-body">
+                <!-- Title Input -->
+                <div style="margin-bottom: 1rem;">
+                    <label for="editorTitle" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">Titel:</label>
+                    <input type="text" id="editorTitle" style="width: 100%; padding: 0.75rem; font-size: 1.1rem; border: 2px solid #ddd; border-radius: 5px;" placeholder="Artikel-Titel">
+                </div>
+
                 <!-- Visual Editor -->
                 <div id="visualEditorContainer" style="display: block;">
                     <div class="editor-toolbar">
@@ -994,6 +1000,10 @@
             const modal = document.getElementById('editorModal');
             const richEditor = document.getElementById('richEditor');
             const textarea = document.getElementById('editorTextarea');
+            const titleInput = document.getElementById('editorTitle');
+
+            // Fill title field
+            titleInput.value = currentDraft.title || '';
 
             // Fill both editors with current HTML
             richEditor.innerHTML = currentDraft.html;
@@ -1054,6 +1064,14 @@
         function saveEditorChanges() {
             const richEditor = document.getElementById('richEditor');
             const textarea = document.getElementById('editorTextarea');
+            const titleInput = document.getElementById('editorTitle');
+
+            // Get title
+            const newTitle = titleInput.value.trim();
+            if (!newTitle) {
+                alert('Der Titel darf nicht leer sein');
+                return;
+            }
 
             // Get HTML from current mode
             let newHTML;
@@ -1068,8 +1086,12 @@
                 return;
             }
 
-            // Update current draft
+            // Update current draft with new title and HTML
+            currentDraft.title = newTitle;
             currentDraft.html = newHTML;
+
+            // Update the form title field as well
+            document.getElementById('title').value = newTitle;
 
             // Update preview
             const previewArea = document.getElementById('previewArea');
