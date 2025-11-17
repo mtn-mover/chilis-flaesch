@@ -836,6 +836,58 @@ Maienfeld beantragt am 11. Dezember den Austritt aus dem Zweckverband Falknis. D
 
 **Kontext:** Sehr kurzer satirischer Artikel über lokale Gemeindepolitik in Fläsch, der eine Rücktritts-Meldung humorvoll als "Breaking News" aufbläst.
 
+
+### Maienfeld will aus dem Zweckverband Falknis austreten - was macht Fläsch? (November 2025)
+**Kategorie:** kurioses
+## Analyse des satirischen Artikels
+
+### **Neue Charaktere:**
+- Stadtrat Maienfeld (kollektive Rolle als Entscheidungsträger)
+- Der "Adjudant" (humoristische Figur, die eventuell Entsorgungsaufgaben übernehmen könnte)
+
+### **Hauptereignis:**
+Maienfeld beantragt am 11. Dezember den Austritt aus dem Zweckverband Falknis, was Fläsch in eine prekäre Lage bringt, da die Entsorgungsinfrastruktur bereits größtenteils nach Maienfeld verlagert wurde.
+
+### **Wichtige Details:**
+- Datum der Gemeindeversammlung: 11. Dezember
+- Konkrete Auswirkung: Fläscherinnen müssen für simple Entsorgung (z.B. Kartonschachtel) nach Maienfeld fahren
+- Referenzdokument: "Botschaft 02.12.2025_final nach GRS 10.11.2025"
+
+### **Für zukünftige Artikel:**
+- **Zweckverband Falknis**: Wichtige regionale Entsorgungskooperation zwischen Fläsch und Maienfeld
+- **Infrastrukturproblem**: Fläsch ist stark abhängig von Maienfelder Entsorgungsstrukturen
+- **Der Adjudant**: Neue satirische Figur als mögliche "Lösung" für kommunale Probleme
+- **Interkommunale Spannungen**: Grundlage für weitere satirische Beiträge über die Gemeindezusammenarbeit
+
+*Satirischer Fokus: Absurdität kommunaler Bürokratie und die Hilflosigkeit kleiner Gemeinden bei regionalen Entscheidungen.*
+
+
+### Wieso sind Fläscher so geflasht? (November 2025)
+**Kategorie:** kurioses
+**Analyse des Fläsch Info Artikels**
+
+**Neue Charaktere:**
+• Hubschmied - Namensforscher (erwähnt in Greyerz 1933)
+• ortsnamen.ch - Institution für Ortsnamenkunde
+
+**Hauptereignis:**
+• Artikel untersucht die etymologische Herkunft des Ortsnamens "Fläsch"
+• Verschiedene sprachwissenschaftliche Theorien zur Namensherkunft werden diskutiert
+
+**Wichtige Details:**
+• Eigenbezeichnung: vle᪷ſš (Fläsch)
+• Fremdbezeichnungen: vlæš (Vilters), vle᪷ſš (Pfäfers)
+• Hubschmied's Theorie: Fläsch = "Zisterne, Teich" über mittellateinisch flasca < lateinisch vasculum
+• RN II, 693 bezeichnet diese Erklärung als "sehr zweifelhaft"
+• Alternative: mittellateinisches flasco stammt vermutlich aus dem Germanischen
+• Lateinisch "cisterna" wird in Bündner Flurnamen für Teiche verwendet
+
+**Für zukünftige Artikel:**
+• Herkunft und Bedeutung von "Fläsch" bleiben ungeklärt
+• Sprachwissenschaftliche Kontroverse um etymologische Deutung
+• Möglicher satirischer Aufhänger: Bewohner sind "geflasht" wegen ungeklärter Namensherkunft
+• Thema eignet sich für weitere linguistische/historische Satire
+
 ## Stil-Richtlinien
 
 ### Satire-Level
