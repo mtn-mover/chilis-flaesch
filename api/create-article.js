@@ -155,7 +155,10 @@ ${fileAnalysis}
 **Inhaltsbeschreibung vom Autor:**
 ${content}
 
-Erstelle den Artikel-CONTENT (nur der Inhalt, KEIN vollständiges HTML-Dokument!).
+Erstelle ZWEI Dinge:
+
+1. **UNTERTITEL/SCHLAGZEILE:** Eine kurze, knackige Schlagzeile (1 Satz, max. 100 Zeichen), die den Artikel zusammenfasst und Leser neugierig macht
+2. **ARTIKEL-CONTENT:** Der Artikel-Inhalt als HTML
 
 Der Artikel soll:
 1. Mit einer einleitenden Überschrift (h2) starten
@@ -164,21 +167,26 @@ Der Artikel soll:
 4. Zwischenüberschriften (h2, h3) für bessere Struktur nutzen
 5. Optional: Aufzählungen oder Blockquotes für Zitate
 
-WICHTIG:
-- Gib den Artikel-Inhalt als HTML zurück (verwende <h2>, <h3>, <p>, <blockquote>, <ul>, etc.)
-- KEINE Markdown-Syntax (kein ##, ###, **, etc.) - nur HTML-Tags!
-- KEIN vollständiges HTML-Dokument (kein <!DOCTYPE>, <html>, <head>, <body>)
-- KEINE Code-Blöcke mit drei Backticks
-- KEIN Navigation oder Footer
-- Der Inhalt wird automatisch in ein Template eingebettet
+WICHTIG - AUSGABE-FORMAT:
+Gib deine Antwort in diesem EXAKTEN Format zurück:
 
-Beispiel-Format:
+SUBTITLE: [Deine Schlagzeile hier]
+---CONTENT---
 <h2>Hauptüberschrift</h2>
 <p>Absatz mit Text...</p>
 <h3>Unterüberschrift</h3>
 <blockquote>Zitat von Person</blockquote>
 
-Beginne direkt mit dem Artikel-Content als HTML!`;
+REGELN:
+- Beginne mit "SUBTITLE: " gefolgt von der Schlagzeile
+- Dann die Zeile "---CONTENT---"
+- Dann der HTML-Artikel-Content
+- KEINE Markdown-Syntax (kein ##, ###, **, etc.) - nur HTML-Tags!
+- KEIN vollständiges HTML-Dokument (kein <!DOCTYPE>, <html>, <head>, <body>)
+- KEINE Code-Blöcke mit drei Backticks
+- KEIN Navigation oder Footer
+
+Beginne jetzt mit "SUBTITLE: " !`;
 
     // Claude API Call
     console.log('Calling Claude API...');
@@ -192,9 +200,33 @@ Beginne direkt mit dem Artikel-Content als HTML!`;
     });
     console.log('Claude API call successful');
 
-    let generatedHTML = message.content[0].text;
+    let fullResponse = message.content[0].text;
+    let subtitle = '';
+    let generatedHTML = '';
 
     try {
+      // Extract subtitle and content
+      const subtitleMatch = fullResponse.match(/SUBTITLE:\s*(.+?)(?:\n|---)/i);
+      if (subtitleMatch) {
+        subtitle = subtitleMatch[1].trim();
+      }
+
+      // Extract content after ---CONTENT---
+      const contentMatch = fullResponse.match(/---CONTENT---\s*([\s\S]+)/i);
+      if (contentMatch) {
+        generatedHTML = contentMatch[1].trim();
+      } else {
+        // Fallback: if no ---CONTENT--- marker, use everything after SUBTITLE line
+        const lines = fullResponse.split('\n');
+        const subtitleLineIndex = lines.findIndex(line => line.toUpperCase().startsWith('SUBTITLE:'));
+        if (subtitleLineIndex >= 0) {
+          generatedHTML = lines.slice(subtitleLineIndex + 1).join('\n').trim();
+        } else {
+          // No subtitle found, use full response as HTML
+          generatedHTML = fullResponse;
+        }
+      }
+
       // Bereinige den generierten Content (entferne Code-Blöcke falls vorhanden)
       generatedHTML = generatedHTML
         .replace(/```html\s*/g, '')  // Entferne ```html
@@ -276,6 +308,7 @@ Beginne direkt mit dem Artikel-Content als HTML!`;
       success: true,
       fileName: fileName,
       html: generatedHTML,
+      subtitle: subtitle,
       category: category,
       author: author,
       message: 'Artikel erfolgreich generiert!'
