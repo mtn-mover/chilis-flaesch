@@ -937,6 +937,191 @@ Maienfeld beantragt am 11. Dezember den Austritt aus dem Zweckverband Falknis, w
 
 *Hinweis: Sehr kurzer Artikel mit limitierten Informationen - hauptsächlich Ankündigung einer personellen Veränderung in satirischem Ton.*
 
+
+### Breaking News: Fläsch verliert seinen Generalssekretär (November 2025)
+**Kategorie:** kurioses
+## Satirische Artikel-Analyse: "Breaking News: Fläsch verliert seinen Generalssekretär"
+
+### 1. **Neue Charaktere:**
+• **Markus Urech** - GPK-Präsident (demissioniert)
+• Wird scherzhaft als "Generalsekretär" von Fläsch bezeichnet
+
+### 2. **Hauptereignis:**
+• Markus Urech ist als GPK-Präsident zurückgetreten/hat demissioniert
+• Dadurch muss ein neues GPK-Mitglied gewählt werden
+
+### 3. **Wichtige Details:**
+• GPK = Geschäftsprüfungskommission (anzunehmen)
+• Satirische Übertreibung: Lokaler Funktionär wird scherzhaft zum "Generalsekretär" hochstilisiert
+• Kategorisiert als "kurioses" - deutet auf humoristische Berichterstattung hin
+
+### 4. **Für zukünftige Artikel:**
+• **Wahlprozess:** Wer wird Urech in der GPK nachfolgen?
+• **Hintergrund:** Gründe für Urechs Demission könnten interessant sein
+• **Running Gag:** Der "Generalsekretär"-Titel könnte als wiederkehrendes satirisches Element genutzt werden
+• **Lokalpolitik:** GPK-Aktivitäten in Fläsch als potenzielle Story-Quelle
+
+**Satirischer Kern:** Übertreibte Darstellung lokaler Politikwechsel als dramatische "Breaking News"
+
+
+### Breaking News: Fläsch verliert seinen Generalssekretär (November 2025)
+**Kategorie:** kurioses
+## Zusammenfassung: Fläsch verliert Generalsekretär
+
+### Neue Charaktere:
+• **Margrit** - Stammkundin des Volg, kommentiert politische Ereignisse
+• **Klaus** - pensionierter Weinbauer, beschreibt Generalsekretär als "politisches Thermometer"
+• **Sandra** - Dorfbewohnerin beim Einkaufen
+• **El Diablo Müller** - möglicher Nachfolgekandidat (bereits aus früheren Artikeln bekannt)
+
+### Hauptereignis:
+Der langjährige Generalsekretär und GPK-Vorsitzende hat seine Demission eingereicht. Fläsch verliert damit seinen wichtigsten Kontrolleur der Gemeindefinanzen und Gegenspieler des CEO.
+
+### Wichtige Details:
+• **September 2025**: "Steuerdebakel-Affäre" mit drei verschiedenen Finanzplänen
+• **Zitat Klaus**: "politisches Thermometer - spürt Stimmungswechsel von MEDIUM auf HOT"
+• **Zitat Margrit**: Vergleich mit Chili-Experte, Warnung vor "Twin-Peaks-Verhältnissen"
+• Diskussionen vor dem Volg als sozialer Treffpunkt bestätigt
+
+### Für zukünftige Artikel:
+• Neuwahl bei nächster Gemeindeversammlung geplant
+• CEO plant Arbeitsgruppe zur Nachfolgeregelung (unter seinem Vorsitz)
+• El Diablo Müller als heißer Kandidat
+• Offene Frage: Wer wird neuer "Hüter der Gemeindedemokratie"?
+
+
+### Breaking News: Fläsch verliert seinen Generalssekretär (November 2025)
+**Kategorie:** kurioses
+## Zusammenfassung: Fläsch verliert Generalsekretär
+
+### Neue Charaktere:
+• **Margrit** - Stammkundin des Volg, kommentiert politische Lage
+• **Klaus** - pensionierter Weinbauer, schätzte den Generalsekretär
+• **Sandra** - Dorfbewohnerin, äußert sich zur möglichen Nachfolge
+• **El Diablo Müller** - möglicher Nachfolgekandidat (Gerücht)
+
+### Hauptereignis:
+Der langjährige Generalsekretär und GPK-Vorsitzende hat seine Demission eingereicht. Fläsch verliert damit seinen wichtigsten Kontrolleur der Gemeindeführung und Finanzüberwacher.
+
+### Wichtige Details:
+• **September 2025**: "Steuerdebakel-Affäre" mit drei verschiedenen Finanzplänen
+• **Zitat Klaus**: "Der Generalsekretär war unser politischer Thermometer"
+• **Neuwahl**: Bei nächster Gemeindeversammlung geplant
+• **CEO plant Arbeitsgruppe** zur Nachfolgeregelung (unter seinem Vorsitz)
+
+### Für zukünftige Artikel:
+• Nachfolgeregelung in der GPK bleibt offen
+• El Diablo Müller als potentieller Kandidat im Gespräch
+• CEO noch ohne öffentliche Stellungnahme
+• Machtbalance zwischen CEO und GPK könnte sich verschieben
+• Nächste Gemeindeversammlung wird entscheidend für Neuwahl
+
+
+### Wieso sind Fläscher so geflasht? (November 2025)
+**Kategorie:** kurioses
+## Zusammenfassung: "Wieso sind Fläscher so geflasht?"
+
+**Neue Charaktere:**
+• Hubschmied - Sprachwissenschaftler/Etymologe (Quelle: Greyerz 1933)
+• RN II - Vermutlich Referenzwerk zur Namenforschung
+
+**Hauptereignis:**
+Diskussion verschiedener etymologischer Theorien zum Ortsnamen "Fläsch". Hubschmieds Herleitung über lateinisch "vasculum" wird als zweifelhaft zurückgewiesen.
+
+**Wichtige Details:**
+• Hubschmieds Theorie: Fläsch ← mittellateinisch flasca ← vlasca ← vlascla ← vascla ← lateinisch vasculum ("Gefäss")
+• Bedeutung laut Hubschmied: "Zisterne, Teich"
+• Gegenargumente: mittellateinisch "flasco" stammt wahrscheinlich aus dem Germanischen
+• In Bündner Flurnamen wird lateinisch "cisterna" für Teiche/Zisternen verwendet
+• **Fazit:** Herkunft und Bedeutung von "Fläsch" bleiben unbekannt
+
+**Für zukünftige Artikel:**
+• Satirischer Aufhänger nutzt Wortspiel "geflasht/Fläsch"
+• Wissenschaftliche Unsicherheit bei Ortsnamenforschung als Thema
+• Mögliche Fortsetzung mit anderen umstrittenen Bündner Ortsnamen
+• Potential für weitere etymologische "Mysterien" der Region
+
+
+### Wir minimieren den Verkehr, den wir gar nicht haben (November 2025)
+**Kategorie:** politik
+## Analyse: "Wir minimieren den Verkehr, den wir gar nicht haben"
+
+### Neue Charaktere:
+• **"Der CEO und sein Team"** - Satirische Bezeichnung für die Dorfführung/Gemeinderat von Fläsch
+
+### Hauptereignis:
+Die Dorfführung implementiert verkehrspolitische Maßnahmen in einem Ort ohne nennenswerten Verkehr. Verkehrsfreie Flächen werden zu "Begegnungszonen" umgestaltet, obwohl bereits wenig bis kein Verkehr vorhanden ist.
+
+### Wichtige Details:
+• Bezug auf **"Leitbild Zukunft Fläsch 2028"** als strategisches Dokument
+• Umgestaltung erfolgt **ohne Steuererhöhungen** (wird als positiver Punkt hervorgehoben)
+• Förderung des öffentlichen Verkehrs trotz fraglicher Notwendigkeit
+• Arbeiten nach einem **"nie erstellten Verkehrskonzept"** (satirische Spitze)
+
+### Für zukünftige Artikel:
+• **"CEO und sein Team"** als etablierte satirische Bezeichnung für Gemeindeleitung verwenden
+• **Leitbild 2028** als wiederkehrendes Referenzdokument für Gemeindepolitik
+• Thema Verkehrspolitik vs. Realität vor Ort als satirisches Motiv
+• Spannungsfeld zwischen ambitionierten Plänen und dörflicher Realität
+• Begegnungszonen-Konzept als mögliches Folgethema
+
+**Satirischer Kern:** Überambitionierte Verkehrspolitik in verkehrsarmer Gemeinde.
+
+
+### Traktandenliste der nächsten Generalversammlung (November 2025)
+**Kategorie:** kurioses
+**Analyse des satirischen Artikels**
+
+## 1. Neue Charaktere:
+• Keine spezifischen Personen erwähnt
+• Anonyme Gemeindeverwaltung als kollektiver "Charakter"
+
+## 2. Hauptereignis:
+• Ankündigung einer Gemeindeversammlung am 2. Dezember 2025 um 19:30 Uhr
+• Satirische Darstellung einer Verwaltung, die alle Leitbild-Punkte "sofort und ohne Rücksicht auf Kosten oder Gesetze" umsetzen will
+
+## 3. Wichtige Details:
+• **Datum:** 2. Dezember 2025, 19:30 Uhr
+• **Ort:** Mehrzweckgebäude Fläsch
+• **Satirische Elemente:** 
+  - "scheuen keine Kosten"
+  - "Gesetze und Fristen interessieren uns nicht"
+  - Verzicht auf Arbeitsgruppen, "deren Punkte wir ohnehin nie berücksichtigt haben"
+• **Referenz:** Leitbild Zukunft Fläsch 2028
+
+## 4. Für zukünftige Artikel:
+• Establishment einer satirischen "chaotischen Verwaltung" als wiederkehrendes Element
+• Potenzial für Follow-up über die tatsächliche Versammlung
+• Mögliche Anspielungen auf reale Gemeindeverwaltungs-Klischees
+• Leitbild 2028 als Referenzpunkt für weitere satirische Inhalte über überzogene Gemeindeprojekte
+
+
+### Traktandenliste der nächsten Generalversammlung (November 2025)
+**Kategorie:** kurioses
+**Analyse des satirischen Artikels von Fläsch Info**
+
+## 1. Neue Charaktere:
+• Keine spezifischen Personen erwähnt
+• Implizit: Gemeindeverwaltung/Gemeinderat als kollektiver "Charakter" mit satirisch dargestellter Inkompetenz
+
+## 2. Hauptereignis:
+• Ankündigung einer Gemeindeversammlung am 2. Dezember 2025 um 19:30 Uhr im Mehrzweckgebäude
+• Satirische Darstellung einer völlig unrealistischen Agenda: sofortige Umsetzung des gesamten Gemeindeleitbilds bis Jahresende
+
+## 3. Wichtige Details:
+• **Datum:** 2. Dezember 2025, 19:30 Uhr
+• **Ort:** Mehrzweckgebäude Fläsch
+• **Satirische Elemente:** "scheuen keine Kosten", "Gesetze interessieren uns nicht", "verzichten auf Arbeitsgruppen"
+• **Referenzdokument:** Leitbild Zukunft Fläsch 2028
+
+## 4. Für zukünftige Artikel:
+• Etabliert wiederkehrendes Satiremotiv: Gemeinde ignoriert systematisch Gesetze, Fristen und Arbeitsgruppen-Empfehlungen
+• Leitbild 2028 als potenzielle Quelle für weitere satirische Inhalte
+• Muster der übertriebenen Ambitionen bei gleichzeitiger Inkompetenz
+• Mehrzweckgebäude als Standard-Veranstaltungsort
+
+**Satirischer Kern:** Übertreibung typischer Gemeindepolitik-Probleme (unrealistische Ziele, Missachtung von Prozessen, Ignoranz gegenüber Bürgerbeteiligung)
+
 ## Stil-Richtlinien
 
 ### Satire-Level
