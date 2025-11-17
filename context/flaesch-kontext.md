@@ -758,6 +758,33 @@ Maienfeld beantragt am 11. Dezember den Austritt aus dem Zweckverband Falknis. D
 
 **Kontext:** Typischer lokalpolitischer Satireartikel, der eine Personalrochade in einer kleinen Gemeinde humorvoll als "Breaking News" aufbläst und die Bedeutung der Person für den Ort übertreibt darstellt.
 
+
+### Breaking News: Fläsch verliert seinen Generalssekretär (November 2025)
+**Kategorie:** kurioses
+## Analyse des satirischen Artikels
+
+### 1. Neue Charaktere:
+• **Markus Urech** - GPK-Präsident, der zurückgetreten ist
+• **"Generalsekretär von Fläsch"** - satirische Bezeichnung für Urech
+
+### 2. Hauptereignis:
+• Markus Urech ist als GPK-Präsident zurückgetreten (Demission)
+• Dadurch muss ein neues GPK-Mitglied gewählt werden
+
+### 3. Wichtige Details:
+• GPK = vermutlich Geschäftsprüfungskommission
+• Keine Zahlen, Abstimmungsergebnisse oder Zitate erwähnt
+• Artikel ist sehr knapp gehalten
+
+### 4. Für zukünftige Artikel:
+• Urech hatte offenbar eine wichtige/einflussreiche Position in Fläsch
+• Seine Rolle wird satirisch als "Generalsekretär" überhöht dargestellt
+• Der Rücktritt scheint überraschend gekommen zu sein ("Breaking News")
+• Nachfolge-Wahl steht an - könnte Thema für Folge-Artikel sein
+• Satirischer Ton: Lokalpolitik wird mit staatsmännischen Begriffen übertrieben
+
+**Anmerkung:** Sehr kurzer Artikel mit wenig konkreten Informationen - typisch für lokale Satirenachrichten, die interne Gemeindedynamiken aufs Korn nehmen.
+
 ## Stil-Richtlinien
 
 ### Satire-Level
