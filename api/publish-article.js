@@ -198,8 +198,18 @@ function wrapArticleInTemplate(draft) {
         .hero h1 {
             font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-meta {
@@ -439,6 +449,7 @@ function wrapArticleInTemplate(draft) {
     <section class="hero">
         ${heroImage ? `<img src="${heroImage}" alt="${draft.title}" class="hero-image">` : ''}
         <h1>${draft.title}</h1>
+        ${draft.subtitle ? `<p class="hero-subtitle">${draft.subtitle}</p>` : ''}
         <div class="hero-meta">
             <span class="hero-category">${categoryLabel}</span>
             ${draft.authorDisplayName ? `<span class="hero-author">Erstellt durch: ${draft.authorDisplayName}</span>` : ''}
@@ -674,6 +685,7 @@ module.exports = async function handler(req, res) {
 
       const articleData = {
         title: draft.title,
+        subtitle: draft.subtitle || '',
         fileName: fileName,
         category: draft.category,
         excerpt: draft.content.substring(0, 100) + '...',
