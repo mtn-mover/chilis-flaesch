@@ -35,6 +35,8 @@ module.exports = async function handler(req, res) {
       return res.status(400).json({ error: 'Unvollständige Draft-Daten' });
     }
 
+    // subtitle is optional, can be empty string
+
     // Read existing drafts from Redis
     const draftsJson = await redis.get('drafts');
     const drafts = draftsJson ? JSON.parse(draftsJson) : [];
@@ -47,6 +49,7 @@ module.exports = async function handler(req, res) {
     const newDraft = {
       id: draft.id || Date.now().toString(),
       title: draft.title,
+      subtitle: draft.subtitle || '', // Subtitle/Schlagzeile (optional)
       category: draft.category,
       style: draft.style,
       content: draft.content, // Original input description
