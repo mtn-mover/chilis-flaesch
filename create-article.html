@@ -459,14 +459,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="subtitle">Untertitel / Schlagzeile</label>
-                        <input type="text" id="subtitle" name="subtitle"
-                               placeholder="Wird automatisch von Claude generiert, kann aber bearbeitet werden"
-                               maxlength="150">
-                        <small style="color: #666; font-size: 0.85rem;">Max. 150 Zeichen - wird nach Generierung automatisch befüllt</small>
-                    </div>
-
-                    <div class="form-group">
                         <label for="category">Kategorie *</label>
                         <select id="category" name="category" required>
                             <option value="politik">Politik</option>
@@ -553,13 +545,6 @@
                 <div style="margin-bottom: 1rem;">
                     <label for="editorTitle" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">Titel:</label>
                     <input type="text" id="editorTitle" style="width: 100%; padding: 0.75rem; font-size: 1.1rem; border: 2px solid #ddd; border-radius: 5px;" placeholder="Artikel-Titel">
-                </div>
-
-                <!-- Subtitle Input -->
-                <div style="margin-bottom: 1rem;">
-                    <label for="editorSubtitle" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">Untertitel / Schlagzeile:</label>
-                    <input type="text" id="editorSubtitle" style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 2px solid #ddd; border-radius: 5px;" placeholder="Kurze, knackige Schlagzeile" maxlength="150">
-                    <small style="color: #666; font-size: 0.85rem;">Max. 150 Zeichen</small>
                 </div>
 
                 <!-- Visual Editor -->
@@ -650,7 +635,6 @@
 
                         // Fill form fields
                         document.getElementById('title').value = draft.title || '';
-                        document.getElementById('subtitle').value = draft.subtitle || '';
                         document.getElementById('category').value = draft.category || 'politik';
                         document.getElementById('style').value = draft.style || 'satirisch';
                         document.getElementById('content').value = draft.content || '';
@@ -664,14 +648,7 @@
                             const previewArea = document.getElementById('previewArea');
                             const actionButtons = document.getElementById('actionButtons');
 
-                            // Show preview with subtitle
-                            let previewHTML = '';
-                            if (draft.subtitle) {
-                                previewHTML = `<p style="font-size: 1.1rem; color: #666; font-style: italic; margin-bottom: 1.5rem; border-left: 4px solid #667eea; padding-left: 1rem;">${draft.subtitle}</p>`;
-                            }
-                            previewHTML += draft.html;
-
-                            previewArea.innerHTML = previewHTML;
+                            previewArea.innerHTML = draft.html;
                             previewArea.classList.add('has-content');
                             actionButtons.style.display = 'flex';
 
@@ -901,11 +878,6 @@
                     throw new Error(result.error || result.details || 'Unbekannter Fehler');
                 }
 
-                // Fill subtitle field if generated
-                if (result.subtitle) {
-                    document.getElementById('subtitle').value = result.subtitle;
-                }
-
                 // Store current draft
                 currentDraft = {
                     title: payload.title,
@@ -918,14 +890,7 @@
                     images: uploadedImages
                 };
 
-                // Show preview with subtitle
-                let previewHTML = '';
-                if (result.subtitle) {
-                    previewHTML = `<p style="font-size: 1.1rem; color: #666; font-style: italic; margin-bottom: 1.5rem; border-left: 4px solid #667eea; padding-left: 1rem;">${result.subtitle}</p>`;
-                }
-                previewHTML += result.html;
-
-                previewArea.innerHTML = previewHTML;
+                previewArea.innerHTML = result.html;
                 previewArea.classList.add('has-content');
                 actionButtons.style.display = 'flex';
 
