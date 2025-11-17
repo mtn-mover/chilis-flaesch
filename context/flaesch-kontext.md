@@ -734,6 +734,84 @@ Maienfeld beantragt am 11. Dezember den Austritt aus dem Zweckverband Falknis. D
 
 **Satirischer Kern:** Beamtentreue Routine trotz offensichtlich geänderter Realität - typische "Das haben wir schon immer so gemacht"-Mentalität.
 
+
+### Breaking News: Fläsch verliert seinen Generalssekretär (November 2025)
+**Kategorie:** kurioses
+## Analyse des satirischen Artikels
+
+**Neue Charaktere:**
+• Markus Urech - GPK-Präsident (demissioniert), wird als "Generalsekretär" von Fläsch bezeichnet
+
+**Hauptereignis:**
+• Markus Urech ist als GPK-Präsident zurückgetreten. Dadurch muss ein neues GPK-Mitglied gewählt werden.
+
+**Wichtige Details:**
+• Keine konkreten Zahlen oder Zitate erwähnt
+• GPK = vermutlich Geschäftsprüfungskommission
+• Satirische Übertreibung: Urech wird scherzhaft als "Generalsekretär von Fläsch" bezeichnet
+
+**Für zukünftige Artikel:**
+• Nachfolgeregelung in der GPK könnte Thema werden
+• Urehs Nachfolger/in wäre interessant zu verfolgen
+• Satirischer Kontext: Kleine Gemeinde verliert wichtige Person
+• Mögliche Auswirkungen auf Gemeindepolitik in Fläsch
+
+**Kontext:** Typischer lokalpolitischer Satireartikel, der eine Personalrochade in einer kleinen Gemeinde humorvoll als "Breaking News" aufbläst und die Bedeutung der Person für den Ort übertreibt darstellt.
+
+
+### Breaking News: Fläsch verliert seinen Generalssekretär (November 2025)
+**Kategorie:** kurioses
+## Analyse des satirischen Artikels
+
+### 1. Neue Charaktere:
+• **Markus Urech** - GPK-Präsident, der zurückgetreten ist
+• **"Generalsekretär von Fläsch"** - satirische Bezeichnung für Urech
+
+### 2. Hauptereignis:
+• Markus Urech ist als GPK-Präsident zurückgetreten (Demission)
+• Dadurch muss ein neues GPK-Mitglied gewählt werden
+
+### 3. Wichtige Details:
+• GPK = vermutlich Geschäftsprüfungskommission
+• Keine Zahlen, Abstimmungsergebnisse oder Zitate erwähnt
+• Artikel ist sehr knapp gehalten
+
+### 4. Für zukünftige Artikel:
+• Urech hatte offenbar eine wichtige/einflussreiche Position in Fläsch
+• Seine Rolle wird satirisch als "Generalsekretär" überhöht dargestellt
+• Der Rücktritt scheint überraschend gekommen zu sein ("Breaking News")
+• Nachfolge-Wahl steht an - könnte Thema für Folge-Artikel sein
+• Satirischer Ton: Lokalpolitik wird mit staatsmännischen Begriffen übertrieben
+
+**Anmerkung:** Sehr kurzer Artikel mit wenig konkreten Informationen - typisch für lokale Satirenachrichten, die interne Gemeindedynamiken aufs Korn nehmen.
+
+
+### Maienfeld will aus dem Zweckverband Falknis austreten - was macht Fläsch£? (November 2025)
+**Kategorie:** kurioses
+## Analyse: Satirischer Artikel "Fläsch Info"
+
+### **Neue Charaktere:**
+- Stadtrat von Maienfeld (kollektives Gremium)
+- "Der Adjudant" (mysteriöse Figur, deren Rolle unklar bleibt)
+
+### **Hauptereignis:**
+Maienfeld beantragt am 11. Dezember den Austritt aus dem Zweckverband Falknis. Dies stellt Fläsch vor die Frage, ob die Gemeinde ebenfalls austreten oder weiterhin im Verband bleiben soll.
+
+### **Wichtige Details:**
+- **Datum:** Gemeindeversammlung am 11. Dezember
+- **Problem:** Fast gesamte Entsorgungsinfrastruktur bereits nach Maienfeld verlagert
+- **Absurdes Detail:** Fläscherinnen müssen für eine simple Kartonschachtel-Entsorgung nach Maienfeld fahren
+- **Offene Frage:** Mögliche Übernahme der Entsorgungsaufgaben durch "den Adjudanten"
+
+### **Für zukünftige Artikel:**
+- Zweckverband Falknis als wiederkehrende Institution etabliert
+- "Der Adjudant" als mysteriöse Figur mit undefinierten Kompetenzen
+- Maienfeld-Fläsch Beziehungsdynamik (praktische vs. bürokratische Aspekte)
+- Absurdität alltäglicher Verwaltungsentscheidungen als satirisches Element
+- Mögliche Folgegeschichte über Fläschs Reaktion auf Maienfelds Austritt
+
+**Satirisches Element:** Bürokratische Ineffizienz trifft auf absurde Lösungsvorschläge.
+
 ## Stil-Richtlinien
 
 ### Satire-Level
