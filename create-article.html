@@ -890,7 +890,13 @@
                     images: uploadedImages
                 };
 
-                previewArea.innerHTML = result.html;
+                // Display preview with subtitle
+                let previewHTML = '';
+                if (result.subtitle) {
+                    previewHTML = `<p style="font-size: 1.1rem; color: #666; font-style: italic; margin-bottom: 1.5rem; border-left: 4px solid #667eea; padding-left: 1rem;">${result.subtitle}</p>`;
+                }
+                previewHTML += result.html;
+                previewArea.innerHTML = previewHTML;
                 previewArea.classList.add('has-content');
                 actionButtons.style.display = 'flex';
 
@@ -1093,9 +1099,14 @@
             // Update the form title field as well
             document.getElementById('title').value = newTitle;
 
-            // Update preview
+            // Update preview with subtitle
             const previewArea = document.getElementById('previewArea');
-            previewArea.innerHTML = newHTML;
+            let previewHTML = '';
+            if (currentDraft.subtitle) {
+                previewHTML = `<p style="font-size: 1.1rem; color: #666; font-style: italic; margin-bottom: 1.5rem; border-left: 4px solid #667eea; padding-left: 1rem;">${currentDraft.subtitle}</p>`;
+            }
+            previewHTML += newHTML;
+            previewArea.innerHTML = previewHTML;
 
             // Close modal
             closeEditor();
