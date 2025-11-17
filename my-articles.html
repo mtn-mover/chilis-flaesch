@@ -421,6 +421,8 @@
                 }
             }
 
+            const subtitleHTML = draft.subtitle ? `<p style="font-size: 1.2rem; font-style: italic; color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto;">${draft.subtitle}</p>` : '';
+
             return `<!DOCTYPE html>
 <html lang="de-CH">
 <head>
@@ -451,6 +453,7 @@
     <section class="hero">
         ${heroImage ? `<img src="${heroImage}" alt="${draft.title}" class="hero-image">` : ''}
         <h1>${draft.title}</h1>
+        ${subtitleHTML}
         <div class="hero-meta">
             <span class="hero-category">${categoryLabel}</span>
             <span>Erstellt durch: ${draft.authorDisplayName}</span>
