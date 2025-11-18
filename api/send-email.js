@@ -116,6 +116,10 @@ function activationEmail(user, activationToken) {
       </p>
       <p>Oder kopiere diesen Link in deinen Browser:</p>
       <p style="word-break: break-all; color: #666;">${activationUrl}</p>
+      <div style="background: #f5f5f5; padding: 1rem; border-radius: 8px; margin: 2rem 0;">
+        <p style="margin: 0; color: #333;"><strong>Deine Login-Daten:</strong></p>
+        <p style="margin: 0.5rem 0 0 0; color: #666;">Benutzername: <strong>${user.username}</strong></p>
+      </div>
       <p style="margin-top: 2rem;">Sobald dein Account aktiviert ist, kannst du:</p>
       <ul>
         <li>Dich einloggen</li>
