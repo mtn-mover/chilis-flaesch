@@ -2,6 +2,7 @@
 const { verifySession } = require('./auth.js');
 const crypto = require('crypto');
 const Redis = require('ioredis');
+const { sendEmail, authorApprovedEmail } = require('./send-email');
 
 // Initialize Redis client
 let redis;
@@ -117,6 +118,10 @@ module.exports = async function handler(req, res) {
           return res.status(400).json({ error: 'Admin-Rolle kann nicht geändert werden' });
         }
 
+        // Check if role is being changed to 'author' to send notification email
+        const oldRole = users[userIndex].role;
+        const isBecomingAuthor = userData.role && userData.role === 'author' && oldRole !== 'author';
+
         // Update user fields
         if (userData.displayName) {
           users[userIndex].displayName = userData.displayName;
@@ -136,6 +141,22 @@ module.exports = async function handler(req, res) {
         }
 
         await redis.set('users', JSON.stringify(users));
+
+        // Send email notification if user was promoted to author
+        if (isBecomingAuthor && users[userIndex].email) {
+          try {
+            const emailData = authorApprovedEmail(users[userIndex]);
+            const emailResult = await sendEmail(emailData);
+            if (!emailResult.success) {
+              console.error('Failed to send author approval email:', emailResult.error);
+            } else {
+              console.log('Author approval email sent to:', users[userIndex].email);
+            }
+          } catch (emailError) {
+            console.error('Error sending author approval email:', emailError);
+            // Don't fail the user update if email fails
+          }
+        }
 
         return res.status(200).json({
           success: true,

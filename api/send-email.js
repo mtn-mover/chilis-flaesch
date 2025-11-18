@@ -99,6 +99,56 @@ function rejectedCommentEmail(comment, article) {
   };
 }
 
+// Template für Autoren-Freischaltung
+function authorApprovedEmail(user) {
+  return {
+    to: user.email,
+    subject: 'Gratulation! Du kannst jetzt Artikel veröffentlichen',
+    html: `
+      <h2>Herzlichen Glückwunsch, ${user.displayName}! 🎉</h2>
+      <p>Der Administrator hat dir die Berechtigung erteilt, Artikel auf <strong>Fläsch Info</strong> zu veröffentlichen!</p>
+
+      <div style="background: linear-gradient(135deg, #FF6B6B 0%, #FFA500 100%); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0; text-align: center;">
+        <h3 style="margin: 0 0 0.5rem 0; color: white;">Du bist jetzt Autor!</h3>
+        <p style="margin: 0; font-size: 1.1rem;">Logge dich ein und erstelle deinen ersten satirischen Artikel.</p>
+      </div>
+
+      <h3>📝 Wichtige Redaktionsrichtlinien:</h3>
+      <div style="background: #fff3cd; border-left: 4px solid #FFA500; padding: 1rem; margin: 1rem 0;">
+        <p style="margin: 0 0 0.5rem 0;"><strong>⚠️ Bitte beachte folgende Regeln:</strong></p>
+        <ul style="margin: 0.5rem 0; padding-left: 1.5rem; line-height: 1.8;">
+          <li><strong>KEINE echten Namen</strong> aus Protokollen oder offiziellen Dokumenten verwenden</li>
+          <li><strong>KEINE Beleidigungen oder Diffamierungen</strong> - bleibe respektvoll</li>
+          <li><strong>Satirisch, aber nicht böswillig</strong> - Humor ja, Hetze nein</li>
+          <li><strong>Verwende Pseudonyme</strong> und lustige Funktionsbezeichnungen</li>
+          <li><strong>Schweizer Hochdeutsch</strong> verwenden (keine ß, Guillemets «» statt "")</li>
+        </ul>
+      </div>
+
+      <h3>🌶️ Etablierte Charaktere (kannst du verwenden):</h3>
+      <ul style="line-height: 1.8;">
+        <li><strong>Der CEO</strong> - Gemeindepräsident</li>
+        <li><strong>Der Generalsekretär</strong> - Vorsitzender der GPK</li>
+        <li><strong>Der Adjutant</strong> - Der Abwart</li>
+        <li><strong>El Diablo Müller</strong> - Dorfbewohner mit starken Meinungen</li>
+      </ul>
+
+      <h3>🚀 So geht's weiter:</h3>
+      <ol style="line-height: 1.8;">
+        <li>Logge dich ein auf <a href="https://www.flaesch.info/admin.html">Fläsch Info</a></li>
+        <li>Klicke auf "Neuer Artikel"</li>
+        <li>Fülle das Formular aus und lass Claude den Artikel generieren</li>
+        <li>Überprüfe und veröffentliche deinen Artikel</li>
+      </ol>
+
+      <p style="margin-top: 2rem;">Wir freuen uns auf deine satirischen Beiträge über Fläsch!</p>
+
+      <hr>
+      <p style="color: #666; font-size: 0.9em;">Diese E-Mail wurde automatisch von Fläsch Info generiert.</p>
+    `
+  };
+}
+
 // Template für Account-Aktivierung
 function activationEmail(user, activationToken) {
   const activationUrl = `https://www.flaesch.info/activate.html?token=${activationToken}`;
@@ -137,5 +187,6 @@ module.exports = {
   sendEmail,
   newRegistrationEmail,
   rejectedCommentEmail,
-  activationEmail
+  activationEmail,
+  authorApprovedEmail
 };
