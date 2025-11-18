@@ -1351,6 +1351,83 @@ Die Dorfführung implementiert verkehrspolitische Maßnahmen in einem Ort ohne n
 
 *Satirischer Kontext: Übertreibte Darstellung kommunaler Hundepolitik*
 
+
+### Fläsch ist bereit für den Jahr-100-Winter! (November 2025)
+**Kategorie:** politik
+## Zusammenfassung: "Fläsch ist bereit für den Jahr-100-Winter!"
+
+**Neue Charaktere:**
+• Der Zweckverband - zuständig für das Aufstellen der Schneepfähle
+
+**Hauptereignis:**
+• Mitte November wurden wieder die traditionellen Holzpfähle mit farbigen Ringen entlang der Straßen aufgestellt, um für den Winter gerüstet zu sein.
+
+**Wichtige Details:**
+• Mindestens 10 Jahre kein signifikanter Schneefall in Fläsch
+• Pfähle werden "fast traditionell" jedes Jahr aufgestellt
+• Satirische "Statistik": Mit jedem milden Winter steigt die Wahrscheinlichkeit eines "Jahrhundertwinters"
+
+**Für zukünftige Artikel:**
+• Etablierte Tradition der jährlichen, möglicherweise sinnlosen Schneepfahl-Aktion
+• Klimawandel-Thematik: Fläsch hat offenbar sehr milde Winter
+• Der Zweckverband als wiederkehrende Institution für kommunale Maßnahmen
+• Potential für Follow-up: Wie war der tatsächliche Winter? Wurden die Pfähle gebraucht?
+• Satirisches Element: Absurde Logik bei Wahrscheinlichkeitsberechnungen für Extremwetter
+
+*Rechtschreibfehler im Original belassen zur Authentizität der Satire.*
+
+
+### Traktandenliste der nächsten Generalversammlung (November 2025)
+**Kategorie:** kurioses
+## Analyse des satirischen Artikels
+
+**1. Neue Charaktere:**
+- Keine spezifischen Namen erwähnt
+- Implizit: Gemeindeverwaltung Fläsch (als kollektiver "Charakter" mit ironisch dargestellter Inkompetenz)
+
+**2. Hauptereignis:**
+- Ankündigung einer Gemeindeversammlung am 2. Dezember 2025 um 19:30 Uhr im Mehrzweckgebäude
+- Satirische Darstellung einer überstürzten, unrealistischen Umsetzung des gesamten Gemeindeleitbilds "noch im laufenden Jahr"
+
+**3. Wichtige Details:**
+- **Datum:** Dienstag, 2. Dezember 2025, 19:30 Uhr
+- **Ort:** Mehrzweckgebäude Fläsch
+- **Satirische Elemente:** "Wir scheuen keine Kosten", "Gesetze und Fristen interessieren uns (auch) dieses Mal nicht"
+- **Verweis:** Leitbild "Zukunft Fläsch 2028"
+- **Ironie:** Expliziter Verzicht auf Arbeitsgruppen, "deren Punkte wir ohnehin noch nie berücksichtigt haben"
+
+**4. Für zukünftige Artikel:**
+- Etabliert laufende Satire über Gemeindeinkompetenzen (Missachtung von Gesetzen/Fristen, Ignorieren von Arbeitsgruppen)
+- Referenzpunkt für weitere Artikel über Gemeindeversammlungen oder Leitbild-Umsetzung
+- Zeigt wiederkehrende Probleme der Gemeindeverwaltung als satirisches Thema
+
+
+### Fläsch ist auf den Hund gekommen (November 2025)
+**Kategorie:** kurioses
+## Analyse des satirischen Artikels "Fläsch ist auf den Hund gekommen"
+
+**Neue Charaktere:**
+• Der Adjudant - scheint eine lokale Autorität/Amtsperson zu sein, die über die Hundepolitik Bescheid weiß
+
+**Hauptereignis:**
+• Fläsch führt eine radikale Kehrtwende in der Hundepolitik durch: Statt Hundesteuer zu kassieren, zahlt die Gemeinde nun Geld an Hundebesitzer
+• Das Dorf positioniert sich strategisch als "Hundedorf"
+
+**Wichtige Details:**
+• Früher: Hundesteuer mit progressiver Staffelung (jeder weitere Hund teurer)
+• Neu: Finanzielle Belohnung für Hundehaltung
+• Symbolische Maßnahme: Zusätzliche "Robidogs" (Hundekot-Behälter) am Rhein aufgestellt
+• Ein neuer Robidog neben einem bestehenden installiert
+
+**Für zukünftige Artikel:**
+• Überwachen der Entwicklung der Hundepopulation in Fläsch
+• Mögliche Budgetauswirkungen der neuen Hundepolitik
+• Reaktionen von Nachbargemeinden auf Fläschs "Hundedorf"-Status
+• Rolle des Adjudanten als wiederkehrende Figur für Gemeindepolitik
+• Potenzielle Konflikte zwischen "Hundedorf-Vision" und praktischen Problemen
+
+*Satirischer Kern: Absurde Gemeindepolitik und deren unerwartete Wendungen*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
