@@ -161,10 +161,31 @@
     margin-bottom: 1.5rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     transition: box-shadow 0.3s;
+    position: relative;
 }
 
 .comment:hover {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Reply comments - visual distinction */
+.comment-reply {
+    background: #f8f9fa;
+    border-left: 3px solid #667eea;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.comment-reply:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.comment-reply::before {
+    content: '↩️';
+    position: absolute;
+    left: -1.5rem;
+    top: 1.5rem;
+    font-size: 1.2rem;
+    opacity: 0.5;
 }
 
 .comment-header {

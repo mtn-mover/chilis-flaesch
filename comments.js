@@ -117,14 +117,58 @@ class ArticleInteractions {
             return;
         }
 
-        container.innerHTML = comments.map(comment => this.renderComment(comment)).join('');
+        // Build comment tree structure
+        const commentTree = this.buildCommentTree(comments);
+        container.innerHTML = this.renderCommentTree(commentTree);
     }
 
-    renderComment(comment) {
+    buildCommentTree(comments) {
+        // Separate top-level comments and replies
+        const topLevel = comments.filter(c => !c.parentId);
+        const replies = comments.filter(c => c.parentId);
+
+        // Build tree structure
+        const tree = topLevel.map(comment => ({
+            ...comment,
+            replies: this.getCommentReplies(comment.id, replies)
+        }));
+
+        return tree;
+    }
+
+    getCommentReplies(parentId, allReplies) {
+        const directReplies = allReplies.filter(r => r.parentId === parentId);
+        return directReplies.map(reply => ({
+            ...reply,
+            replies: this.getCommentReplies(reply.id, allReplies)
+        }));
+    }
+
+    renderCommentTree(tree) {
+        return tree.map(comment => this.renderCommentWithReplies(comment, 0)).join('');
+    }
+
+    renderCommentWithReplies(comment, level) {
+        const indent = level * 2; // 2rem per level
+        const commentHtml = this.renderComment(comment, indent);
+
+        let repliesHtml = '';
+        if (comment.replies && comment.replies.length > 0) {
+            repliesHtml = comment.replies.map(reply =>
+                this.renderCommentWithReplies(reply, level + 1)
+            ).join('');
+        }
+
+        return commentHtml + repliesHtml;
+    }
+
+    renderComment(comment, indent = 0) {
         const date = new Date(comment.timestamp).toLocaleString('de-CH');
+        const isReply = indent > 0;
+        const marginLeft = indent;
 
         return `
-            <div class="comment" id="comment-${comment.id}">
+            <div class="comment ${isReply ? 'comment-reply' : ''}" id="comment-${comment.id}" style="margin-left: ${marginLeft}rem;">
                 <div class="comment-header">
                     <strong>${comment.displayName}</strong>
                     <span class="comment-date">${date}</span>
@@ -134,7 +178,7 @@ class ArticleInteractions {
                     <button class="comment-like-btn" onclick="window.articleInteractions.toggleCommentLike('${comment.id}')">
                         ❤️ ${comment.likes || 0}
                     </button>
-                    ${this.user ? `<button class="comment-reply-btn" onclick="window.articleInteractions.replyToComment('${comment.id}', '${comment.displayName}')">Antworten</button>` : ''}
+                    ${this.user ? `<button class="comment-reply-btn" onclick="window.articleInteractions.replyToComment('${comment.id}', '${this.escapeHtml(comment.displayName)}')">Antworten</button>` : ''}
                 </div>
             </div>
         `;
@@ -178,6 +222,18 @@ class ArticleInteractions {
         submitBtn.textContent = 'Wird veröffentlicht...';
 
         try {
+            // Build request body
+            const requestBody = {
+                articleSlug: this.articleSlug,
+                articleTitle: this.articleTitle,
+                commentText: commentText
+            };
+
+            // Add parentId if replying to a comment
+            if (this.replyingToId) {
+                requestBody.parentId = this.replyingToId;
+            }
+
             // Submit comment
             const response = await fetch('/api/comments?action=create', {
                 method: 'POST',
@@ -185,11 +241,7 @@ class ArticleInteractions {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${this.sessionToken}`
                 },
-                body: JSON.stringify({
-                    articleSlug: this.articleSlug,
-                    articleTitle: this.articleTitle,
-                    commentText: commentText
-                })
+                body: JSON.stringify(requestBody)
             });
 
             const result = await response.json();
@@ -198,6 +250,7 @@ class ArticleInteractions {
                 if (result.approved) {
                     alert('✅ Kommentar erfolgreich veröffentlicht!');
                     document.getElementById('commentText').value = '';
+                    this.cancelReply(); // Clear reply state
                     await this.loadComments();
                 } else {
                     alert('⚠️ ' + result.message);
@@ -342,10 +395,42 @@ class ArticleInteractions {
     }
 
     replyToComment(commentId, displayName) {
+        // Store the parentId for later use
+        this.replyingToId = commentId;
+        this.replyingToName = displayName;
+
+        // Update UI to show reply mode
         const commentText = document.getElementById('commentText');
-        commentText.value = `@${displayName} `;
+        const formSection = document.getElementById('commentFormSection');
+
+        // Show reply indicator
+        let replyIndicator = document.getElementById('replyIndicator');
+        if (!replyIndicator) {
+            replyIndicator = document.createElement('div');
+            replyIndicator.id = 'replyIndicator';
+            replyIndicator.style.cssText = 'background: #e3f2fd; padding: 0.5rem 1rem; border-left: 3px solid #2196F3; margin-bottom: 1rem; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;';
+            formSection.querySelector('.comment-form').insertBefore(replyIndicator, formSection.querySelector('textarea'));
+        }
+
+        replyIndicator.innerHTML = `
+            <span style="color: #1976D2; font-weight: 600;">↩️ Antwort auf ${this.escapeHtml(displayName)}</span>
+            <button type="button" onclick="window.articleInteractions.cancelReply()" style="background: none; border: none; color: #666; cursor: pointer; font-size: 1.2rem; padding: 0; line-height: 1;">✕</button>
+        `;
+        replyIndicator.style.display = 'flex';
+
+        // Scroll to form and focus textarea
         commentText.focus();
-        commentText.scrollIntoView({ behavior: 'smooth' });
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    cancelReply() {
+        this.replyingToId = null;
+        this.replyingToName = null;
+
+        const replyIndicator = document.getElementById('replyIndicator');
+        if (replyIndicator) {
+            replyIndicator.style.display = 'none';
+        }
     }
 
     setupEventListeners() {
