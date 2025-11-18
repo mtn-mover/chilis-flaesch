@@ -1,40 +1,47 @@
 // E-Mail Service für Admin-Benachrichtigungen
-// Verwendet Vercel's integrierten E-Mail-Service oder SMTP
+// Verwendet eigenen SMTP-Server (Metanet)
 
-async function sendEmail({ to, subject, html }) {
-  // Für Production: Verwende einen E-Mail-Service wie SendGrid, Resend, oder AWS SES
-  // Hier verwende ich Resend (einfach und günstig)
+const nodemailer = require('nodemailer');
 
-  const RESEND_API_KEY = process.env.RESEND_API_KEY;
-
-  if (!RESEND_API_KEY) {
-    console.error('RESEND_API_KEY not configured');
-    return { success: false, error: 'E-Mail service not configured' };
+// SMTP Configuration
+const SMTP_CONFIG = {
+  host: process.env.SMTP_HOST || 'smtp.flaesch.info',
+  port: process.env.SMTP_PORT || 587,
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: process.env.SMTP_USER || 'send@flaesch.info',
+    pass: process.env.SMTP_PASS || 'emailinfo7306'
+  },
+  tls: {
+    rejectUnauthorized: false // Allow self-signed certificates
   }
+};
 
+// Create reusable transporter
+let transporter;
+
+function getTransporter() {
+  if (!transporter) {
+    transporter = nodemailer.createTransport(SMTP_CONFIG);
+  }
+  return transporter;
+}
+
+async function sendEmail({ to, subject, html, from }) {
   try {
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from: 'Fläsch Info <noreply@flaesch.info>',
-        to: [to],
-        subject: subject,
-        html: html
-      })
-    });
+    const transport = getTransporter();
 
-    const data = await response.json();
+    const mailOptions = {
+      from: from || `Fläsch Info <send@flaesch.info>`,
+      to: to,
+      subject: subject,
+      html: html
+    };
 
-    if (!response.ok) {
-      console.error('Resend API error:', data);
-      return { success: false, error: data.message };
-    }
+    const info = await transport.sendMail(mailOptions);
+    console.log('Email sent successfully:', info.messageId);
 
-    return { success: true, id: data.id };
+    return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error('Send email error:', error);
     return { success: false, error: error.message };

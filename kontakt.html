@@ -150,33 +150,6 @@
             padding: 0 2rem;
         }
 
-        /* Coming Soon Notice */
-        .coming-soon {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            border: 3px dashed #8B4513;
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
-        .coming-soon h3 {
-            color: #8B4513;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .coming-soon p {
-            color: #5D4037;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
 
         /* Contact Form */
         .contact-section {
@@ -184,22 +157,25 @@
             border-radius: 10px;
             padding: 3rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            opacity: 0.6;
-            pointer-events: none;
-            position: relative;
         }
 
-        .contact-section::after {
-            content: '🚧 Bald verfügbar 🚧';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-15deg);
-            font-size: 2rem;
-            font-weight: bold;
-            color: rgba(139, 69, 19, 0.3);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            pointer-events: none;
+        .message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .message.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
         }
 
         .form-group {
@@ -332,7 +308,7 @@
                 <li><a href="index.html#geschichten">Unsere Geschichten</a></li>
                 <li><a href="ueber-uns.html">Über uns</a></li>
                 <li><a href="kontakt.html">Kontakt</a></li>
-                <li><a href="admin.html" style="opacity: 0.5; font-size: 0.85rem;">Admin</a></li>
+                <li><a href="my-articles.html" style="opacity: 0.5; font-size: 0.85rem;">Admin</a></li>
             </ul>
         </div>
     </nav>
@@ -347,46 +323,96 @@
 
     <!-- Main Content -->
     <div class="container">
-        <!-- Coming Soon Notice -->
-        <div class="coming-soon">
-            <h3>🚧 Baustelle voraus! 🚧</h3>
-            <p>
-                <strong>Unser Kontaktformular macht gerade eine Ausbildung zum Schweizer Briefträger.</strong><br><br>
-                Es lernt noch, wie man Nachrichten korrekt zustellt - zwischen Fläsch, dem digitalen Nirgendwo
-                und zurück. 📬<br><br>
-                Sobald es seine Prüfung bestanden hat (und wir endlich Zeit gefunden haben, den Code zu schreiben),
-                wird es hier aktiviert!<br><br>
-                <em>Geschätzte Wartezeit: Irgendwann zwischen «bald» und «wenn die Weinlese vorbei ist». 🍷</em>
-            </p>
-        </div>
-
-        <!-- Contact Form (Disabled) -->
+        <!-- Contact Form -->
         <div class="contact-section">
-            <form>
+            <div class="message" id="message"></div>
+
+            <form id="contactForm">
                 <div class="form-group">
-                    <label for="name">Dein Name</label>
-                    <input type="text" id="name" name="name" placeholder="Max Mustermann" disabled>
+                    <label for="name">Dein Name <span style="color: #C16F31;">*</span></label>
+                    <input type="text" id="name" name="name" placeholder="Max Mustermann" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Deine E-Mail</label>
-                    <input type="email" id="email" name="email" placeholder="max@example.com" disabled>
+                    <label for="email">Deine E-Mail <span style="color: #C16F31;">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="max@example.com" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="subject">Betreff</label>
-                    <input type="text" id="subject" name="subject" placeholder="Meine sensationelle Story-Idee..." disabled>
+                    <label for="subject">Betreff <span style="color: #C16F31;">*</span></label>
+                    <input type="text" id="subject" name="subject" placeholder="Meine sensationelle Story-Idee..." required>
                 </div>
 
                 <div class="form-group">
-                    <label for="message">Deine Nachricht</label>
-                    <textarea id="message" name="message" placeholder="Erzähl uns deine Geschichte..." disabled></textarea>
+                    <label for="messageText">Deine Nachricht <span style="color: #C16F31;">*</span></label>
+                    <textarea id="messageText" name="message" placeholder="Erzähl uns deine Geschichte..." required></textarea>
                 </div>
 
-                <button type="submit" class="submit-button" disabled>Nachricht absenden (bald verfügbar)</button>
+                <button type="submit" class="submit-button" id="submitBtn">🌶️ Nachricht absenden</button>
             </form>
         </div>
     </div>
+
+    <script>
+        const form = document.getElementById('contactForm');
+        const messageDiv = document.getElementById('message');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const messageText = document.getElementById('messageText').value.trim();
+
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Wird gesendet...';
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        subject,
+                        message: messageText
+                    })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.error || 'Fehler beim Versenden');
+                }
+
+                // Success
+                showMessage('success', '✅ ' + result.message);
+                form.reset();
+
+            } catch (error) {
+                console.error('Contact form error:', error);
+                showMessage('error', '❌ ' + error.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = '🌶️ Nachricht absenden';
+            }
+        });
+
+        function showMessage(type, text) {
+            messageDiv.className = 'message ' + type;
+            messageDiv.textContent = text;
+            messageDiv.style.display = 'block';
+
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
+    </script>
 
     <!-- Footer -->
     <footer>
