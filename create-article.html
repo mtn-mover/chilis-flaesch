@@ -1084,14 +1084,11 @@
         // Editor Functions
         let currentEditorMode = 'visual';
 
-        async function openEditor() {
+        function openEditor() {
             if (!currentDraft || !currentDraft.html) {
                 alert('Kein Artikel zum Bearbeiten vorhanden');
                 return;
             }
-
-            // Reload display names to ensure we have the latest list
-            await loadDisplayNames();
 
             const modal = document.getElementById('editorModal');
             const richEditor = document.getElementById('richEditor');
@@ -1101,32 +1098,45 @@
             const authorDisplayNameSelect = document.getElementById('editorAuthorDisplayName');
             const subtitleInput = document.getElementById('editorSubtitle');
 
-            // Fill title, category, author display name and subtitle fields
+            // Fill title, category and subtitle fields immediately
             titleInput.value = currentDraft.title || '';
             categorySelect.value = currentDraft.category || 'kurioses';
-
-            // Set author display name if it exists in the dropdown, otherwise use first option
-            if (currentDraft.authorDisplayName) {
-                const hasOption = Array.from(authorDisplayNameSelect.options).some(opt => opt.value === currentDraft.authorDisplayName);
-                if (hasOption) {
-                    authorDisplayNameSelect.value = currentDraft.authorDisplayName;
-                } else {
-                    // If the old author name doesn't exist anymore, use the first available option
-                    authorDisplayNameSelect.selectedIndex = 0;
-                }
-            } else {
-                authorDisplayNameSelect.selectedIndex = 0;
-            }
-
             subtitleInput.value = currentDraft.subtitle || '';
+
+            // Save the author name to set after loading
+            const savedAuthorName = currentDraft.authorDisplayName;
 
             // Fill both editors with current HTML
             richEditor.innerHTML = currentDraft.html;
             textarea.value = currentDraft.html;
 
-            // Show modal in visual mode
+            // Show modal in visual mode immediately (non-blocking)
             switchEditorMode('visual');
             modal.classList.add('active');
+
+            // Reload display names in background (non-blocking)
+            loadDisplayNames().then(() => {
+                // After loading, set the correct author display name
+                if (savedAuthorName) {
+                    const hasOption = Array.from(authorDisplayNameSelect.options).some(opt => opt.value === savedAuthorName);
+                    if (hasOption) {
+                        authorDisplayNameSelect.value = savedAuthorName;
+                    } else {
+                        // If the old author name doesn't exist anymore, use the first available option
+                        if (authorDisplayNameSelect.options.length > 0) {
+                            authorDisplayNameSelect.selectedIndex = 0;
+                        }
+                    }
+                } else if (authorDisplayNameSelect.options.length > 0) {
+                    authorDisplayNameSelect.selectedIndex = 0;
+                }
+            }).catch(err => {
+                console.error('Error loading display names:', err);
+                // If loading fails, try to set saved name or leave empty
+                if (savedAuthorName) {
+                    authorDisplayNameSelect.value = savedAuthorName;
+                }
+            });
         }
 
         function closeEditor() {
