@@ -99,6 +99,59 @@ function rejectedCommentEmail(comment, article) {
   };
 }
 
+// Template für Benutzername-Erinnerung
+function usernameReminderEmail(user) {
+  return {
+    to: user.email,
+    subject: 'Dein Benutzername für Fläsch Info',
+    html: `
+      <h2>Benutzername-Erinnerung</h2>
+      <p>Du hast deinen Benutzername für <strong>Fläsch Info</strong> angefordert.</p>
+
+      <div style="background: #f5f5f5; padding: 1.5rem; border-radius: 8px; margin: 2rem 0; text-align: center;">
+        <p style="margin: 0 0 0.5rem 0; color: #666;">Dein Benutzername ist:</p>
+        <p style="margin: 0; font-size: 1.5rem; font-weight: bold; color: #333;">${user.username}</p>
+      </div>
+
+      <p>Du kannst dich jetzt mit diesem Benutzernamen auf <a href="https://www.flaesch.info/admin.html">Fläsch Info</a> einloggen.</p>
+
+      <hr>
+      <p style="color: #666; font-size: 0.9em;">Falls du diese E-Mail nicht angefordert hast, kannst du sie einfach ignorieren.</p>
+    `
+  };
+}
+
+// Template für Passwort-Reset
+function passwordResetEmail(user, resetToken) {
+  const resetUrl = `https://www.flaesch.info/reset-password.html?token=${resetToken}`;
+
+  return {
+    to: user.email,
+    subject: 'Passwort zurücksetzen - Fläsch Info',
+    html: `
+      <h2>Passwort zurücksetzen</h2>
+      <p>Du hast eine Anfrage zum Zurücksetzen deines Passworts für <strong>Fläsch Info</strong> gestellt.</p>
+
+      <p style="margin: 2rem 0;">
+        <a href="${resetUrl}" style="background-color: #e63946; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block;">
+          Neues Passwort erstellen
+        </a>
+      </p>
+
+      <p>Oder kopiere diesen Link in deinen Browser:</p>
+      <p style="word-break: break-all; color: #666;">${resetUrl}</p>
+
+      <div style="background: #fff3cd; border-left: 4px solid #FFA500; padding: 1rem; margin: 2rem 0;">
+        <p style="margin: 0;"><strong>⚠️ Wichtig:</strong></p>
+        <p style="margin: 0.5rem 0 0 0;">Dieser Link ist nur 1 Stunde gültig. Danach musst du eine neue Anfrage stellen.</p>
+      </div>
+
+      <hr>
+      <p style="color: #666; font-size: 0.9em;">Falls du diese Anfrage nicht gestellt hast, ignoriere diese E-Mail einfach. Dein Passwort bleibt unverändert.</p>
+    `
+  };
+}
+
 // Template für Autoren-Freischaltung
 function authorApprovedEmail(user) {
   return {
@@ -188,5 +241,7 @@ module.exports = {
   newRegistrationEmail,
   rejectedCommentEmail,
   activationEmail,
-  authorApprovedEmail
+  authorApprovedEmail,
+  usernameReminderEmail,
+  passwordResetEmail
 };

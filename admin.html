@@ -117,6 +117,24 @@
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
+        .forgot-links {
+            text-align: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .forgot-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin: 0 0.5rem;
+        }
+
+        .forgot-links a:hover {
+            text-decoration: underline;
+        }
+
         .back-link {
             text-align: center;
             margin-top: 1.5rem;
@@ -136,6 +154,93 @@
             background: #f8d7da;
             border: 1px solid #f5c6cb;
             color: #721c24;
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .modal p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .modal input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .modal-button {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .modal-button.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .modal-button.secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .modal-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .success-message {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
             padding: 0.75rem;
             border-radius: 5px;
             margin-bottom: 1rem;
@@ -178,10 +283,44 @@
             <button type="submit" class="login-button">🔐 Einloggen</button>
         </form>
 
+        <div class="forgot-links">
+            <a href="#" id="forgotUsernameLink">Benutzername vergessen?</a>
+            <span style="color: #ccc;">|</span>
+            <a href="#" id="forgotPasswordLink">Passwort vergessen?</a>
+        </div>
+
         <div class="back-link">
             <a href="register.html">Noch kein Account? Jetzt registrieren →</a>
             <br><br>
             <a href="index.html">← Zurück zur Startseite</a>
+        </div>
+    </div>
+
+    <!-- Forgot Username Modal -->
+    <div class="modal" id="forgotUsernameModal">
+        <div class="modal-content">
+            <h2>Benutzername vergessen?</h2>
+            <p>Gib deine E-Mail-Adresse ein und wir senden dir deinen Benutzernamen zu.</p>
+            <div id="forgotUsernameMessage" class="success-message"></div>
+            <input type="email" id="forgotUsernameEmail" placeholder="E-Mail-Adresse" />
+            <div class="modal-buttons">
+                <button class="modal-button secondary" onclick="closeForgotUsernameModal()">Abbrechen</button>
+                <button class="modal-button primary" onclick="sendUsernameReminder()">Senden</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal" id="forgotPasswordModal">
+        <div class="modal-content">
+            <h2>Passwort vergessen?</h2>
+            <p>Gib deine E-Mail-Adresse ein und wir senden dir einen Link zum Zurücksetzen deines Passworts.</p>
+            <div id="forgotPasswordMessage" class="success-message"></div>
+            <input type="email" id="forgotPasswordEmail" placeholder="E-Mail-Adresse" />
+            <div class="modal-buttons">
+                <button class="modal-button secondary" onclick="closeForgotPasswordModal()">Abbrechen</button>
+                <button class="modal-button primary" onclick="sendPasswordReset()">Senden</button>
+            </div>
         </div>
     </div>
 
@@ -288,6 +427,95 @@
             localStorage.removeItem('userDisplayName');
             localStorage.removeItem('userRole');
             localStorage.removeItem('loginTimestamp');
+        }
+
+        // Forgot Username/Password Functions
+        document.getElementById('forgotUsernameLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('forgotUsernameModal').classList.add('show');
+        });
+
+        document.getElementById('forgotPasswordLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('forgotPasswordModal').classList.add('show');
+        });
+
+        function closeForgotUsernameModal() {
+            document.getElementById('forgotUsernameModal').classList.remove('show');
+            document.getElementById('forgotUsernameEmail').value = '';
+            document.getElementById('forgotUsernameMessage').style.display = 'none';
+        }
+
+        function closeForgotPasswordModal() {
+            document.getElementById('forgotPasswordModal').classList.remove('show');
+            document.getElementById('forgotPasswordEmail').value = '';
+            document.getElementById('forgotPasswordMessage').style.display = 'none';
+        }
+
+        async function sendUsernameReminder() {
+            const email = document.getElementById('forgotUsernameEmail').value;
+            const messageDiv = document.getElementById('forgotUsernameMessage');
+
+            if (!email) {
+                alert('Bitte E-Mail-Adresse eingeben');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/forgot-username', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    messageDiv.textContent = result.message;
+                    messageDiv.style.display = 'block';
+                    setTimeout(() => {
+                        closeForgotUsernameModal();
+                    }, 3000);
+                } else {
+                    alert(result.error || 'Fehler beim Senden');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Fehler beim Senden der Anfrage');
+            }
+        }
+
+        async function sendPasswordReset() {
+            const email = document.getElementById('forgotPasswordEmail').value;
+            const messageDiv = document.getElementById('forgotPasswordMessage');
+
+            if (!email) {
+                alert('Bitte E-Mail-Adresse eingeben');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/forgot-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    messageDiv.textContent = result.message;
+                    messageDiv.style.display = 'block';
+                    setTimeout(() => {
+                        closeForgotPasswordModal();
+                    }, 3000);
+                } else {
+                    alert(result.error || 'Fehler beim Senden');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Fehler beim Senden der Anfrage');
+            }
         }
     </script>
     <script src="cookie-consent.js"></script>
