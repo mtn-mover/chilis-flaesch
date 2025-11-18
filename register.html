@@ -206,6 +206,86 @@
             color: #155724;
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FFA500 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .modal h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .modal-button {
+            display: inline-block;
+            padding: 12px 32px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FFA500 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .modal-button:hover {
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 600px) {
             .register-container {
                 padding: 2rem;
@@ -213,6 +293,10 @@
 
             .logo-section h1 {
                 font-size: 1.5rem;
+            }
+
+            .modal-content {
+                padding: 2rem;
             }
         }
     </style>
@@ -291,6 +375,16 @@
         </div>
     </div>
 
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">📧</div>
+            <h2>Überprüfe deine E-Mails!</h2>
+            <p id="modalMessage">Wir haben dir einen Aktivierungslink an deine E-Mail-Adresse gesendet. Bitte klicke auf den Link, um deinen Account zu aktivieren.</p>
+            <a href="index.html" class="modal-button">Zur Startseite</a>
+        </div>
+    </div>
+
     <script>
         const form = document.getElementById('registerForm');
         const message = document.getElementById('message');
@@ -357,14 +451,16 @@
                     throw new Error(result.error || 'Registrierung fehlgeschlagen');
                 }
 
-                // Success
-                showMessage('success', '🎉 ' + result.message);
+                // Success - Show modal instead of redirect
                 form.reset();
+                submitBtn.disabled = false;
+                submitBtn.textContent = '🌶️ Jetzt registrieren';
 
-                // Redirect to login after 3 seconds
-                setTimeout(() => {
-                    window.location.href = 'admin.html';
-                }, 3000);
+                // Show success modal
+                const modal = document.getElementById('successModal');
+                const modalMessage = document.getElementById('modalMessage');
+                modalMessage.textContent = result.message;
+                modal.classList.add('show');
 
             } catch (error) {
                 console.error('Registration error:', error);

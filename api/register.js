@@ -2,7 +2,7 @@
 
 const crypto = require('crypto');
 const Redis = require('ioredis');
-const { sendEmail, newRegistrationEmail } = require('./send-email');
+const { sendEmail, activationEmail } = require('./send-email');
 
 // Initialize Redis client
 let redis;
@@ -67,6 +67,9 @@ module.exports = async function handler(req, res) {
       return res.status(409).json({ error: 'E-Mail-Adresse bereits registriert' });
     }
 
+    // Generate activation token
+    const activationToken = crypto.randomBytes(32).toString('hex');
+
     // Create new user
     const newUser = {
       username: username,
@@ -76,18 +79,20 @@ module.exports = async function handler(req, res) {
       role: 'reader', // Startet immer als reader
       authorRequested: requestAuthor || false, // User möchte Autor werden
       createdAt: new Date().toISOString(),
-      approved: false // Muss vom Admin freigeschaltet werden
+      emailVerified: false, // Muss E-Mail verifizieren
+      approved: false, // Wird automatisch auf true gesetzt bei E-Mail-Verifizierung
+      activationToken: activationToken
     };
 
     users.push(newUser);
     await redis.set('users', JSON.stringify(users));
 
-    // Send email to admin (don't fail registration if email fails)
+    // Send activation email to user (don't fail registration if email fails)
     try {
-      const emailData = newRegistrationEmail(newUser);
+      const emailData = activationEmail(newUser, activationToken);
       const emailResult = await sendEmail(emailData);
       if (!emailResult.success) {
-        console.error('Failed to send registration email:', emailResult.error);
+        console.error('Failed to send activation email:', emailResult.error);
       }
     } catch (emailError) {
       console.error('Email sending error:', emailError);
@@ -96,7 +101,7 @@ module.exports = async function handler(req, res) {
 
     return res.status(201).json({
       success: true,
-      message: 'Registrierung erfolgreich! Sie erhalten eine Bestätigung, sobald Ihr Account freigeschaltet wurde.',
+      message: 'Registrierung erfolgreich! Bitte überprüfe deine E-Mails und klicke auf den Aktivierungslink.',
       username: newUser.username,
       displayName: newUser.displayName,
       authorRequested: newUser.authorRequested

@@ -99,8 +99,39 @@ function rejectedCommentEmail(comment, article) {
   };
 }
 
+// Template für Account-Aktivierung
+function activationEmail(user, activationToken) {
+  const activationUrl = `https://www.flaesch.info/activate.html?token=${activationToken}`;
+
+  return {
+    to: user.email,
+    subject: 'Aktiviere deinen Fläsch Info Account',
+    html: `
+      <h2>Willkommen bei Fläsch Info, ${user.displayName}!</h2>
+      <p>Vielen Dank für deine Registrierung. Um deinen Account zu aktivieren und dich einloggen zu können, klicke bitte auf den folgenden Link:</p>
+      <p style="margin: 2rem 0;">
+        <a href="${activationUrl}" style="background-color: #e63946; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block;">
+          Account aktivieren
+        </a>
+      </p>
+      <p>Oder kopiere diesen Link in deinen Browser:</p>
+      <p style="word-break: break-all; color: #666;">${activationUrl}</p>
+      <p style="margin-top: 2rem;">Sobald dein Account aktiviert ist, kannst du:</p>
+      <ul>
+        <li>Dich einloggen</li>
+        <li>Artikel kommentieren</li>
+        <li>Artikel liken</li>
+        ${user.authorRequested ? '<li><strong>Artikel verfassen</strong> (nach Admin-Freigabe)</li>' : ''}
+      </ul>
+      <hr>
+      <p style="color: #666; font-size: 0.9em;">Falls du dich nicht registriert hast, kannst du diese E-Mail einfach ignorieren.</p>
+    `
+  };
+}
+
 module.exports = {
   sendEmail,
   newRegistrationEmail,
-  rejectedCommentEmail
+  rejectedCommentEmail,
+  activationEmail
 };

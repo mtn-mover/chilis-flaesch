@@ -69,6 +69,14 @@ module.exports = async function handler(req, res) {
       return res.status(401).json({ error: 'Ungültige Anmeldedaten' });
     }
 
+    // Check if email is verified (except for admin and old users without emailVerified field)
+    if (user.role !== 'admin' && user.hasOwnProperty('emailVerified') && user.emailVerified === false) {
+      return res.status(403).json({
+        error: 'Bitte aktiviere zuerst deinen Account über den Link in deiner E-Mail.',
+        requiresEmailVerification: true
+      });
+    }
+
     // Check if user is approved (except for admin)
     if (user.role !== 'admin' && user.approved === false) {
       return res.status(403).json({

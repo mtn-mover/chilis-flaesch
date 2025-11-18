@@ -80,6 +80,19 @@ async function createComment(req, res) {
     return res.status(401).json({ error: 'Nicht angemeldet' });
   }
 
+  // Check if user is approved for commenting (get user data from Redis)
+  const usersJson = await redis.get('users');
+  const users = usersJson ? JSON.parse(usersJson) : [];
+  const userAccount = users.find(u => u.username === user.username);
+
+  // Only allow comments from approved users (admin is always approved)
+  if (userAccount && userAccount.role !== 'admin' && userAccount.approved === false) {
+    return res.status(403).json({
+      error: 'Dein Account muss zuerst freigegeben werden, bevor du kommentieren kannst.',
+      requiresApproval: true
+    });
+  }
+
   const { articleSlug, articleTitle, commentText, parentId } = req.body;
 
   if (!articleSlug || !articleTitle || !commentText) {
