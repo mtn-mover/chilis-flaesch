@@ -159,64 +159,25 @@ class ArticleInteractions {
         }
     }
 
-    async submitComment(event) {
-        event.preventDefault();
+    async submitComment(commentText = null) {
+        // If no text provided, get from textarea
+        if (!commentText) {
+            commentText = document.getElementById('commentText').value.trim();
+        }
 
-        const commentMode = document.querySelector('input[name="commentMode"]:checked').value;
-        const commentText = document.getElementById('commentText').value.trim();
-
-        if (!commentText) return;
+        if (!commentText) {
+            alert('❌ Bitte gib einen Kommentar ein');
+            return;
+        }
 
         // Show loading
         const submitBtn = document.getElementById('submitCommentBtn');
+        const claudeBtn = document.getElementById('claudeHelpBtn');
         submitBtn.disabled = true;
-        submitBtn.textContent = 'Wird geprüft...';
+        claudeBtn.disabled = true;
+        submitBtn.textContent = 'Wird veröffentlicht...';
 
         try {
-            let finalCommentText = commentText;
-
-            // If Claude mode, generate comment first
-            if (commentMode === 'claude') {
-                submitBtn.textContent = '🤖 Claude generiert Kommentar...';
-
-                const generateResponse = await fetch('/api/generate-comment', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${this.sessionToken}`
-                    },
-                    body: JSON.stringify({
-                        articleTitle: this.articleTitle,
-                        userInput: commentText
-                    })
-                });
-
-                const generateResult = await generateResponse.json();
-
-                console.log('Generate response status:', generateResponse.status);
-                console.log('Generate result:', generateResult);
-
-                if (generateResult.success) {
-                    finalCommentText = generateResult.comment;
-
-                    // Show preview modal
-                    const accepted = await this.showCommentPreview(finalCommentText);
-                    if (!accepted) {
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = '📨 Kommentar absenden';
-                        return;
-                    }
-                } else {
-                    const errorMsg = generateResult.error || 'Unbekannter Fehler';
-                    const errorDetails = generateResult.details ? '\n\nDetails: ' + generateResult.details : '';
-                    console.error('Generate comment failed:', generateResult);
-                    alert('❌ Fehler beim Generieren des Kommentars: ' + errorMsg + errorDetails);
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = '📨 Kommentar absenden';
-                    return;
-                }
-            }
-
             // Submit comment
             const response = await fetch('/api/comments?action=create', {
                 method: 'POST',
@@ -227,7 +188,7 @@ class ArticleInteractions {
                 body: JSON.stringify({
                     articleSlug: this.articleSlug,
                     articleTitle: this.articleTitle,
-                    commentText: finalCommentText
+                    commentText: commentText
                 })
             });
 
@@ -249,30 +210,101 @@ class ArticleInteractions {
             alert('❌ Fehler beim Absenden des Kommentars');
         } finally {
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Kommentar absenden';
+            claudeBtn.disabled = false;
+            submitBtn.textContent = '📨 Kommentar veröffentlichen';
         }
     }
 
-    showCommentPreview(commentText) {
+    async askClaudeForHelp() {
+        const commentText = document.getElementById('commentText').value.trim();
+
+        if (!commentText) {
+            alert('❌ Bitte gib zuerst Stichworte oder eine Idee ein, damit Claude dir helfen kann');
+            return;
+        }
+
+        const claudeBtn = document.getElementById('claudeHelpBtn');
+        const submitBtn = document.getElementById('submitCommentBtn');
+        const originalText = claudeBtn.textContent;
+
+        claudeBtn.disabled = true;
+        submitBtn.disabled = true;
+        claudeBtn.textContent = '🤖 Claude schreibt...';
+
+        try {
+            const generateResponse = await fetch('/api/generate-comment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.sessionToken}`
+                },
+                body: JSON.stringify({
+                    articleTitle: this.articleTitle,
+                    userInput: commentText
+                })
+            });
+
+            const generateResult = await generateResponse.json();
+
+            console.log('Generate response status:', generateResponse.status);
+            console.log('Generate result:', generateResult);
+
+            if (generateResult.success) {
+                // Show preview modal with option to publish or try again
+                const action = await this.showCommentPreview(generateResult.comment, commentText);
+
+                if (action === 'publish') {
+                    // User accepted, publish it
+                    await this.submitComment(generateResult.comment);
+                } else if (action === 'retry') {
+                    // User wants to try again, call Claude again
+                    await this.askClaudeForHelp();
+                }
+                // If 'cancel', do nothing
+            } else {
+                const errorMsg = generateResult.error || 'Unbekannter Fehler';
+                const errorDetails = generateResult.details ? '\n\nDetails: ' + generateResult.details : '';
+                console.error('Generate comment failed:', generateResult);
+                alert('❌ Fehler beim Generieren des Kommentars: ' + errorMsg + errorDetails);
+            }
+        } catch (error) {
+            console.error('Claude help error:', error);
+            alert('❌ Fehler beim Kontaktieren von Claude: ' + error.message);
+        } finally {
+            claudeBtn.disabled = false;
+            submitBtn.disabled = false;
+            claudeBtn.textContent = originalText;
+        }
+    }
+
+    showCommentPreview(commentText, originalInput) {
         return new Promise((resolve) => {
             // Create modal
             const modal = document.createElement('div');
             modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 10000;';
 
             const modalContent = document.createElement('div');
-            modalContent.style.cssText = 'background: white; padding: 2rem; border-radius: 15px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3);';
+            modalContent.style.cssText = 'background: white; padding: 2rem; border-radius: 15px; max-width: 700px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3);';
 
             modalContent.innerHTML = `
                 <h3 style="color: #8B4513; margin-bottom: 1rem;">🤖 Claude hat folgenden Kommentar generiert:</h3>
+                <div style="background: #f0f8ff; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #999;">
+                    <p style="margin: 0; font-size: 0.9rem; color: #666;"><strong>Deine Eingabe:</strong></p>
+                    <p style="margin: 0.5rem 0 0 0; color: #333;">${this.escapeHtml(originalInput)}</p>
+                </div>
                 <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; border-left: 4px solid #667eea;">
-                    <p style="margin: 0; line-height: 1.6; white-space: pre-wrap;">${this.escapeHtml(commentText)}</p>
+                    <p style="margin: 0; font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;"><strong>Claude's Kommentar:</strong></p>
+                    <p style="margin: 0; line-height: 1.6; white-space: pre-wrap; color: #333; font-size: 1rem;">${this.escapeHtml(commentText)}</p>
                 </div>
                 <p style="color: #666; font-size: 0.9rem; margin-bottom: 1.5rem;">
-                    Möchtest du diesen Kommentar veröffentlichen? Du kannst ihn auch ablehnen und manuell bearbeiten.
+                    Was möchtest du tun?
                 </p>
-                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <div style="display: flex; gap: 1rem; justify-content: flex-end; flex-wrap: wrap;">
                     <button id="cancelPreview" style="padding: 0.75rem 1.5rem; border: 2px solid #ddd; background: white; color: #666; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600;">
-                        ❌ Ablehnen
+                        ❌ Abbrechen
+                    </button>
+                    <button id="retryPreview" style="padding: 0.75rem 1.5rem; border: 2px solid #FFA500; background: white; color: #FFA500; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600;">
+                        🔄 Nochmals versuchen
                     </button>
                     <button id="acceptPreview" style="padding: 0.75rem 1.5rem; border: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600;">
                         ✅ Veröffentlichen
@@ -286,19 +318,24 @@ class ArticleInteractions {
             // Event listeners
             document.getElementById('acceptPreview').onclick = () => {
                 document.body.removeChild(modal);
-                resolve(true);
+                resolve('publish');
+            };
+
+            document.getElementById('retryPreview').onclick = () => {
+                document.body.removeChild(modal);
+                resolve('retry');
             };
 
             document.getElementById('cancelPreview').onclick = () => {
                 document.body.removeChild(modal);
-                resolve(false);
+                resolve('cancel');
             };
 
             // Close on background click
             modal.onclick = (e) => {
                 if (e.target === modal) {
                     document.body.removeChild(modal);
-                    resolve(false);
+                    resolve('cancel');
                 }
             };
         });
@@ -313,7 +350,18 @@ class ArticleInteractions {
 
     setupEventListeners() {
         document.getElementById('likeButton').addEventListener('click', () => this.toggleLike());
-        document.getElementById('commentForm').addEventListener('submit', (e) => this.submitComment(e));
+
+        // Submit button - publish directly
+        document.getElementById('submitCommentBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.submitComment();
+        });
+
+        // Claude help button
+        document.getElementById('claudeHelpBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.askClaudeForHelp();
+        });
     }
 
     escapeHtml(text) {

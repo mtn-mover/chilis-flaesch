@@ -16,28 +16,22 @@
 
     <!-- Comment Form (nur wenn eingeloggt) -->
     <div id="commentFormSection" style="display: none;">
-        <form id="commentForm" class="comment-form">
-            <div class="comment-mode-selector">
-                <label>
-                    <input type="radio" name="commentMode" value="manual" checked>
-                    <span>✍️ Selbst schreiben</span>
-                </label>
-                <label>
-                    <input type="radio" name="commentMode" value="claude">
-                    <span>🤖 Mit Claude-Hilfe</span>
-                </label>
-            </div>
-
+        <div class="comment-form">
             <textarea
                 id="commentText"
-                placeholder="Schreib einen lustigen Kommentar... (Bei Claude-Hilfe: Gib Stichworte ein)"
-                required
+                placeholder="Schreib einen lustigen Kommentar oder gib Stichworte ein..."
+                rows="4"
             ></textarea>
 
-            <button type="submit" id="submitCommentBtn" class="submit-comment-btn">
-                📨 Kommentar absenden
-            </button>
-        </form>
+            <div class="comment-buttons">
+                <button type="button" id="submitCommentBtn" class="submit-comment-btn">
+                    📨 Kommentar veröffentlichen
+                </button>
+                <button type="button" id="claudeHelpBtn" class="claude-help-btn">
+                    🤖 Claude zur Hilfe nehmen
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Login Prompt (wenn nicht eingeloggt) -->
