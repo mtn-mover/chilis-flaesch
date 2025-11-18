@@ -562,8 +562,7 @@
                 <div style="margin-bottom: 1rem;">
                     <label for="editorAuthorDisplayName" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">Autor-Anzeigename:</label>
                     <select id="editorAuthorDisplayName" style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 2px solid #ddd; border-radius: 5px; background-color: white;">
-                        <option value="der Flüsterer">der Flüsterer</option>
-                        <option value="der Insider">der Insider</option>
+                        <!-- Options will be loaded dynamically from users -->
                     </select>
                 </div>
 
@@ -653,7 +652,42 @@
                 console.error('Error loading user info:', error);
             }
         }
+
+        // Load all display names for dropdown
+        async function loadDisplayNames() {
+            try {
+                const response = await fetch('/api/manage-users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionToken,
+                        action: 'list'
+                    })
+                });
+                const result = await response.json();
+                if (response.ok && result.users) {
+                    // Get unique display names from all users
+                    const displayNames = [...new Set(result.users.map(u => u.displayName).filter(Boolean))];
+
+                    // Update dropdown
+                    const dropdown = document.getElementById('editorAuthorDisplayName');
+                    if (dropdown) {
+                        dropdown.innerHTML = '';
+                        displayNames.sort().forEach(name => {
+                            const option = document.createElement('option');
+                            option.value = name;
+                            option.textContent = name;
+                            dropdown.appendChild(option);
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading display names:', error);
+            }
+        }
+
         loadUserInfo();
+        loadDisplayNames();
 
         // Check if editing existing draft
         const urlParams = new URLSearchParams(window.location.search);
@@ -1050,11 +1084,14 @@
         // Editor Functions
         let currentEditorMode = 'visual';
 
-        function openEditor() {
+        async function openEditor() {
             if (!currentDraft || !currentDraft.html) {
                 alert('Kein Artikel zum Bearbeiten vorhanden');
                 return;
             }
+
+            // Reload display names to ensure we have the latest list
+            await loadDisplayNames();
 
             const modal = document.getElementById('editorModal');
             const richEditor = document.getElementById('richEditor');
@@ -1067,7 +1104,20 @@
             // Fill title, category, author display name and subtitle fields
             titleInput.value = currentDraft.title || '';
             categorySelect.value = currentDraft.category || 'kurioses';
-            authorDisplayNameSelect.value = currentDraft.authorDisplayName || 'der Flüsterer';
+
+            // Set author display name if it exists in the dropdown, otherwise use first option
+            if (currentDraft.authorDisplayName) {
+                const hasOption = Array.from(authorDisplayNameSelect.options).some(opt => opt.value === currentDraft.authorDisplayName);
+                if (hasOption) {
+                    authorDisplayNameSelect.value = currentDraft.authorDisplayName;
+                } else {
+                    // If the old author name doesn't exist anymore, use the first available option
+                    authorDisplayNameSelect.selectedIndex = 0;
+                }
+            } else {
+                authorDisplayNameSelect.selectedIndex = 0;
+            }
+
             subtitleInput.value = currentDraft.subtitle || '';
 
             // Fill both editors with current HTML
