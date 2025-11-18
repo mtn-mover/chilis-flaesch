@@ -48,7 +48,8 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({
       success: true,
       drafts: filteredDrafts,
-      isAdmin: isAdmin
+      isAdmin: isAdmin,
+      userDisplayName: session.displayName
     });
 
   } catch (error) {

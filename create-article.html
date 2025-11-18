@@ -614,6 +614,7 @@
         let currentDraft = null;
         let uploadedImages = [];
         let uploadedInfoFiles = [];
+        let userDisplayName = null; // Will be set after loading user info
 
         // Auth Check
         const sessionToken = localStorage.getItem('sessionToken');
@@ -635,6 +636,24 @@
                 window.location.href = 'admin.html';
             }
         }
+
+        // Load user info on page load
+        async function loadUserInfo() {
+            try {
+                const response = await fetch('/api/get-drafts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionToken })
+                });
+                const result = await response.json();
+                if (response.ok && result.userDisplayName) {
+                    userDisplayName = result.userDisplayName;
+                }
+            } catch (error) {
+                console.error('Error loading user info:', error);
+            }
+        }
+        loadUserInfo();
 
         // Check if editing existing draft
         const urlParams = new URLSearchParams(window.location.search);
@@ -920,7 +939,8 @@
                     content: payload.content,
                     html: result.html,
                     fileName: result.fileName,
-                    images: uploadedImages
+                    images: uploadedImages,
+                    authorDisplayName: userDisplayName // Set initial author display name
                 };
 
                 // Display preview with subtitle
