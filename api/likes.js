@@ -13,11 +13,26 @@ if (process.env.REDIS_URL) {
   redis = kv;
 }
 
-// Generate browser fingerprint from IP + User Agent
+// Generate browser fingerprint - prioritize client ID from header
 function generateFingerprint(req) {
-  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || 'unknown';
+  // Prioritize client ID sent from frontend (most reliable for unique user identification)
+  const clientId = req.headers['x-client-id'];
+  if (clientId) {
+    return crypto.createHash('sha256').update(`client:${clientId}`).digest('hex');
+  }
+
+  // Fallback: Use IP + User Agent + other headers (for backwards compatibility)
+  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() ||
+            req.headers['x-real-ip'] ||
+            req.socket?.remoteAddress ||
+            'unknown';
+
   const userAgent = req.headers['user-agent'] || 'unknown';
-  const combined = `${ip}-${userAgent}`;
+  const acceptLanguage = req.headers['accept-language'] || 'unknown';
+  const acceptEncoding = req.headers['accept-encoding'] || 'unknown';
+
+  // Combine multiple factors to create unique fingerprint
+  const combined = `${ip}|${userAgent}|${acceptLanguage}|${acceptEncoding}`;
   return crypto.createHash('sha256').update(combined).digest('hex');
 }
 

@@ -7,6 +7,17 @@ class ArticleInteractions {
         this.articleTitle = articleTitle;
         this.sessionToken = localStorage.getItem('sessionToken');
         this.user = null;
+        this.clientId = this.getOrCreateClientId();
+    }
+
+    getOrCreateClientId() {
+        let clientId = localStorage.getItem('clientId');
+        if (!clientId) {
+            // Generate unique client ID
+            clientId = 'client_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
+            localStorage.setItem('clientId', clientId);
+        }
+        return clientId;
     }
 
     async init() {
@@ -42,7 +53,11 @@ class ArticleInteractions {
 
     async loadLikes() {
         try {
-            const response = await fetch(`/api/likes?action=get&type=article&id=${this.articleSlug}`);
+            const response = await fetch(`/api/likes?action=get&type=article&id=${this.articleSlug}`, {
+                headers: {
+                    'X-Client-ID': this.clientId
+                }
+            });
             const result = await response.json();
 
             if (result.success) {
@@ -56,7 +71,11 @@ class ArticleInteractions {
     async toggleLike() {
         try {
             const response = await fetch(`/api/likes?action=toggle&type=article&id=${this.articleSlug}`, {
-                method: 'POST'
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Client-ID': this.clientId
+                }
             });
 
             const result = await response.json();
@@ -124,7 +143,11 @@ class ArticleInteractions {
     async toggleCommentLike(commentId) {
         try {
             const response = await fetch(`/api/likes?action=toggle&type=comment&id=${commentId}`, {
-                method: 'POST'
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Client-ID': this.clientId
+                }
             });
 
             const result = await response.json();
