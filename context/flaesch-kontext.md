@@ -1245,6 +1245,31 @@ Die Dorfführung implementiert verkehrspolitische Maßnahmen in einem Ort ohne n
 
 **Satirischer Kern:** Absurdität behördlicher Routine trotz offensichtlich veränderten Klimabedingungen.
 
+
+### Fläsch ist auf den Hund gekommen (November 2025)
+**Kategorie:** kurioses
+## Zusammenfassung: Fläsch wird zum "Hundedorf"
+
+### Neue Charaktere:
+• **Der Adjudant** - wird als Wissensträger erwähnt (ironisch, da er angeblich weiß, was die Robidogs bringen sollen)
+
+### Hauptereignis:
+• Fläsch führt eine radikale Kehrtwende in der Hundepolitik durch: Aus Steuern werden Subventionen - Hundebesitzer erhalten nun Geld pro Hund statt Steuern zu zahlen.
+
+### Wichtige Details:
+• **Vorher:** Hundesteuern, jeder zusätzliche Hund wurde teurer besteuert
+• **Nachher:** Geld für jeden gehaltenen Hund
+• **Symbolische Maßnahme:** Zusätzliche Robidogs (Hundekot-Behälter) am Rhein aufgestellt - "neuer neben einem alten"
+
+### Für zukünftige Artikel:
+• **Policy-Wechsel:** Fläsch hat grundlegend seine Hundepolitik geändert
+• **Neue Identität:** Dorf positioniert sich als "Hundedorf" 
+• **Infrastruktur:** Ausbau der Robidog-Standorte läuft
+• **Mögliche Folgen:** Potenzielle Zunahme der Hundehaltung durch finanzielle Anreize
+• **Satirischer Kontext:** Typische Übertreibung kommunaler "Visionen" und bürokratischer Symbolpolitik
+
+*Kernbotschaft: Absurde Umkehrung der üblichen Hundesteuerpolitik als Dorfmarketing-Strategie.*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
