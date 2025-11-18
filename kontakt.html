@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt - Fläsch Info | Melde dich bei uns</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfYourSiteKey"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LcRXhAsAAAAACC1n3YUzIpxY_inDqsZzao4QBMN"></script>
     <style>
         * {
             margin: 0;
@@ -460,6 +460,9 @@
             submitBtn.textContent = 'Wird gesendet...';
 
             try {
+                // Get reCAPTCHA token
+                const recaptchaToken = await grecaptcha.execute('6LcRXhAsAAAAACC1n3YUzIpxY_inDqsZzao4QBMN', { action: 'contact' });
+
                 const response = await fetch('/api/contact', {
                     method: 'POST',
                     headers: {
@@ -469,7 +472,8 @@
                         name,
                         email,
                         subject,
-                        message: messageText
+                        message: messageText,
+                        recaptchaToken
                     })
                 });
 

@@ -1,6 +1,27 @@
 // Kontaktformular API
 const { sendEmail } = require('./send-email');
 
+// reCAPTCHA verification
+async function verifyRecaptcha(token) {
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY || '6LcRXhAsAAAAADcnZb1STVvh2vPndWMZkIQ9hyH8';
+
+  try {
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `secret=${secretKey}&response=${token}`
+    });
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('reCAPTCHA verification error:', error);
+    return { success: false, error: error.message };
+  }
+}
+
 module.exports = async function handler(req, res) {
   // Handle CORS
   if (req.method === 'OPTIONS') {
@@ -11,7 +32,7 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { name, email, subject, message } = req.body;
+  const { name, email, subject, message, recaptchaToken } = req.body;
 
   // Validation
   if (!name || !email || !subject || !message) {
@@ -21,6 +42,24 @@ module.exports = async function handler(req, res) {
   // Email validation
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: 'Ungültige E-Mail-Adresse' });
+  }
+
+  // Verify reCAPTCHA
+  if (recaptchaToken) {
+    const recaptchaResult = await verifyRecaptcha(recaptchaToken);
+
+    if (!recaptchaResult.success) {
+      console.error('reCAPTCHA verification failed:', recaptchaResult);
+      return res.status(400).json({ error: 'reCAPTCHA-Verifizierung fehlgeschlagen. Bitte versuche es erneut.' });
+    }
+
+    // Check score (v3 returns a score from 0.0 to 1.0)
+    if (recaptchaResult.score < 0.5) {
+      console.warn('Low reCAPTCHA score:', recaptchaResult.score);
+      return res.status(400).json({ error: 'Verdächtige Aktivität erkannt. Bitte versuche es später erneut.' });
+    }
+
+    console.log('reCAPTCHA verified successfully. Score:', recaptchaResult.score);
   }
 
   try {
