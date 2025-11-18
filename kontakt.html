@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt - Fläsch Info | Melde dich bei uns</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfYourSiteKey"></script>
     <style>
         * {
             margin: 0;
@@ -229,6 +230,81 @@
             box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
         }
 
+        /* Success Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+            animation: slideDown 0.4s ease-out;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-title {
+            color: #8B4513;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-text {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .modal-button {
+            background: linear-gradient(135deg, #8B4513 0%, #C16F31 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+        }
+
         /* Footer */
         footer {
             background: #2c2c2c;
@@ -321,6 +397,18 @@
         </div>
     </section>
 
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon">✅</div>
+            <h2 class="modal-title">Nachricht erfolgreich versendet!</h2>
+            <p class="modal-text">
+                Vielen Dank für deine Nachricht! Wir haben sie erhalten und melden uns bald bei dir.
+            </p>
+            <button class="modal-button" onclick="closeModal()">Perfekt!</button>
+        </div>
+    </div>
+
     <!-- Main Content -->
     <div class="container">
         <!-- Contact Form -->
@@ -357,6 +445,7 @@
         const form = document.getElementById('contactForm');
         const messageDiv = document.getElementById('message');
         const submitBtn = document.getElementById('submitBtn');
+        const successModal = document.getElementById('successModal');
 
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -390,9 +479,9 @@
                     throw new Error(result.error || 'Fehler beim Versenden');
                 }
 
-                // Success
-                showMessage('success', '✅ ' + result.message);
+                // Success - Show Modal
                 form.reset();
+                showSuccessModal();
 
             } catch (error) {
                 console.error('Contact form error:', error);
@@ -402,6 +491,23 @@
                 submitBtn.textContent = '🌶️ Nachricht absenden';
             }
         });
+
+        function showSuccessModal() {
+            successModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeModal() {
+            successModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target === successModal) {
+                closeModal();
+            }
+        }
 
         function showMessage(type, text) {
             messageDiv.className = 'message ' + type;
