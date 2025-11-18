@@ -163,7 +163,10 @@ ${styleInstruction}
 - Verwende IMMER die Funktionsbezeichnungen: CEO, Generalsekretär, Adjutant
 - Erfinde lustige Pseudonyme für alle anderen Personen
 - KEINE Beleidigungen oder Diffamierungen
-- Schweizer Hochdeutsch verwenden (keine ß, Guillemets «» statt "", etc.)
+- **SCHWEIZER HOCHDEUTSCH verwenden:**
+  * **KEIN scharfes ß (ß) - immer "ss" verwenden!** (z.B. "Strasse" statt "Straße", "muss" statt "muß", "grösser" statt "größer")
+  * Guillemets «» statt "" für Anführungszeichen
+  * Schweizer Begriffe bevorzugen (z.B. "Velo" statt "Fahrrad", "parkieren" statt "parken")
 - Satirisch, aber nicht böswillig
 - Nutze wiederkehrende Charaktere wenn es passt (besonders der CEO bei Politik-Themen)
 - Baue auf bisherigen Ereignissen auf wenn relevant
