@@ -547,6 +547,17 @@
                     <input type="text" id="editorTitle" style="width: 100%; padding: 0.75rem; font-size: 1.1rem; border: 2px solid #ddd; border-radius: 5px;" placeholder="Artikel-Titel">
                 </div>
 
+                <!-- Category Dropdown -->
+                <div style="margin-bottom: 1rem;">
+                    <label for="editorCategory" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">Kategorie:</label>
+                    <select id="editorCategory" style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 2px solid #ddd; border-radius: 5px; background-color: white;">
+                        <option value="politik">Politik</option>
+                        <option value="wirtschaft">Wirtschaft</option>
+                        <option value="gesellschaft">Gesellschaft</option>
+                        <option value="kurioses">Kurioses</option>
+                    </select>
+                </div>
+
                 <!-- Subtitle Input -->
                 <div style="margin-bottom: 1rem;">
                     <label for="editorSubtitle" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">Untertitel / Schlagzeile:</label>
@@ -1020,10 +1031,12 @@
             const richEditor = document.getElementById('richEditor');
             const textarea = document.getElementById('editorTextarea');
             const titleInput = document.getElementById('editorTitle');
+            const categorySelect = document.getElementById('editorCategory');
             const subtitleInput = document.getElementById('editorSubtitle');
 
-            // Fill title and subtitle fields
+            // Fill title, category and subtitle fields
             titleInput.value = currentDraft.title || '';
+            categorySelect.value = currentDraft.category || 'kurioses';
             subtitleInput.value = currentDraft.subtitle || '';
 
             // Fill both editors with current HTML
@@ -1086,6 +1099,7 @@
             const richEditor = document.getElementById('richEditor');
             const textarea = document.getElementById('editorTextarea');
             const titleInput = document.getElementById('editorTitle');
+            const categorySelect = document.getElementById('editorCategory');
             const subtitleInput = document.getElementById('editorSubtitle');
 
             // Get title
@@ -1094,6 +1108,9 @@
                 alert('Der Titel darf nicht leer sein');
                 return;
             }
+
+            // Get category
+            const newCategory = categorySelect.value;
 
             // Get subtitle
             const newSubtitle = subtitleInput.value.trim();
@@ -1111,13 +1128,15 @@
                 return;
             }
 
-            // Update current draft with new title, subtitle and HTML
+            // Update current draft with new title, category, subtitle and HTML
             currentDraft.title = newTitle;
+            currentDraft.category = newCategory;
             currentDraft.subtitle = newSubtitle;
             currentDraft.html = newHTML;
 
-            // Update the form title field as well
+            // Update the form fields as well
             document.getElementById('title').value = newTitle;
+            document.getElementById('category').value = newCategory;
 
             // Update preview with subtitle
             const previewArea = document.getElementById('previewArea');
