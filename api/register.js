@@ -58,12 +58,12 @@ module.exports = async function handler(req, res) {
     let users = usersJson ? JSON.parse(usersJson) : [];
 
     // Check if username already exists
-    if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
+    if (users.some(u => u.username && u.username.toLowerCase() === username.toLowerCase())) {
       return res.status(409).json({ error: 'Benutzername bereits vergeben' });
     }
 
     // Check if email already exists
-    if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+    if (users.some(u => u.email && u.email.toLowerCase() === email.toLowerCase())) {
       return res.status(409).json({ error: 'E-Mail-Adresse bereits registriert' });
     }
 
