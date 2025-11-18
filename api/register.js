@@ -2,7 +2,7 @@
 
 const crypto = require('crypto');
 const Redis = require('ioredis');
-const { sendEmail, activationEmail } = require('./send-email');
+const { sendEmail, activationEmail, newRegistrationEmail } = require('./send-email');
 
 // Initialize Redis client
 let redis;
@@ -97,6 +97,20 @@ module.exports = async function handler(req, res) {
     } catch (emailError) {
       console.error('Email sending error:', emailError);
       // Continue with registration even if email fails
+    }
+
+    // Send admin notification email (don't fail registration if email fails)
+    try {
+      const adminEmailData = newRegistrationEmail(newUser);
+      const adminEmailResult = await sendEmail(adminEmailData);
+      if (!adminEmailResult.success) {
+        console.error('Failed to send admin notification email:', adminEmailResult.error);
+      } else {
+        console.log('Admin notification email sent successfully for user:', newUser.username);
+      }
+    } catch (adminEmailError) {
+      console.error('Admin email sending error:', adminEmailError);
+      // Continue with registration even if admin email fails
     }
 
     return res.status(201).json({
