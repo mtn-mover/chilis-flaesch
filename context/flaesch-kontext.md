@@ -1401,6 +1401,33 @@ Die Dorfführung implementiert verkehrspolitische Maßnahmen in einem Ort ohne n
 - Referenzpunkt für weitere Artikel über Gemeindeversammlungen oder Leitbild-Umsetzung
 - Zeigt wiederkehrende Probleme der Gemeindeverwaltung als satirisches Thema
 
+
+### Fläsch ist auf den Hund gekommen (November 2025)
+**Kategorie:** kurioses
+## Analyse des satirischen Artikels "Fläsch ist auf den Hund gekommen"
+
+**Neue Charaktere:**
+• Der Adjudant - scheint eine lokale Autorität/Amtsperson zu sein, die über die Hundepolitik Bescheid weiß
+
+**Hauptereignis:**
+• Fläsch führt eine radikale Kehrtwende in der Hundepolitik durch: Statt Hundesteuer zu kassieren, zahlt die Gemeinde nun Geld an Hundebesitzer
+• Das Dorf positioniert sich strategisch als "Hundedorf"
+
+**Wichtige Details:**
+• Früher: Hundesteuer mit progressiver Staffelung (jeder weitere Hund teurer)
+• Neu: Finanzielle Belohnung für Hundehaltung
+• Symbolische Maßnahme: Zusätzliche "Robidogs" (Hundekot-Behälter) am Rhein aufgestellt
+• Ein neuer Robidog neben einem bestehenden installiert
+
+**Für zukünftige Artikel:**
+• Überwachen der Entwicklung der Hundepopulation in Fläsch
+• Mögliche Budgetauswirkungen der neuen Hundepolitik
+• Reaktionen von Nachbargemeinden auf Fläschs "Hundedorf"-Status
+• Rolle des Adjudanten als wiederkehrende Figur für Gemeindepolitik
+• Potenzielle Konflikte zwischen "Hundedorf-Vision" und praktischen Problemen
+
+*Satirischer Kern: Absurde Gemeindepolitik und deren unerwartete Wendungen*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
