@@ -1245,6 +1245,57 @@ Die Dorfführung implementiert verkehrspolitische Maßnahmen in einem Ort ohne n
 
 **Satirischer Kern:** Absurdität behördlicher Routine trotz offensichtlich veränderten Klimabedingungen.
 
+
+### Fläsch ist auf den Hund gekommen (November 2025)
+**Kategorie:** kurioses
+## Zusammenfassung: Fläsch wird zum "Hundedorf"
+
+### Neue Charaktere:
+• **Der Adjudant** - wird als Wissensträger erwähnt (ironisch, da er angeblich weiß, was die Robidogs bringen sollen)
+
+### Hauptereignis:
+• Fläsch führt eine radikale Kehrtwende in der Hundepolitik durch: Aus Steuern werden Subventionen - Hundebesitzer erhalten nun Geld pro Hund statt Steuern zu zahlen.
+
+### Wichtige Details:
+• **Vorher:** Hundesteuern, jeder zusätzliche Hund wurde teurer besteuert
+• **Nachher:** Geld für jeden gehaltenen Hund
+• **Symbolische Maßnahme:** Zusätzliche Robidogs (Hundekot-Behälter) am Rhein aufgestellt - "neuer neben einem alten"
+
+### Für zukünftige Artikel:
+• **Policy-Wechsel:** Fläsch hat grundlegend seine Hundepolitik geändert
+• **Neue Identität:** Dorf positioniert sich als "Hundedorf" 
+• **Infrastruktur:** Ausbau der Robidog-Standorte läuft
+• **Mögliche Folgen:** Potenzielle Zunahme der Hundehaltung durch finanzielle Anreize
+• **Satirischer Kontext:** Typische Übertreibung kommunaler "Visionen" und bürokratischer Symbolpolitik
+
+*Kernbotschaft: Absurde Umkehrung der üblichen Hundesteuerpolitik als Dorfmarketing-Strategie.*
+
+
+### Fläsch ist auf den Hund gekommen (November 2025)
+**Kategorie:** kurioses
+## Zusammenfassung: "Fläsch ist auf den Hund gekommen"
+
+**Neue Charaktere:**
+• Keine neuen Personen erwähnt
+• "Der Adjudant" - wird als wissende Person bezüglich der Robidogs genannt
+
+**Hauptereignis:**
+• Fläsch plant Transformation zum "Hundedorf" mit kompletter Umkehr der Hundesteuerpolitik
+• Statt Steuern zu zahlen, erhalten Hundebesitzer nun Geld pro Hund
+
+**Wichtige Details:**
+• Bisheriges System: Hundesteuern mit steigenden Kosten pro zusätzlichem Hund
+• Neues System: Geldprämien für Hundehaltung
+• Symbolische Maßnahme: Zusätzliche Robidogs (Hundekot-Behälter) aufgestellt
+• Standort: Am Rhein (neuer neben altem Robidog)
+
+**Für zukünftige Artikel:**
+• Verfolgen: Wie entwickelt sich das "Hundedorf"-Konzept weiter?
+• Mögliche Themen: Reaktionen der Bevölkerung, praktische Umsetzung der Geldprämien
+• Beobachten: Weitere bauliche/infrastrukturelle Maßnahmen für Hunde
+• Rolle des "Adjudanten" als Informationsquelle zu gemeindlichen Maßnahmen
+• Potenzial für Folgegeschichten über unerwartete Konsequenzen der neuen Politik
+
 ## Stil-Richtlinien
 
 ### Satire-Level
