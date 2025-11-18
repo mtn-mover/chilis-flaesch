@@ -82,9 +82,17 @@ module.exports = async function handler(req, res) {
     users.push(newUser);
     await redis.set('users', JSON.stringify(users));
 
-    // Send email to admin
-    const emailData = newRegistrationEmail(newUser);
-    await sendEmail(emailData);
+    // Send email to admin (don't fail registration if email fails)
+    try {
+      const emailData = newRegistrationEmail(newUser);
+      const emailResult = await sendEmail(emailData);
+      if (!emailResult.success) {
+        console.error('Failed to send registration email:', emailResult.error);
+      }
+    } catch (emailError) {
+      console.error('Email sending error:', emailError);
+      // Continue with registration even if email fails
+    }
 
     return res.status(201).json({
       success: true,
