@@ -1039,7 +1039,7 @@
         }
 
         // Save Draft
-        async function saveDraft() {
+        function saveDraft() {
             if (!currentDraft) {
                 alert('Kein Artikel zum Speichern vorhanden');
                 return;
@@ -1050,35 +1050,32 @@
             statusMessage.className = 'status-message status-success';
             statusMessage.style.display = 'block';
 
-            try {
-                // If editing, include the draft ID to update it
-                const draftPayload = currentEditingDraftId
-                    ? { ...currentDraft, id: currentEditingDraftId }
-                    : currentDraft;
+            // If editing, include the draft ID to update it
+            const draftPayload = currentEditingDraftId
+                ? { ...currentDraft, id: currentEditingDraftId }
+                : currentDraft;
 
-                const response = await fetch('/api/save-draft', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        sessionToken: sessionToken,
-                        draft: draftPayload
-                    })
-                });
-
-                const result = await response.json();
-                if (response.ok) {
-                    statusMessage.textContent = '✅ Draft gespeichert! Du findest ihn unter "Meine Artikel"';
-                    setTimeout(() => {
-                        window.location.href = 'my-articles.html';
-                    }, 1500);
-                } else {
-                    throw new Error(result.error + (result.details ? '\n\nDetails: ' + result.details : '') + (result.stack ? '\n\nStack: ' + result.stack : ''));
-                }
-            } catch (error) {
+            // Save in background (non-blocking)
+            fetch('/api/save-draft', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    sessionToken: sessionToken,
+                    draft: draftPayload
+                })
+            })
+            .then(response => response.json())
+            .then(result => {
+                statusMessage.textContent = '✅ Draft gespeichert! Du findest ihn unter "Meine Artikel"';
+                setTimeout(() => {
+                    window.location.href = 'my-articles.html';
+                }, 1500);
+            })
+            .catch(error => {
                 statusMessage.className = 'status-message status-error';
                 statusMessage.innerHTML = '<pre style="white-space: pre-wrap; text-align: left; font-size: 0.85rem;">❌ Fehler: ' + error.message + '</pre>';
                 console.error('Full error:', error);
-            }
+            });
         }
 
         // Editor Functions
