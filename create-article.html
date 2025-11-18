@@ -558,6 +558,15 @@
                     </select>
                 </div>
 
+                <!-- Author Display Name Dropdown -->
+                <div style="margin-bottom: 1rem;">
+                    <label for="editorAuthorDisplayName" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">Autor-Anzeigename:</label>
+                    <select id="editorAuthorDisplayName" style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 2px solid #ddd; border-radius: 5px; background-color: white;">
+                        <option value="der Flüsterer">der Flüsterer</option>
+                        <option value="der Insider">der Insider</option>
+                    </select>
+                </div>
+
                 <!-- Subtitle Input -->
                 <div style="margin-bottom: 1rem;">
                     <label for="editorSubtitle" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">Untertitel / Schlagzeile:</label>
@@ -1032,11 +1041,13 @@
             const textarea = document.getElementById('editorTextarea');
             const titleInput = document.getElementById('editorTitle');
             const categorySelect = document.getElementById('editorCategory');
+            const authorDisplayNameSelect = document.getElementById('editorAuthorDisplayName');
             const subtitleInput = document.getElementById('editorSubtitle');
 
-            // Fill title, category and subtitle fields
+            // Fill title, category, author display name and subtitle fields
             titleInput.value = currentDraft.title || '';
             categorySelect.value = currentDraft.category || 'kurioses';
+            authorDisplayNameSelect.value = currentDraft.authorDisplayName || 'der Flüsterer';
             subtitleInput.value = currentDraft.subtitle || '';
 
             // Fill both editors with current HTML
@@ -1100,6 +1111,7 @@
             const textarea = document.getElementById('editorTextarea');
             const titleInput = document.getElementById('editorTitle');
             const categorySelect = document.getElementById('editorCategory');
+            const authorDisplayNameSelect = document.getElementById('editorAuthorDisplayName');
             const subtitleInput = document.getElementById('editorSubtitle');
 
             // Get title
@@ -1111,6 +1123,9 @@
 
             // Get category
             const newCategory = categorySelect.value;
+
+            // Get author display name
+            const newAuthorDisplayName = authorDisplayNameSelect.value;
 
             // Get subtitle
             const newSubtitle = subtitleInput.value.trim();
@@ -1128,9 +1143,10 @@
                 return;
             }
 
-            // Update current draft with new title, category, subtitle and HTML
+            // Update current draft with new title, category, author display name, subtitle and HTML
             currentDraft.title = newTitle;
             currentDraft.category = newCategory;
+            currentDraft.authorDisplayName = newAuthorDisplayName;
             currentDraft.subtitle = newSubtitle;
             currentDraft.html = newHTML;
 
