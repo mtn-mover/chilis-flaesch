@@ -562,6 +562,18 @@ module.exports = async function handler(req, res) {
       return res.status(401).json({ error: 'Nicht autorisiert' });
     }
 
+    // Get user from Redis to check current role (role might have changed since JWT was issued)
+    const usersJson = await redis.get('users');
+    const users = usersJson ? JSON.parse(usersJson) : [];
+    const userAccount = users.find(u => u.username === session.username);
+
+    // Check if user has author or admin role
+    if (!userAccount || (userAccount.role !== 'author' && userAccount.role !== 'admin')) {
+      return res.status(403).json({
+        error: 'Du hast keine Berechtigung, Artikel zu veröffentlichen. Bitte kontaktiere einen Administrator.'
+      });
+    }
+
     if (!draftId) {
       return res.status(400).json({ error: 'Draft ID fehlt' });
     }

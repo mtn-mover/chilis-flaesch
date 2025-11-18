@@ -48,6 +48,28 @@ module.exports = async function handler(req, res) {
     }
     console.log('Session OK:', session.username);
 
+    // Get user from Redis to check current role (role might have changed since JWT was issued)
+    const Redis = require('ioredis');
+    let redis;
+    if (process.env.REDIS_URL) {
+      redis = new Redis(process.env.REDIS_URL);
+    } else {
+      const { kv } = require('@vercel/kv');
+      redis = kv;
+    }
+    const usersJson = await redis.get('users');
+    const users = usersJson ? JSON.parse(usersJson) : [];
+    const userAccount = users.find(u => u.username === session.username);
+
+    // Check if user has author or admin role
+    if (!userAccount || (userAccount.role !== 'author' && userAccount.role !== 'admin')) {
+      console.log('User does not have author permission:', userAccount?.role);
+      return res.status(403).json({
+        error: 'Du hast keine Berechtigung, Artikel zu erstellen. Bitte kontaktiere einen Administrator.'
+      });
+    }
+    console.log('Author permission verified');
+
     // Validierung
     if (!title || !category || !style || !content || !author) {
       console.log('Validation failed - missing fields');
