@@ -210,6 +210,7 @@ REGELN:
 - KEIN vollständiges HTML-Dokument (kein <!DOCTYPE>, <html>, <head>, <body>)
 - KEINE Code-Blöcke mit drei Backticks
 - KEIN Navigation oder Footer
+- **SCHWEIZER RECHTSCHREIBUNG:** KEIN scharfes ß verwenden - immer "ss" (z.B. "Strasse", "muss", "grösser")
 
 Beginne jetzt mit "SUBTITLE: " !`;
 

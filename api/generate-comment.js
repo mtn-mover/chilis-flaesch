@@ -54,6 +54,7 @@ ${commentContext ? `**Antwort auf Kommentar:** ${commentContext}` : '**Dies ist 
 ✅ Freundlich und respektvoll
 ✅ Schweizer Deutsch Einflüsse sind willkommen (z.B. "gäll", "oder")
 ✅ Emojis sind erlaubt (aber sparsam einsetzen)
+✅ **SCHWEIZER RECHTSCHREIBUNG:** KEIN scharfes ß - immer "ss" verwenden (z.B. "muss", "Grüsse", "weiss")
 
 ❌ KEINE Beleidigungen
 ❌ KEIN Rassismus, Sexismus, Hassrede
