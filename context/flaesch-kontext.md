@@ -1502,6 +1502,35 @@ Die Dorfführung implementiert verkehrspolitische Maßnahmen in einem Ort ohne n
 
 **Hinweis:** Der bereitgestellte Artikelinhalt ist sehr kurz - eine detailliertere Analyse würde den vollständigen Artikeltext benötigen.
 
+
+### Das Schweizer Dorf Fläsch will von der Landkarte verschwinden (November 2025)
+**Kategorie:** kurioses
+## Satirische Artikel-Analyse: Fläsch will von der Landkarte verschwinden
+
+### Neue Charaktere:
+• **Gemeindepräsidentin** (nicht namentlich genannt) - führt die Initiative an
+• **Älterer Bauer** - kritisiert Digital-Tourismus  
+• **Karteningenieur** - zeigt Kompromissbereitschaft der Tech-Branche
+• **Wirtin, Bergführer, Zürich-Wanderer** - verschiedene Perspektiven
+
+### Hauptereignis:
+Das Schweizer Dorf Fläsch plant, sich bewusst aus digitalen Karten und Apps zu entfernen, um dem Overtourism durch Social Media und GPS-Navigation zu entgehen. Ziel ist "kuratierte Unsichtbarkeit" statt kompletter Abschottung.
+
+### Wichtige Details:
+• **Strategie:** Gespräche mit Kartendiensten, "Ausgrauen" sensibler POIs, digitale Zäune
+• **Zitat Präsidentin:** "Das ist kein Verschwinden aus der Welt, es ist ein Filter"
+• **Wirtschaftsmodell:** "Wir zählen nicht mehr Köpfe, wir zählen Tage"
+• **Rechtlicher Rahmen:** Privatwege sperrbar, Biotope schützbar
+
+### Für zukünftige Artikel:
+• Entwicklung der Verhandlungen mit Google Maps/anderen Kartendiensten
+• Reaktionen benachbarter Gemeinden
+• Messbare Auswirkungen auf Besucherzahlen
+• Rechtspräzedenz für andere Schweizer Gemeinden
+• Umsetzung der "digitalen Zäune" und Geofencing-Technologie
+
+**Genre:** Gesellschaftssatire über Digitalisierung und Overtourism
+
 ## Stil-Richtlinien
 
 ### Satire-Level
