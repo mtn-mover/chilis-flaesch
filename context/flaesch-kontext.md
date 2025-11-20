@@ -1561,6 +1561,33 @@ Ein Blitzschlag führte zur Gewissenserforschung eines Steuersünders, der sich 
 
 *Satirischer Kern: Absurde Verkettung von religiöser Beichte und Steuerpolitik mit überzeichneten bürokratischen Konsequenzen.*
 
+
+### Pizol Jahr-100-Winter  (November 2025)
+**Kategorie:** kurioses
+## Satirische Artikel-Analyse: Pizol Jahr-100-Winter
+
+### **Neue Charaktere:**
+• **El Diabolo Müller** - Investigative Figur, die versteckte Finanzierungstaktiken aufdeckt
+
+### **Hauptereignis:**
+• Pizolbahnen haben ihre Beschneiungsanlage massiv ausgebaut (Sommer 2025)
+• Satirischer "Insider" enthüllt geheimes Megaprojekt: Föhn-Umleitung nach Fläsch geplant
+
+### **Wichtige Details:**
+• **Investition:** 1,9 Mio. Franken für Beschneiungsausbau
+• **Technische Daten:** 2'331m Gussleitungen, 49 neue Schneeerzeuger, Schneileistung von 35 l/s auf 212 l/s erhöht
+• **Versteckte Kosten:** Föhn-Umleitung kostet "mindestens das 10-Fache" der Beschneiungsanlage
+• **Finanzierung:** "Salami-Taktik" mit geplanten Steuererhöhungen als erste Tranche
+
+### **Für zukünftige Artikel:**
+• **El Diabolo Müller** als wiederkehrende Enthüllungsfigur etabliert
+• Föhn-Umleitung als laufendes Megaprojekt mit versteckten Kosten
+• Verbindung zwischen Skigebiet-Infrastruktur und Weinbau (Italien/Spanien-Vergleich)
+• "Salami-Taktik" bei Gemeindefinanzierung als wiederkehrendes Thema
+• Spannungsfeld zwischen Tourismus-Investitionen und Steuerlast
+
+**Satirischer Fokus:** Übertreibung von Infrastrukturprojekten und versteckte Kosten bei Gemeindeinvestitionen.
+
 ## Stil-Richtlinien
 
 ### Satire-Level
