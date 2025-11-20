@@ -1531,6 +1531,36 @@ Das Schweizer Dorf Fläsch plant, sich bewusst aus digitalen Karten und Apps zu 
 
 **Genre:** Gesellschaftssatire über Digitalisierung und Overtourism
 
+
+### Geistes-Blitz sorgt für Steuersegen (November 2025)
+**Kategorie:** kurioses
+## Satirische Artikel-Analyse: "Geistes-Blitz sorgt für Steuersegen"
+
+**Neue Charaktere:**
+• M. L. - Ortsbürger aus Bündner Dorf, Blitzschlag-Überlebender und ursprünglicher Steuersünder
+• Diakon A. C. aus Maienfeld - nahm Beichte ab, verwies an Generalsekretär
+• Gemeinde-CEO - verkündete Steuererlass und unbürokratische Baupolitik
+
+**Hauptereignis:**
+Ein Blitzschlag führte zur Gewissenserforschung eines Steuersünders, der sich bei der Kirche meldete. Dies löste eine Kette von Selbstanzeigen aus, die der Gemeinde Millionen einbrachte.
+
+**Wichtige Details:**
+• 37 Personen zahlten nachträglich Steuern (4-52 Jahre rückwirkend)
+• Gesamtbetrag: 8,8 Millionen Franken
+• Zahlungsfrist: bis Ende 2028
+• Steuererlass für Gemeinde bis 2102 angekündigt
+• CEO-Zitat: Unbürokratisches Vorgehen bei Baugesuchen durch Selbstbewilligung
+• Ansturm auf Wohn- und Bauland erwartet
+
+**Für zukünftige Artikel:**
+• Mögliche Folgegeschichten über Immobilienboom und Zuzug
+• Andere Gemeinden kopieren das "Modell"
+• Kirche entwickelt systematische "Bekehrungsstrategien"
+• Rechtliche/administrative Herausforderungen der Selbstbewilligung
+• Entwicklung bis Zahlungsfrist 2028
+
+*Satirischer Kern: Absurde Verkettung von religiöser Beichte und Steuerpolitik mit überzeichneten bürokratischen Konsequenzen.*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
