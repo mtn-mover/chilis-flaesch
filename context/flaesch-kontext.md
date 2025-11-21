@@ -1502,6 +1502,170 @@ Die Dorfführung implementiert verkehrspolitische Maßnahmen in einem Ort ohne n
 
 **Hinweis:** Der bereitgestellte Artikelinhalt ist sehr kurz - eine detailliertere Analyse würde den vollständigen Artikeltext benötigen.
 
+
+### Das Schweizer Dorf Fläsch will von der Landkarte verschwinden (November 2025)
+**Kategorie:** kurioses
+## Satirische Artikel-Analyse: Fläsch will von der Landkarte verschwinden
+
+### Neue Charaktere:
+• **Gemeindepräsidentin** (nicht namentlich genannt) - führt die Initiative an
+• **Älterer Bauer** - kritisiert Digital-Tourismus  
+• **Karteningenieur** - zeigt Kompromissbereitschaft der Tech-Branche
+• **Wirtin, Bergführer, Zürich-Wanderer** - verschiedene Perspektiven
+
+### Hauptereignis:
+Das Schweizer Dorf Fläsch plant, sich bewusst aus digitalen Karten und Apps zu entfernen, um dem Overtourism durch Social Media und GPS-Navigation zu entgehen. Ziel ist "kuratierte Unsichtbarkeit" statt kompletter Abschottung.
+
+### Wichtige Details:
+• **Strategie:** Gespräche mit Kartendiensten, "Ausgrauen" sensibler POIs, digitale Zäune
+• **Zitat Präsidentin:** "Das ist kein Verschwinden aus der Welt, es ist ein Filter"
+• **Wirtschaftsmodell:** "Wir zählen nicht mehr Köpfe, wir zählen Tage"
+• **Rechtlicher Rahmen:** Privatwege sperrbar, Biotope schützbar
+
+### Für zukünftige Artikel:
+• Entwicklung der Verhandlungen mit Google Maps/anderen Kartendiensten
+• Reaktionen benachbarter Gemeinden
+• Messbare Auswirkungen auf Besucherzahlen
+• Rechtspräzedenz für andere Schweizer Gemeinden
+• Umsetzung der "digitalen Zäune" und Geofencing-Technologie
+
+**Genre:** Gesellschaftssatire über Digitalisierung und Overtourism
+
+
+### Geistes-Blitz sorgt für Steuersegen (November 2025)
+**Kategorie:** kurioses
+## Satirische Artikel-Analyse: "Geistes-Blitz sorgt für Steuersegen"
+
+**Neue Charaktere:**
+• M. L. - Ortsbürger aus Bündner Dorf, Blitzschlag-Überlebender und ursprünglicher Steuersünder
+• Diakon A. C. aus Maienfeld - nahm Beichte ab, verwies an Generalsekretär
+• Gemeinde-CEO - verkündete Steuererlass und unbürokratische Baupolitik
+
+**Hauptereignis:**
+Ein Blitzschlag führte zur Gewissenserforschung eines Steuersünders, der sich bei der Kirche meldete. Dies löste eine Kette von Selbstanzeigen aus, die der Gemeinde Millionen einbrachte.
+
+**Wichtige Details:**
+• 37 Personen zahlten nachträglich Steuern (4-52 Jahre rückwirkend)
+• Gesamtbetrag: 8,8 Millionen Franken
+• Zahlungsfrist: bis Ende 2028
+• Steuererlass für Gemeinde bis 2102 angekündigt
+• CEO-Zitat: Unbürokratisches Vorgehen bei Baugesuchen durch Selbstbewilligung
+• Ansturm auf Wohn- und Bauland erwartet
+
+**Für zukünftige Artikel:**
+• Mögliche Folgegeschichten über Immobilienboom und Zuzug
+• Andere Gemeinden kopieren das "Modell"
+• Kirche entwickelt systematische "Bekehrungsstrategien"
+• Rechtliche/administrative Herausforderungen der Selbstbewilligung
+• Entwicklung bis Zahlungsfrist 2028
+
+*Satirischer Kern: Absurde Verkettung von religiöser Beichte und Steuerpolitik mit überzeichneten bürokratischen Konsequenzen.*
+
+
+### Pizol Jahr-100-Winter  (November 2025)
+**Kategorie:** kurioses
+## Satirische Artikel-Analyse: Pizol Jahr-100-Winter
+
+### **Neue Charaktere:**
+• **El Diabolo Müller** - Investigative Figur, die versteckte Finanzierungstaktiken aufdeckt
+
+### **Hauptereignis:**
+• Pizolbahnen haben ihre Beschneiungsanlage massiv ausgebaut (Sommer 2025)
+• Satirischer "Insider" enthüllt geheimes Megaprojekt: Föhn-Umleitung nach Fläsch geplant
+
+### **Wichtige Details:**
+• **Investition:** 1,9 Mio. Franken für Beschneiungsausbau
+• **Technische Daten:** 2'331m Gussleitungen, 49 neue Schneeerzeuger, Schneileistung von 35 l/s auf 212 l/s erhöht
+• **Versteckte Kosten:** Föhn-Umleitung kostet "mindestens das 10-Fache" der Beschneiungsanlage
+• **Finanzierung:** "Salami-Taktik" mit geplanten Steuererhöhungen als erste Tranche
+
+### **Für zukünftige Artikel:**
+• **El Diabolo Müller** als wiederkehrende Enthüllungsfigur etabliert
+• Föhn-Umleitung als laufendes Megaprojekt mit versteckten Kosten
+• Verbindung zwischen Skigebiet-Infrastruktur und Weinbau (Italien/Spanien-Vergleich)
+• "Salami-Taktik" bei Gemeindefinanzierung als wiederkehrendes Thema
+• Spannungsfeld zwischen Tourismus-Investitionen und Steuerlast
+
+**Satirischer Fokus:** Übertreibung von Infrastrukturprojekten und versteckte Kosten bei Gemeindeinvestitionen.
+
+
+### Fläsch leitet Föhnwind für Pizol um (November 2025)
+**Kategorie:** kurioses
+**Satirische Artikel-Analyse: "Fläsch leitet Föhnwind für Pizol um"**
+
+## 1. Neue Charaktere:
+• **El Diabolo Müller** - Investigativer Charakter, der Finanzierungstricks aufdeckt
+
+## 2. Hauptereignis:
+• Fläsch hat ein absurdes Megaprojekt zur Föhnwind-Umleitung gestartet, getarnt als normale Beschneiungsanlage für den Pizol. Das wahre Ziel: Weinbauern sollen mediterrane Trauben anbauen können.
+
+## 3. Wichtige Details:
+• **Beschneiungsanlage (Tarnung):** 1,9 Mio. Franken, 47 Zapfstellen, 49 Schneeerzeuger
+• **Föhn-Umleitung:** Kostet mindestens das **10-Fache** (ca. 19 Mio. Franken)
+• **Finanzierungstrick:** Salami-Taktik - Steuererhöhung war nur erste Tranche
+• **Technische Daten:** Schneileistung von 35 l/s auf 212 l/s erhöht
+
+## 4. Für zukünftige Artikel:
+• Weitere Steuererhöhungen zu erwarten (Salami-Taktik läuft weiter)
+• El Diabolo Müller könnte weitere Finanzierungsgeheimnisse aufdecken
+• Auswirkungen auf lokale Weinproduktion und Tourismus
+• Mögliche Proteste gegen versteckte Megaprojekt-Kosten
+• Technische Herausforderungen der Föhn-Umleitung
+
+
+### Schlitteln und Skifahren auf öffentlichen Strassen (November 2025)
+**Kategorie:** gesellschaft
+## Zusammenfassung: Schlitteln und Skifahren auf öffentlichen Strassen
+
+**Neue Charaktere:**
+• Keine spezifischen Personen genannt
+• Der Gemeindevorstand als kollektive Autorität
+
+**Hauptereignis:**
+• Offizielles Verbot von Schlitteln und Skifahren auf Gemeinde- und Kantonsstrassen im Dorfgebiet
+• Gemeinde lehnt bei Unfällen jegliche Haftung ab
+
+**Wichtige Details:**
+• Betrifft sowohl Gemeindestrassen im Dorf als auch Kantonsstrasse
+• Haftungsausschluss der Gemeinde explizit erwähnt
+• Amtlicher Ton trotz satirischer Quelle
+
+**Für zukünftige Artikel:**
+• Mögliche Reaktionen der Bevölkerung auf das Verbot
+• Potenzielle Unfälle oder Verstöße gegen die Regelung
+• Durchsetzungsmaßnahmen oder Kontrollen
+• Winterliche Aktivitäten als wiederkehrendes Thema
+• Spannungsfeld zwischen Freizeitvergnügen und Verkehrssicherheit
+• Der Gemeindevorstand als regulierende Instanz für lokale Angelegenheiten
+
+*Satirischer Kontext: Typische behördliche Überregulierung alltäglicher Winteraktivitäten*
+
+
+### Schneechaos in Fläsch (November 2025)
+**Kategorie:** gesellschaft
+**Analyse des satirischen Artikels "Schneechaos in Fläsch"**
+
+**1. Neue Charaktere:**
+• Keine spezifischen Namen oder Charaktere erwähnt
+
+**2. Hauptereignis:**
+• Erster Schneefall in Fläsch führt zu chaotischen Zuständen in der Gemeinde
+
+**3. Wichtige Details:**
+• Keine konkreten Zahlen, Abstimmungen oder Zitate im Artikel enthalten
+• Sehr knapper Artikel mit minimalen Informationen
+
+**4. Für zukünftige Artikel:**
+• Potenzial für Folgeberichterstattung über:
+  - Winterdienst-Problematik in Fläsch
+  - Reaktionen der Gemeindeverwaltung
+  - Auswirkungen auf Verkehr und Alltag
+  - Bürgerbeschwerden oder -reaktionen
+• Thema "Schneechaos" könnte wiederkehrendes Winterthema werden
+• Möglichkeit, lokale Verantwortliche oder betroffene Bürger in zukünftigen Artikeln zu zitieren
+
+**Hinweis:** Der vorliegende Artikel ist sehr kurz gehalten und bietet wenig konkrete Informationen für eine detaillierte Analyse. Er scheint eher als Teaser oder Grundlage für ausführlichere Berichterstattung zu dienen.
+
 ## Stil-Richtlinien
 
 ### Satire-Level

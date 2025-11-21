@@ -1,5 +1,60 @@
 [
   {
+    "title": "Schneechaos in Fläsch",
+    "subtitle": "Drei Zentimeter Neuschnee legen Chili-Dorf komplett lahm - Notstand ausgerufen",
+    "fileName": "schneechaos-in-flaesch.html",
+    "category": "gesellschaft",
+    "excerpt": "Der erste Schnee und schon ein Chaos. ...",
+    "date": "2025-11-21",
+    "image": "https://ovks2lxbjpjxpfbj.public.blob.vercel-storage.com/Schneechaos%20in%20Fl%C3%A4sch-1763745257269-24a02c5e-e25e-4e25-ae2f-72e254b41260.png",
+    "author": "Demo",
+    "authorDisplayName": "Demo User"
+  },
+  {
+    "title": "Schlitteln und Skifahren auf öffentlichen Strassen",
+    "subtitle": "Gemeinde verhängt Winter-Fahrverbot für Schlitten und Ski auf Strassen",
+    "fileName": "schlitteln-und-skifahren-auf-oeffentlichen-strassen.html",
+    "category": "gesellschaft",
+    "excerpt": "Wir weisen darauf hin, dass das Schlitteln und Skifahren auf den Gemeindestrassen im Dorfgebiet und ...",
+    "date": "2025-11-21",
+    "image": "https://ovks2lxbjpjxpfbj.public.blob.vercel-storage.com/Schlitteln%20und%20Skifahren%20auf%20%C3%B6ffentlichen%20Strassen-1763727998434-schlitteln.webp",
+    "author": "Philipp",
+    "authorDisplayName": "der Insider"
+  },
+  {
+    "title": "Fläsch leitet Föhnwind für Pizol um",
+    "subtitle": "Fläsch und Pizol planen Föhn-Umleitung um teuren Schnee zu sichern",
+    "fileName": "pizol-jahr-100-winter.html",
+    "category": "kurioses",
+    "excerpt": "Mitteilung: Beschneiung 4.0: Ein weiterer Meilenstein ist geschafft!\n\nIm Sommer 2025 konnte eine wei...",
+    "date": "2025-11-21",
+    "image": "https://ovks2lxbjpjxpfbj.public.blob.vercel-storage.com/Pizol%20Jahr-100-Winter%20-1763676245793-pizol.jpg",
+    "author": "admin",
+    "authorDisplayName": "Der Macher"
+  },
+  {
+    "title": "Geistes-Blitz sorgt für Steuersegen",
+    "subtitle": "Blitzschlag führt zu Steuerbeichte - Fläsch streicht Gemeindesteuern bis 2102",
+    "fileName": "geistes-blitz-sorgt-fuer-steuersegen.html",
+    "category": "kurioses",
+    "excerpt": "Während einem starken Gewitter im Herbst ist Ortsbürger M. L. im bündnerischen Dorf von einem Blitz ...",
+    "date": "2025-11-20",
+    "image": "https://ovks2lxbjpjxpfbj.public.blob.vercel-storage.com/Geistes-Blitz%20sorgt%20f%C3%BCr%20Steuersegen-1763673842275-lightning3.jpg",
+    "author": "Philipp",
+    "authorDisplayName": "der Insider"
+  },
+  {
+    "title": "Das Schweizer Dorf Fläsch will von der Landkarte verschwinden",
+    "subtitle": "Dorf startet Pilotprojekt «Digital Detox»",
+    "fileName": "das-schweizer-dorf-flaesch-will-von-der-landkarte-verschwinden.html",
+    "category": "kurioses",
+    "excerpt": "Man sagt, wer auf Karten fehlt, existiere nicht. In einem abgelegenen Tal wird dieser Satz zur Strat...",
+    "date": "2025-11-19",
+    "image": "https://ovks2lxbjpjxpfbj.public.blob.vercel-storage.com/Das%20Schweizer%20Dorf%20Fl%C3%A4sch%20will%20von%20der%20Landkarte%20verschwinden%20-1763538651001-ochsenberg.jpg",
+    "author": "Philipp",
+    "authorDisplayName": "der Insider"
+  },
+  {
     "title": "Fläsch und der Wakkerpreis",
     "subtitle": "Helvetia nimmt Wakkerpreis zurück – Fläsch zu wacker geworden",
     "fileName": "flaesch-und-der-wakkerpreis.html",
