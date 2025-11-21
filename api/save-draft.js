@@ -55,9 +55,10 @@ module.exports = async function handler(req, res) {
       content: draft.content, // Original input description
       html: draft.html, // Generated HTML
       images: draft.images || [],
-      author: session.username,
+      // WICHTIG: Preserve original author when editing existing draft
+      author: existingDraft ? existingDraft.author : session.username,
       // Use authorDisplayName from draft if provided, otherwise use session displayName
-      authorDisplayName: draft.authorDisplayName || session.displayName,
+      authorDisplayName: existingDraft ? (draft.authorDisplayName || existingDraft.authorDisplayName) : (draft.authorDisplayName || session.displayName),
       createdAt: draft.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       // Preserve 'published' status if it exists, otherwise set to 'draft'
