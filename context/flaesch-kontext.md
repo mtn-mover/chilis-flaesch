@@ -1588,6 +1588,30 @@ Ein Blitzschlag führte zur Gewissenserforschung eines Steuersünders, der sich 
 
 **Satirischer Fokus:** Übertreibung von Infrastrukturprojekten und versteckte Kosten bei Gemeindeinvestitionen.
 
+
+### Fläsch leitet Föhnwind für Pizol um (November 2025)
+**Kategorie:** kurioses
+**Satirische Artikel-Analyse: "Fläsch leitet Föhnwind für Pizol um"**
+
+## 1. Neue Charaktere:
+• **El Diabolo Müller** - Investigativer Charakter, der Finanzierungstricks aufdeckt
+
+## 2. Hauptereignis:
+• Fläsch hat ein absurdes Megaprojekt zur Föhnwind-Umleitung gestartet, getarnt als normale Beschneiungsanlage für den Pizol. Das wahre Ziel: Weinbauern sollen mediterrane Trauben anbauen können.
+
+## 3. Wichtige Details:
+• **Beschneiungsanlage (Tarnung):** 1,9 Mio. Franken, 47 Zapfstellen, 49 Schneeerzeuger
+• **Föhn-Umleitung:** Kostet mindestens das **10-Fache** (ca. 19 Mio. Franken)
+• **Finanzierungstrick:** Salami-Taktik - Steuererhöhung war nur erste Tranche
+• **Technische Daten:** Schneileistung von 35 l/s auf 212 l/s erhöht
+
+## 4. Für zukünftige Artikel:
+• Weitere Steuererhöhungen zu erwarten (Salami-Taktik läuft weiter)
+• El Diabolo Müller könnte weitere Finanzierungsgeheimnisse aufdecken
+• Auswirkungen auf lokale Weinproduktion und Tourismus
+• Mögliche Proteste gegen versteckte Megaprojekt-Kosten
+• Technische Herausforderungen der Föhn-Umleitung
+
 ## Stil-Richtlinien
 
 ### Satire-Level
