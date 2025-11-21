@@ -1612,6 +1612,34 @@ Ein Blitzschlag führte zur Gewissenserforschung eines Steuersünders, der sich 
 • Mögliche Proteste gegen versteckte Megaprojekt-Kosten
 • Technische Herausforderungen der Föhn-Umleitung
 
+
+### Schlitteln und Skifahren auf öffentlichen Strassen (November 2025)
+**Kategorie:** gesellschaft
+## Zusammenfassung: Schlitteln und Skifahren auf öffentlichen Strassen
+
+**Neue Charaktere:**
+• Keine spezifischen Personen genannt
+• Der Gemeindevorstand als kollektive Autorität
+
+**Hauptereignis:**
+• Offizielles Verbot von Schlitteln und Skifahren auf Gemeinde- und Kantonsstrassen im Dorfgebiet
+• Gemeinde lehnt bei Unfällen jegliche Haftung ab
+
+**Wichtige Details:**
+• Betrifft sowohl Gemeindestrassen im Dorf als auch Kantonsstrasse
+• Haftungsausschluss der Gemeinde explizit erwähnt
+• Amtlicher Ton trotz satirischer Quelle
+
+**Für zukünftige Artikel:**
+• Mögliche Reaktionen der Bevölkerung auf das Verbot
+• Potenzielle Unfälle oder Verstöße gegen die Regelung
+• Durchsetzungsmaßnahmen oder Kontrollen
+• Winterliche Aktivitäten als wiederkehrendes Thema
+• Spannungsfeld zwischen Freizeitvergnügen und Verkehrssicherheit
+• Der Gemeindevorstand als regulierende Instanz für lokale Angelegenheiten
+
+*Satirischer Kontext: Typische behördliche Überregulierung alltäglicher Winteraktivitäten*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
