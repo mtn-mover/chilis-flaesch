@@ -1666,6 +1666,76 @@ Ein Blitzschlag führte zur Gewissenserforschung eines Steuersünders, der sich 
 
 **Hinweis:** Der vorliegende Artikel ist sehr kurz gehalten und bietet wenig konkrete Informationen für eine detaillierte Analyse. Er scheint eher als Teaser oder Grundlage für ausführlichere Berichterstattung zu dienen.
 
+
+### Endlich ein Kalender, der ehrlich ist. (November 2025)
+**Kategorie:** gesellschaft
+Ich kann den Inhalt des verlinkten Artikels leider nicht analysieren, da der Link zu einer externen Website mit Tracking-Parametern führt und ich keinen Zugriff auf den eigentlichen Artikel-Inhalt habe.
+
+Um eine ordnungsgemäße Analyse durchzuführen, benötige ich:
+
+**Mögliche Lösungen:**
+• Den vollständigen Artikel-Text direkt im Chat
+• Eine Kopie des Artikel-Inhalts ohne externe Links
+• Screenshots des Artikels
+
+**Was ich aus den gegebenen Informationen ableiten kann:**
+• **Titel:** "Endlich ein Kalender, der ehrlich ist"
+• **Kategorie:** Gesellschaft
+• **Quelle:** Fläsch Info (satirisches Format)
+• **Thema:** Vermutlich satirische Betrachtung eines Kalenders
+
+Bitte fügen Sie den tatsächlichen Artikel-Text hinzu, damit ich eine vollständige Analyse mit den gewünschten Punkten (Charaktere, Hauptereignis, wichtige Details, etc.) erstellen kann.
+
+
+### Endlich ein Kalender, der ehrlich ist. (November 2025)
+**Kategorie:** gesellschaft
+Ich kann den Artikel nicht analysieren, da der bereitgestellte Link nicht zum tatsächlichen Artikelinhalt führt, sondern zu einer externen Website (zero-potential.com) mit Tracking-Parametern.
+
+Um eine ordnungsgemäße Analyse durchzuführen, bräuchte ich:
+
+• **Den direkten Artikeltext** oder
+• **Einen funktionierenden Link** zum "Fläsch Info" Artikel oder
+• **Den kopierten Artikelinhalt**
+
+**Hinweis:** Der aktuelle Link scheint eine Werbekampagne oder Umleitung zu sein, nicht der satirische Artikel selbst.
+
+Bitte stelle den tatsächlichen Artikelinhalt zur Verfügung, damit ich die gewünschte Analyse mit:
+- Neuen Charakteren
+- Hauptereignis  
+- Wichtigen Details
+- Zukünftigen Referenzpunkten
+
+erstellen kann.
+
+
+### Fläscher, kauft noch Kehrichtsäcke - aber 1. Januar kosten sie über 20 Prozent mehr (November 2025)
+**Kategorie:** kurioses
+Ich kann den Artikel-Inhalt nicht analysieren, da nur ein Link zu einem PDF-Dokument bereitgestellt wurde, aber kein tatsächlicher Artikel-Text. 
+
+Basierend auf dem **Titel** kann ich folgendes ableiten:
+
+## Zusammenfassung (limitiert)
+
+**Neue Charaktere:**
+- Keine spezifischen Personen im Titel erwähnt
+
+**Hauptereignis:**
+- Kehrichtsack-Preise in Fläsch steigen ab 1. Januar um über 20%
+- Aufruf an Bürger, vor Preiserhöhung noch Säcke zu kaufen
+
+**Wichtige Details:**
+- Preiserhöhung: über 20%
+- Datum des Inkrafttretens: 1. Januar
+- Verweis auf offizielles Dokument: Gebührentarif zu Abfallgesetz ab 01.01.2026
+
+**Für zukünftige Artikel:**
+- Reaktionen der Fläscher Bevölkerung auf die Preiserhöhung
+- Hamsterkäufe von Kehrichtsäcken im Dezember
+- Vergleich mit anderen Gemeinden
+- Begründung der Gemeinde für die Preiserhöhung
+
+**Hinweis:** Für eine vollständige Analyse wäre der eigentliche Artikel-Text erforderlich, nicht nur der Link zum PDF-Dokument.
+
 ## Stil-Richtlinien
 
 ### Satire-Level
