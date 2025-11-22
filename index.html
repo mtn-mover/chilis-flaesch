@@ -263,6 +263,14 @@
             background: #9b59b6;
         }
 
+        .story-category.gesellschaft {
+            background: #3498db;
+        }
+
+        .story-category.kirche {
+            background: #27ae60;
+        }
+
         .story-date {
             font-size: 0.85rem;
             color: #999;
@@ -471,6 +479,53 @@
         .story-card:nth-child(2) {
             animation-delay: 0.1s;
         }
+
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid #C16F31;
+            background: white;
+            color: #C16F31;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-btn:hover {
+            background: #C16F31;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(193, 111, 49, 0.3);
+        }
+
+        .filter-btn.active {
+            background: #C16F31;
+            color: white;
+            box-shadow: 0 4px 12px rgba(193, 111, 49, 0.4);
+        }
+
+        .filter-btn.all {
+            border-color: #8B4513;
+            color: #8B4513;
+        }
+
+        .filter-btn.all:hover,
+        .filter-btn.all.active {
+            background: #8B4513;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -531,6 +586,17 @@
                 <span class="section-icon">📰</span>
                 <h2 class="section-title">Unsere Geschichten</h2>
             </div>
+
+            <!-- Category Filter -->
+            <div class="category-filter">
+                <button class="filter-btn all active" onclick="filterByCategory('all')">Alle</button>
+                <button class="filter-btn" onclick="filterByCategory('politik')">Politik</button>
+                <button class="filter-btn" onclick="filterByCategory('wirtschaft')">Wirtschaft</button>
+                <button class="filter-btn" onclick="filterByCategory('kurioses')">Kurioses</button>
+                <button class="filter-btn" onclick="filterByCategory('gesellschaft')">Gesellschaft</button>
+                <button class="filter-btn" onclick="filterByCategory('kirche')">Kirche</button>
+            </div>
+
             <div class="stories-grid">
                 <!-- Articles loaded dynamically from articles.json -->
             </div>
@@ -551,24 +617,6 @@
     </footer>
 
     <script>
-        // Load articles from articles.json
-        async function loadArticles() {
-            try {
-                const response = await fetch('articles.json');
-                if (!response.ok) {
-                    console.error('Failed to load articles.json');
-                    return;
-                }
-
-                const articles = await response.json();
-
-                // Render all stories
-                renderAllStories(articles);
-            } catch (error) {
-                console.error('Error loading articles:', error);
-            }
-        }
-
         function formatDate(dateString) {
             const date = new Date(dateString);
             const day = date.getDate();
@@ -594,6 +642,8 @@
                 'politik': 'Politik',
                 'wirtschaft': 'Wirtschaft',
                 'kurioses': 'Kurioses',
+                'gesellschaft': 'Gesellschaft',
+                'kirche': 'Kirche',
                 'kultur': 'Kultur',
                 'sport': 'Sport'
             };
@@ -640,8 +690,48 @@
             `).join('');
         }
 
+        // Category filtering
+        let allArticles = [];
+        let currentFilter = 'all';
+
+        function filterByCategory(category) {
+            currentFilter = category;
+
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter and render articles
+            if (category === 'all') {
+                renderAllStories(allArticles);
+            } else {
+                const filtered = allArticles.filter(article => article.category === category);
+                renderAllStories(filtered);
+            }
+        }
+
         // Load articles when page loads
         document.addEventListener('DOMContentLoaded', loadArticles);
+
+        // Modified loadArticles to store articles globally
+        async function loadArticles() {
+            try {
+                const response = await fetch('articles.json');
+                if (!response.ok) {
+                    console.error('Failed to load articles.json');
+                    return;
+                }
+
+                allArticles = await response.json();
+
+                // Render all stories
+                renderAllStories(allArticles);
+            } catch (error) {
+                console.error('Error loading articles:', error);
+            }
+        }
 
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
