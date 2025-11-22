@@ -1686,6 +1686,27 @@ Um eine ordnungsgemäße Analyse durchzuführen, benötige ich:
 
 Bitte fügen Sie den tatsächlichen Artikel-Text hinzu, damit ich eine vollständige Analyse mit den gewünschten Punkten (Charaktere, Hauptereignis, wichtige Details, etc.) erstellen kann.
 
+
+### Endlich ein Kalender, der ehrlich ist. (November 2025)
+**Kategorie:** gesellschaft
+Ich kann den Artikel nicht analysieren, da der bereitgestellte Link nicht zum tatsächlichen Artikelinhalt führt, sondern zu einer externen Website (zero-potential.com) mit Tracking-Parametern.
+
+Um eine ordnungsgemäße Analyse durchzuführen, bräuchte ich:
+
+• **Den direkten Artikeltext** oder
+• **Einen funktionierenden Link** zum "Fläsch Info" Artikel oder
+• **Den kopierten Artikelinhalt**
+
+**Hinweis:** Der aktuelle Link scheint eine Werbekampagne oder Umleitung zu sein, nicht der satirische Artikel selbst.
+
+Bitte stelle den tatsächlichen Artikelinhalt zur Verfügung, damit ich die gewünschte Analyse mit:
+- Neuen Charakteren
+- Hauptereignis  
+- Wichtigen Details
+- Zukünftigen Referenzpunkten
+
+erstellen kann.
+
 ## Stil-Richtlinien
 
 ### Satire-Level
