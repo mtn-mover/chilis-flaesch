@@ -1,0 +1,25 @@
+# robots.txt für Fläsch Info - Satirische Nachrichtenseite
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.flaesch.info/sitemap.xml
+
+# Disallow admin pages (nicht öffentlich zugänglich)
+Disallow: /admin.html
+Disallow: /admin-users.html
+Disallow: /create-article.html
+Disallow: /my-articles.html
+Disallow: /register.html
+Disallow: /api/
+
+# Allow important content
+Allow: /*.html
+Allow: /*.css
+Allow: /*.js
+Allow: /logo.png
+Allow: /favicon.svg
+
+# Crawl-delay (optional, für höflichere Crawler)
+Crawl-delay: 1

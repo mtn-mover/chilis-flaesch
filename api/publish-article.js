@@ -67,14 +67,81 @@ function wrapArticleInTemplate(draft) {
     }
   }
 
+  const articleUrl = `https://www.flaesch.info/${draft.fileName}`;
+  const articleDate = new Date(draft.createdAt).toISOString();
+  const articleImage = (draft.images && draft.images.length > 0) ? draft.images[0] : 'https://www.flaesch.info/logo.png';
+  const excerpt = draft.subtitle || draft.content.substring(0, 150);
+
   return `<!DOCTYPE html>
 <html lang="de-CH">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="${draft.excerpt || draft.content.substring(0, 150)}">
-    <title>${draft.title} | Fläsch Info</title>
+
+    <!-- Primary Meta Tags -->
+    <title>${draft.title} | Fläsch Info - Satirische Nachrichten aus Fläsch GR</title>
+    <meta name="title" content="${draft.title} | Fläsch Info">
+    <meta name="description" content="${excerpt}">
+    <meta name="keywords" content="Fläsch, Fläsch ${draft.category}, ${draft.title}, Fläsch News, Fläsch Satire, Gemeinde Fläsch, Graubünden, Schweiz">
+    <meta name="author" content="${draft.authorDisplayName || 'Fläsch Info'}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="${articleUrl}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="${articleUrl}">
+    <meta property="og:title" content="${draft.title}">
+    <meta property="og:description" content="${excerpt}">
+    <meta property="og:image" content="${articleImage}">
+    <meta property="og:locale" content="de_CH">
+    <meta property="og:site_name" content="Fläsch Info">
+    <meta property="article:published_time" content="${articleDate}">
+    <meta property="article:author" content="${draft.authorDisplayName || 'Fläsch Info'}">
+    <meta property="article:section" content="${categoryLabel}">
+    <meta property="article:tag" content="Fläsch">
+    <meta property="article:tag" content="Satire">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="${articleUrl}">
+    <meta property="twitter:title" content="${draft.title}">
+    <meta property="twitter:description" content="${excerpt}">
+    <meta property="twitter:image" content="${articleImage}">
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Structured Data / Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SatiricalArticle",
+      "headline": "${draft.title}",
+      "alternativeHeadline": "${draft.subtitle || ''}",
+      "image": "${articleImage}",
+      "datePublished": "${articleDate}",
+      "dateModified": "${new Date(draft.updatedAt).toISOString()}",
+      "author": {
+        "@type": "Person",
+        "name": "${draft.authorDisplayName || 'Fläsch Info'}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Fläsch Info",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.flaesch.info/logo.png"
+        }
+      },
+      "description": "${excerpt}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "${articleUrl}"
+      },
+      "articleSection": "${categoryLabel}",
+      "keywords": "Fläsch, ${draft.category}, Satire, Graubünden",
+      "inLanguage": "de-CH"
+    }
+    </script>
     <style>
         * {
             margin: 0;
