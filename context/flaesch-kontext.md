@@ -1810,6 +1810,30 @@ Bei der Frühjahrskirchgemeindeversammlung sollte der Gemeindepräsident zu den 
 • Gemeindepräsident möglicherweise frustriert über Behandlung
 • Kostenüberschreitung bei Bauprojekten als wiederkehrendes Thema
 
+
+### Kein Weihnachtsgottesdienst am Weihnachtstag (November 2025)
+**Kategorie:** kirche
+## Zusammenfassung: Kein Weihnachtsgottesdienst am Weihnachtstag
+
+### 1. Neue Charaktere:
+• **Neuer Pfarrer** (Name unbekannt) - wird verdächtigt, am Weihnachtstag nicht arbeiten zu wollen
+
+### 2. Hauptereignis:
+• Der traditionelle Weihnachtsgottesdienst am 25. Dezember wird auf den 26. Dezember nachmittags verschoben
+• Spekulationen über arbeitsscheuen neuen Pfarrer als Grund für die Verschiebung
+
+### 3. Wichtige Details:
+• **Datum**: Gottesdienst verschoben von 25.12. auf 26.12. (nachmittags)
+• **Grund**: Offiziell nicht genannt, nur Spekulationen
+• **Tradition**: Der Gottesdienst wird als "höchst traditionell" beschrieben
+
+### 4. Für zukünftige Artikel:
+• Charakterentwicklung des neuen Pfarrers möglich (Name, weitere "arbeitsscheue" Aktionen)
+• Reaktionen der Gemeinde auf die Verschiebung
+• Tatsächlicher Ablauf des verschobenen Gottesdienstes
+• Mögliche Konflikte zwischen Tradition und modernen Pfarrer-Ansichten
+• Etablierung eines wiederkehrenden Charakters als "fauler Pfarrer"
+
 ## Stil-Richtlinien
 
 ### Satire-Level
