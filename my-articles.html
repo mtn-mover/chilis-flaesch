@@ -59,6 +59,7 @@
         .nav-links {
             display: flex;
             gap: 1.5rem;
+            align-items: center;
         }
 
         .nav-links a {
@@ -71,6 +72,19 @@
 
         .nav-links a:hover {
             background: rgba(255,255,255,0.2);
+        }
+
+        .user-greeting {
+            color: white;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .user-greeting.show {
+            display: block;
         }
 
         .container {
@@ -216,6 +230,7 @@
             </a>
             <div class="nav-links" id="navLinks">
                 <a href="create-article.html">Neuer Artikel</a>
+                <span class="user-greeting" id="userGreeting"></span>
                 <a href="#" onclick="logout()">Logout</a>
             </div>
         </div>
@@ -277,6 +292,15 @@
                     throw new Error(result.error);
                 }
 
+                // Show user greeting in header
+                if (result.userDisplayName) {
+                    const greetingElement = document.getElementById('userGreeting');
+                    if (greetingElement) {
+                        greetingElement.textContent = `Hallo ${result.userDisplayName}`;
+                        greetingElement.classList.add('show');
+                    }
+                }
+
                 // Add admin link if user is admin (only once)
                 if (result.isAdmin) {
                     const navLinks = document.getElementById('navLinks');
@@ -286,8 +310,9 @@
                         const adminLink = document.createElement('a');
                         adminLink.href = 'admin-users.html';
                         adminLink.textContent = '👥 Benutzerverwaltung';
-                        // Insert before logout link
-                        navLinks.insertBefore(adminLink, navLinks.lastElementChild);
+                        // Insert before user greeting
+                        const userGreeting = navLinks.querySelector('.user-greeting');
+                        navLinks.insertBefore(adminLink, userGreeting);
                     }
                 }
 

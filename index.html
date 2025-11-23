@@ -86,6 +86,7 @@
             display: flex;
             gap: 2rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -100,6 +101,19 @@
         .nav-links a:hover {
             color: #C16F31;
             border-bottom-color: #C16F31;
+        }
+
+        .user-greeting {
+            color: #8B4513;
+            padding: 0.5rem 1rem;
+            background: rgba(139, 69, 19, 0.1);
+            border-radius: 5px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .user-greeting.show {
+            display: block;
         }
 
         /* Hero Section */
@@ -547,6 +561,7 @@
                 <li><a href="#geschichten">Unsere Geschichten</a></li>
                 <li><a href="ueber-uns.html">Über uns</a></li>
                 <li><a href="kontakt.html">Kontakt</a></li>
+                <li><span class="user-greeting" id="userGreeting"></span></li>
                 <li><a href="my-articles.html" style="opacity: 0.5; font-size: 0.85rem;">Admin</a></li>
             </ul>
         </div>
@@ -732,6 +747,33 @@
                 console.error('Error loading articles:', error);
             }
         }
+
+        // Check if user is logged in and show greeting
+        async function checkLoginStatus() {
+            const sessionToken = localStorage.getItem('sessionToken');
+            if (sessionToken) {
+                try {
+                    const response = await fetch('/api/verify', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ sessionToken })
+                    });
+                    const result = await response.json();
+                    if (result.valid && result.displayName) {
+                        const greetingElement = document.getElementById('userGreeting');
+                        if (greetingElement) {
+                            greetingElement.textContent = `Hallo ${result.displayName}`;
+                            greetingElement.classList.add('show');
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error checking login status:', error);
+                }
+            }
+        }
+
+        // Check login status on page load
+        checkLoginStatus();
 
         // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
