@@ -656,7 +656,7 @@
         }
 
         // Load all display names for dropdown
-        async function loadDisplayNames() {
+        async function loadDisplayNames(currentAuthorName = null) {
             try {
                 const response = await fetch('/api/manage-users', {
                     method: 'POST',
@@ -669,7 +669,12 @@
                 const result = await response.json();
                 if (response.ok && result.users) {
                     // Get unique display names from all users
-                    const displayNames = [...new Set(result.users.map(u => u.displayName).filter(Boolean))];
+                    let displayNames = [...new Set(result.users.map(u => u.displayName).filter(Boolean))];
+
+                    // If currentAuthorName is provided and not in the list, add it
+                    if (currentAuthorName && !displayNames.includes(currentAuthorName)) {
+                        displayNames.push(currentAuthorName);
+                    }
 
                     // Update dropdown
                     const dropdown = document.getElementById('editorAuthorDisplayName');
@@ -1113,27 +1118,23 @@
             switchEditorMode('visual');
             modal.classList.add('active');
 
-            // Reload display names in background (non-blocking)
-            loadDisplayNames().then(() => {
+            // Reload display names in background (non-blocking), passing current author name
+            loadDisplayNames(savedAuthorName).then(() => {
                 // After loading, set the correct author display name
                 if (savedAuthorName) {
-                    const hasOption = Array.from(authorDisplayNameSelect.options).some(opt => opt.value === savedAuthorName);
-                    if (hasOption) {
-                        authorDisplayNameSelect.value = savedAuthorName;
-                    } else {
-                        // If the old author name doesn't exist anymore, use the first available option
-                        if (authorDisplayNameSelect.options.length > 0) {
-                            authorDisplayNameSelect.selectedIndex = 0;
-                        }
-                    }
+                    authorDisplayNameSelect.value = savedAuthorName;
                 } else if (authorDisplayNameSelect.options.length > 0) {
                     authorDisplayNameSelect.selectedIndex = 0;
                 }
             }).catch(err => {
                 console.error('Error loading display names:', err);
-                // If loading fails, try to set saved name or leave empty
+                // If loading fails, manually add the saved name
                 if (savedAuthorName) {
-                    authorDisplayNameSelect.value = savedAuthorName;
+                    authorDisplayNameSelect.innerHTML = '';
+                    const option = document.createElement('option');
+                    option.value = savedAuthorName;
+                    option.textContent = savedAuthorName;
+                    authorDisplayNameSelect.appendChild(option);
                 }
             });
         }

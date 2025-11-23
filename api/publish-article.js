@@ -23,6 +23,8 @@ function wrapArticleInTemplate(draft) {
     'politik': '#e74c3c',
     'wirtschaft': '#f39c12',
     'kurioses': '#9b59b6',
+    'gesellschaft': '#3498db',
+    'kirche': '#27ae60',
     'kultur': '#3498db',
     'sport': '#2ecc71'
   };
@@ -31,6 +33,8 @@ function wrapArticleInTemplate(draft) {
     'politik': 'Politik',
     'wirtschaft': 'Wirtschaft',
     'kurioses': 'Kurioses',
+    'gesellschaft': 'Gesellschaft',
+    'kirche': 'Kirche',
     'kultur': 'Kultur',
     'sport': 'Sport'
   };
@@ -453,7 +457,7 @@ function wrapArticleInTemplate(draft) {
         <div class="hero-meta">
             <span class="hero-category">${categoryLabel}</span>
             ${draft.authorDisplayName ? `<span class="hero-author">Erstellt durch: ${draft.authorDisplayName}</span>` : ''}
-            <span class="hero-date">${new Date().toLocaleDateString('de-CH', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <span class="hero-date">${new Date(draft.createdAt).toLocaleDateString('de-CH', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
         </div>
     </section>
 
@@ -701,7 +705,7 @@ module.exports = async function handler(req, res) {
         fileName: fileName,
         category: draft.category,
         excerpt: draft.content.substring(0, 100) + '...',
-        date: new Date().toISOString().split('T')[0],
+        date: draft.createdAt ? new Date(draft.createdAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
         image: draft.images && draft.images.length > 0 ? draft.images[0] : null,
         author: draft.author,
         authorDisplayName: draft.authorDisplayName
