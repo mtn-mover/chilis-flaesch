@@ -82,7 +82,7 @@ function wrapArticleInTemplate(draft) {
     <title>${draft.title} | Fläsch Info - Satirische Nachrichten aus Fläsch GR</title>
     <meta name="title" content="${draft.title} | Fläsch Info">
     <meta name="description" content="${excerpt}">
-    <meta name="keywords" content="Fläsch, Fläsch ${draft.category}, ${draft.title}, Fläsch News, Fläsch Satire, Gemeinde Fläsch, Graubünden, Schweiz">
+    <meta name="keywords" content="Fläsch, Flaesch, Fläsch ${draft.category}, ${draft.title}, Fläsch News, Flaesch News, Fläsch Satire, Gemeinde Fläsch, Fläsch GR, Graubünden, Schweiz, Dorf Fläsch">
     <meta name="author" content="${draft.authorDisplayName || 'Fläsch Info'}">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="${articleUrl}">
@@ -138,7 +138,7 @@ function wrapArticleInTemplate(draft) {
         "@id": "${articleUrl}"
       },
       "articleSection": "${categoryLabel}",
-      "keywords": "Fläsch, ${draft.category}, Satire, Graubünden",
+      "keywords": "Fläsch, Flaesch, ${draft.category}, Satire, Graubünden, Schweiz, Gemeinde Fläsch",
       "inLanguage": "de-CH"
     }
     </script>
