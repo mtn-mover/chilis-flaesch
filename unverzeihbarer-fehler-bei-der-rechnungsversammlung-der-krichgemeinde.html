@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Um Rede und Antwort zu stehen bezüglich der übertroffenen Kosten vom WC im Kirchturm (x-fache vom Bduget) wurde der Gemeindepräsident an die Frühjahrs">
+    <title>An Kirchgemeindeversammlung einfach übersehen. | Fläsch Info</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #27ae60;
+            --dark-gray: #2D3142;
+            --light-gray: #F4F4F4;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        /* Top Info Bar */
+        .info-bar {
+            background: #8B4513;
+            color: white;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .info-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .satire-badge {
+            background: #FFD700;
+            color: #8B4513;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 72px;
+            width: auto;
+        }
+
+        @media (min-width: 768px) {
+            .nav-logo img {
+                height: 96px;
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: #C16F31;
+            border-bottom-color: #C16F31;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #8B4513 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        
+        .hero-image {
+            width: 100%;
+            max-width: 1200px;
+            height: 400px;
+            object-fit: cover;
+            margin: 0 auto 2rem;
+            border-radius: 10px;
+            display: block;
+        }
+        
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .hero-category {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-date {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .article-content {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #2d3436;
+        }
+
+        .article-content p {
+            margin-bottom: 1.8rem;
+            text-align: justify;
+        }
+
+        .article-content h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-color);
+            position: relative;
+        }
+
+        .article-content h2::after {
+            content: '🌶️';
+            position: absolute;
+            right: 0;
+            bottom: -0.2rem;
+            font-size: 1.5rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #C16F31;
+            margin: 2.5rem 0 1rem;
+            padding-left: 1rem;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .article-content blockquote {
+            background: linear-gradient(135deg, #fff9f0 0%, #fff 100%);
+            border-left: 5px solid var(--primary-color);
+            padding: 1.5rem 2rem;
+            margin: 2.5rem 0;
+            font-style: italic;
+            color: #555;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .article-content blockquote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-color);
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: Georgia, serif;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 2rem 0 2rem 0;
+            padding-left: 2rem;
+            background: #f8f9fa;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+        }
+
+        .article-content li::marker {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin: 2.5rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .article-content img:hover {
+            transform: scale(1.02);
+        }
+
+        .article-content strong {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .article-content em {
+            color: #C16F31;
+            font-style: italic;
+        }
+
+        /* Highlight boxes */
+        .article-content .highlight-box {
+            background: linear-gradient(135deg, #fff 0%, #fffbea 100%);
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c2c2c;
+            color: white;
+            padding: 2.5rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-content p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .footer-content a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-disclaimer {
+            background: rgba(255, 215, 0, 0.15);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .info-bar-content {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            
+            .hero-image {
+                height: 250px;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Info Bar -->
+    <div class="info-bar">
+        <div class="info-bar-content">
+            <div>📍 Fläsch, Graubünden, Schweiz</div>
+            <div class="satire-badge">⚠️ SATIRE</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="Fläsch Info Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#geschichten">Unsere Geschichten</a></li>
+                <li><a href="ueber-uns.html">Über uns</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+                <li><a href="admin.html" style="opacity: 0.5; font-size: 0.85rem;">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://ovks2lxbjpjxpfbj.public.blob.vercel-storage.com/Gemeindepr%C3%A4sident%20wir%20an%20Gemeindeversammlung%20einfach%20%C3%BCbersehen.-1763895753709-40a3d504-13ca-413c-9510-c951fa1d4490.png" alt="An Kirchgemeindeversammlung einfach übersehen." class="hero-image">
+        <h1>An Kirchgemeindeversammlung einfach übersehen.</h1>
+        <p class="hero-subtitle">Kirchenpräsidentin vergisst CEO komplett - WC-Skandal wird zum Benimm-Desaster</p>
+        <div class="hero-meta">
+            <span class="hero-category">Kirche</span>
+            <span class="hero-author">Erstellt durch: der Flüsterer</span>
+            <span class="hero-date">23. November 2025</span>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <article class="article-content">
+            <h2>Protokoll-Panne der Extraklasse erschüttert Fläscher Kirchgemeinde</h2>
+
+<p>Was als ordentliche Frühjahrskirchgemeindeversammlung geplant war, entwickelte sich zur grössten Benimm-Katastrophe seit Einführung des Gemeindeknigge von 1847. Die Kirchenpräsidentin vergass in der Hitze des WC-Gefechtes den eigens eingeladenen CEO der Gemeinde zu begrüssen - ein Fauxpas von biblischen Ausmassen.</p>
+
+<h3>CEO wartet vergeblich auf sein grosses Auftreten</h3>
+
+<p>Der CEO war extra angereist, um Rede und Antwort zu stehen bezüglich der explodierten Kosten für das neue WC im Kirchturm. Doch anstatt dem CEO das Wort zu erteilen, stürzte sich die Präsidentin direkt in die Traktandenliste.</p>
+
+<blockquote>«Ich sass da wie bestellt und nicht abgeholt. Normalerweise leite ich ja selbst die Arbeitsgruppen, aber hier konnte ich nur zuschauen, wie mein Name im Protokoll vergessen ging», kommentierte der CEO sichtlich verstimmt.</blockquote>
+
+<h3>Dorfbewohner sprechen von «Schärfegrad Twin Peaks»</h3>
+
+<p>El Diablo Müller, der sich zu Wort meldete, stufte die Panne auf der bewährten Fläscher Schärfe-Skala ein: «Das war mindestens Twin Peaks-Level - viel zu scharf für unsere Gemeindekultur. Wir stehen doch auf MEDIUM!» Auch Beatrice aus dem Publikum zeigte sich entsetzt: so viele Franken für ein WC und dann kann man nicht mal grüssen - das ist ja schlimmer als damals, als die Migros unsere Chilis mit Korkenziehern verwechselt hat.»</p>
+
+<h3>Adjutant übernimmt Schadensbegrenzung</h3>
+
+<p>Der Adjutant der Gemeinde eilte nach der Versammlung herbei, um die diplomatischen Wogen zu glätten. In einer hastigen Pressekonferenz vor dem Volg erklärte er: «Wir werden eine Arbeitsgruppe gründen, um künftige Begrüssungsabläufe zu standardisieren. Der CEO hat bereits signalisiert, dass er die Leitung übernehmen würde.» Bis dahin bleibt das WC ein stilles Mahnmal für teure Notdürfte und vergessene Höflichkeit.</p>
+        </article>
+    </div>
+
+    <!-- Like Section -->
+    <link rel="stylesheet" href="comments.css">
+    <div class="like-section">
+        <button id="likeButton" class="like-button">🤍 Gefällt mir</button>
+        <span class="like-count">👍 <span id="likeCount">0</span> Likes</span>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="comments-section">
+        <h2>💬 Kommentare</h2>
+
+        <!-- Comment Form (nur wenn eingeloggt) -->
+        <div id="commentFormSection" style="display: none;">
+            <form id="commentForm" class="comment-form">
+                <div class="comment-mode-selector">
+                    <label>
+                        <input type="radio" name="commentMode" value="manual" checked>
+                        <span>✍️ Selbst schreiben</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="commentMode" value="claude">
+                        <span>🤖 Mit Claude-Hilfe</span>
+                    </label>
+                </div>
+
+                <textarea
+                    id="commentText"
+                    placeholder="Schreib einen lustigen Kommentar... (Bei Claude-Hilfe: Gib Stichworte ein)"
+                    required
+                ></textarea>
+
+                <button type="submit" id="submitCommentBtn" class="submit-comment-btn">
+                    📨 Kommentar absenden
+                </button>
+            </form>
+        </div>
+
+        <!-- Login Prompt (wenn nicht eingeloggt) -->
+        <div id="loginPrompt" class="login-prompt">
+            <p>
+                <strong>🔐 Du musst angemeldet sein, um zu kommentieren</strong><br><br>
+                <a href="admin.html">Zum Login →</a> | <a href="register.html">Registrieren →</a>
+            </p>
+        </div>
+
+        <!-- Comments List -->
+        <div class="comments-list">
+            <h3 style="margin-bottom: 1.5rem; color: #8B4513;">Alle Kommentare:</h3>
+            <div id="commentsContainer">
+                <p style="text-align: center; color: #999; padding: 2rem;">Lade Kommentare...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Config -->
+    <script>
+        window.ARTICLE_SLUG = 'unverzeihbarer-fehler-bei-der-rechnungsversammlung-der-krichgemeinde';
+        window.ARTICLE_TITLE = 'An Kirchgemeindeversammlung einfach übersehen.';
+    </script>
+    <script src="comments.js"></script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>🍷 <strong>Fläsch Info</strong> - Satirische Geschichten aus Fläsch</p>
+            <p>&copy; 2025 Fläsch mittendrin - oder doch daneben?</p>
+            <div class="footer-disclaimer">
+                ⚠️ Diese Webseite ist SATIRE! Alle Geschichten sind frei erfunden und dienen ausschliesslich der Unterhaltung.
+                <br><br>
+                🤖 Diese Webseite wurde mit KI erstellt. Inhalte werden von künstlicher Intelligenz generiert.
+            </div>
+            <p style="margin-top: 1.5rem;">
+                <a href="index.html">← Zurück zur Startseite</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

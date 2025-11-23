@@ -1761,6 +1761,31 @@ Basierend auf dem **Titel** kann ich folgendes ableiten:
 
 **Hinweis:** Der Artikel ist sehr knapp gehalten und bietet hauptsächlich eine Überschrift ohne tiefergehende satirische Inhalte oder Details. Er scheint als Aufhänger für potenzielle Folgeberichterstattung über winterliche Herausforderungen in der Gemeinde zu dienen.
 
+
+### An Kirchgemeindeversammlung einfach übersehen. (November 2025)
+**Kategorie:** kirche
+## Analyse: "An Kirchgemeindeversammlung einfach übersehen"
+
+**Neue Charaktere:**
+• Presidentin der Kirchgemeinde (namentlich nicht genannt) - vergesslich unter Druck
+
+**Hauptereignis:**
+• Gemeindepräsident wurde zur Kirchgemeindeversammlung eingeladen, um Kostenüberschreitung beim WC-Projekt zu erklären, aber die Kirchgemeinde-Presidentin vergass ihn zu begrüßen und ihm das Wort zu erteilen
+
+**Wichtige Details:**
+• WC im Kirchturm kostete "x-faches" des ursprünglichen Budgets (genaue Zahlen nicht genannt)
+• Ereignis fand an der Frühjahrskirchgemeindeversammlung statt
+• Wird als "Debackel" bezeichnet
+
+**Für zukünftige Artikel:**
+• WC-Projekt im Kirchturm ist kostspieliges Streitthema
+• Spannungen zwischen Gemeinde- und Kirchgemeindeleitung
+• Organisatorische Pannen bei offiziellen Versammlungen
+• Kostenüberschreitungen bei Bauprojekten als wiederkehrendes Thema
+• Kommunikationsprobleme zwischen verschiedenen Gemeindeebenen
+
+*Satirischer Kern: Bürokratische Pannen und Bauprojekt-Kostenexplosionen in kleinen Gemeinden*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
