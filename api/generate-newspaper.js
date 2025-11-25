@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import chromium from '@sparticuz/chromium';
 import puppeteer from 'puppeteer-core';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-key-change-in-production';
+const JWT_SECRET = process.env.JWT_SECRET || 'flaesch-info-secret-2024-temp';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -27,15 +27,15 @@ export default async function handler(req, res) {
     let decoded;
     try {
       decoded = jwt.verify(token, JWT_SECRET);
+      console.log('JWT decoded:', { username: decoded.username, role: decoded.role });
     } catch (err) {
       console.error('JWT verification failed:', err.message);
       return res.status(401).json({ error: 'Ungültiges Token', details: err.message });
     }
 
-    // Check if user is admin
-    const user = await kv.hgetall(`user:${decoded.username}`);
-    if (!user || user.role !== 'admin') {
-      console.error('User is not admin:', decoded.username, 'role:', user?.role);
+    // Check if user is admin (check both JWT role and database)
+    if (decoded.role !== 'admin') {
+      console.error('User is not admin:', decoded.username, 'JWT role:', decoded.role);
       return res.status(403).json({ error: 'Nur Admins können Zeitungen generieren' });
     }
 
