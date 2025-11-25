@@ -214,10 +214,9 @@ function generateNewspaperHTML(data) {
 
   // Generate pages dynamically based on article count
   // Page 1: Cover with table of contents
-  // Pages 2-7: One article per page
-  // Page 8: Back page
+  // Pages 2-N: One article per page
 
-  const totalPages = Math.max(8, articles.length + 1); // At least 8 pages
+  const totalPages = articles.length + 1; // 1 cover page + N article pages
   const sheets = Math.ceil(totalPages / 2); // Number of A3 sheets needed
 
   // Helper to get category label
@@ -294,35 +293,7 @@ function generateNewspaperHTML(data) {
   </div>`;
     }
 
-    // Last page: Back page
-    if (pageNum === totalPages) {
-      return `
-  <div class="page ${positionClass}">
-    <div class="masthead">
-      <div class="newspaper-title">${title}</div>
-      <div class="tagline">Satirische Nachrichten aus Fläsch GR</div>
-      <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
-    </div>
-
-    <div class="back-page-content">
-      <h2 style="font-size: 24pt; margin: 40px 0 20px 0; text-align: center;">Impressum</h2>
-      <div style="font-size: 10pt; line-height: 1.6; max-width: 400px; margin: 0 auto;">
-        <p style="margin-bottom: 10px;"><strong>Fläsch Info</strong></p>
-        <p style="margin-bottom: 10px;">Satirisches Nachrichtenportal</p>
-        <p style="margin-bottom: 10px;">www.flaesch.info</p>
-        <p style="margin-bottom: 20px; font-style: italic;">Alle Artikel sind satirisch und frei erfunden.</p>
-        <p style="margin-bottom: 10px;">Ausgabe ${issueNumber}</p>
-        <p style="margin-bottom: 10px;">${issueDate}</p>
-      </div>
-    </div>
-
-    <div class="page-footer">
-      www.flaesch.info • Seite ${pageNum}
-    </div>
-  </div>`;
-    }
-
-    // Article pages (2 to totalPages-1)
+    // Article pages (2 to totalPages)
     const articleIndex = pageNum - 2;
     if (articleIndex >= 0 && articleIndex < articles.length) {
       const article = articles[articleIndex];
@@ -457,16 +428,16 @@ function generateNewspaperHTML(data) {
 
     /* Cover page */
     .main-headline {
-      font-size: 32pt;
+      font-size: 24pt;
       font-weight: bold;
       line-height: 1.1;
-      margin: 15px 0 8px 0;
+      margin: 12px 0 6px 0;
     }
 
     .main-subtitle {
-      font-size: 14pt;
+      font-size: 12pt;
       font-style: italic;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       color: #333;
     }
 
