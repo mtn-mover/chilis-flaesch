@@ -134,17 +134,28 @@ export default async function handler(req, res) {
           right: '0mm',
           bottom: '0mm',
           left: '0mm'
-        }
+        },
+        preferCSSPageSize: false
       });
 
       console.log('PDF generated, size:', pdf.length, 'bytes');
 
       await browser.close();
 
-      // Return PDF
+      // Verify PDF is valid (should start with %PDF)
+      const pdfHeader = pdf.slice(0, 4).toString();
+      console.log('PDF header:', pdfHeader);
+
+      if (!pdfHeader.startsWith('%PDF')) {
+        throw new Error('Generated PDF is invalid (missing PDF header)');
+      }
+
+      // Return PDF with proper headers
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename="flaesch-info-ausgabe-${issueNumber}.pdf"`);
-      return res.send(pdf);
+      res.setHeader('Content-Length', pdf.length);
+      res.setHeader('Cache-Control', 'no-cache');
+      return res.end(pdf, 'binary');
 
     } catch (pdfError) {
       if (browser) await browser.close();
