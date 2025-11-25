@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeitungs-Editor - Fläsch Info</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .header-logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .header-logo h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .user-greeting {
+            color: white;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .user-greeting.show {
+            display: block;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .steps {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            position: relative;
+        }
+
+        .step.active {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .step.completed {
+            border-color: #28a745;
+            background: #f0fff4;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            background: #ddd;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .step.active .step-number {
+            background: #667eea;
+            color: white;
+        }
+
+        .step.completed .step-number {
+            background: #28a745;
+            color: white;
+        }
+
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .article-card {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .article-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .article-card.selected {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .article-checkbox {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+            padding-right: 30px;
+        }
+
+        .article-meta {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+        }
+
+        .category-politik { background: #e74c3c; color: white; }
+        .category-wirtschaft { background: #f39c12; color: white; }
+        .category-kurioses { background: #9b59b6; color: white; }
+        .category-gesellschaft { background: #3498db; color: white; }
+        .category-kirche { background: #27ae60; color: white; }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .cover-preview {
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 1.5rem;
+            background: #fafafa;
+        }
+
+        .cover-preview img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .selected-articles {
+            background: #f8f9ff;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .selected-articles h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .selected-article-item {
+            background: white;
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .info-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .preview-iframe {
+            width: 100%;
+            min-height: 800px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="index.html" class="header-logo">
+                <img src="logo.png" alt="Fläsch Info Logo">
+                <h1>📰 Zeitungs-Editor</h1>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="my-articles.html">Meine Artikel</a>
+                <span class="user-greeting" id="userGreeting"></span>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Progress Steps -->
+        <div class="steps">
+            <div class="step active" id="step1">
+                <div class="step-number">1</div>
+                <div class="step-title">Artikel auswählen</div>
+            </div>
+            <div class="step" id="step2">
+                <div class="step-number">2</div>
+                <div class="step-title">Titelseite gestalten</div>
+            </div>
+            <div class="step" id="step3">
+                <div class="step-number">3</div>
+                <div class="step-title">Vorschau & Generieren</div>
+            </div>
+        </div>
+
+        <!-- Step 1: Article Selection -->
+        <div class="section active" id="section1">
+            <h2>📋 Schritt 1: Artikel für die Zeitung auswählen</h2>
+
+            <div class="info-box">
+                <strong>ℹ️ Tipp:</strong> Wähle 4-8 Artikel aus. Der erste ausgewählte Artikel wird die Hauptstory auf der Titelseite.
+            </div>
+
+            <div class="selected-articles" id="selectedArticlesSummary" style="display: none;">
+                <h3>Ausgewählte Artikel (<span id="selectedCount">0</span>)</h3>
+                <div id="selectedArticlesList"></div>
+            </div>
+
+            <div id="loadingIndicator" class="loading">
+                <div class="spinner"></div>
+                <p>Lade veröffentlichte Artikel...</p>
+            </div>
+
+            <div class="articles-grid" id="articlesGrid"></div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="goToStep(2)" id="nextToStep2">
+                    Weiter zur Titelseite →
+                </button>
+            </div>
+        </div>
+
+        <!-- Step 2: Cover Configuration -->
+        <div class="section" id="section2">
+            <h2>🎨 Schritt 2: Titelseite gestalten</h2>
+
+            <div class="info-box">
+                <strong>ℹ️ Info:</strong> Die Titelseite ist die rechte Außenseite des gefalteten A3-Blatts.
+            </div>
+
+            <div class="form-group">
+                <label for="newspaperTitle">Zeitungstitel</label>
+                <input type="text" id="newspaperTitle" placeholder="z.B. Fläsch Info" value="Fläsch Info">
+            </div>
+
+            <div class="form-group">
+                <label for="issueNumber">Ausgabe Nummer</label>
+                <input type="text" id="issueNumber" placeholder="z.B. 1" value="1">
+            </div>
+
+            <div class="form-group">
+                <label for="issueDate">Ausgabedatum</label>
+                <input type="text" id="issueDate" placeholder="z.B. Januar 2025">
+            </div>
+
+            <div class="form-group">
+                <label for="mainHeadline">Hauptschlagzeile (optional - sonst wird Titel vom ersten Artikel verwendet)</label>
+                <input type="text" id="mainHeadline" placeholder="z.B. Sensationelle Enthüllungen aus Fläsch!">
+            </div>
+
+            <div class="form-group">
+                <label for="subtitle">Untertitel / Teaser</label>
+                <textarea id="subtitle" placeholder="z.B. In dieser Ausgabe: Skandale, Kurioses und mehr..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Titelbild</label>
+                <div class="cover-preview" id="coverPreview">
+                    <p>Das Bild vom ersten ausgewählten Artikel wird verwendet</p>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(1)">← Zurück</button>
+                <button class="btn btn-primary" onclick="goToStep(3)">Zur Vorschau →</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Preview & Generate -->
+        <div class="section" id="section3">
+            <h2>👁️ Schritt 3: Vorschau & PDF generieren</h2>
+
+            <div class="info-box">
+                <strong>📄 Layout:</strong> A3-Format zum Falzen - Seite 1 (Titelseite), Seiten 2-3 (Innen), Seite 4 (Rückseite)
+            </div>
+
+            <div id="previewLoading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Erstelle Vorschau...</p>
+            </div>
+
+            <div id="previewContent" style="display: none;">
+                <iframe id="previewIframe" class="preview-iframe"></iframe>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(2)">← Zurück</button>
+                <button id="downloadBtn" class="btn btn-success" onclick="generatePDF()">📥 PDF Herunterladen</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sessionToken = localStorage.getItem('sessionToken');
+        if (!sessionToken) {
+            window.location.href = 'admin.html';
+        }
+
+        let selectedArticles = [];
+        let allArticles = [];
+        let currentStep = 1;
+
+        // Logout
+        function logout() {
+            const cookieConsent = localStorage.getItem('flaesch_cookie_consent');
+            localStorage.clear();
+            if (cookieConsent) {
+                localStorage.setItem('flaesch_cookie_consent', cookieConsent);
+            }
+            window.location.href = 'admin.html';
+        }
+
+        // Load published articles
+        async function loadPublishedArticles() {
+            try {
+                const response = await fetch('articles.json');
+                if (!response.ok) throw new Error('Failed to load articles');
+
+                allArticles = await response.json();
+
+                document.getElementById('loadingIndicator').style.display = 'none';
+                renderArticles();
+            } catch (error) {
+                console.error('Error loading articles:', error);
+                document.getElementById('loadingIndicator').innerHTML = '<p style="color: red;">Fehler beim Laden der Artikel</p>';
+            }
+        }
+
+        function renderArticles() {
+            const grid = document.getElementById('articlesGrid');
+            grid.innerHTML = allArticles.map((article, index) => `
+                <div class="article-card ${selectedArticles.includes(article.fileName) ? 'selected' : ''}"
+                     onclick="toggleArticle('${article.fileName}')">
+                    <input type="checkbox" class="article-checkbox"
+                           ${selectedArticles.includes(article.fileName) ? 'checked' : ''}
+                           onclick="event.stopPropagation(); toggleArticle('${article.fileName}')">
+                    ${article.image ? `<img src="${article.image}" class="article-image">` : '<div class="article-image"></div>'}
+                    <div class="article-title">${article.title}</div>
+                    <div class="article-meta">${new Date(article.date).toLocaleDateString('de-CH')}</div>
+                    <span class="article-category category-${article.category}">${getCategoryLabel(article.category)}</span>
+                </div>
+            `).join('');
+        }
+
+        function toggleArticle(fileName) {
+            if (selectedArticles.includes(fileName)) {
+                selectedArticles = selectedArticles.filter(f => f !== fileName);
+            } else {
+                selectedArticles.push(fileName);
+            }
+            renderArticles();
+            updateSelectedSummary();
+        }
+
+        function updateSelectedSummary() {
+            const summary = document.getElementById('selectedArticlesSummary');
+            const count = document.getElementById('selectedCount');
+            const list = document.getElementById('selectedArticlesList');
+
+            count.textContent = selectedArticles.length;
+
+            if (selectedArticles.length > 0) {
+                summary.style.display = 'block';
+                list.innerHTML = selectedArticles.map((fileName, index) => {
+                    const article = allArticles.find(a => a.fileName === fileName);
+                    return `
+                        <div class="selected-article-item">
+                            <div>
+                                <strong>${index === 0 ? '⭐ ' : ''}${index + 1}.</strong> ${article.title}
+                                ${index === 0 ? '<small style="color: #667eea;"> (Hauptstory)</small>' : ''}
+                            </div>
+                            <button onclick="toggleArticle('${fileName}')" style="background: #dc3545; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 4px; cursor: pointer;">Entfernen</button>
+                        </div>
+                    `;
+                }).join('');
+            } else {
+                summary.style.display = 'none';
+            }
+        }
+
+        function getCategoryLabel(category) {
+            const labels = {
+                'politik': 'Politik',
+                'wirtschaft': 'Wirtschaft',
+                'kurioses': 'Kurioses',
+                'gesellschaft': 'Gesellschaft',
+                'kirche': 'Kirche'
+            };
+            return labels[category] || category;
+        }
+
+        function goToStep(step) {
+            if (step === 2 && selectedArticles.length === 0) {
+                alert('Bitte wähle mindestens einen Artikel aus!');
+                return;
+            }
+
+            // Update step indicators
+            for (let i = 1; i <= 3; i++) {
+                const stepEl = document.getElementById(`step${i}`);
+                const sectionEl = document.getElementById(`section${i}`);
+
+                stepEl.classList.remove('active', 'completed');
+                sectionEl.classList.remove('active');
+
+                if (i < step) {
+                    stepEl.classList.add('completed');
+                } else if (i === step) {
+                    stepEl.classList.add('active');
+                    sectionEl.classList.add('active');
+                }
+            }
+
+            currentStep = step;
+
+            // Special handling for each step
+            if (step === 2) {
+                updateCoverPreview();
+            } else if (step === 3) {
+                generatePreview();
+            }
+        }
+
+        function updateCoverPreview() {
+            if (selectedArticles.length > 0) {
+                const firstArticle = allArticles.find(a => a.fileName === selectedArticles[0]);
+                const preview = document.getElementById('coverPreview');
+
+                if (firstArticle.image) {
+                    preview.innerHTML = `
+                        <p><strong>Titelbild:</strong></p>
+                        <img src="${firstArticle.image}" alt="${firstArticle.title}">
+                        <p style="margin-top: 1rem;"><small>${firstArticle.title}</small></p>
+                    `;
+                }
+            }
+        }
+
+        async function generatePreview() {
+            document.getElementById('previewLoading').style.display = 'block';
+            document.getElementById('previewContent').style.display = 'none';
+
+            // Build newspaper data
+            const newspaperData = {
+                title: document.getElementById('newspaperTitle').value,
+                issueNumber: document.getElementById('issueNumber').value,
+                issueDate: document.getElementById('issueDate').value || new Date().toLocaleDateString('de-CH', { year: 'numeric', month: 'long' }),
+                mainHeadline: document.getElementById('mainHeadline').value,
+                subtitle: document.getElementById('subtitle').value,
+                articles: selectedArticles.map(fileName => allArticles.find(a => a.fileName === fileName))
+            };
+
+            // For now, just show a simple preview
+            setTimeout(() => {
+                document.getElementById('previewLoading').style.display = 'none';
+                document.getElementById('previewContent').style.display = 'block';
+
+                const iframe = document.getElementById('previewIframe');
+                iframe.srcdoc = generatePreviewHTML(newspaperData);
+            }, 1000);
+        }
+
+        function generatePreviewHTML(data) {
+            const mainArticle = data.articles[0];
+            const otherArticles = data.articles.slice(1);
+
+            return `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <style>
+                        body {
+                            font-family: Georgia, 'Times New Roman', serif;
+                            margin: 0;
+                            padding: 20px;
+                            background: white;
+                        }
+                        .newspaper-title {
+                            text-align: center;
+                            font-size: 3rem;
+                            font-weight: bold;
+                            border-top: 4px solid black;
+                            border-bottom: 4px solid black;
+                            padding: 1rem 0;
+                            margin-bottom: 0.5rem;
+                        }
+                        .issue-info {
+                            text-align: center;
+                            font-style: italic;
+                            margin-bottom: 2rem;
+                        }
+                        .main-headline {
+                            font-size: 2.5rem;
+                            font-weight: bold;
+                            text-align: center;
+                            margin: 2rem 0 1rem;
+                            line-height: 1.2;
+                        }
+                        .subtitle {
+                            text-align: center;
+                            font-style: italic;
+                            font-size: 1.2rem;
+                            margin-bottom: 2rem;
+                        }
+                        .main-image {
+                            width: 100%;
+                            max-height: 400px;
+                            object-fit: cover;
+                            margin: 1rem 0;
+                        }
+                        .article-preview {
+                            border-top: 2px solid #ccc;
+                            padding: 1rem 0;
+                            margin-top: 1rem;
+                        }
+                        .article-preview h3 {
+                            font-size: 1.5rem;
+                            margin-bottom: 0.5rem;
+                        }
+                        .article-preview p {
+                            font-size: 1rem;
+                            line-height: 1.6;
+                        }
+                        .watermark {
+                            text-align: center;
+                            color: #999;
+                            margin-top: 2rem;
+                            padding-top: 1rem;
+                            border-top: 1px solid #ccc;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="newspaper-title">${data.title}</div>
+                    <div class="issue-info">Ausgabe ${data.issueNumber} • ${data.issueDate}</div>
+
+                    <div class="main-headline">${data.mainHeadline || mainArticle.title}</div>
+                    ${data.subtitle ? `<div class="subtitle">${data.subtitle}</div>` : ''}
+
+                    ${mainArticle.image ? `<img src="${mainArticle.image}" class="main-image">` : ''}
+
+                    <div class="article-preview">
+                        <p><strong>${mainArticle.subtitle || ''}</strong></p>
+                        <p>${mainArticle.excerpt}</p>
+                    </div>
+
+                    ${otherArticles.map(article => `
+                        <div class="article-preview">
+                            <h3>${article.title}</h3>
+                            <p>${article.excerpt}</p>
+                        </div>
+                    `).join('')}
+
+                    <div class="watermark">
+                        <p><strong>VORSCHAU</strong> - Die finale PDF-Version enthält das vollständige Layout mit allen Seiten</p>
+                    </div>
+                </body>
+                </html>
+            `;
+        }
+
+        async function generatePDF() {
+            const downloadBtn = document.getElementById('downloadBtn');
+            const originalText = downloadBtn.textContent;
+
+            downloadBtn.textContent = '⏳ PDF wird generiert...';
+            downloadBtn.disabled = true;
+
+            // Prepare data for PDF generation
+            const newspaperData = {
+                sessionToken: sessionToken,
+                title: document.getElementById('newspaperTitle').value,
+                issueNumber: document.getElementById('issueNumber').value,
+                issueDate: document.getElementById('issueDate').value || new Date().toLocaleDateString('de-CH', { year: 'numeric', month: 'long' }),
+                mainHeadline: document.getElementById('mainHeadline').value,
+                subtitle: document.getElementById('subtitle').value,
+                articleFileNames: selectedArticles
+            };
+
+            try {
+                const response = await fetch('/api/generate-newspaper', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newspaperData)
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `flaesch-info-ausgabe-${newspaperData.issueNumber}.pdf`;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+
+                    downloadBtn.textContent = '✅ PDF heruntergeladen!';
+                    setTimeout(() => {
+                        downloadBtn.textContent = originalText;
+                        downloadBtn.disabled = false;
+                    }, 3000);
+                } else {
+                    const error = await response.json();
+                    alert('Fehler: ' + error.error);
+                    downloadBtn.textContent = originalText;
+                    downloadBtn.disabled = false;
+                }
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+                alert('Fehler beim Generieren des PDFs: ' + error.message);
+                downloadBtn.textContent = originalText;
+                downloadBtn.disabled = false;
+            }
+        }
+
+        // Load user info
+        async function loadUserInfo() {
+            try {
+                const response = await fetch('/api/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sessionToken })
+                });
+                const result = await response.json();
+                if (result.valid && result.displayName) {
+                    const greetingElement = document.getElementById('userGreeting');
+                    if (greetingElement) {
+                        greetingElement.textContent = `Hallo ${result.displayName}`;
+                        greetingElement.classList.add('show');
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading user info:', error);
+            }
+        }
+
+        // Initialize
+        loadUserInfo();
+        loadPublishedArticles();
+    </script>
+</body>
+</html>
