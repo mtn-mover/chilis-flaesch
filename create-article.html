@@ -672,7 +672,7 @@
                         greetingElement.classList.add('show');
                     }
                     // Show newspaper link for admins
-                    if (result.role === 'admin') {
+                    if (result.isAdmin) {
                         const newspaperLink = document.getElementById('newspaperLink');
                         if (newspaperLink) {
                             newspaperLink.style.display = 'block';
