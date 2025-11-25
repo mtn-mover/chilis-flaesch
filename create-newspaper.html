@@ -950,6 +950,13 @@
             const downloadBtn = document.getElementById('downloadBtn');
             const originalText = downloadBtn.textContent;
 
+            // Check if sessionToken exists
+            if (!sessionToken) {
+                alert('❌ Nicht eingeloggt. Bitte neu anmelden.');
+                setTimeout(() => window.location.href = 'admin.html', 1000);
+                return;
+            }
+
             downloadBtn.textContent = '⏳ PDF wird generiert...';
             downloadBtn.disabled = true;
 
@@ -965,12 +972,20 @@
                 articleFileNames: selectedArticles
             };
 
+            console.log('Generating PDF...', {
+                hasToken: !!sessionToken,
+                articleCount: selectedArticles.length,
+                hasCoverImage: !!coverImageData
+            });
+
             try {
                 const response = await fetch('/api/generate-newspaper', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(newspaperData)
                 });
+
+                console.log('PDF response:', { status: response.status, ok: response.ok });
 
                 if (response.ok) {
                     const blob = await response.blob();
@@ -989,14 +1004,27 @@
                         downloadBtn.disabled = false;
                     }, 3000);
                 } else {
-                    const error = await response.json();
-                    alert('Fehler: ' + error.error);
+                    let errorMessage = 'Unbekannter Fehler';
+                    try {
+                        const error = await response.json();
+                        errorMessage = error.error || error.details || errorMessage;
+                    } catch (e) {
+                        errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+                    }
+
+                    if (response.status === 401) {
+                        alert('❌ Session abgelaufen. Bitte neu anmelden.');
+                        setTimeout(() => window.location.href = 'admin.html', 2000);
+                    } else {
+                        alert('❌ Fehler: ' + errorMessage);
+                    }
+
                     downloadBtn.textContent = originalText;
                     downloadBtn.disabled = false;
                 }
             } catch (error) {
                 console.error('Error generating PDF:', error);
-                alert('Fehler beim Generieren des PDFs: ' + error.message);
+                alert('❌ Fehler beim Generieren des PDFs: ' + error.message);
                 downloadBtn.textContent = originalText;
                 downloadBtn.disabled = false;
             }
