@@ -301,8 +301,11 @@ function generateNewspaperHTML(data) {
     .article-image {
       width: 100%;
       height: auto;
+      max-height: 120mm;
+      object-fit: cover;
       margin: 10px 0;
       border: 1px solid #ddd;
+      display: block;
     }
 
     .article-content {
@@ -310,6 +313,7 @@ function generateNewspaperHTML(data) {
       text-align: justify;
       columns: 2;
       column-gap: 15px;
+      line-height: 1.5;
     }
 
     .article-content p {
@@ -360,7 +364,7 @@ function generateNewspaperHTML(data) {
         <div class="article-category">${escapeHTML(article.category)}</div>
         <h2 class="article-headline">${escapeHTML(article.title)}</h2>
         ${article.subtitle ? `<p class="article-subtitle" style="font-style: italic; font-size: 1rem; margin: 0.5rem 0; color: #333;">${escapeHTML(article.subtitle)}</p>` : ''}
-        ${article.image ? `<img src="${escapeHTML(article.image)}" class="article-image" />` : ''}
+        ${article.image ? `<img src="${article.image}" class="article-image" onerror="this.style.display='none'" />` : ''}
         <div class="article-content">
           ${escapeHTML(stripHTML(article.content).substring(0, 800))}...
         </div>
@@ -383,14 +387,14 @@ function generateNewspaperHTML(data) {
     ${mainHeadline ? `<h1 class="main-headline">${escapeHTML(mainHeadline)}</h1>` : ''}
     ${subtitle ? `<p class="main-subtitle">${escapeHTML(subtitle)}</p>` : ''}
 
-    ${coverImage ? `<img src="${escapeHTML(coverImage)}" class="article-image" style="max-height: 150mm;" />` : ''}
+    ${coverImage ? `<img src="${coverImage}" class="article-image" style="max-height: 150mm;" onerror="this.style.display='none'" />` : ''}
 
     ${articles.slice(0, 1).map(article => `
       <div class="article">
         <div class="article-category">${escapeHTML(article.category)}</div>
         <h2 class="article-headline">${escapeHTML(article.title)}</h2>
         ${article.subtitle ? `<p class="article-subtitle" style="font-style: italic; font-size: 1.1rem; margin: 0.5rem 0; color: #333;">${escapeHTML(article.subtitle)}</p>` : ''}
-        ${!coverImage && article.image ? `<img src="${escapeHTML(article.image)}" class="article-image" />` : ''}
+        ${!coverImage && article.image ? `<img src="${article.image}" class="article-image" onerror="this.style.display='none'" />` : ''}
         <div class="cover-content">
           ${escapeHTML(stripHTML(article.content).substring(0, 1000))}...
         </div>
@@ -417,7 +421,7 @@ function generateNewspaperHTML(data) {
         <div class="article-category">${escapeHTML(article.category)}</div>
         <h2 class="article-headline">${escapeHTML(article.title)}</h2>
         ${article.subtitle ? `<p class="article-subtitle" style="font-style: italic; font-size: 1rem; margin: 0.5rem 0; color: #333;">${escapeHTML(article.subtitle)}</p>` : ''}
-        ${article.image ? `<img src="${escapeHTML(article.image)}" class="article-image" />` : ''}
+        ${article.image ? `<img src="${article.image}" class="article-image" onerror="this.style.display='none'" />` : ''}
         <div class="article-content">
           ${escapeHTML(stripHTML(article.content).substring(0, 1500))}...
         </div>
@@ -441,7 +445,7 @@ function generateNewspaperHTML(data) {
         <div class="article-category">${escapeHTML(article.category)}</div>
         <h2 class="article-headline">${escapeHTML(article.title)}</h2>
         ${article.subtitle ? `<p class="article-subtitle" style="font-style: italic; font-size: 1rem; margin: 0.5rem 0; color: #333;">${escapeHTML(article.subtitle)}</p>` : ''}
-        ${article.image ? `<img src="${escapeHTML(article.image)}" class="article-image" />` : ''}
+        ${article.image ? `<img src="${article.image}" class="article-image" onerror="this.style.display='none'" />` : ''}
         <div class="article-content">
           ${escapeHTML(stripHTML(article.content).substring(0, 1500))}...
         </div>
