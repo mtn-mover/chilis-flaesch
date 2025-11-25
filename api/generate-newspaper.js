@@ -68,19 +68,25 @@ export default async function handler(req, res) {
                                html.match(/<div[^>]*class="hero-subtitle"[^>]*>(.*?)<\/div>/);
           const contentMatch = html.match(/<article class="article-content">([\s\S]*?)<\/article>/) ||
                               html.match(/<div class="story-content">([\s\S]*?)<\/div>/);
-          const imageMatch = html.match(/<img[^>]*class="hero-image"[^>]*src="([^"]*)"/) ||
-                            html.match(/<img[^>]*src="([^"]*)"[^>]*>/);
+          const imageMatch = html.match(/<img[^>]*src="([^"]*)"[^>]*class="hero-image"/) ||
+                            html.match(/<img[^>]*class="hero-image"[^>]*src="([^"]*)"/) ||
+                            html.match(/<img[^>]*src="([^"]*)"[^>]*alt="[^"]*"[^>]*class="hero-image"/);
           const categoryMatch = html.match(/<span class="hero-category"[^>]*>(.*?)<\/span>/) ||
                                html.match(/<span class="story-category[^"]*"[^>]*>(.*?)<\/span>/);
 
-          articles.push({
+          const article = {
             fileName,
             title: titleMatch ? titleMatch[1].trim() : '',
             subtitle: subtitleMatch ? subtitleMatch[1].trim() : '',
             content: contentMatch ? contentMatch[1].trim() : '',
             image: imageMatch ? imageMatch[1] : null,
             category: categoryMatch ? categoryMatch[1].trim() : ''
-          });
+          };
+
+          console.log(`Article: ${article.title}`);
+          console.log(`  Image: ${article.image || 'NO IMAGE FOUND'}`);
+
+          articles.push(article);
         }
       } catch (error) {
         console.error(`Error fetching article ${fileName}:`, error);
