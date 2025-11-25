@@ -335,16 +335,16 @@ function generateNewspaperHTML(data) {
 
     <div class="article">
       <div class="article-category">${escapeHTML(getCategoryLabel(article.category))}</div>
+      <h1 class="article-headline">${escapeHTML(article.title)}</h1>
+      ${article.subtitle ? `<p class="article-subtitle">${escapeHTML(article.subtitle)}</p>` : ''}
       <div class="article-content">
-        <h1 class="article-headline">${escapeHTML(article.title)}</h1>
-        ${article.subtitle ? `<p class="article-subtitle">${escapeHTML(article.subtitle)}</p>` : ''}
         ${article.image ? `<img src="${article.image}" class="article-image" onerror="this.style.display='none'" />` : ''}
         ${article.content}
       </div>
     </div>
 
     <div class="page-footer">
-      www.flaesch.info • ${escapeHTML(getCategoryLabel(article.category))} • Seite ${pageNum}
+      www.flaesch.info • Satirische Nachrichten aus Fläsch • Seite ${pageNum}
     </div>
   </div>`;
     }
@@ -539,15 +539,7 @@ function generateNewspaperHTML(data) {
       color: white;
     }
 
-    .article-content {
-      font-size: 10pt;
-      text-align: justify;
-      columns: 2;
-      column-gap: 15px;
-      line-height: 1.5;
-    }
-
-    .article-content .article-headline {
+    .article-headline {
       font-size: 20pt;
       font-weight: bold;
       margin-bottom: 6px;
@@ -555,47 +547,63 @@ function generateNewspaperHTML(data) {
       margin-top: 0;
     }
 
-    .article-content .article-subtitle {
+    .article-subtitle {
       font-size: 11pt;
       font-style: italic;
       margin-bottom: 10px;
       color: #333;
     }
 
+    .article-content {
+      font-size: 10pt !important;
+      text-align: justify;
+      columns: 2;
+      column-gap: 15px;
+      line-height: 1.5;
+    }
+
     .article-content .article-image {
-      width: 48%;
+      width: 100%;
       height: auto;
-      max-height: 65mm;
+      max-height: 75mm;
       object-fit: cover;
-      margin: 0 12px 10px 0;
+      margin: 0 0 10px 0;
       border: 1px solid #ddd;
-      float: left;
+      display: block;
+      break-inside: avoid;
     }
 
     .article-content p {
       margin-bottom: 8px;
+      font-size: 10pt !important;
     }
 
     .article-content h2 {
-      font-size: 12pt;
-      font-weight: bold;
-      margin: 12px 0 6px 0;
-      break-after: avoid;
-    }
-
-    .article-content h3 {
-      font-size: 11pt;
+      font-size: 10pt !important;
       font-weight: bold;
       margin: 10px 0 5px 0;
       break-after: avoid;
     }
 
+    .article-content h3 {
+      font-size: 10pt !important;
+      font-weight: bold;
+      margin: 8px 0 4px 0;
+      break-after: avoid;
+    }
+
     .article-content strong {
       font-weight: bold;
+      font-size: 10pt !important;
     }
 
     .article-content em {
       font-style: italic;
+      font-size: 10pt !important;
+    }
+
+    .article-content * {
+      font-size: 10pt !important;
     }
 
     /* Footer */
