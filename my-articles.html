@@ -230,6 +230,7 @@
             </a>
             <div class="nav-links" id="navLinks">
                 <a href="create-article.html">Neuer Artikel</a>
+                <a href="create-newspaper.html" id="newspaperLink" style="display: none;">📰 Zeitung erstellen</a>
                 <span class="user-greeting" id="userGreeting"></span>
                 <a href="#" onclick="logout()">Logout</a>
             </div>
@@ -298,6 +299,14 @@
                     if (greetingElement) {
                         greetingElement.textContent = `Hallo ${result.userDisplayName}`;
                         greetingElement.classList.add('show');
+                    }
+                }
+
+                // Show newspaper link for admins
+                if (result.role === 'admin') {
+                    const newspaperLink = document.getElementById('newspaperLink');
+                    if (newspaperLink) {
+                        newspaperLink.style.display = 'block';
                     }
                 }
 
