@@ -11,22 +11,31 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Parse body if needed
+    let body = req.body;
+    if (typeof body === 'string') {
+      body = JSON.parse(body);
+    }
+
     // Verify authentication
-    const token = req.body.sessionToken;
+    const token = body.sessionToken;
     if (!token) {
-      return res.status(401).json({ error: 'Nicht authentifiziert' });
+      console.error('No session token provided');
+      return res.status(401).json({ error: 'Nicht authentifiziert', details: 'Kein Token gefunden' });
     }
 
     let decoded;
     try {
       decoded = jwt.verify(token, JWT_SECRET);
     } catch (err) {
-      return res.status(401).json({ error: 'Ungültiges Token' });
+      console.error('JWT verification failed:', err.message);
+      return res.status(401).json({ error: 'Ungültiges Token', details: err.message });
     }
 
     // Check if user is admin
     const user = await kv.hgetall(`user:${decoded.username}`);
     if (!user || user.role !== 'admin') {
+      console.error('User is not admin:', decoded.username, 'role:', user?.role);
       return res.status(403).json({ error: 'Nur Admins können Zeitungen generieren' });
     }
 
@@ -37,8 +46,9 @@ export default async function handler(req, res) {
       issueDate,
       mainHeadline,
       subtitle,
+      coverImage,
       articleFileNames
-    } = req.body;
+    } = body;
 
     if (!articleFileNames || articleFileNames.length === 0) {
       return res.status(400).json({ error: 'Keine Artikel ausgewählt' });
@@ -83,8 +93,9 @@ export default async function handler(req, res) {
       title: title || 'Fläsch Info',
       issueNumber: issueNumber || '1',
       issueDate: issueDate || new Date().toLocaleDateString('de-CH', { year: 'numeric', month: 'long', day: 'numeric' }),
-      mainHeadline: mainHeadline || articles[0].title,
+      mainHeadline: mainHeadline || '',
       subtitle: subtitle || '',
+      coverImage: coverImage || null,
       articles
     });
 
@@ -125,13 +136,7 @@ export default async function handler(req, res) {
 }
 
 function generateNewspaperHTML(data) {
-  const { title, issueNumber, issueDate, mainHeadline, subtitle, articles } = data;
-
-  // Main article (cover story)
-  const mainArticle = articles[0];
-
-  // Remaining articles for inside pages
-  const sideArticles = articles.slice(1);
+  const { title, issueNumber, issueDate, mainHeadline, subtitle, coverImage, articles } = data;
 
   return `
 <!DOCTYPE html>
@@ -317,7 +322,7 @@ function generateNewspaperHTML(data) {
       <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
     </div>
 
-    ${sideArticles.slice(2).map(article => `
+    ${articles.slice(3).map(article => `
       <div class="article">
         <div class="article-category">${article.category}</div>
         <h2 class="article-headline">${article.title}</h2>
@@ -341,16 +346,21 @@ function generateNewspaperHTML(data) {
       <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
     </div>
 
-    <h1 class="main-headline">${mainHeadline}</h1>
+    ${mainHeadline ? `<h1 class="main-headline">${mainHeadline}</h1>` : ''}
     ${subtitle ? `<p class="main-subtitle">${subtitle}</p>` : ''}
 
-    <div class="article">
-      <div class="article-category">${mainArticle.category}</div>
-      ${mainArticle.image ? `<img src="${mainArticle.image}" class="article-image" />` : ''}
-      <div class="cover-content">
-        ${stripHTML(mainArticle.content).substring(0, 1200)}...
+    ${coverImage ? `<img src="${coverImage}" class="article-image" style="max-height: 150mm;" />` : ''}
+
+    ${articles.slice(0, 1).map(article => `
+      <div class="article">
+        <div class="article-category">${article.category}</div>
+        <h2 class="article-headline">${article.title}</h2>
+        ${!coverImage && article.image ? `<img src="${article.image}" class="article-image" />` : ''}
+        <div class="cover-content">
+          ${stripHTML(article.content).substring(0, 1000)}...
+        </div>
       </div>
-    </div>
+    `).join('')}
 
     <div class="page-footer">
       www.flaesch.info • Satirische Nachrichten aus Fläsch • Seite 1
@@ -367,7 +377,7 @@ function generateNewspaperHTML(data) {
       <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
     </div>
 
-    ${sideArticles.slice(0, 1).map(article => `
+    ${articles.slice(1, 2).map(article => `
       <div class="article">
         <div class="article-category">${article.category}</div>
         <h2 class="article-headline">${article.title}</h2>
@@ -390,7 +400,7 @@ function generateNewspaperHTML(data) {
       <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
     </div>
 
-    ${sideArticles.slice(1, 2).map(article => `
+    ${articles.slice(2, 3).map(article => `
       <div class="article">
         <div class="article-category">${article.category}</div>
         <h2 class="article-headline">${article.title}</h2>
