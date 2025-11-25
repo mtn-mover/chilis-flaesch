@@ -686,12 +686,25 @@
             const preview = document.getElementById('coverPreview');
             preview.innerHTML = '<p>⏳ Lade Bild hoch...</p>';
 
+            // Check if sessionToken exists
+            if (!sessionToken) {
+                preview.innerHTML = '<p style="color: red;">❌ Nicht eingeloggt. Bitte neu anmelden.</p>';
+                setTimeout(() => window.location.href = 'admin.html', 2000);
+                return;
+            }
+
             try {
                 // Convert file to base64
                 const reader = new FileReader();
                 reader.onload = async function(e) {
                     try {
                         const base64Data = e.target.result;
+
+                        console.log('Uploading image...', {
+                            fileName: file.name,
+                            fileSize: file.size,
+                            hasToken: !!sessionToken
+                        });
 
                         const response = await fetch('/api/upload-image', {
                             method: 'POST',
@@ -707,9 +720,13 @@
                         });
 
                         const result = await response.json();
+                        console.log('Upload response:', { status: response.status, result });
 
                         if (!response.ok) {
-                            throw new Error(result.error || `Upload fehlgeschlagen (Status ${response.status})`);
+                            if (response.status === 401) {
+                                throw new Error('Session abgelaufen. Bitte neu anmelden.');
+                            }
+                            throw new Error(result.error || result.details || `Upload fehlgeschlagen (Status ${response.status})`);
                         }
 
                         if (!result.imageUrl) {
@@ -727,6 +744,11 @@
                         console.error('Error uploading cover image:', error);
                         preview.innerHTML = `<p style="color: red;">❌ Fehler beim Hochladen: ${error.message}</p>`;
                         coverImageData = null;
+
+                        // Redirect to login if session expired
+                        if (error.message.includes('Session abgelaufen') || error.message.includes('anmelden')) {
+                            setTimeout(() => window.location.href = 'admin.html', 2000);
+                        }
                     }
                 };
                 reader.onerror = function() {
