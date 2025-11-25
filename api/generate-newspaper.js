@@ -37,8 +37,17 @@ export default async function handler(req, res) {
     // Get user from database to check canCreateNewspaper permission
     const usersData = await kv.get('users');
     console.log('Raw users data from KV:', usersData);
+    console.log('Type of users data:', typeof usersData);
 
-    const users = JSON.parse(usersData || '[]');
+    // KV might return already parsed data or string
+    let users;
+    if (typeof usersData === 'string') {
+      users = JSON.parse(usersData || '[]');
+    } else if (Array.isArray(usersData)) {
+      users = usersData;
+    } else {
+      users = [];
+    }
     console.log('Parsed users:', users.length, 'users found');
 
     const user = users.find(u => u.username === decoded.username);
