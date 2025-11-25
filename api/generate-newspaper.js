@@ -337,8 +337,8 @@ function generateNewspaperHTML(data) {
       <div class="article-category">${escapeHTML(getCategoryLabel(article.category))}</div>
       <h1 class="article-headline">${escapeHTML(article.title)}</h1>
       ${article.subtitle ? `<p class="article-subtitle">${escapeHTML(article.subtitle)}</p>` : ''}
-      ${article.image ? `<img src="${article.image}" class="article-image" onerror="this.style.display='none'" />` : ''}
       <div class="article-content">
+        ${article.image ? `<img src="${article.image}" class="article-image" onerror="this.style.display='none'" />` : ''}
         ${article.content}
       </div>
     </div>
@@ -529,17 +529,19 @@ function generateNewspaperHTML(data) {
     }
 
     .article-headline {
-      font-size: 24pt;
+      font-size: 20pt;
       font-weight: bold;
-      margin-bottom: 8px;
-      line-height: 1.2;
+      margin-bottom: 6px;
+      line-height: 1.1;
+      column-span: all;
     }
 
     .article-subtitle {
-      font-size: 12pt;
+      font-size: 11pt;
       font-style: italic;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       color: #333;
+      column-span: all;
     }
 
     .article-category {
@@ -548,23 +550,23 @@ function generateNewspaperHTML(data) {
       font-weight: bold;
       text-transform: uppercase;
       padding: 3px 8px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       background: #000;
       color: white;
     }
 
     .article-image {
-      width: 45%;
+      width: 100%;
       height: auto;
-      max-height: 60mm;
+      max-height: 70mm;
       object-fit: cover;
-      margin: 0 15px 10px 0;
+      margin: 0 0 10px 0;
       border: 1px solid #ddd;
-      float: left;
+      display: block;
     }
 
     .article-content {
-      font-size: 9.5pt;
+      font-size: 10pt;
       text-align: justify;
       columns: 2;
       column-gap: 15px;
@@ -572,14 +574,23 @@ function generateNewspaperHTML(data) {
     }
 
     .article-content p {
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .article-content h2,
     .article-content h3 {
-      font-size: 12pt;
-      margin: 12px 0 8px 0;
+      font-size: 11pt;
+      font-weight: bold;
+      margin: 10px 0 6px 0;
       column-span: all;
+    }
+
+    .article-content strong {
+      font-weight: bold;
+    }
+
+    .article-content em {
+      font-style: italic;
     }
 
     /* Footer */
