@@ -35,13 +35,20 @@ export default async function handler(req, res) {
 
     // Check if user has permission to create newspapers
     // Get user from database to check canCreateNewspaper permission
-    const users = JSON.parse(await kv.get('users') || '[]');
+    const usersData = await kv.get('users');
+    console.log('Raw users data from KV:', usersData);
+
+    const users = JSON.parse(usersData || '[]');
+    console.log('Parsed users:', users.length, 'users found');
+
     const user = users.find(u => u.username === decoded.username);
 
     if (!user) {
-      console.error('User not found in database:', decoded.username);
+      console.error('User not found in database:', decoded.username, 'Available users:', users.map(u => u.username));
       return res.status(403).json({ error: 'Benutzer nicht gefunden' });
     }
+
+    console.log('User found:', { username: user.username, role: user.role, canCreateNewspaper: user.canCreateNewspaper });
 
     const canCreate = user.role === 'admin' || user.canCreateNewspaper === true;
 
@@ -49,6 +56,8 @@ export default async function handler(req, res) {
       console.error('User lacks newspaper creation permission:', decoded.username, 'Admin:', user.role === 'admin', 'canCreateNewspaper:', user.canCreateNewspaper);
       return res.status(403).json({ error: 'Keine Berechtigung zum Erstellen von Zeitungen' });
     }
+
+    console.log('User has permission to create newspaper');
 
     // Get newspaper configuration
     const {
