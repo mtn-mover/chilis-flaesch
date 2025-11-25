@@ -802,18 +802,8 @@
         }
 
         function updateCoverPreview() {
-            if (selectedArticles.length > 0) {
-                const firstArticle = allArticles.find(a => a.fileName === selectedArticles[0]);
-                const preview = document.getElementById('coverPreview');
-
-                if (firstArticle.image) {
-                    preview.innerHTML = `
-                        <p><strong>Titelbild:</strong></p>
-                        <img src="${firstArticle.image}" alt="${firstArticle.title}">
-                        <p style="margin-top: 1rem;"><small>${firstArticle.title}</small></p>
-                    `;
-                }
-            }
+            // Don't auto-load image from first article
+            // User must explicitly upload a cover image
         }
 
         async function generatePreview() {
