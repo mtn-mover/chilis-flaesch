@@ -169,7 +169,7 @@
             border: 2px solid #ddd;
             border-radius: 8px;
             padding: 1rem;
-            cursor: pointer;
+            cursor: grab;
             transition: all 0.3s;
             position: relative;
         }
@@ -183,6 +183,17 @@
         .article-card.selected {
             border-color: #667eea;
             background: #f8f9ff;
+        }
+
+        .article-card.dragging {
+            opacity: 0.5;
+            cursor: grabbing;
+        }
+
+        .article-card.drag-over {
+            border-color: #667eea;
+            border-style: dashed;
+            background: #f0f4ff;
         }
 
         .article-checkbox {
@@ -465,9 +476,10 @@
             </div>
 
             <div class="form-group">
-                <label>Titelbild</label>
+                <label for="coverImageUpload">Titelbild (optional)</label>
+                <input type="file" id="coverImageUpload" accept="image/*" onchange="handleCoverImageUpload(event)" style="margin-bottom: 1rem;">
                 <div class="cover-preview" id="coverPreview">
-                    <p>Das Bild vom ersten ausgewählten Artikel wird verwendet</p>
+                    <p>📷 Kein Titelbild hochgeladen. Das Bild vom ersten Artikel wird verwendet (falls vorhanden).</p>
                 </div>
             </div>
 
@@ -510,6 +522,7 @@
         let selectedArticles = [];
         let allArticles = [];
         let currentStep = 1;
+        let coverImageData = null; // Store uploaded cover image
 
         // Logout
         function logout() {
@@ -541,7 +554,13 @@
             const grid = document.getElementById('articlesGrid');
             grid.innerHTML = allArticles.map((article, index) => `
                 <div class="article-card ${selectedArticles.includes(article.fileName) ? 'selected' : ''}"
-                     onclick="toggleArticle('${article.fileName}')">
+                     draggable="true"
+                     data-filename="${article.fileName}"
+                     onclick="toggleArticle('${article.fileName}')"
+                     ondragstart="handleDragStart(event)"
+                     ondragend="handleDragEnd(event)"
+                     ondragover="handleDragOver(event)"
+                     ondrop="handleDrop(event)">
                     <input type="checkbox" class="article-checkbox"
                            ${selectedArticles.includes(article.fileName) ? 'checked' : ''}
                            onclick="event.stopPropagation(); toggleArticle('${article.fileName}')">
@@ -577,8 +596,8 @@
                     return `
                         <div class="selected-article-item">
                             <div>
-                                <strong>${index === 0 ? '⭐ ' : ''}${index + 1}.</strong> ${article.title}
-                                ${index === 0 ? '<small style="color: #667eea;"> (Hauptstory)</small>' : ''}
+                                <strong>${index + 1}.</strong> ${article.title}
+                                <small style="color: #999;"> (${getCategoryLabel(article.category)})</small>
                             </div>
                             <button onclick="toggleArticle('${fileName}')" style="background: #dc3545; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 4px; cursor: pointer;">Entfernen</button>
                         </div>
@@ -598,6 +617,100 @@
                 'kirche': 'Kirche'
             };
             return labels[category] || category;
+        }
+
+        // Drag & Drop handlers
+        let draggedElement = null;
+
+        function handleDragStart(event) {
+            draggedElement = event.currentTarget;
+            event.currentTarget.classList.add('dragging');
+            event.dataTransfer.effectAllowed = 'move';
+            event.dataTransfer.setData('text/html', event.currentTarget.innerHTML);
+        }
+
+        function handleDragEnd(event) {
+            event.currentTarget.classList.remove('dragging');
+            document.querySelectorAll('.article-card').forEach(card => {
+                card.classList.remove('drag-over');
+            });
+        }
+
+        function handleDragOver(event) {
+            if (event.preventDefault) {
+                event.preventDefault();
+            }
+            event.dataTransfer.dropEffect = 'move';
+            event.currentTarget.classList.add('drag-over');
+            return false;
+        }
+
+        function handleDrop(event) {
+            if (event.stopPropagation) {
+                event.stopPropagation();
+            }
+            event.preventDefault();
+
+            event.currentTarget.classList.remove('drag-over');
+
+            if (draggedElement !== event.currentTarget) {
+                const draggedFileName = draggedElement.dataset.filename;
+                const targetFileName = event.currentTarget.dataset.filename;
+
+                const draggedIndex = allArticles.findIndex(a => a.fileName === draggedFileName);
+                const targetIndex = allArticles.findIndex(a => a.fileName === targetFileName);
+
+                // Swap articles in the array
+                const temp = allArticles[draggedIndex];
+                allArticles[draggedIndex] = allArticles[targetIndex];
+                allArticles[targetIndex] = temp;
+
+                renderArticles();
+                updateSelectedSummary();
+            }
+
+            return false;
+        }
+
+        // Cover image upload handler
+        async function handleCoverImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const preview = document.getElementById('coverPreview');
+            preview.innerHTML = '<p>⏳ Lade Bild hoch...</p>';
+
+            try {
+                const formData = new FormData();
+                formData.append('image', file);
+                formData.append('sessionToken', sessionToken);
+
+                const response = await fetch('/api/upload-image', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error('Upload fehlgeschlagen');
+
+                const result = await response.json();
+                coverImageData = result.url;
+
+                preview.innerHTML = `
+                    <p><strong>✅ Titelbild hochgeladen</strong></p>
+                    <img src="${coverImageData}" alt="Cover Image" style="max-width: 100%; max-height: 300px; margin-top: 1rem; border-radius: 8px;">
+                    <button onclick="removeCoverImage()" style="margin-top: 1rem; background: #dc3545; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Entfernen</button>
+                `;
+            } catch (error) {
+                console.error('Error uploading cover image:', error);
+                preview.innerHTML = '<p style="color: red;">❌ Fehler beim Hochladen des Bildes</p>';
+                coverImageData = null;
+            }
+        }
+
+        function removeCoverImage() {
+            coverImageData = null;
+            document.getElementById('coverImageUpload').value = '';
+            document.getElementById('coverPreview').innerHTML = '<p>📷 Kein Titelbild hochgeladen. Das Bild vom ersten Artikel wird verwendet (falls vorhanden).</p>';
         }
 
         function goToStep(step) {
@@ -658,23 +771,21 @@
                 issueDate: document.getElementById('issueDate').value || new Date().toLocaleDateString('de-CH', { year: 'numeric', month: 'long' }),
                 mainHeadline: document.getElementById('mainHeadline').value,
                 subtitle: document.getElementById('subtitle').value,
+                coverImage: coverImageData,
                 articles: selectedArticles.map(fileName => allArticles.find(a => a.fileName === fileName))
             };
 
-            // For now, just show a simple preview
+            // Show preview
             setTimeout(() => {
                 document.getElementById('previewLoading').style.display = 'none';
                 document.getElementById('previewContent').style.display = 'block';
 
                 const iframe = document.getElementById('previewIframe');
                 iframe.srcdoc = generatePreviewHTML(newspaperData);
-            }, 1000);
+            }, 500);
         }
 
         function generatePreviewHTML(data) {
-            const mainArticle = data.articles[0];
-            const otherArticles = data.articles.slice(1);
-
             return `
                 <!DOCTYPE html>
                 <html>
@@ -714,11 +825,12 @@
                             font-size: 1.2rem;
                             margin-bottom: 2rem;
                         }
-                        .main-image {
+                        .cover-image {
                             width: 100%;
                             max-height: 400px;
                             object-fit: cover;
                             margin: 1rem 0;
+                            border: 2px solid #333;
                         }
                         .article-preview {
                             border-top: 2px solid #ccc;
@@ -733,6 +845,15 @@
                             font-size: 1rem;
                             line-height: 1.6;
                         }
+                        .article-category {
+                            display: inline-block;
+                            padding: 0.25rem 0.75rem;
+                            background: #333;
+                            color: white;
+                            font-size: 0.8rem;
+                            margin-bottom: 0.5rem;
+                            text-transform: uppercase;
+                        }
                         .watermark {
                             text-align: center;
                             color: #999;
@@ -746,25 +867,23 @@
                     <div class="newspaper-title">${data.title}</div>
                     <div class="issue-info">Ausgabe ${data.issueNumber} • ${data.issueDate}</div>
 
-                    <div class="main-headline">${data.mainHeadline || mainArticle.title}</div>
+                    ${data.mainHeadline ? `<div class="main-headline">${data.mainHeadline}</div>` : ''}
                     ${data.subtitle ? `<div class="subtitle">${data.subtitle}</div>` : ''}
 
-                    ${mainArticle.image ? `<img src="${mainArticle.image}" class="main-image">` : ''}
+                    ${data.coverImage ? `<img src="${data.coverImage}" class="cover-image" alt="Titelbild">` : ''}
 
-                    <div class="article-preview">
-                        <p><strong>${mainArticle.subtitle || ''}</strong></p>
-                        <p>${mainArticle.excerpt}</p>
-                    </div>
-
-                    ${otherArticles.map(article => `
+                    ${data.articles.map((article, index) => `
                         <div class="article-preview">
-                            <h3>${article.title}</h3>
-                            <p>${article.excerpt}</p>
+                            <span class="article-category">${article.category}</span>
+                            <h3>${index + 1}. ${article.title}</h3>
+                            ${!data.coverImage && index === 0 && article.image ? `<img src="${article.image}" style="width: 100%; max-height: 300px; object-fit: cover; margin: 0.5rem 0;">` : ''}
+                            <p>${article.excerpt || article.title}</p>
                         </div>
                     `).join('')}
 
                     <div class="watermark">
-                        <p><strong>VORSCHAU</strong> - Die finale PDF-Version enthält das vollständige Layout mit allen Seiten</p>
+                        <p><strong>📄 VORSCHAU</strong></p>
+                        <p>Die finale PDF-Version enthält das vollständige 4-seitige A3-Layout mit allen Artikeln</p>
                     </div>
                 </body>
                 </html>
@@ -786,6 +905,7 @@
                 issueDate: document.getElementById('issueDate').value || new Date().toLocaleDateString('de-CH', { year: 'numeric', month: 'long' }),
                 mainHeadline: document.getElementById('mainHeadline').value,
                 subtitle: document.getElementById('subtitle').value,
+                coverImage: coverImageData,
                 articleFileNames: selectedArticles
             };
 
