@@ -62,8 +62,10 @@ export default async function handler(req, res) {
         if (response.ok) {
           const html = await response.text();
 
-          // Extract title, content, image, etc. from HTML
+          // Extract title, subtitle, content, image, etc. from HTML
           const titleMatch = html.match(/<h1[^>]*>(.*?)<\/h1>/);
+          const subtitleMatch = html.match(/<p[^>]*class="hero-subtitle"[^>]*>(.*?)<\/p>/) ||
+                               html.match(/<div[^>]*class="hero-subtitle"[^>]*>(.*?)<\/div>/);
           const contentMatch = html.match(/<article class="article-content">([\s\S]*?)<\/article>/) ||
                               html.match(/<div class="story-content">([\s\S]*?)<\/div>/);
           const imageMatch = html.match(/<img[^>]*class="hero-image"[^>]*src="([^"]*)"/) ||
@@ -74,6 +76,7 @@ export default async function handler(req, res) {
           articles.push({
             fileName,
             title: titleMatch ? titleMatch[1].trim() : '',
+            subtitle: subtitleMatch ? subtitleMatch[1].trim() : '',
             content: contentMatch ? contentMatch[1].trim() : '',
             image: imageMatch ? imageMatch[1] : null,
             category: categoryMatch ? categoryMatch[1].trim() : ''
