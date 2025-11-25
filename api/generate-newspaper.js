@@ -326,6 +326,7 @@ function generateNewspaperHTML(data) {
       <div class="article">
         <div class="article-category">${article.category}</div>
         <h2 class="article-headline">${article.title}</h2>
+        ${article.subtitle ? `<p class="article-subtitle" style="font-style: italic; font-size: 1rem; margin: 0.5rem 0; color: #333;">${article.subtitle}</p>` : ''}
         ${article.image ? `<img src="${article.image}" class="article-image" />` : ''}
         <div class="article-content">
           ${stripHTML(article.content).substring(0, 800)}...
@@ -355,6 +356,7 @@ function generateNewspaperHTML(data) {
       <div class="article">
         <div class="article-category">${article.category}</div>
         <h2 class="article-headline">${article.title}</h2>
+        ${article.subtitle ? `<p class="article-subtitle" style="font-style: italic; font-size: 1.1rem; margin: 0.5rem 0; color: #333;">${article.subtitle}</p>` : ''}
         ${!coverImage && article.image ? `<img src="${article.image}" class="article-image" />` : ''}
         <div class="cover-content">
           ${stripHTML(article.content).substring(0, 1000)}...
@@ -381,6 +383,7 @@ function generateNewspaperHTML(data) {
       <div class="article">
         <div class="article-category">${article.category}</div>
         <h2 class="article-headline">${article.title}</h2>
+        ${article.subtitle ? `<p class="article-subtitle" style="font-style: italic; font-size: 1rem; margin: 0.5rem 0; color: #333;">${article.subtitle}</p>` : ''}
         ${article.image ? `<img src="${article.image}" class="article-image" />` : ''}
         <div class="article-content">
           ${stripHTML(article.content).substring(0, 1500)}...
@@ -404,6 +407,7 @@ function generateNewspaperHTML(data) {
       <div class="article">
         <div class="article-category">${article.category}</div>
         <h2 class="article-headline">${article.title}</h2>
+        ${article.subtitle ? `<p class="article-subtitle" style="font-style: italic; font-size: 1rem; margin: 0.5rem 0; color: #333;">${article.subtitle}</p>` : ''}
         ${article.image ? `<img src="${article.image}" class="article-image" />` : ''}
         <div class="article-content">
           ${stripHTML(article.content).substring(0, 1500)}...

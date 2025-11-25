@@ -932,8 +932,8 @@
                         <div class="article-preview">
                             <span class="article-category">${article.category}</span>
                             <h3>${index + 1}. ${article.title}</h3>
+                            ${article.subtitle ? `<p style="font-style: italic; color: #666;">${article.subtitle}</p>` : ''}
                             ${!data.coverImage && index === 0 && article.image ? `<img src="${article.image}" style="width: 100%; max-height: 300px; object-fit: cover; margin: 0.5rem 0;">` : ''}
-                            <p>${article.excerpt || article.title}</p>
                         </div>
                     `).join('')}
 
