@@ -238,14 +238,14 @@ function generateNewspaperHTML(data) {
   for (let sheet = 0; sheet < sheets; sheet++) {
     let leftPageNum, rightPageNum;
 
-    if (sheet % 2 === 0) {
-      // Outer sheet: back page on left, front page on right
-      rightPageNum = sheet * 2 + 1;
-      leftPageNum = totalPages - sheet * 2;
+    if (sheet === 0) {
+      // First sheet (outer): 8, 1
+      leftPageNum = totalPages;
+      rightPageNum = 1;
     } else {
-      // Inner sheet: early page on left, late page on right
-      leftPageNum = sheet * 2 + 1;
-      rightPageNum = totalPages - sheet * 2;
+      // Inner sheets: 2,7 then 6,3 then 4,5
+      leftPageNum = sheet * 2;
+      rightPageNum = totalPages - sheet * 2 + 1;
     }
 
     pageHTML += `
