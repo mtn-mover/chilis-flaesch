@@ -123,16 +123,46 @@ export default async function handler(req, res) {
 
       const page = await browser.newPage();
 
-      // Set content and wait for images to load
+      // Set content with load strategy
       await page.setContent(newspaperHTML, {
-        waitUntil: 'networkidle0',
-        timeout: 45000
+        waitUntil: 'load',
+        timeout: 30000
       });
 
       console.log('Page content loaded, waiting for images...');
 
-      // Wait a bit more for images to render
-      await page.waitForTimeout(2000);
+      // Wait for all images to load or timeout after 3 seconds
+      await page.evaluate(() => {
+        return new Promise((resolve) => {
+          const images = Array.from(document.querySelectorAll('img'));
+          let loadedCount = 0;
+          const totalImages = images.length;
+
+          if (totalImages === 0) {
+            resolve();
+            return;
+          }
+
+          const checkComplete = () => {
+            loadedCount++;
+            if (loadedCount >= totalImages) {
+              resolve();
+            }
+          };
+
+          images.forEach(img => {
+            if (img.complete) {
+              checkComplete();
+            } else {
+              img.addEventListener('load', checkComplete);
+              img.addEventListener('error', checkComplete);
+            }
+          });
+
+          // Timeout after 3 seconds
+          setTimeout(() => resolve(), 3000);
+        });
+      });
 
       console.log('Generating PDF...');
 
