@@ -302,7 +302,10 @@ function generateNewspaperHTML(data) {
   <div class="page ${positionClass}">
     <div class="masthead">
       <div class="newspaper-title">${title}</div>
-      <div class="tagline">Satirische Nachrichten aus Fläsch GR</div>
+      <div class="tagline-with-price">
+        <span class="tagline">Satirische Nachrichten aus der Gemeinde Fläsch im Kanton Graubünden</span>
+        <span class="price">Preis: CHF 5.00</span>
+      </div>
       <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
     </div>
 
@@ -336,7 +339,7 @@ function generateNewspaperHTML(data) {
       return `
   <div class="page ${positionClass}">
     <div class="masthead-small">
-      <div class="newspaper-title-small">${title}</div>
+      <img src="https://www.flaesch.info/logo.png" class="page-logo" alt="Fläsch Info Logo" onerror="this.style.display='none'" />
       <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
     </div>
 
@@ -360,7 +363,7 @@ function generateNewspaperHTML(data) {
     return `
   <div class="page ${positionClass}">
     <div class="masthead-small">
-      <div class="newspaper-title-small">${title}</div>
+      <img src="https://www.flaesch.info/logo.png" class="page-logo" alt="Fläsch Info Logo" onerror="this.style.display='none'" />
       <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
     </div>
     <div class="page-footer">
@@ -447,11 +450,30 @@ function generateNewspaperHTML(data) {
       letter-spacing: 1px;
     }
 
+    .tagline-with-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
     .tagline {
       font-size: 10pt;
       font-style: italic;
       color: #666;
-      margin-bottom: 5px;
+    }
+
+    .price {
+      font-size: 10pt;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .page-logo {
+      height: 30px;
+      width: auto;
+      margin: 0 auto 5px auto;
+      display: block;
     }
 
     .issue-info {
