@@ -308,6 +308,12 @@
                         <option value="admin">Admin</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                        <input type="checkbox" id="editCanCreateNewspaper" style="width: auto;">
+                        <span>Darf Zeitungen erstellen</span>
+                    </label>
+                </div>
                 <div style="display: flex; gap: 1rem;">
                     <button type="submit" class="btn btn-primary">Speichern</button>
                     <button type="button" class="btn" onclick="closeEditModal()" style="background: #6c757d; color: white;">Abbrechen</button>
@@ -414,7 +420,7 @@
                             <div class="actions" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                                 ${!approved ? `<button class="btn btn-primary btn-sm" onclick="approveUser('${user.username}')">✓ Freischalten</button>` : ''}
                                 ${approved && authorRequested && user.role === 'reader' ? `<button class="btn btn-primary btn-sm" onclick="makeAuthor('${user.username}')">📝 Autor machen</button>` : ''}
-                                <button class="btn btn-warning btn-sm" onclick="openEditModal('${user.username}', '${user.displayName}', '${user.role}', '${user.email || ''}', ${approved})">Bearbeiten</button>
+                                <button class="btn btn-warning btn-sm" onclick="openEditModal('${user.username}', '${user.displayName}', '${user.role}', '${user.email || ''}', ${approved}, ${user.canCreateNewspaper || false})">Bearbeiten</button>
                                 ${user.username !== 'admin' ? `<button class="btn btn-danger btn-sm" onclick="deleteUser('${user.username}')">Löschen</button>` : ''}
                             </div>
                         </td>
@@ -460,11 +466,12 @@
         });
 
         // Edit User Modal
-        function openEditModal(username, displayName, role) {
+        function openEditModal(username, displayName, role, email, approved, canCreateNewspaper) {
             document.getElementById('editUsername').value = username;
             document.getElementById('editDisplayName').value = displayName;
             document.getElementById('editRole').value = role;
             document.getElementById('editPassword').value = '';
+            document.getElementById('editCanCreateNewspaper').checked = canCreateNewspaper || false;
             document.getElementById('editModal').style.display = 'flex';
         }
 
@@ -478,7 +485,8 @@
             const userData = {
                 username: document.getElementById('editUsername').value,
                 displayName: document.getElementById('editDisplayName').value,
-                role: document.getElementById('editRole').value
+                role: document.getElementById('editRole').value,
+                canCreateNewspaper: document.getElementById('editCanCreateNewspaper').checked
             };
 
             const password = document.getElementById('editPassword').value;

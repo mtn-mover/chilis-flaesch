@@ -479,7 +479,7 @@
                 <label for="coverImageUpload">Titelbild (optional)</label>
                 <input type="file" id="coverImageUpload" accept="image/*" onchange="handleCoverImageUpload(event)" style="margin-bottom: 1rem;">
                 <div class="cover-preview" id="coverPreview">
-                    <p>📷 Kein Titelbild hochgeladen. Das Bild vom ersten Artikel wird verwendet (falls vorhanden).</p>
+                    <p>📷 Kein Titelbild hochgeladen.</p>
                 </div>
             </div>
 
@@ -766,7 +766,7 @@
         function removeCoverImage() {
             coverImageData = null;
             document.getElementById('coverImageUpload').value = '';
-            document.getElementById('coverPreview').innerHTML = '<p>📷 Kein Titelbild hochgeladen. Das Bild vom ersten Artikel wird verwendet (falls vorhanden).</p>';
+            document.getElementById('coverPreview').innerHTML = '<p>📷 Kein Titelbild hochgeladen.</p>';
         }
 
         function goToStep(step) {
@@ -933,7 +933,6 @@
                             <span class="article-category">${article.category}</span>
                             <h3>${index + 1}. ${article.title}</h3>
                             ${article.subtitle ? `<p style="font-style: italic; color: #666;">${article.subtitle}</p>` : ''}
-                            ${!data.coverImage && index === 0 && article.image ? `<img src="${article.image}" style="width: 100%; max-height: 300px; object-fit: cover; margin: 0.5rem 0;">` : ''}
                         </div>
                     `).join('')}
 
