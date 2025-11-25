@@ -803,12 +803,26 @@ module.exports = async function handler(req, res) {
         // Continue anyway but log the warning for admin review
       }
 
+      // Generate excerpt from subtitle or clean HTML content
+      let excerpt = '';
+      if (draft.subtitle) {
+        excerpt = draft.subtitle;
+      } else {
+        // Extract text from HTML content, remove HTML tags and URLs
+        const cleanContent = draft.content
+          .replace(/<[^>]*>/g, ' ') // Remove HTML tags
+          .replace(/https?:\/\/[^\s]+/g, '') // Remove URLs
+          .replace(/\s+/g, ' ') // Normalize whitespace
+          .trim();
+        excerpt = cleanContent.substring(0, 150) + '...';
+      }
+
       const articleData = {
         title: draft.title,
         subtitle: draft.subtitle || '',
         fileName: fileName,
         category: draft.category,
-        excerpt: draft.content.substring(0, 100) + '...',
+        excerpt: excerpt,
         date: draft.createdAt ? new Date(draft.createdAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
         image: draft.images && draft.images.length > 0 ? draft.images[0] : null,
         author: draft.author,
