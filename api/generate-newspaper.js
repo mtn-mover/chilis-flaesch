@@ -33,10 +33,21 @@ export default async function handler(req, res) {
       return res.status(401).json({ error: 'Ungültiges Token', details: err.message });
     }
 
-    // Check if user is admin (check both JWT role and database)
-    if (decoded.role !== 'admin') {
-      console.error('User is not admin:', decoded.username, 'JWT role:', decoded.role);
-      return res.status(403).json({ error: 'Nur Admins können Zeitungen generieren' });
+    // Check if user has permission to create newspapers
+    // Get user from database to check canCreateNewspaper permission
+    const users = JSON.parse(await kv.get('users') || '[]');
+    const user = users.find(u => u.username === decoded.username);
+
+    if (!user) {
+      console.error('User not found in database:', decoded.username);
+      return res.status(403).json({ error: 'Benutzer nicht gefunden' });
+    }
+
+    const canCreate = user.role === 'admin' || user.canCreateNewspaper === true;
+
+    if (!canCreate) {
+      console.error('User lacks newspaper creation permission:', decoded.username, 'Admin:', user.role === 'admin', 'canCreateNewspaper:', user.canCreateNewspaper);
+      return res.status(403).json({ error: 'Keine Berechtigung zum Erstellen von Zeitungen' });
     }
 
     // Get newspaper configuration
@@ -444,7 +455,7 @@ function generateNewspaperHTML(data) {
     .cover-image {
       width: 100%;
       height: auto;
-      max-height: 80mm;
+      max-height: 110mm;
       object-fit: cover;
       margin: 10px 0;
       border: 1px solid #ddd;

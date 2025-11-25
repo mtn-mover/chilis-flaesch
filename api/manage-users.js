@@ -65,6 +65,7 @@ module.exports = async function handler(req, res) {
           role: u.role,
           approved: u.approved !== undefined ? u.approved : true, // Legacy users are approved
           authorRequested: u.authorRequested || false,
+          canCreateNewspaper: u.canCreateNewspaper || false,
           createdAt: u.createdAt
         }));
         return res.status(200).json({ success: true, users: sanitizedUsers });
@@ -138,6 +139,10 @@ module.exports = async function handler(req, res) {
         // Admin kann Benutzer freischalten
         if (userData.approved !== undefined) {
           users[userIndex].approved = userData.approved;
+        }
+        // Admin kann Zeitungserstellung erlauben
+        if (userData.canCreateNewspaper !== undefined) {
+          users[userIndex].canCreateNewspaper = userData.canCreateNewspaper;
         }
 
         await redis.set('users', JSON.stringify(users));
