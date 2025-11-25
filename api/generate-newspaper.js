@@ -102,35 +102,54 @@ export default async function handler(req, res) {
       articles
     });
 
+    console.log('Generated HTML length:', newspaperHTML.length);
+    console.log('Articles count:', articles.length);
+
     // Generate PDF using Puppeteer
-    const browser = await puppeteer.launch({
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath(),
-      headless: 'new',
-    });
+    let browser;
+    try {
+      browser = await puppeteer.launch({
+        args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(),
+        headless: 'new',
+      });
 
-    const page = await browser.newPage();
-    await page.setContent(newspaperHTML, { waitUntil: 'networkidle0' });
+      const page = await browser.newPage();
 
-    const pdf = await page.pdf({
-      format: 'A3',
-      landscape: true,
-      printBackground: true,
-      margin: {
-        top: '0mm',
-        right: '0mm',
-        bottom: '0mm',
-        left: '0mm'
-      }
-    });
+      // Set content with shorter timeout and load strategy
+      await page.setContent(newspaperHTML, {
+        waitUntil: 'domcontentloaded',
+        timeout: 30000
+      });
 
-    await browser.close();
+      console.log('Page content loaded, generating PDF...');
 
-    // Return PDF
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename="flaesch-info-ausgabe-${issueNumber}.pdf"`);
-    res.send(pdf);
+      const pdf = await page.pdf({
+        format: 'A3',
+        landscape: true,
+        printBackground: true,
+        margin: {
+          top: '0mm',
+          right: '0mm',
+          bottom: '0mm',
+          left: '0mm'
+        }
+      });
+
+      console.log('PDF generated, size:', pdf.length, 'bytes');
+
+      await browser.close();
+
+      // Return PDF
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="flaesch-info-ausgabe-${issueNumber}.pdf"`);
+      return res.send(pdf);
+
+    } catch (pdfError) {
+      if (browser) await browser.close();
+      throw pdfError;
+    }
 
   } catch (error) {
     console.error('Error generating newspaper PDF:', error);
