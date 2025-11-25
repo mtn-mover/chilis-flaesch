@@ -123,13 +123,18 @@ export default async function handler(req, res) {
 
       const page = await browser.newPage();
 
-      // Set content with shorter timeout and load strategy
+      // Set content and wait for images to load
       await page.setContent(newspaperHTML, {
-        waitUntil: 'domcontentloaded',
-        timeout: 30000
+        waitUntil: 'networkidle0',
+        timeout: 45000
       });
 
-      console.log('Page content loaded, generating PDF...');
+      console.log('Page content loaded, waiting for images...');
+
+      // Wait a bit more for images to render
+      await page.waitForTimeout(2000);
+
+      console.log('Generating PDF...');
 
       const pdf = await page.pdf({
         format: 'A3',
