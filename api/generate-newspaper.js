@@ -212,6 +212,146 @@ export default async function handler(req, res) {
 function generateNewspaperHTML(data) {
   const { title, issueNumber, issueDate, mainHeadline, subtitle, coverImage, articles } = data;
 
+  // Generate pages dynamically based on article count
+  // Page 1: Cover with table of contents
+  // Pages 2-7: One article per page
+  // Page 8: Back page
+
+  const totalPages = Math.max(8, articles.length + 1); // At least 8 pages
+  const sheets = Math.ceil(totalPages / 2); // Number of A3 sheets needed
+
+  // Helper to get category label
+  function getCategoryLabel(category) {
+    const labels = {
+      'politik': 'Politik',
+      'kultur': 'Kultur',
+      'sport': 'Sport',
+      'wirtschaft': 'Wirtschaft',
+      'kurioses': 'Kurioses'
+    };
+    return labels[category] || category;
+  }
+
+  // Generate page pairs for printing
+  let pageHTML = '';
+
+  for (let sheet = 0; sheet < sheets; sheet++) {
+    const leftPageNum = totalPages - (sheet * 2) - 1; // Back to front for left side
+    const rightPageNum = sheet * 2 + 1; // Front to back for right side
+
+    pageHTML += `
+<div class="newspaper">
+  ${leftPageNum > 0 && leftPageNum <= totalPages ? generatePage(leftPageNum, 'left') : ''}
+  ${rightPageNum <= totalPages ? generatePage(rightPageNum, 'right') : ''}
+</div>
+`;
+  }
+
+  // Function to generate a single page
+  function generatePage(pageNum, position) {
+    const positionClass = position === 'right' ? 'page-right' : 'page-left';
+
+    // Page 1: Cover with table of contents
+    if (pageNum === 1) {
+      return `
+  <div class="page ${positionClass}">
+    <div class="masthead">
+      <div class="newspaper-title">${title}</div>
+      <div class="tagline">Satirische Nachrichten aus Fläsch GR</div>
+      <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
+    </div>
+
+    ${mainHeadline ? `<h1 class="main-headline">${escapeHTML(mainHeadline)}</h1>` : ''}
+    ${subtitle ? `<p class="main-subtitle">${escapeHTML(subtitle)}</p>` : ''}
+
+    ${coverImage ? `<img src="${coverImage}" class="cover-image" onerror="this.style.display='none'" />` : ''}
+
+    <div class="toc">
+      <h2 class="toc-title">In dieser Ausgabe:</h2>
+      ${articles.map((article, index) => `
+        <div class="toc-item">
+          <span class="toc-number">${index + 1}.</span>
+          <span class="toc-article-title">${escapeHTML(article.title)}</span>
+          <span class="toc-category">${getCategoryLabel(article.category)}</span>
+          <span class="toc-page">Seite ${index + 2}</span>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="page-footer">
+      www.flaesch.info • Satirische Nachrichten aus Fläsch • Seite ${pageNum}
+    </div>
+  </div>`;
+    }
+
+    // Last page: Back page
+    if (pageNum === totalPages) {
+      return `
+  <div class="page ${positionClass}">
+    <div class="masthead">
+      <div class="newspaper-title">${title}</div>
+      <div class="tagline">Satirische Nachrichten aus Fläsch GR</div>
+      <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
+    </div>
+
+    <div class="back-page-content">
+      <h2 style="font-size: 24pt; margin: 40px 0 20px 0; text-align: center;">Impressum</h2>
+      <div style="font-size: 10pt; line-height: 1.6; max-width: 400px; margin: 0 auto;">
+        <p style="margin-bottom: 10px;"><strong>Fläsch Info</strong></p>
+        <p style="margin-bottom: 10px;">Satirisches Nachrichtenportal</p>
+        <p style="margin-bottom: 10px;">www.flaesch.info</p>
+        <p style="margin-bottom: 20px; font-style: italic;">Alle Artikel sind satirisch und frei erfunden.</p>
+        <p style="margin-bottom: 10px;">Ausgabe ${issueNumber}</p>
+        <p style="margin-bottom: 10px;">${issueDate}</p>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      www.flaesch.info • Seite ${pageNum}
+    </div>
+  </div>`;
+    }
+
+    // Article pages (2 to totalPages-1)
+    const articleIndex = pageNum - 2;
+    if (articleIndex >= 0 && articleIndex < articles.length) {
+      const article = articles[articleIndex];
+      return `
+  <div class="page ${positionClass}">
+    <div class="masthead-small">
+      <div class="newspaper-title-small">${title}</div>
+      <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
+    </div>
+
+    <div class="article">
+      <div class="article-category">${escapeHTML(getCategoryLabel(article.category))}</div>
+      <h1 class="article-headline">${escapeHTML(article.title)}</h1>
+      ${article.subtitle ? `<p class="article-subtitle">${escapeHTML(article.subtitle)}</p>` : ''}
+      ${article.image ? `<img src="${article.image}" class="article-image" onerror="this.style.display='none'" />` : ''}
+      <div class="article-content">
+        ${article.content}
+      </div>
+    </div>
+
+    <div class="page-footer">
+      www.flaesch.info • ${escapeHTML(getCategoryLabel(article.category))} • Seite ${pageNum}
+    </div>
+  </div>`;
+    }
+
+    // Empty page
+    return `
+  <div class="page ${positionClass}">
+    <div class="masthead-small">
+      <div class="newspaper-title-small">${title}</div>
+      <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
+    </div>
+    <div class="page-footer">
+      www.flaesch.info • Seite ${pageNum}
+    </div>
+  </div>`;
+  }
+
   return `
 <!DOCTYPE html>
 <html lang="de">
@@ -237,12 +377,12 @@ function generateNewspaperHTML(data) {
       line-height: 1.4;
     }
 
-    /* 4-page layout: Each page is half of A3 landscape (A4 portrait) */
     .newspaper {
       width: 420mm;
       height: 297mm;
       position: relative;
       background: white;
+      page-break-after: always;
     }
 
     .page {
@@ -251,21 +391,15 @@ function generateNewspaperHTML(data) {
       position: absolute;
       padding: 15mm;
       overflow: hidden;
+    }
+
+    .page-left {
+      left: 0;
       border-right: 1px dashed #ccc;
     }
 
-    .page:last-child {
-      border-right: none;
-    }
-
-    /* Page 1: Cover (right outer) */
-    .page-1 {
+    .page-right {
       right: 0;
-    }
-
-    /* Page 4: Back (left outer) */
-    .page-4 {
-      left: 0;
     }
 
     /* Header */
@@ -276,12 +410,24 @@ function generateNewspaperHTML(data) {
       margin-bottom: 15px;
     }
 
+    .masthead-small {
+      text-align: center;
+      border-bottom: 2px solid #000;
+      padding-bottom: 5px;
+      margin-bottom: 12px;
+    }
+
     .newspaper-title {
       font-size: 48pt;
       font-weight: bold;
-      font-family: 'Georgia', serif;
       letter-spacing: 2px;
       margin-bottom: 5px;
+    }
+
+    .newspaper-title-small {
+      font-size: 24pt;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
 
     .tagline {
@@ -299,33 +445,91 @@ function generateNewspaperHTML(data) {
       margin-top: 5px;
     }
 
-    /* Main headline (cover) */
+    /* Cover page */
     .main-headline {
-      font-size: 36pt;
+      font-size: 32pt;
       font-weight: bold;
       line-height: 1.1;
-      margin: 20px 0 10px 0;
-      font-family: 'Georgia', serif;
+      margin: 15px 0 8px 0;
     }
 
     .main-subtitle {
-      font-size: 16pt;
+      font-size: 14pt;
       font-style: italic;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      color: #333;
+    }
+
+    .cover-image {
+      width: 100%;
+      height: auto;
+      max-height: 80mm;
+      object-fit: cover;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+    }
+
+    /* Table of contents */
+    .toc {
+      margin-top: 15px;
+    }
+
+    .toc-title {
+      font-size: 16pt;
+      font-weight: bold;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid #000;
+    }
+
+    .toc-item {
+      display: flex;
+      align-items: baseline;
+      padding: 6px 0;
+      border-bottom: 1px dotted #ccc;
+      font-size: 10pt;
+    }
+
+    .toc-number {
+      font-weight: bold;
+      margin-right: 8px;
+      min-width: 20px;
+    }
+
+    .toc-article-title {
+      flex: 1;
+      font-weight: bold;
+    }
+
+    .toc-category {
+      font-size: 8pt;
+      text-transform: uppercase;
+      color: #666;
+      margin: 0 10px;
+    }
+
+    .toc-page {
+      font-size: 9pt;
       color: #333;
     }
 
     /* Article styles */
     .article {
-      margin-bottom: 20px;
-      break-inside: avoid;
+      height: calc(297mm - 30mm - 40mm); /* Full height minus padding and header/footer */
     }
 
     .article-headline {
-      font-size: 18pt;
+      font-size: 24pt;
       font-weight: bold;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
       line-height: 1.2;
+    }
+
+    .article-subtitle {
+      font-size: 12pt;
+      font-style: italic;
+      margin-bottom: 10px;
+      color: #333;
     }
 
     .article-category {
@@ -333,8 +537,8 @@ function generateNewspaperHTML(data) {
       font-size: 8pt;
       font-weight: bold;
       text-transform: uppercase;
-      padding: 2px 6px;
-      margin-bottom: 8px;
+      padding: 3px 8px;
+      margin-bottom: 10px;
       background: #000;
       color: white;
     }
@@ -342,11 +546,10 @@ function generateNewspaperHTML(data) {
     .article-image {
       width: 100%;
       height: auto;
-      max-height: 120mm;
+      max-height: 80mm;
       object-fit: cover;
       margin: 10px 0;
       border: 1px solid #ddd;
-      display: block;
     }
 
     .article-content {
@@ -354,23 +557,24 @@ function generateNewspaperHTML(data) {
       text-align: justify;
       columns: 2;
       column-gap: 15px;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     .article-content p {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    /* Single column for cover story */
-    .cover-content {
-      columns: 1;
-      font-size: 11pt;
+    .article-content h2,
+    .article-content h3 {
+      font-size: 12pt;
+      margin: 12px 0 8px 0;
+      column-span: all;
     }
 
     /* Footer */
     .page-footer {
       position: absolute;
-      bottom: 15mm;
+      bottom: 10mm;
       left: 15mm;
       right: 15mm;
       text-align: center;
@@ -380,124 +584,15 @@ function generateNewspaperHTML(data) {
       padding-top: 5px;
     }
 
-    /* Print page 2-3 (inside spread) on second page */
-    @media print {
-      .newspaper {
-        page-break-after: always;
-      }
+    .back-page-content {
+      margin-top: 30mm;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
-<!-- First A3 sheet: Page 4 (left) and Page 1 (right) -->
-<div class="newspaper">
-  <!-- Page 4: Back page (left outer) -->
-  <div class="page page-4">
-    <div class="masthead">
-      <div class="newspaper-title">${title}</div>
-      <div class="tagline">Satirische Nachrichten aus Fläsch GR</div>
-      <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
-    </div>
-
-    ${articles.slice(3).map(article => `
-      <div class="article">
-        <div class="article-category">${escapeHTML(article.category)}</div>
-        <h2 class="article-headline">${escapeHTML(article.title)}</h2>
-        ${article.subtitle ? `<p class="article-subtitle" style="font-style: italic; font-size: 1rem; margin: 0.5rem 0; color: #333;">${escapeHTML(article.subtitle)}</p>` : ''}
-        ${article.image ? `<img src="${article.image}" class="article-image" onerror="this.style.display='none'" />` : ''}
-        <div class="article-content">
-          ${escapeHTML(stripHTML(article.content).substring(0, 800))}...
-        </div>
-      </div>
-    `).join('')}
-
-    <div class="page-footer">
-      www.flaesch.info • Satirische Nachrichten aus Fläsch • Seite 4
-    </div>
-  </div>
-
-  <!-- Page 1: Cover page (right outer) -->
-  <div class="page page-1">
-    <div class="masthead">
-      <div class="newspaper-title">${title}</div>
-      <div class="tagline">Satirische Nachrichten aus Fläsch GR</div>
-      <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
-    </div>
-
-    ${mainHeadline ? `<h1 class="main-headline">${escapeHTML(mainHeadline)}</h1>` : ''}
-    ${subtitle ? `<p class="main-subtitle">${escapeHTML(subtitle)}</p>` : ''}
-
-    ${coverImage ? `<img src="${coverImage}" class="article-image" style="max-height: 150mm;" onerror="this.style.display='none'" />` : ''}
-
-    ${articles.slice(0, 1).map(article => `
-      <div class="article">
-        <div class="article-category">${escapeHTML(article.category)}</div>
-        <h2 class="article-headline">${escapeHTML(article.title)}</h2>
-        ${article.subtitle ? `<p class="article-subtitle" style="font-style: italic; font-size: 1.1rem; margin: 0.5rem 0; color: #333;">${escapeHTML(article.subtitle)}</p>` : ''}
-        ${!coverImage && article.image ? `<img src="${article.image}" class="article-image" onerror="this.style.display='none'" />` : ''}
-        <div class="cover-content">
-          ${escapeHTML(stripHTML(article.content).substring(0, 1000))}...
-        </div>
-      </div>
-    `).join('')}
-
-    <div class="page-footer">
-      www.flaesch.info • Satirische Nachrichten aus Fläsch • Seite 1
-    </div>
-  </div>
-</div>
-
-<!-- Second A3 sheet: Page 2 (left) and Page 3 (right) -->
-<div class="newspaper">
-  <!-- Page 2: Inside left -->
-  <div class="page page-4">
-    <div class="masthead">
-      <div class="newspaper-title">${title}</div>
-      <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
-    </div>
-
-    ${articles.slice(1, 2).map(article => `
-      <div class="article">
-        <div class="article-category">${escapeHTML(article.category)}</div>
-        <h2 class="article-headline">${escapeHTML(article.title)}</h2>
-        ${article.subtitle ? `<p class="article-subtitle" style="font-style: italic; font-size: 1rem; margin: 0.5rem 0; color: #333;">${escapeHTML(article.subtitle)}</p>` : ''}
-        ${article.image ? `<img src="${article.image}" class="article-image" onerror="this.style.display='none'" />` : ''}
-        <div class="article-content">
-          ${escapeHTML(stripHTML(article.content).substring(0, 1500))}...
-        </div>
-      </div>
-    `).join('')}
-
-    <div class="page-footer">
-      www.flaesch.info • Seite 2
-    </div>
-  </div>
-
-  <!-- Page 3: Inside right -->
-  <div class="page page-1">
-    <div class="masthead">
-      <div class="newspaper-title">${title}</div>
-      <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
-    </div>
-
-    ${articles.slice(2, 3).map(article => `
-      <div class="article">
-        <div class="article-category">${escapeHTML(article.category)}</div>
-        <h2 class="article-headline">${escapeHTML(article.title)}</h2>
-        ${article.subtitle ? `<p class="article-subtitle" style="font-style: italic; font-size: 1rem; margin: 0.5rem 0; color: #333;">${escapeHTML(article.subtitle)}</p>` : ''}
-        ${article.image ? `<img src="${article.image}" class="article-image" onerror="this.style.display='none'" />` : ''}
-        <div class="article-content">
-          ${escapeHTML(stripHTML(article.content).substring(0, 1500))}...
-        </div>
-      </div>
-    `).join('')}
-
-    <div class="page-footer">
-      www.flaesch.info • Seite 3
-    </div>
-  </div>
-</div>
+${pageHTML}
 
 </body>
 </html>
