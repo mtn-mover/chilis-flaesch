@@ -1,6 +1,6 @@
 import { kv } from '@vercel/kv';
 import jwt from 'jsonwebtoken';
-import chromium from 'chrome-aws-lambda';
+import chromium from '@sparticuz/chromium';
 import puppeteer from 'puppeteer-core';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-key-change-in-production';
@@ -54,9 +54,12 @@ export default async function handler(req, res) {
 
           // Extract title, content, image, etc. from HTML
           const titleMatch = html.match(/<h1[^>]*>(.*?)<\/h1>/);
-          const contentMatch = html.match(/<div class="story-content">([\s\S]*?)<\/div>/);
-          const imageMatch = html.match(/<img[^>]*src="([^"]*)"[^>]*>/);
-          const categoryMatch = html.match(/<span class="story-category[^"]*"[^>]*>(.*?)<\/span>/);
+          const contentMatch = html.match(/<article class="article-content">([\s\S]*?)<\/article>/) ||
+                              html.match(/<div class="story-content">([\s\S]*?)<\/div>/);
+          const imageMatch = html.match(/<img[^>]*class="hero-image"[^>]*src="([^"]*)"/) ||
+                            html.match(/<img[^>]*src="([^"]*)"[^>]*>/);
+          const categoryMatch = html.match(/<span class="hero-category"[^>]*>(.*?)<\/span>/) ||
+                               html.match(/<span class="story-category[^"]*"[^>]*>(.*?)<\/span>/);
 
           articles.push({
             fileName,
@@ -89,8 +92,8 @@ export default async function handler(req, res) {
     const browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath,
-      headless: chromium.headless,
+      executablePath: await chromium.executablePath(),
+      headless: 'new',
     });
 
     const page = await browser.newPage();
