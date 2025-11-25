@@ -554,13 +554,7 @@
             const grid = document.getElementById('articlesGrid');
             grid.innerHTML = allArticles.map((article, index) => `
                 <div class="article-card ${selectedArticles.includes(article.fileName) ? 'selected' : ''}"
-                     draggable="true"
-                     data-filename="${article.fileName}"
-                     onclick="toggleArticle('${article.fileName}')"
-                     ondragstart="handleDragStart(event)"
-                     ondragend="handleDragEnd(event)"
-                     ondragover="handleDragOver(event)"
-                     ondrop="handleDrop(event)">
+                     onclick="toggleArticle('${article.fileName}')">
                     <input type="checkbox" class="article-checkbox"
                            ${selectedArticles.includes(article.fileName) ? 'checked' : ''}
                            onclick="event.stopPropagation(); toggleArticle('${article.fileName}')">
@@ -594,12 +588,22 @@
                 list.innerHTML = selectedArticles.map((fileName, index) => {
                     const article = allArticles.find(a => a.fileName === fileName);
                     return `
-                        <div class="selected-article-item">
-                            <div>
-                                <strong>${index + 1}.</strong> ${article.title}
-                                <small style="color: #999;"> (${getCategoryLabel(article.category)})</small>
+                        <div class="selected-article-item"
+                             draggable="true"
+                             data-filename="${fileName}"
+                             ondragstart="handleDragStart(event)"
+                             ondragend="handleDragEnd(event)"
+                             ondragover="handleDragOver(event)"
+                             ondrop="handleDrop(event)"
+                             style="cursor: move;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <span style="color: #999; font-size: 1.2rem;">☰</span>
+                                <div>
+                                    <strong>${index + 1}.</strong> ${article.title}
+                                    <small style="color: #999;"> (${getCategoryLabel(article.category)})</small>
+                                </div>
                             </div>
-                            <button onclick="toggleArticle('${fileName}')" style="background: #dc3545; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 4px; cursor: pointer;">Entfernen</button>
+                            <button onclick="event.stopPropagation(); toggleArticle('${fileName}')" style="background: #dc3545; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 4px; cursor: pointer;">Entfernen</button>
                         </div>
                     `;
                 }).join('');
@@ -631,8 +635,8 @@
 
         function handleDragEnd(event) {
             event.currentTarget.classList.remove('dragging');
-            document.querySelectorAll('.article-card').forEach(card => {
-                card.classList.remove('drag-over');
+            document.querySelectorAll('.selected-article-item').forEach(item => {
+                item.classList.remove('drag-over');
             });
         }
 
@@ -657,16 +661,18 @@
                 const draggedFileName = draggedElement.dataset.filename;
                 const targetFileName = event.currentTarget.dataset.filename;
 
-                const draggedIndex = allArticles.findIndex(a => a.fileName === draggedFileName);
-                const targetIndex = allArticles.findIndex(a => a.fileName === targetFileName);
+                const draggedIndex = selectedArticles.indexOf(draggedFileName);
+                const targetIndex = selectedArticles.indexOf(targetFileName);
 
-                // Swap articles in the array
-                const temp = allArticles[draggedIndex];
-                allArticles[draggedIndex] = allArticles[targetIndex];
-                allArticles[targetIndex] = temp;
+                if (draggedIndex >= 0 && targetIndex >= 0) {
+                    // Swap articles in selectedArticles array
+                    const temp = selectedArticles[draggedIndex];
+                    selectedArticles[draggedIndex] = selectedArticles[targetIndex];
+                    selectedArticles[targetIndex] = temp;
 
-                renderArticles();
-                updateSelectedSummary();
+                    // Re-render selected list
+                    updateSelectedSummary();
+                }
             }
 
             return false;
@@ -681,28 +687,56 @@
             preview.innerHTML = '<p>⏳ Lade Bild hoch...</p>';
 
             try {
-                const formData = new FormData();
-                formData.append('image', file);
-                formData.append('sessionToken', sessionToken);
+                // Convert file to base64
+                const reader = new FileReader();
+                reader.onload = async function(e) {
+                    try {
+                        const base64Data = e.target.result;
 
-                const response = await fetch('/api/upload-image', {
-                    method: 'POST',
-                    body: formData
-                });
+                        const response = await fetch('/api/upload-image', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                sessionToken: sessionToken,
+                                imageData: base64Data,
+                                fileName: file.name,
+                                articleSlug: 'cover-image'
+                            })
+                        });
 
-                if (!response.ok) throw new Error('Upload fehlgeschlagen');
+                        const result = await response.json();
 
-                const result = await response.json();
-                coverImageData = result.url;
+                        if (!response.ok) {
+                            throw new Error(result.error || `Upload fehlgeschlagen (Status ${response.status})`);
+                        }
 
-                preview.innerHTML = `
-                    <p><strong>✅ Titelbild hochgeladen</strong></p>
-                    <img src="${coverImageData}" alt="Cover Image" style="max-width: 100%; max-height: 300px; margin-top: 1rem; border-radius: 8px;">
-                    <button onclick="removeCoverImage()" style="margin-top: 1rem; background: #dc3545; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Entfernen</button>
-                `;
+                        if (!result.imageUrl) {
+                            throw new Error('Keine Bild-URL in der Antwort erhalten');
+                        }
+
+                        coverImageData = result.imageUrl;
+
+                        preview.innerHTML = `
+                            <p><strong>✅ Titelbild hochgeladen</strong></p>
+                            <img src="${coverImageData}" alt="Cover Image" style="max-width: 100%; max-height: 300px; margin-top: 1rem; border-radius: 8px;">
+                            <button onclick="removeCoverImage()" style="margin-top: 1rem; background: #dc3545; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Entfernen</button>
+                        `;
+                    } catch (error) {
+                        console.error('Error uploading cover image:', error);
+                        preview.innerHTML = `<p style="color: red;">❌ Fehler beim Hochladen: ${error.message}</p>`;
+                        coverImageData = null;
+                    }
+                };
+                reader.onerror = function() {
+                    preview.innerHTML = '<p style="color: red;">❌ Fehler beim Lesen der Datei</p>';
+                    coverImageData = null;
+                };
+                reader.readAsDataURL(file);
             } catch (error) {
-                console.error('Error uploading cover image:', error);
-                preview.innerHTML = '<p style="color: red;">❌ Fehler beim Hochladen des Bildes</p>';
+                console.error('Error preparing image upload:', error);
+                preview.innerHTML = `<p style="color: red;">❌ Fehler: ${error.message}</p>`;
                 coverImageData = null;
             }
         }
