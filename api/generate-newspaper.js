@@ -232,17 +232,27 @@ function generateNewspaperHTML(data) {
     return labels[category] || category;
   }
 
-  // Generate page pairs for printing
+  // Generate page pairs for printing (booklet style)
+  // For 8 pages: Sheet 1: 8,1  Sheet 2: 2,7  Sheet 3: 6,3  Sheet 4: 4,5
   let pageHTML = '';
 
   for (let sheet = 0; sheet < sheets; sheet++) {
-    const leftPageNum = totalPages - (sheet * 2) - 1; // Back to front for left side
-    const rightPageNum = sheet * 2 + 1; // Front to back for right side
+    let leftPageNum, rightPageNum;
+
+    if (sheet % 2 === 0) {
+      // Outer sheet: back page on left, front page on right
+      rightPageNum = sheet * 2 + 1;
+      leftPageNum = totalPages - sheet * 2;
+    } else {
+      // Inner sheet: early page on left, late page on right
+      leftPageNum = sheet * 2 + 1;
+      rightPageNum = totalPages - sheet * 2;
+    }
 
     pageHTML += `
 <div class="newspaper">
   ${leftPageNum > 0 && leftPageNum <= totalPages ? generatePage(leftPageNum, 'left') : ''}
-  ${rightPageNum <= totalPages ? generatePage(rightPageNum, 'right') : ''}
+  ${rightPageNum > 0 && rightPageNum <= totalPages ? generatePage(rightPageNum, 'right') : ''}
 </div>
 `;
   }
@@ -544,20 +554,21 @@ function generateNewspaperHTML(data) {
     }
 
     .article-image {
-      width: 100%;
+      width: 45%;
       height: auto;
-      max-height: 80mm;
+      max-height: 60mm;
       object-fit: cover;
-      margin: 10px 0;
+      margin: 0 15px 10px 0;
       border: 1px solid #ddd;
+      float: left;
     }
 
     .article-content {
-      font-size: 10pt;
+      font-size: 9.5pt;
       text-align: justify;
       columns: 2;
       column-gap: 15px;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     .article-content p {
