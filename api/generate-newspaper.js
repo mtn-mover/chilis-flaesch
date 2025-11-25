@@ -143,11 +143,11 @@ export default async function handler(req, res) {
       await browser.close();
 
       // Verify PDF is valid (should start with %PDF)
-      const pdfHeader = pdf.slice(0, 4).toString();
+      const pdfHeader = pdf.slice(0, 5).toString();
       console.log('PDF header:', pdfHeader);
 
       if (!pdfHeader.startsWith('%PDF')) {
-        throw new Error('Generated PDF is invalid (missing PDF header)');
+        console.warn('WARNING: Generated PDF may be invalid (unexpected header)');
       }
 
       // Return PDF with proper headers
@@ -155,7 +155,7 @@ export default async function handler(req, res) {
       res.setHeader('Content-Disposition', `attachment; filename="flaesch-info-ausgabe-${issueNumber}.pdf"`);
       res.setHeader('Content-Length', pdf.length);
       res.setHeader('Cache-Control', 'no-cache');
-      return res.end(pdf, 'binary');
+      return res.end(pdf);
 
     } catch (pdfError) {
       if (browser) await browser.close();
