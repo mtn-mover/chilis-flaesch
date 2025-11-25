@@ -763,8 +763,45 @@ module.exports = async function handler(req, res) {
         articles = JSON.parse(articlesContent);
       }
 
-      // Check if article already exists (by fileName)
+      // Helper function to calculate similarity between two strings (Levenshtein-based)
+      function calculateSimilarity(str1, str2) {
+        const s1 = str1.toLowerCase().replace(/[^a-z0-9]/g, '');
+        const s2 = str2.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+        // If strings are very short, use exact match
+        if (s1.length < 10 || s2.length < 10) {
+          return s1 === s2 ? 1.0 : 0.0;
+        }
+
+        // Calculate common words
+        const words1 = str1.toLowerCase().split(/\s+/);
+        const words2 = str2.toLowerCase().split(/\s+/);
+        const commonWords = words1.filter(w => words2.includes(w) && w.length > 3);
+
+        // If many common significant words, likely similar
+        const avgLength = (words1.length + words2.length) / 2;
+        const similarity = commonWords.length / avgLength;
+
+        return similarity;
+      }
+
+      // Check if article already exists (by fileName or similar title)
       const existingIndex = articles.findIndex(a => a.fileName === fileName);
+
+      // Check for similar titles (potential duplicates)
+      const similarArticle = articles.find(a => {
+        if (a.fileName === fileName) return false; // Skip self
+        const similarity = calculateSimilarity(a.title, draft.title);
+        return similarity > 0.5; // If more than 50% similar, flag as potential duplicate
+      });
+
+      if (similarArticle && existingIndex < 0) {
+        console.warn(`WARNING: Similar article found!`);
+        console.warn(`New: "${draft.title}" (${fileName})`);
+        console.warn(`Existing: "${similarArticle.title}" (${similarArticle.fileName})`);
+        console.warn(`Similarity: ${(calculateSimilarity(similarArticle.title, draft.title) * 100).toFixed(0)}%`);
+        // Continue anyway but log the warning for admin review
+      }
 
       const articleData = {
         title: draft.title,
