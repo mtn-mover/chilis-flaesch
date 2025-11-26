@@ -2011,6 +2011,32 @@ Ein Maienfelder Einwohner hat in Fläsch mithilfe von KI eine Satire-Zeitung geg
 
 *Hinweis: Artikel enthält mehrere Rechtschreibfehler, typisch für satirischen Charakter*
 
+
+### Altersgerechtes Wohnen mit Service vor dem Aus (November 2025)
+**Kategorie:** gesellschaft
+**Analyse des Artikels "Altersgerechtes Wohnen mit Service vor dem Aus"**
+
+## **Neue Charaktere:**
+- Keine spezifischen Personen erwähnt
+- **Genossenschaft Wohnen Plus Fläsch** (Betreiber der Wohnanlage)
+- **Landwirtschaftliche Genossenschaft Fläsch** (Vermieter der Liegenschaft)
+
+## **Hauptereignis:**
+Das altersgerechte Wohnprojekt "Wohnen Plus" in Fläsch wird eingestellt. Die Genossenschaft kündigt den Mietvertrag aufgrund mangelnder Nachfrage und wirtschaftlicher Untragbarkeit.
+
+## **Wichtige Details:**
+- **Baujahr:** 2016
+- **Ausstattung:** 7 Wohnungen (1,5 und 2,5 Zimmer), alters- und behindertengerecht
+- **Zusätzlich:** Öffentliches Bistro
+- **Problem:** Zu wenige Interessenten
+- **Website:** wohnenplus-flaesch.ch
+
+## **Für zukünftige Artikel:**
+- Verfolgen: Was passiert mit der Liegenschaft nach der Kündigung?
+- Hinterfragen: Gründe für die geringe Nachfrage in Fläsch
+- Beobachten: Auswirkungen auf die Gemeinde und alternative Lösungen für altersgerechtes Wohnen
+- Prüfen: Reaktionen der betroffenen Mieter und der Gemeindebehörden
+
 ## Stil-Richtlinien
 
 ### Satire-Level
