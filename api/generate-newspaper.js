@@ -484,7 +484,7 @@ function generateNewspaperHTML(data) {
     }
 
     .page-logo {
-      height: 50px;
+      height: 70px;
       width: auto;
     }
 
