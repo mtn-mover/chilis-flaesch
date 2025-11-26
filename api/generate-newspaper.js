@@ -302,11 +302,11 @@ function generateNewspaperHTML(data) {
   <div class="page ${positionClass}">
     <div class="masthead">
       <div class="newspaper-title">${title}</div>
-      <div class="tagline-with-price">
-        <span class="tagline">Satirische Nachrichten aus der Gemeinde Fläsch im Kanton Graubünden</span>
+      <div class="tagline">Satirische Nachrichten aus der Gemeinde Fläsch im Kanton Graubünden</div>
+      <div class="issue-info-with-price">
+        <span class="issue-info-text">Ausgabe ${issueNumber} • ${issueDate}</span>
         <span class="price">Preis: CHF 5.00</span>
       </div>
-      <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
     </div>
 
     ${mainHeadline ? `<h1 class="main-headline">${escapeHTML(mainHeadline)}</h1>` : ''}
@@ -339,8 +339,8 @@ function generateNewspaperHTML(data) {
       return `
   <div class="page ${positionClass}">
     <div class="masthead-small">
-      <img src="https://www.flaesch.info/logo.png" class="page-logo" alt="Fläsch Info Logo" onerror="this.style.display='none'" />
       <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
+      <img src="https://www.flaesch.info/logo.png" class="page-logo" alt="Fläsch Info Logo" onerror="this.style.display='none'" />
     </div>
 
     <div class="article">
@@ -363,8 +363,8 @@ function generateNewspaperHTML(data) {
     return `
   <div class="page ${positionClass}">
     <div class="masthead-small">
-      <img src="https://www.flaesch.info/logo.png" class="page-logo" alt="Fläsch Info Logo" onerror="this.style.display='none'" />
       <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
+      <img src="https://www.flaesch.info/logo.png" class="page-logo" alt="Fläsch Info Logo" onerror="this.style.display='none'" />
     </div>
     <div class="page-footer">
       www.flaesch.info • Seite ${pageNum}
@@ -431,7 +431,9 @@ function generateNewspaperHTML(data) {
     }
 
     .masthead-small {
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       border-bottom: 2px solid #000;
       padding-bottom: 5px;
       margin-bottom: 12px;
@@ -450,38 +452,45 @@ function generateNewspaperHTML(data) {
       letter-spacing: 1px;
     }
 
-    .tagline-with-price {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 5px;
-    }
-
     .tagline {
       font-size: 10pt;
       font-style: italic;
       color: #666;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .issue-info-with-price {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border-top: 1px solid #000;
+      padding-top: 5px;
+      margin-top: 5px;
+    }
+
+    .issue-info-text {
+      font-size: 9pt;
+      color: #333;
     }
 
     .price {
-      font-size: 10pt;
+      font-size: 9pt;
       font-weight: bold;
       color: #000;
+      position: absolute;
+      right: 0;
     }
 
     .page-logo {
-      height: 30px;
+      height: 50px;
       width: auto;
-      margin: 0 auto 5px auto;
-      display: block;
     }
 
     .issue-info {
       font-size: 9pt;
       color: #333;
-      border-top: 1px solid #000;
-      padding-top: 5px;
-      margin-top: 5px;
     }
 
     /* Cover page */
