@@ -1985,6 +1985,32 @@ Ein Maienfelder Einwohner hat in Fläsch mithilfe von KI eine Satire-Zeitung geg
 • **Partizipativer Ansatz** - Dorfbewohner werden zu aktiven Content-Lieferanten
 • Rechtschreibfehler im Original deuten auf bewusst amateur-hafte Darstellung hin
 
+
+### In eigener Sache - Flüsternde gesucht (November 2025)
+**Kategorie:** gesellschaft
+## Zusammenfassung: "Flüsternde gesucht"
+
+**Neue Charaktere:**
+• Keine spezifischen Namen, aber Zielgruppen definiert: Frisöre, Gemeindemitarbeiter, Gastwirte, "Dorfkönige und -königinnen"
+• Diese sollen als Informanten/"Flüsterer" fungieren
+
+**Hauptereignis:**
+• Fläsch Info startet Aufruf zur Bürgerbeteiligung - Dorfbewohner sollen Klatsch und Tratsch als Artikelideen einreichen
+• KI-System soll aus Stichworten und Dokumenten automatisch Artikel generieren
+
+**Wichtige Details:**
+• Technischer Prozess: Registrierung → Option "Artikel verfassen" → Titel/Kategorie wählen → Stichwortartige Eingabe oder Dokumentupload → KI generiert Beitrag
+• Bilder müssen manuell hochgeladen werden
+• Zielgruppe: "Flüssterner und Flüsterinnen" (Wortspiel mit Flüstern/Fläsch)
+
+**Für zukünftige Artikel:**
+• Erwarten mehr bürgergenerierte Inhalte durch dieses System
+• KI-gestützte Artikelerstellung wird Standard-Workflow
+• Fokus auf lokalen Klatsch und Tratsch als Content-Quelle
+• Partizipativer Ansatz - Dorfgemeinschaft wird aktiv in Content-Erstellung einbezogen
+
+*Hinweis: Artikel enthält mehrere Rechtschreibfehler, typisch für satirischen Charakter*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
