@@ -54,6 +54,27 @@ function wrapArticleInTemplate(draft) {
 
   // Get article content and inject additional images after first paragraph
   let articleContent = draft.html || draft.content;
+
+  // Clean up inline styles from rich text editor to ensure consistent formatting
+  // Remove style attributes from all tags except img (which may need specific styling)
+  articleContent = articleContent
+    .replace(/<(\w+)([^>]*)\s+style="[^"]*"([^>]*)>/gi, (match, tag, before, after) => {
+      // Keep style on img tags for proper image display
+      if (tag.toLowerCase() === 'img') return match;
+      return `<${tag}${before}${after}>`;
+    })
+    // Remove empty class attributes
+    .replace(/\s+class=""/g, '')
+    // Fix nested h2 with p tags (common editor issue)
+    .replace(/<h2>\s*<p[^>]*>(.*?)<\/p>\s*<\/h2>/gi, '<h2>$1</h2>')
+    .replace(/<h3>\s*<p[^>]*>(.*?)<\/p>\s*<\/h3>/gi, '<h3>$1</h3>')
+    // Remove color styles that might have been added
+    .replace(/\s*color:\s*rgb\([^)]+\);?/gi, '')
+    .replace(/\s*color:\s*#[0-9a-f]+;?/gi, '')
+    // Clean up font-size inline styles
+    .replace(/\s*font-size:\s*[^;]+;?/gi, '')
+    // Clean up font-weight inline styles (except in specific cases)
+    .replace(/\s*font-weight:\s*\d+;?/gi, '');
   if (additionalImagesHTML && articleContent) {
     // Find first closing </p> tag and insert images after it
     const firstParagraphEnd = articleContent.indexOf('</p>');
