@@ -1958,6 +1958,33 @@ Ein Maienfelder Einwohner hat in Fläsch mithilfe von KI eine Satire-Zeitung geg
 • Potentielle Eskalation durch angekündigte Untersuchung/Arbeitsgruppe
 • El Diabolo Müller als zentrale Figur des Widerstands
 
+
+### In eigener Sache - Flüsterer gesucht (November 2025)
+**Kategorie:** gesellschaft
+## Zusammenfassung: "Flüsterer gesucht"
+
+### Neue Charaktere:
+• **Keine spezifischen Namen genannt**
+• **Zielgruppe:** Frisöre, Gemeindemitarbeiter, Wirte/Beizer, selbsternannte "Dorfkönige und -königinnen"
+• **Rolle:** Sollen als Informanten/Insider fungieren
+
+### Hauptereignis:
+• Fläsch Info sucht aktiv nach Dorfbewohnern, die Klatsch und Tratsch an ihre KI weiterleiten
+• Aufbau eines Netzwerks von "Flüsterern" zur Content-Generierung
+
+### Wichtige Details:
+• **Prozess:** Registrierung → Option "Artikel verfassen" wählen → Titel/Kategorie/Stelle eingeben
+• **Content:** Kann stichwortartig oder als Dokument hochgeladen werden
+• **KI generiert automatisch** den fertigen Artikel
+• **Pflicht:** Passendes Bild hochladen vor Veröffentlichung
+
+### Für zukünftige Artikel:
+• **Crowdsourcing-System etabliert** - Artikel können nun von Bürgern initiiert werden
+• **KI-gestützte Artikelerstellung** ist Standard-Verfahren
+• **Informantennetzwerk** aus verschiedenen Dorfbereichen (Gewerbe, Verwaltung, Gastronomie)
+• **Partizipativer Ansatz** - Dorfbewohner werden zu aktiven Content-Lieferanten
+• Rechtschreibfehler im Original deuten auf bewusst amateur-hafte Darstellung hin
+
 ## Stil-Richtlinien
 
 ### Satire-Level
