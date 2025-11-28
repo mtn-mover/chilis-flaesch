@@ -2091,6 +2091,30 @@ Der erste Fläscher Weihnachtsmarkt war ein "Erfolg" mit 4,5% Bürgerbeteiligung
 
 *Satirische Pointe: Verkehrskontrolle wird zum Neidobjekt*
 
+
+### Demonstrationen wegen Radar: Nichtberücksichtigte klagen wegen Benachteiligung (November 2025)
+**Kategorie:** kurioses
+## Satirische Artikel-Analyse: Radar-Demonstrationen
+
+### Neue Charaktere:
+• **Benedikt** - Bewohner des Oberdorfs, beschwert sich über ungerechte Radar-Verteilung
+
+### Hauptereignis:
+Fläscher Bewohner demonstrieren gegen ein Kantonspolizei-Radargerät - aber nicht weil sie geblitzt wurden, sondern weil ihre Quartiere KEIN Radar bekommen haben und sich benachteiligt fühlen.
+
+### Wichtige Details:
+• Radar war "über mehrere Tage" aufgestellt
+• Demonstrationsaufrufe in sozialen Medien
+• Zeitpunkt: "just vor der Adventszeit"
+• Zitat Benedikt: *"Die haben ja schon über das ganze Jahr am meisten Verkehr [...] jetzt bekommen die und nicht wir noch zusätzlich ein so teures Radargerät"*
+• Schauplatz der Beschwerde: vor dem "Geschlossenen Restaurant Mühle"
+
+### Für zukünftige Artikel:
+• Fläsch hat verschiedene Quartiere (Hauptstraße vs. Oberdorf) mit unterschiedlicher Verkehrsbelastung
+• "Restaurant Mühle" ist geschlossen (möglicher wiederkehrender Schauplatz)
+• Bewohner organisieren sich über soziale Medien
+• Satirisches Element: Verkehrte Logik der Beschwerden (wollen Radar statt ihn abzulehnen)
+
 ## Stil-Richtlinien
 
 ### Satire-Level
