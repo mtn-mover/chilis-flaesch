@@ -304,7 +304,6 @@ function generateNewspaperHTML(data) {
       <div class="newspaper-title">${title}</div>
       <div class="tagline">Satirische Nachrichten aus der Gemeinde Fläsch im Kanton Graubünden</div>
       <div class="issue-info-with-price">
-        <span class="satire-warning">ACHTUNG SATIRE</span>
         <span class="issue-info-text">Ausgabe ${issueNumber} • ${issueDate}</span>
         <span class="price">Preis: CHF 5.00</span>
       </div>
@@ -340,7 +339,6 @@ function generateNewspaperHTML(data) {
       return `
   <div class="page ${positionClass}">
     <div class="masthead-small">
-      <span class="satire-warning">ACHTUNG SATIRE</span>
       <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
       <img src="https://www.flaesch.info/logo.png" class="page-logo" alt="Fläsch Info Logo" onerror="this.style.display='none'" />
     </div>
@@ -365,7 +363,6 @@ function generateNewspaperHTML(data) {
     return `
   <div class="page ${positionClass}">
     <div class="masthead-small">
-      <span class="satire-warning">ACHTUNG SATIRE</span>
       <div class="issue-info">Ausgabe ${issueNumber} • ${issueDate}</div>
       <img src="https://www.flaesch.info/logo.png" class="page-logo" alt="Fläsch Info Logo" onerror="this.style.display='none'" />
     </div>
@@ -465,8 +462,9 @@ function generateNewspaperHTML(data) {
 
     .issue-info-with-price {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
+      position: relative;
       border-top: 1px solid #000;
       padding-top: 5px;
       margin-top: 5px;
@@ -481,14 +479,8 @@ function generateNewspaperHTML(data) {
       font-size: 9pt;
       font-weight: bold;
       color: #000;
-    }
-
-    .satire-warning {
-      font-size: 9pt;
-      font-weight: bold;
-      color: #c00;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      position: absolute;
+      right: 0;
     }
 
     .page-logo {
