@@ -2115,6 +2115,36 @@ Fläscher Bewohner demonstrieren gegen ein Kantonspolizei-Radargerät - aber nic
 • Bewohner organisieren sich über soziale Medien
 • Satirisches Element: Verkehrte Logik der Beschwerden (wollen Radar statt ihn abzulehnen)
 
+
+### Das pure Chaos - Religionsunterricht an der Schule Fläsch  (Dezember 2025)
+**Kategorie:** kirche
+## Analyse des satirischen Artikels
+
+**Neue Charaktere:**
+• Keine spezifischen Namen erwähnt
+• Kirchenvorstand - zuständig für Stellenbesetzung
+• Verschiedene Lehrpersonen/Stellvertretungen (anonym)
+• Pfarrer - sprang als Notlösung ein
+
+**Hauptereignis:**
+Die Schule Fläsch kämpft mit chaotischen Personalwechseln im Religionsunterricht - mehrere Lehrpersonen warfen das Handtuch, was zu ständigen Stellvertretungen und Verunsicherung führte.
+
+**Wichtige Details:**
+• Nur "eine Stunde" Religionsunterricht pro Woche
+• Suchgebiet: "zwischen St. Moritz und Basel" 
+• Zitat Kirchenvorstand: Keine Person bereit gefunden - "unfassbar"
+• Schüler und Eltern sind verunsichert
+• Notlösung bis Schuljahresende gefunden
+
+**Für zukünftige Artikel:**
+• Strukturelles Problem bei religiöser Bildung in Fläsch
+• Mögliche Grundsatzdiskussion über Religionsunterricht
+• Kirchenvorstand als wiederkehrender Akteur
+• Potential für weitere Satire über Lehrermangel/Bildungssystem
+• Eltern-/Schülerreaktionen als Follow-up möglich
+
+*Satirischer Unterton: Übertreibung der Personalprobleme zur Kritik am Bildungswesen/kirchlichen Strukturen*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
