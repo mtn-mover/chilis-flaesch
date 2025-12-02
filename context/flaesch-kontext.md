@@ -2225,6 +2225,33 @@ Die Schule Fläsch kämpft mit permanenten Personalwechseln beim Religionsunterr
 
 **Satirischer Kern:** Übertreibung alltäglicher Büro-Platzprobleme in kirchlichem Kontext.
 
+
+### In eigener Sache - Flüsternde gesucht (Dezember 2025)
+**Kategorie:** gesellschaft
+## Zusammenfassung: "Flüsternde gesucht"
+
+### **Neue Charaktere:**
+• Keine spezifischen Namen, aber Rollen definiert: Frisöre, Gemeindemitarbeiter, Beizer, "Dorfkönige und -königinnen"
+• Diese sollen als "Insider" und "Flüsterer/Flüsterinnen" fungieren
+
+### **Hauptereignis:**
+• "Fläsch Info" startet Aufruf zur Community-Beteiligung - Dorfbewohner sollen Klatsch und Tratsch als Artikelgrundlage liefern
+• KI-gestützte Artikelerstellung wird als neues Feature eingeführt
+
+### **Wichtige Details:**
+• Prozess: Registrierung → Option "Artikel verfassen" → Titel/Kategorie wählen → Stichwörter oder Dokument hochladen → KI generiert Beitrag
+• Bilder müssen mitgeliefert werden
+• Ziel: Projekt "bunter" gestalten
+
+### **Für zukünftige Artikel:**
+• Erwarte vermehrt KI-generierte Inhalte basierend auf Dorftratsch
+• Community-getriebene Berichterstattung etabliert sich
+• Mögliche Qualitätsschwankungen durch Laien-Input
+• Rechtschreibfehler im Original deuten auf informellen, satirischen Charakter hin
+• "Fläsch Info" positioniert sich als partizipative Dorfzeitung
+
+**Satirischer Kontext:** Parodie auf Bürgerjournalismus und KI-Content-Erstellung
+
 ## Stil-Richtlinien
 
 ### Satire-Level
