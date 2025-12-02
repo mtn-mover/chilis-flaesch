@@ -2278,6 +2278,34 @@ Budget-Gemeindeversammlung in Fläsch am 2. Dezember 2025 mit 57 Stimmberechtigt
 • Mögliche Spannungen zwischen Fläsch und Maienfeld thematisieren
 • Zeitfehler im Original (Abstimmung September 2026 vor Dezember 2025) als Running Gag nutzen
 
+
+### Rege Diskussionen an der Gemeindeversammlung (Dezember 2025)
+**Kategorie:** politik
+**Analyse des "Fläsch Info"-Artikels**
+
+**1. Neue Charaktere:**
+• **Nicole Felix** - Neues Mitglied der Geschäftsprüfungskommission (einstimmig gewählt)
+• **Markus Urech** - Zurückgetretenes GPK-Mitglied (wird ersetzt)
+
+**2. Hauptereignis:**
+Gemeindeversammlung vom 2. Dezember 2025 mit 57 Stimmberechtigten. Budget 2026 einstimmig verabschiedet, kontroverse Diskussion über Zweckverband Falknis mit Maienfeld.
+
+**3. Wichtige Details:**
+• Budget 2026: einstimmig angenommen
+• Steuerfuss: 70% der Kantonssteuer (bereits beschlossen)
+• Reservoir-Sanierung: CHF 70'000 Kredit bewilligt
+• Volg-Beitrag: Reduktion auf CHF 1'400/Monat ab 2027
+• **Zweckverband Falknis**: Grossmehrheit für Erhalt (nur konsultativ)
+• Ersatzwahl: Nicole Felix ab 1. März 2026 in GPK
+
+**4. Für zukünftige Artikel:**
+• **Entscheidender Termin**: 11. Dezember 2025 - Maienfeld entscheidet über Verbandsauflösung
+• Möglicher Konflikt zwischen Fläsch (pro Erhalt) und Maienfeld
+• Nicole Felix als neue Figur für GPK-Geschichten
+• Volg-Subventionsreduktion könnte Folgeprobleme bringen
+
+**Satirisches Potenzial:** Zeitreise-Paradoxon (Versammlung im September 2026 vor Dezember 2025), Dorfpolitik-Drama um Zweckverband.
+
 ## Stil-Richtlinien
 
 ### Satire-Level
