@@ -2252,6 +2252,32 @@ Die Schule Fläsch kämpft mit permanenten Personalwechseln beim Religionsunterr
 
 **Satirischer Kontext:** Parodie auf Bürgerjournalismus und KI-Content-Erstellung
 
+
+### Rege Diskussionen an der Gemeindeversammlung (Dezember 2025)
+**Kategorie:** politik
+## Analyse des Artikels "Rege Diskussionen an der Gemeindeversammlung"
+
+**1. Neue Charaktere:**
+• Nicole Felix - neu gewähltes Mitglied der Geschäftsprüfungskommission
+• Markus Urech - zurückgetretenes Mitglied der Geschäftsprüfungskommission
+
+**2. Hauptereignis:**
+Budget-Gemeindeversammlung in Fläsch am 2. Dezember 2025 mit 57 Stimmberechtigten. Hauptstreitpunkt war die Zukunft des Zweckverbandes Falknis mit Maienfeld.
+
+**3. Wichtige Details:**
+• Budget 2026: einstimmig angenommen
+• Steuerfuss: bleibt bei 70% der Kantonssteuer
+• Reservoir Wissmürli: CHF 70'000 Kredit einstimmig bewilligt
+• Volg-Beitrag: reduziert auf CHF 1'400/Monat ab 2027
+• Zweckverband Falknis: grossmehrheitlich für Erhalt (konsultativ)
+• Ersatzwahl: Nicole Felix einstimmig gewählt (Amtsantritt 1. März 2026)
+
+**4. Für zukünftige Artikel:**
+• Entscheidung Maienfeld über Zweckverband Falknis am 11. Dezember 2025 abwarten
+• Nicole Felix als neue GPK-Figur etablieren
+• Mögliche Spannungen zwischen Fläsch und Maienfeld thematisieren
+• Zeitfehler im Original (Abstimmung September 2026 vor Dezember 2025) als Running Gag nutzen
+
 ## Stil-Richtlinien
 
 ### Satire-Level
