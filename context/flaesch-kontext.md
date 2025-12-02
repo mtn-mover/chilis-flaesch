@@ -2145,6 +2145,34 @@ Die Schule Fläsch kämpft mit chaotischen Personalwechseln im Religionsunterric
 
 *Satirischer Unterton: Übertreibung der Personalprobleme zur Kritik am Bildungswesen/kirchlichen Strukturen*
 
+
+### Das pure Chaos - Religionsunterricht an der Schule Fläsch (Dezember 2025)
+**Kategorie:** kirche
+**Zusammenfassung: Religionsunterricht-Chaos in Fläsch**
+
+**Neue Charaktere:**
+• Kirchenvorstand - zuständig für Stellenbesetzung, äußert sich zur schwierigen Situation
+• Verschiedene Lehrpersonen - wechselnde Besetzung (Namen nicht genannt)
+• Pfarrer - springt vorübergehend als Vertretung ein
+
+**Hauptereignis:**
+Die Schule Fläsch kämpft mit permanenten Personalwechseln beim Religionsunterricht - eine Lehrperson kündigt spontan, verschiedene Vertretungen springen ein, bis schließlich eine schulinterne Lehrperson bis Schuljahresende übernimmt.
+
+**Wichtige Details:**
+• Suchradius: "zwischen St. Moritz und Basel" - keine geeignete Person gefunden
+• Unterrichtsumfang: nur "eine Stunde" pro Woche
+• Kirchenvorstand bezeichnet Situation als "unfassbar"
+• Schüler und Eltern sind verunsichert
+
+**Für zukünftige Artikel:**
+• Überwachung der langfristigen Lösung für Religionsunterricht
+• Mögliche Reaktionen von Schulbehörden oder Kirchgemeinde
+• Auswirkungen auf Schüler/Eltern
+• Generelles Lehrpersonalmangel-Thema in der Region
+• Entwicklung der Zusammenarbeit Schule-Kirche
+
+*Satirischer Kontext: Übertreibung der Personalprobleme durch extremen geografischen Suchradius*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
