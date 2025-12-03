@@ -2306,6 +2306,32 @@ Gemeindeversammlung vom 2. Dezember 2025 mit 57 Stimmberechtigten. Budget 2026 e
 
 **Satirisches Potenzial:** Zeitreise-Paradoxon (Versammlung im September 2026 vor Dezember 2025), Dorfpolitik-Drama um Zweckverband.
 
+
+### Fläsch ist die letzte Bündner Gemeinde ohne E-Voting - das sind die Gründe (Dezember 2025)
+**Kategorie:** politik
+## Analyse: E-Voting Satireartikel
+
+**Neue Charaktere:**
+• **Chili-Diabolo Müller** - CEO/Generalsekretär von Fläsch (mit ungewöhnlichem Titel)
+• **Der Adjudant** - Unterstützt Müller (Name nicht genannt)
+
+**Hauptereignis:**
+• Vier weitere Bündner Gemeinden führen E-Voting ein, womit 99 von 100 Gemeinden teilnehmen
+• Fläsch bleibt als einzige Gemeinde ohne E-Voting und wird deshalb "die Gallier Graubündens" genannt
+
+**Wichtige Details:**
+• Neue E-Voting Gemeinden: Cazis, La Punt Chamues-ch, Schluein, Scuol
+• Fläsch: 900 Einwohner
+• Zitat Müller: "Wir müssen nicht jeden Sch... mitmachen"
+• Spitzname aus Chur: "die Gallier Graubündens"
+
+**Für zukünftige Artikel:**
+• Fläsch als technologiefeindliche Gemeinde etabliert
+• Chili-Diabolo Müller als eigenwilliger Lokalpolitiker
+• Running Gag: Fläsch verweigert sich modernen Entwicklungen
+• Asterix-Referenz ("Gallier") als wiederkehrendes Element möglich
+• Gegensatz zwischen progressivem Graubünden und rückständigem Fläsch
+
 ## Stil-Richtlinien
 
 ### Satire-Level
