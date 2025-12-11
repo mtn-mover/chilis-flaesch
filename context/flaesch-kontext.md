@@ -2357,6 +2357,34 @@ Gemeindeversammlung vom 2. Dezember 2025 mit 57 Stimmberechtigten. Budget 2026 e
 • Technische Details des "Übergangskonzepts" könnten weiter ausgebaut werden
 • Potential für Vergleiche mit anderen überdimensionierten Infrastrukturprojekten
 
+
+### Millionen für Freiwillige, die umsiedeln wollen (Dezember 2025)
+**Kategorie:** gesellschaft
+**Satirischer Artikel-Analyse: "Millionen für Freiwillige, die umsiedeln wollen"**
+
+**1. Neue Charaktere:**
+• Keine namentlich genannten Personen
+• "Der CEO" (ohne Namen/weitere Details)
+• Bündner Kantonsparlamentarier (kollektiv)
+
+**2. Hauptereignis:**
+Der Bündner Grosse Rat bewilligt 50 Millionen Franken für die freiwillige Umsiedlung von Fläsch-Bewohnern. Das Dorf ist seit über einem Jahr wegen Bergsturzgefahr evakuiert.
+
+**3. Wichtige Details:**
+• **Kredit:** 50 Millionen Franken
+• **Anmeldungen:** 300 eingegangen (ca. 1/3 der Gesamtbevölkerung)
+• **Anmeldefrist:** bis Ende September
+• **Status:** Parteiübergreifende Zustimmung als "Akt der Solidarität"
+• **Zusatz:** Weiteres Anmeldefenster wird geprüft
+
+**4. Für zukünftige Artikel:**
+• Fläsch ist seit über einem Jahr evakuiert (Bergsturzgefahr)
+• Präventive Umsiedlung läuft bereits
+• Etwa 900 Einwohner Gesamtbevölkerung (geschätzt aus "1/3 = 300")
+• Weitere Anmeldephasen möglich
+• Kantonale Unterstützung gesichert
+• Basis für Follow-up: Umsetzung, weitere Anmeldungen, Kostenentwicklung
+
 ## Stil-Richtlinien
 
 ### Satire-Level
