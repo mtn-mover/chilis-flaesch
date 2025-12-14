@@ -2385,6 +2385,33 @@ Der Bündner Grosse Rat bewilligt 50 Millionen Franken für die freiwillige Umsi
 • Kantonale Unterstützung gesichert
 • Basis für Follow-up: Umsetzung, weitere Anmeldungen, Kostenentwicklung
 
+
+### In Fläsch gibt es immer weisse Weihnachten (Dezember 2025)
+**Kategorie:** gesellschaft
+## Analyse: "In Fläsch gibt es immer weisse Weihnachten"
+
+**1. Neue Charaktere:**
+• Keine spezifischen Personen erwähnt
+• Institutionen: Meteoschweiz, Institut für Schnee- und Lawinenforschung (SLF), WSL
+
+**2. Hauptereignis:**
+• Fläsch wird als einziges Schweizer Dorf dargestellt, das seit 1931 fast immer weisse Weihnachten hatte (nur 2016 ausgenommen)
+• Artikel thematisiert den Rückgang von Schneefällen aufgrund des Klimawandels
+
+**3. Wichtige Details:**
+• Bern/Zürich: >60% der Jahre ohne Schnee an Weihnachten seit 1931
+• Basel: >75% schneefreie Weihnachten, Lugano: >80%
+• Fläsch: Nur 2016 kein Schnee an Weihnachten
+• Schweizweit 60% weniger Schneetage in letzten 30 Jahren vs. 1963-1992
+• Prognose: Ab 2050 nur noch alle 15 Jahre Schnee in Zürich
+• Zitat Meteoschweiz: "Seriöse Prognosen erst eine Woche vor Weihnachten möglich"
+
+**4. Für zukünftige Artikel:**
+• Fläsch als "Schnee-Anomalie" etabliert
+• 2016 als historisches "schneefreies" Jahr in Fläsch
+• Klimawandel-Thematik als Kontext für weitere Wettergeschichten
+• Meteoschweiz und SLF als Referenzquellen für Wetterdaten
+
 ## Stil-Richtlinien
 
 ### Satire-Level
