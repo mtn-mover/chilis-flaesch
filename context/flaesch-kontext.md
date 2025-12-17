@@ -2412,6 +2412,32 @@ Der Bündner Grosse Rat bewilligt 50 Millionen Franken für die freiwillige Umsi
 • Klimawandel-Thematik als Kontext für weitere Wettergeschichten
 • Meteoschweiz und SLF als Referenzquellen für Wetterdaten
 
+
+### In Fläsch lebten vor 200 Millionen Jahren Dinosaurier (Dezember 2025)
+**Kategorie:** kurioses
+## Analyse des satirischen Artikels "Fläsch Info"
+
+### Neue Charaktere:
+• **Cristiano Dal Sasso** - Paläontologe vom Naturkundemuseum in der "Hauptstadt Herrschaft"
+• **Italienische Forscher** - Entdeckerteam
+
+### Hauptereignis:
+Italienische Forscher haben angeblich im "Nationalpark Fläsch" tausende Dinosaurier-Spuren aus der Zeit vor 200 Millionen Jahren entdeckt. Die Funde sollen sich auf einer senkrechten Felswand in über 2000m Höhe im Falknistal nahe St. Luzisteig befinden.
+
+### Wichtige Details:
+• **Fundort:** Falknistal, senkrechte Felswand, 2000m Höhe
+• **Alter:** 200+ Millionen Jahre (späte Trias)
+• **Spurengröße:** bis zu 40cm breit mit Krallenabdrücken
+• **Vermutete Art:** Plateosaurier (langhalsige Pflanzenfresser in Herden)
+• **Zitat Dal Sasso:** "Grösster Fundort in den Alpen und einer der reichsten weltweit"
+• **Forschungsdauer:** "Jahrzehnte" wegen schwerer Erreichbarkeit
+• **Methode:** Untersuchung teilweise nur mit Drohnen möglich
+
+### Für zukünftige Artikel:
+• Satirische Elemente: "Nationalpark Fläsch", "Hauptstadt Herrschaft" sind fiktiv
+• Basiert vermutlich auf echten Dinosaurier-Funden in Norditalien (Stelvio/Grison National Park)
+• Mischung aus realen wissenschaftlichen Details und erfundenen Ortsnamen
+
 ## Stil-Richtlinien
 
 ### Satire-Level
