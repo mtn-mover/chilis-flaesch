@@ -6,7 +6,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.flaesch.info/</loc>
-    <lastmod>2025-01-23</lastmod>
+    <lastmod>2025-12-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -26,89 +26,259 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- Articles - These will be auto-updated when new articles are published -->
-  <!-- Most recent articles should have higher priority -->
+  <!-- ===== ARTIKEL (neueste zuerst) ===== -->
 
+  <!-- Dezember 2025 -->
   <url>
-    <loc>https://www.flaesch.info/unverzeihbarer-fehler-bei-der-rechnungsversammlung-der-krichgemeinde.html</loc>
-    <lastmod>2025-01-23</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://www.flaesch.info/pfarrer-zieht-ins-viel-zu-kleine-pfarrbuero-ein.html</loc>
+    <lastmod>2025-12-02</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://www.flaesch.info/endlich-ein-kalender-der-ehrlich-ist.html</loc>
-    <lastmod>2025-01-23</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://www.flaesch.info/flaesch-die-kirchgemeinde-mit-den-haeufigsten-ap-ros.html</loc>
+    <lastmod>2025-12-02</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/das-pure-chaos-religionsunterricht-an-der-schule-flaesch.html</loc>
+    <lastmod>2025-12-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- November 2025 -->
+  <url>
+    <loc>https://www.flaesch.info/demonstrationen-wegen-radar-nichtberuecksichtigte-klagen-wegen-benachteiligung.html</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/in-eigener-sache-fluesterer-gesucht.html</loc>
+    <lastmod>2025-11-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/altersgerechtes-wohnen-mit-service-vor-dem-aus.html</loc>
+    <lastmod>2025-11-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/durchgeknallte-dorfbewohner-lancieren-eine-satire-zeitung.html</loc>
+    <lastmod>2025-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/ist-das-flaescher-trinkwasser-vergiftet.html</loc>
+    <lastmod>2025-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/ceo-sagt-den-vielen-arbeitsgruppen-den-kampf-an.html</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/asterix-und-obelix-in-flaesch.html</loc>
+    <lastmod>2025-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/kein-weihnachtsgottesdienst-am-weihnachtstag.html</loc>
+    <lastmod>2025-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/unverzeihbarer-fehler-bei-der-rechnungsversammlung-der-krichgemeinde.html</loc>
+    <lastmod>2025-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.flaesch.info/flaescher-kauft-noch-kehrichtsaecke-aber-1-januar-kosten-sie-ueber-20-prozent-mehr.html</loc>
-    <lastmod>2025-01-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2025-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/endlich-ein-kalender-der-ehrlich-ist.html</loc>
+    <lastmod>2025-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.flaesch.info/schneechaos-in-flaesch.html</loc>
-    <lastmod>2025-01-20</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2025-11-21</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/schlitteln-und-skifahren-auf-oeffentlichen-strassen.html</loc>
+    <lastmod>2025-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.flaesch.info/pizol-jahr-100-winter.html</loc>
-    <lastmod>2025-01-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://www.flaesch.info/flaesch-und-der-wakkerpreis.html</loc>
-    <lastmod>2025-01-18</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.flaesch.info/geistes-blitz-sorgt-fuer-steuersegen.html</loc>
-    <lastmod>2025-01-10</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://www.flaesch.info/das-schweizer-dorf-flaesch-will-von-der-landkarte-verschwinden.html</loc>
-    <lastmod>2025-01-08</lastmod>
+    <lastmod>2025-11-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
+    <loc>https://www.flaesch.info/flaesch-und-der-wakkerpreis.html</loc>
+    <lastmod>2025-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/flaesch-ist-auf-den-hund-gekommen.html</loc>
+    <lastmod>2025-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/flaesch-ist-bereit-fuer-den-jahr-100-winter.html</loc>
+    <lastmod>2025-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/wieso-sind-flaescher-so-geflasht.html</loc>
+    <lastmod>2025-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/maienfeld-will-aus-dem-zweckverband-falknis-austreten-was-macht-flaesch.html</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/breaking-news-flaesch-verliert-seinen-generalssekretaer.html</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/fake-news-wer-in-flaesch-wohnt-hat-ein-spermien-problem.html</loc>
+    <lastmod>2025-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/debakel-um-das-goldene-wc.html</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/auswaertige-konkurrenz-fuer-den-weihnachtsmarkt.html</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Ältere Artikel -->
+  <url>
     <loc>https://www.flaesch.info/achtung-neues-pumptrack-pojekt-am-horizont.html</loc>
     <lastmod>2025-01-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://www.flaesch.info/chilis-restaurant.html</loc>
     <lastmod>2024-12-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://www.flaesch.info/flaesch-ist-auf-den-hund-gekommen.html</loc>
-    <lastmod>2024-12-15</lastmod>
+    <loc>https://www.flaesch.info/wir-minimieren-den-verkehr-den-wir-gar-nicht-haben.html</loc>
+    <lastmod>2024-12-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
-    <loc>https://www.flaesch.info/schlitteln-und-skifahren-auf-oeffentlichen-strassen.html</loc>
-    <lastmod>2024-12-10</lastmod>
+    <loc>https://www.flaesch.info/kein-verkehr-wirklich.html</loc>
+    <lastmod>2024-12-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/goldenes-wc.html</loc>
+    <lastmod>2024-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/migros-fail.html</loc>
+    <lastmod>2024-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/steuerdebakel.html</loc>
+    <lastmod>2024-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.flaesch.info/traktandenliste-der-naechsten-generalversammlung.html</loc>
+    <lastmod>2024-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
