@@ -2438,6 +2438,32 @@ Italienische Forscher haben angeblich im "Nationalpark Fläsch" tausende Dinosau
 • Basiert vermutlich auf echten Dinosaurier-Funden in Norditalien (Stelvio/Grison National Park)
 • Mischung aus realen wissenschaftlichen Details und erfundenen Ortsnamen
 
+
+### Schweizer Armee testet Drohnen am Fläscherberg (Dezember 2025)
+**Kategorie:** kurioses
+## Analyse: "Schweizer Armee testet Drohnen am Fläscherberg"
+
+### Neue Charaktere:
+• **Andrea Marazzo** - Direktor des Schweizer Zentrums für Drohnen und Robotik (VBS)
+• Ungenannter **CEO eines beteiligten Unternehmens**
+
+### Hauptereignis:
+Die Schweizer Armee führt über ihre "Taskforce Drohnen" technische Tests mit Schweizer Minidrohnen und Abwehrsystemen am Waffenplatz St. Luzisteig bei Fläsch durch, um die Abhängigkeit von ausländischen Drohnen zu reduzieren.
+
+### Wichtige Details:
+• **Taskforce Drohnen**: Gegründet Sommer 2022 durch Armasuisse
+• **Ziel bis 2027**: Aufbau von Drohnenabwehr-Kompetenzen
+• **Beschaffungsstrategie**: Kauf in Tranchen statt Großbestellungen
+• **Zitat Marazzo**: "Drohnen hätten die Kriegsführung verändert"
+• **Testort**: Waffenplatz St. Luzisteig (ideal für technische Tests)
+
+### Für zukünftige Artikel:
+• Taskforce Drohnen als neue militärische Einheit etabliert
+• Andrea Marazzo als Ansprechpartner für Drohnen-Themen
+• St. Luzisteig als Drohnen-Testgelände
+• Schweizer Drohnen-Industrie im Aufbau
+• Zeitrahmen bis 2027 für weitere Entwicklungen
+
 ## Stil-Richtlinien
 
 ### Satire-Level
