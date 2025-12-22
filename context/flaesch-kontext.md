@@ -245,6 +245,33 @@ Lokales Bewertungssystem für Entscheidungen:
 
 ---
 
+
+### Vier Millionen Parkgebühren zu viel kassiert (Dezember 2025)
+**Kategorie:** kurioses
+## Zusammenfassung des satirischen Artikels
+
+### Neue Charaktere:
+• **Eveline Ketterer** - Gründerin des Vereins "Stadtstrasse", Initiatorin der Parkgebühren-Initiative
+• **David Lauchenauer** - Vorstandsmitglied bei "Stadtstrasse", unterstützt die Initiative
+
+### Hauptereignis:
+Der Eidgenössische Preisüberwacher warf St. Gallen vor, 3,7 Millionen Franken zu viel an Parkgebühren kassiert zu haben. Da die Stadt nicht reagierte, reichte der Verein "Stadtstrasse" eine Volksinitiative ein.
+
+### Wichtige Details:
+• **3,7 Mio. Franken** unangemessener Gewinn laut Preisüberwacher (Dez. 2023)
+• **Aktuelle Preise:** 2,50 CHF/Stunde (könnte auf 3 CHF steigen)
+• **Geforderte Senkungen:** 37% (Blaue Zone), 59% (Weisse Zone)
+• **Initiative eingereicht:** 15. Dezember 2025
+• **Abstimmung erwartet:** Anfang 2027
+• **Zweite Initiative geplant:** Parkplatz-Initiative für Frühjahr 2026
+
+### Für zukünftige Artikel:
+• Verein "Stadtstrasse" als neue politische Kraft in St. Gallen etabliert
+• Zwei-Initiative-Strategie: Preissenkung + Stopp des Parkplatzabbaus
+• Konflikt zwischen Stadtrat und Bürgerinitiativen um Verkehrspolitik
+• Prüfung der Initiative und Abstimmungstermin 2027 als nächste Meilensteine
+• Kritik an fehlender demokratischer Mitsprache bei Preisgestaltung
+
 ## Stil-Richtlinien
 
 ### Satire-Level
