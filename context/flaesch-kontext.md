@@ -298,6 +298,30 @@ Der Eidgenössische Preisüberwacher warf St. Gallen vor, 3,7 Millionen Franken 
 
 **Hinweis:** Dies ist ein kurzer redaktioneller Beitrag ohne satirische Tiefe - eher eine einfache Neujahrs-Grußbotschaft mit leichten humoristischen Elementen.
 
+
+### Lichter- und Drohnenshow statt Feuerwerk (Dezember 2025)
+**Kategorie:** politik
+## Zusammenfassung des Artikels
+
+**Neue Charaktere:**
+• Keine spezifischen Personen genannt
+
+**Hauptereignis:**
+• Die Gemeinde Fläsch plant eine spektakuläre Lichter- und Drohnenshow im "Dubai-Style" als Ersatz für das verbotene Feuerwerk
+• Die Show soll bei der "Klinik Gut" (satirisch als "Taschmahall" bezeichnet) stattfinden
+
+**Wichtige Details:**
+• Grund: Feuerwerksverbot in der Gemeinde
+• Satirischer Kommentar: "schon bald ist alles verboten"
+• Location: Bei der Klinik Gut/Taschmahall
+• Stil: Dubai-inspirierte Show mit Lichtern und Drohnen
+
+**Für zukünftige Artikel:**
+• Mögliche Follow-up-Themen: Reaktionen der Bevölkerung auf die geplante Show, Kosten der Veranstaltung, tatsächliche Durchführung
+• Satirisches Element: Die Übertreibung mit "Dubai-Style" und "Taschmahall" als running gag
+• Politischer Kontext: Feuerwerksverbote und deren Auswirkungen auf Gemeindeveranstaltungen
+• Rechtschreibfehler und lockerer Stil sind charakteristisch für "Fläsch Info"
+
 ## Stil-Richtlinien
 
 ### Satire-Level
