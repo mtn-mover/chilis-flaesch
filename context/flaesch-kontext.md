@@ -322,6 +322,30 @@ Der Eidgenössische Preisüberwacher warf St. Gallen vor, 3,7 Millionen Franken 
 • Politischer Kontext: Feuerwerksverbote und deren Auswirkungen auf Gemeindeveranstaltungen
 • Rechtschreibfehler und lockerer Stil sind charakteristisch für "Fläsch Info"
 
+
+### Was kümmert Fläsch, was in Zürich verboten ist: Mit Laubbläser gegen den Neuschnee (Januar 2026)
+**Kategorie:** kurioses
+## Analyse des satirischen Artikels
+
+### 1. **Neue Charaktere:**
+- **Zweckverband Falknis**: Lokale Organisation in Fläsch, die für Schneeräumung zuständig ist
+
+### 2. **Hauptereignis:**
+- Während Zürich benzinbetriebene Laubbläser nach Volksabstimmung verboten hat, verwendet der Zweckverband Falknis in Fläsch provokant einen Laubbläser zum Schneeräumen im Januar
+- Dies stellt einen bewussten Kontrast zu den städtischen Umweltvorschriften dar
+
+### 3. **Wichtige Details:**
+- **Zürich**: Volksabstimmung September 2025 → Verbot benzinbetriebener Laubbläser
+- **Erlaubt in Zürich**: Nur elektrische Modelle, Oktober-Dezember, 7-12 & 13-20 Uhr
+- **Fläsch**: Nur 2 Trottoirs vorhanden, Einsatz im Januar (außerhalb der Zürcher Saison)
+- **Gesundheitsaspekte**: Lärm, Gesundheitsschäden, Störung der Tierwelt
+
+### 4. **Für zukünftige Artikel:**
+- Zweckverband Falknis als wiederkehrende Institution etabliert
+- Verbindung zu anderen Falknis-Geschichten (Jahr-100-Winter, weiße Weihnachten, Maienfeld-Austritt)
+- Stadt-Land-Gegensatz als satirisches Element
+- Umweltthematik vs. praktische Dorfbedürfnisse als Konfliktlinie
+
 ## Stil-Richtlinien
 
 ### Satire-Level
