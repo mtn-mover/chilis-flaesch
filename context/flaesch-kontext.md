@@ -346,6 +346,33 @@ Der Eidgenössische Preisüberwacher warf St. Gallen vor, 3,7 Millionen Franken 
 - Stadt-Land-Gegensatz als satirisches Element
 - Umweltthematik vs. praktische Dorfbedürfnisse als Konfliktlinie
 
+
+### Wohin mit den fehlenden Steuereinnahmen - geben wir es doch einfach aus ... (Januar 2026)
+**Kategorie:** kurioses
+## Satirische Artikel-Analyse: Fläsch Info
+
+### **Neue Charaktere:**
+- Gemeindevorstand Fläsch (verweigert Kostenangaben)
+- Geschäftsprüfungskommission (ebenfalls intransparent bei Kosten)
+
+### **Hauptereignis:**
+Die Gemeinde Fläsch ersetzte trotz Finanzdefizit einen funktionsfähigen Schutzzaun durch einen teuren "Bohlenzaun" beim Wasserreservoir Mühle. Die Behörden verweigern Angaben zu den Kosten.
+
+### **Wichtige Details:**
+• **Finanzlage:** Ausgaben übersteigen Einnahmen in Fläsch
+• **Kosten:** Unbekannt - weder Gemeindevorstand noch Geschäftsprüfungskommission geben Auskunft
+• **Herstellermarketing:** "Zivilisierte Ranch", "fügt sich ins ländliche Umfeld ein", "modernes und klassisches Aussehen"
+• **Zweck:** Schutz vor Abstürzen am Wasserreservoir Mühle
+
+### **Für zukünftige Artikel:**
+• Fläsch hat strukturelle Finanzprobleme (Ausgaben > Einnahmen)
+• Gemeindebehörden zeigen mangelnde Transparenz bei Ausgaben
+• Tendenz zu kostspieligen "Verschönerungen" trotz Sparzwang
+• Wasserreservoir Mühle als Standort mit Sicherheitsrisiken
+• Möglicher Nachtwandler-Problematik in der Gemeinde
+
+**Satirischer Kern:** Kritik an kommunaler Geldverschwendung und fehlender Ausgabentransparenz.
+
 ## Stil-Richtlinien
 
 ### Satire-Level
