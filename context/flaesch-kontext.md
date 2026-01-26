@@ -402,6 +402,32 @@ Die Gemeinde Fläsch ersetzte trotz Finanzdefizit einen funktionsfähigen Schutz
 
 **Satirischer Kern:** Fläsch präsentiert ihre Nachteile als Vorteile für die WEF-Ausrichtung.
 
+
+### Maienfelder Querulant in Fläsch willkommen (Januar 2026)
+**Kategorie:** gesellschaft
+## Zusammenfassung
+
+**Neue Charaktere:**
+• **Markus Zindel (63)** - ehemaliger Stadtrat Maienfeld, trat 2023 zurück
+• **Heinz Dürler (59/SVP)** - Stadtpräsident Maienfeld
+• **Karin Frautschi** - Blick-Reporterin (Autorin)
+
+**Hauptereignis:**
+Am 25. Dezember 2022 kam es zu einer körperlichen Auseinandersetzung zwischen David A. und dem damaligen Stadtrat Markus Zindel auf David A.s Grundstück, die von Überwachungskameras aufgezeichnet wurde. David A. erstattete daraufhin Anzeige wegen Nötigung, Hausfriedensbruch und Tätlichkeiten.
+
+**Wichtige Details:**
+• Straßensperre besteht seit Heiligabend 2022
+• Identität des Stadtrats wurde erst 2023 durch Zeugenaussage enthüllt
+• Staatsanwaltschaft stellte Verfahren teilweise ein (August 2023)
+• David A. erwägt Berufung vor nächster Instanz
+• Zitate: *"Der Stadtrat griff mich körperlich an – auf meinem eigenen Grundstück!"*
+
+**Für zukünftige Artikel:**
+• Mögliche Berufung durch David A. gegen Verfahrenseinstellung
+• Zusammenhang zwischen Zindels Rücktritt und dem Vorfall ungeklärt
+• David A. wohnt seit 2023 nicht mehr auf dem Grundstück (vermietet)
+• Behördenkonflikt eskaliert weiter
+
 ## Stil-Richtlinien
 
 ### Satire-Level
