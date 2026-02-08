@@ -2,5 +2,33 @@
   "version": 2,
   "buildCommand": null,
   "outputDirectory": ".",
-  "framework": null
+  "framework": null,
+  "rewrites": [
+    { "source": "/api/logout", "destination": "/api/auth?action=logout" },
+    { "source": "/api/verify", "destination": "/api/auth?action=verify" },
+
+    { "source": "/api/activate-account", "destination": "/api/register?action=activate" },
+
+    { "source": "/api/forgot-password", "destination": "/api/password?action=forgot-password" },
+    { "source": "/api/forgot-username", "destination": "/api/password?action=forgot-username" },
+    { "source": "/api/reset-password", "destination": "/api/password?action=reset" },
+
+    { "source": "/api/create-article", "destination": "/api/articles?action=create" },
+    { "source": "/api/publish-article", "destination": "/api/articles?action=publish" },
+    { "source": "/api/delete-article", "destination": "/api/articles?action=delete" },
+
+    { "source": "/api/save-draft", "destination": "/api/drafts?action=save" },
+    { "source": "/api/get-drafts", "destination": "/api/drafts?action=get" },
+    { "source": "/api/delete-draft", "destination": "/api/drafts?action=delete" },
+
+    { "source": "/api/generate-comment", "destination": "/api/comments?action=generate" },
+    { "source": "/api/moderate-comment", "destination": "/api/comments?action=moderate" },
+    { "source": "/api/admin-rejected-comments", "destination": "/api/comments?action=admin-rejected" },
+
+    { "source": "/api/send-email", "destination": "/api/contact?action=send-email" },
+
+    { "source": "/api/debug-drafts", "destination": "/api/drafts?action=get" },
+    { "source": "/api/debug-users", "destination": "/api/manage-users" },
+    { "source": "/api/fix-authors", "destination": "/api/manage-users" }
+  ]
 }
