@@ -528,6 +528,30 @@ Am Pfarrhaus wurde eine Katzenleiter für die Katzen des neuen Pfarrers installi
 
 **Satirischer Ton:** Ironie über übertriebene Weihnachtsdekoration und technische "Spiritualität"
 
+
+### Das Archiv der Kirchgemeinde (Februar 2026)
+**Kategorie:** kirche
+## Zusammenfassung: "Das Archiv der Kirchgemeinde"
+
+### Neue Charaktere:
+• **Ungenanntes Vorstandsmitglied** - fleißiger Schaufler, der "ohne Ende" gearbeitet hat
+
+### Hauptereignis:
+• Die Kirchgemeinde hat ein neues Archiv im ehemaligen Öltank-Keller des Pfarrhauses eingerichtet. Der Bau war aufgrund von Bauschutt im hinteren Kellerteil sehr aufwendig.
+
+### Wichtige Details:
+• **Zugang:** Über eine aufklappbare Bodenluke im Büro/Sitzungszimmer
+• **Problem:** Hinterer Kellerteil voller Bauschutt, machte Raum kleiner
+• **Gescheiterte Lösung:** Größter Betonsauger der Baufirma war wirkungslos
+• **Lösung:** Vorstandsmitglied schaufelte alles per Hand weg
+• **Vergleich:** Bau war "fast wie das Goldene WC" (Verweis auf anderen Artikel)
+
+### Für zukünftige Artikel:
+• Es gibt offenbar einen früheren satirischen Artikel über ein "Goldenes WC"
+• Das Archiv könnte in zukünftigen Kirchgemeinde-Geschichten eine Rolle spielen
+• Die Bauprobleme und DIY-Lösungen passen zum lokalen Humor-Stil
+• Pfarrhaus-Keller als neuer Handlungsort etabliert
+
 ## Stil-Richtlinien
 
 ### Satire-Level
