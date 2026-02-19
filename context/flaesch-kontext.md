@@ -552,6 +552,35 @@ Am Pfarrhaus wurde eine Katzenleiter für die Katzen des neuen Pfarrers installi
 • Die Bauprobleme und DIY-Lösungen passen zum lokalen Humor-Stil
 • Pfarrhaus-Keller als neuer Handlungsort etabliert
 
+
+### Gemeinsam singen, gemeinsam erleben (Februar 2026)
+**Kategorie:** kirche
+**Zusammenfassung des Artikels:**
+
+**Neue Charaktere:**
+• Carolle - Gospelsängerin aus Kamerun, Gymnasiallehrerin an der Côte d'Azur, Gattin von Pfr. Didier Meyer
+• Risch - Klavierbegleiter aus Fläsch
+• Pfr. Didier Meyer - Pfarrer aus Samedan (Carolles Ehemann)
+
+**Hauptereignis:**
+Die Kirchgemeinde Fläsch organisiert einen fünftägigen Gospelworkshop mit anschließendem Auftritt im Gottesdienst. Carolle leitet den Workshop, begleitet von dem örtlichen Pianisten Risch.
+
+**Wichtige Details:**
+• Termin: 20.-24. April 2026, täglich 9:00-12:00 Uhr
+• Konzert: 26. April 2026, 10:00 Uhr Gottesdienst
+• Kosten: CHF 50.00
+• Mindestteilnehmer: 10 Personen
+• Anmeldeschluss: Ende März 2026
+• Kontakt: sekretariat@flaesch-reformiert.ch, +41 81 302 17 35
+• Keine Vorkenntnisse erforderlich
+
+**Für zukünftige Artikel:**
+• Überwachung der Anmeldezahlen (Mindestanzahl 10)
+• Berichterstattung über Workshop-Verlauf im April 2026
+• Mögliche Nachberichterstattung zum Gottesdienst-Auftritt
+• Carolles internationaler Hintergrund könnte weitere Geschichten bieten
+• Verbindung zwischen Fläsch und Samedan durch das Ehepaar Meyer
+
 ## Stil-Richtlinien
 
 ### Satire-Level
