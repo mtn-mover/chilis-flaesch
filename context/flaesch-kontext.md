@@ -501,6 +501,33 @@ Am Pfarrhaus wurde eine Katzenleiter für die Katzen des neuen Pfarrers installi
 
 *Typisch satirisch: Übertreibung von Alltagsproblemen zu absurden Lösungsansätzen (Katzenlift wie in Dubai)*
 
+
+### Fläsch kann nicht nur Apero... (Februar 2026)
+**Kategorie:** kirche
+## Zusammenfassung: "Fläsch kann nicht nur Apero..."
+
+### Neue Charaktere:
+• **"Profimässige Christbaumschmücker"** - akrobatische Kirchendekorateure, die wie Artisten auf langen Leitern agieren
+
+### Hauptereignis:
+• Die Fläscher Kirchgemeinde organisierte eine aufwendige Weihnachtsdekoration mit spektakulärer "Lichtshow" während des Gottesdienstes, bei der das Licht systematisch ein- und ausgeschaltet wurde
+
+### Wichtige Details:
+• Kirche mit "schönstem Christbaum weit und breit" geschmückt
+• Weihnachtsgottesdienst mit technischer Lichtinszenierung
+• Autor bezeichnet es als "spirituelle Höchstleistung" 
+• Verweis auf früheren "Fläsch und Apero"-Bericht
+• Betonung: Kritik richtet sich an Kirchgemeinde, nicht das Dorf
+
+### Für zukünftige Artikel:
+• Fläsch hat offenbar Ruf für gesellschaftliche Events ("kann nicht nur Apero")
+• Kirchgemeinde experimentiert mit modernen Gottesdienst-Elementen
+• Mögliche Serie über Fläscher Gemeindeleben
+• Spannung zwischen traditioneller Spiritualität und Event-Charakter
+• Unterscheidung zwischen Dorf- und Kirchgemeinde-Aktivitäten relevant
+
+**Satirischer Ton:** Ironie über übertriebene Weihnachtsdekoration und technische "Spiritualität"
+
 ## Stil-Richtlinien
 
 ### Satire-Level
