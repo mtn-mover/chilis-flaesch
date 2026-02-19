@@ -474,6 +474,33 @@ Könnten Sie bitte den tatsächlichen Text des satirischen Artikels bereitstelle
 
 **Anmerkung:** Der Artikel wirkt unvollständig/fragmentarisch mit wiederholenden Elementen, typisch für satirische Übertreibung.
 
+
+### Katzenleiter am Pfarrhaus gibt zu Reden (Februar 2026)
+**Kategorie:** kirche
+## Zusammenfassung: Katzenleiter am Pfarrhaus
+
+### Neue Charaktere:
+- **Neuer Pfarrer** (Name nicht genannt) - hat Katzen, ließ Leiter installieren
+- **Messmer** - half beim Bau der Katzenleiter (nicht der Pfarrer selbst)
+
+### Hauptereignis:
+Am Pfarrhaus wurde eine Katzenleiter für die Katzen des neuen Pfarrers installiert. Diese sorgt für Unmut bei Dorfbewohnern wegen der Optik.
+
+### Wichtige Details:
+- Einige Dorfbewohner stören sich stark an der Optik der Leiter
+- Als Alternative wird ein Katzenlift "mit allen Schikanen" geprüft
+- Dubai wird als Referenz für luxuriöse Ausstattung erwähnt
+- Keine Arbeitsgruppe vom CEO involviert
+
+### Für zukünftige Artikel:
+- Entscheidung über möglichen Katzenlift verfolgen
+- Reaktionen der Dorfbewohner auf Lösung dokumentieren
+- Rolle des Messmers bei Pfarrhaus-Projekten beachten
+- Mögliche weitere "Luxus-Projekte" am Pfarrhaus im Blick behalten
+- Spannungsfeld zwischen praktischen Bedürfnissen und Dorfästhetik
+
+*Typisch satirisch: Übertreibung von Alltagsproblemen zu absurden Lösungsansätzen (Katzenlift wie in Dubai)*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
