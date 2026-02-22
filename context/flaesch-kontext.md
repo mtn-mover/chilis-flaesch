@@ -581,6 +581,32 @@ Die Kirchgemeinde Fläsch organisiert einen fünftägigen Gospelworkshop mit ans
 • Carolles internationaler Hintergrund könnte weitere Geschichten bieten
 • Verbindung zwischen Fläsch und Samedan durch das Ehepaar Meyer
 
+
+### 5,5 Millionen für leere Parkplätze ausgegeben (Februar 2026)
+**Kategorie:** kurioses
+**Analyse des satirischen Artikels "5,5 Millionen für leere Parkplätze ausgegeben"**
+
+## **Neue Charaktere:**
+• Keine spezifischen Personen genannt
+• Kantonspolizei Graubünden als kommunizierende Behörde
+
+## **Hauptereignis:**
+• Graubünden zieht positive Bilanz der Verkehrslenkung während Olympischen Winterspielen Mailand-Cortina
+• Trotz erfolgreicher ÖV-Nutzung blieben teure Park and Ride-Anlagen weitgehend leer
+
+## **Wichtige Details:**
+• **41'000 Personen** per Shuttle zwischen Zernez/Müstair und Livigno transportiert
+• **85%** aller Reisenden nutzten öffentlichen Verkehr
+• **Nur 1'192 Fahrzeuge** in Park and Ride-Anlagen (hauptsächlich ausländische)
+• Reiseaufkommen bei **70% der Prognosen** (niedriger als erwartet)
+• Fahrzeuge aus Polen, Tschechien, Deutschland, Österreich registriert
+• Keine Verkehrsüberlastungen in Zufahrtsachsen oder Südtälern
+
+## **Für zukünftige Artikel:**
+• Satirischer Fokus auf Diskrepanz zwischen Investitionen und tatsächlicher Nutzung
+• Thema Verkehrsplanung und ÖV-Erfolg vs. ungenutzte Infrastruktur
+• Mögliche Kritik an Kosteneffizienz von Großveranstaltungs-Infrastrukturen
+
 ## Stil-Richtlinien
 
 ### Satire-Level
