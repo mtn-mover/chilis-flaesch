@@ -607,6 +607,34 @@ Die Kirchgemeinde Fläsch organisiert einen fünftägigen Gospelworkshop mit ans
 • Thema Verkehrsplanung und ÖV-Erfolg vs. ungenutzte Infrastruktur
 • Mögliche Kritik an Kosteneffizienz von Großveranstaltungs-Infrastrukturen
 
+
+### Niemand in Fläsch verdient 1 Million (März 2026)
+**Kategorie:** kurioses
+**Zusammenfassung: "Niemand in Fläsch verdient 1 Million"**
+
+## **Neue Charaktere:**
+• Keine spezifischen Personen erwähnt - Artikel fokussiert auf statistische Daten
+
+## **Hauptereignis:**
+• Eine satirische Analyse der Einkommensverteilung in Fläsch zeigt: Trotz 538 Steuerpflichtigen gibt es keine Millionäre im Dorf
+• Der Artikel nimmt Bezug auf eine SRF-Karte über Superreiche in der Schweiz
+
+## **Wichtige Details:**
+• **Total Steuerpflichtige:** 538 Personen
+• **Einkommensverteilung:**
+  - 8 Personen: 0 CHF Einkommen
+  - 79 Personen: 1-30'000 CHF (größte Gruppe der unteren Einkommen)
+  - 157 Personen: 50'001-75'000 CHF (größte Gruppe insgesamt)
+  - 27 Personen: 200'001-500'000 CHF (höchste Verdiener)
+  - **0 Personen** über 500'000 CHF
+• Quelle: SRF-Dialog interaktive Karte
+
+## **Für zukünftige Artikel:**
+• Fläsch als "millionärsfreie Zone" etabliert
+• Einkommensdaten von 2024 als Referenz verfügbar
+• Mögliche Vergleiche mit anderen Bündner Gemeinden
+• Thema Einkommensungleichheit in ländlichen Gebieten
+
 ## Stil-Richtlinien
 
 ### Satire-Level
