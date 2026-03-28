@@ -28,14 +28,15 @@ module.exports = async function handler(req, res) {
   }
 
   const { method } = req;
-  const { action } = req.query; // 'list', 'approve', 'delete'
+  // Support both 'action' (direct call) and 'sub' (via rewrite where action=admin-rejected)
+  const sub = req.query.sub || req.query.action;
 
   try {
-    if (method === 'GET' && action === 'list') {
+    if (method === 'GET' && (sub === 'list' || sub === 'admin-rejected')) {
       return await listRejectedComments(req, res);
-    } else if (method === 'POST' && action === 'approve') {
+    } else if (method === 'POST' && sub === 'approve') {
       return await approveComment(req, res);
-    } else if (method === 'POST' && action === 'delete') {
+    } else if (method === 'POST' && sub === 'delete') {
       return await deleteComment(req, res);
     } else {
       return res.status(405).json({ error: 'Method not allowed' });
