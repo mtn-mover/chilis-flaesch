@@ -660,6 +660,34 @@ Die Kirchgemeinde Fläsch organisiert einen fünftägigen Gospelworkshop mit ans
 • Bovelgasse als spezifischer Messstandort
 • Widerspruch zwischen offiziellen Messungen und tatsächlichem Verkehrsaufkommen als satirisches Element
 
+
+### Prättigauer Gemeinde kopiert Fläscher Idee (März 2026)
+**Kategorie:** kurioses
+**Zusammenfassung des satirischen Artikels:**
+
+**Neue Charaktere:**
+• Keine spezifischen Personen genannt
+• Prättigauer Gemeinde Pragg-Jenaz als Hauptakteur
+• Bezeichnung "Mongos" wird satirisch für die Prättigauer verwendet
+
+**Hauptereignis:**
+• Pragg-Jenaz kopiert Fläschs Erfolgsmodell als "Chili-Dorf" und will sich als "Mango-Dorf" positionieren
+• Die Prättigauer Gemeinde sucht nach neuen Wegen für ihre Entwicklung
+
+**Wichtige Details:**
+• Wortspiel: "Mongos" vs. "Mango" als satirisches Element
+• Verweis auf Facebook-Reel für weitere Informationen
+• Artikel in Kategorie "kurioses" eingeordnet
+• Erfolg der Idee wird als ungewiss dargestellt ("wird sich weisen")
+
+**Für zukünftige Artikel:**
+• Beobachtung der Entwicklung des "Mango-Projekts" in Pragg-Jenaz
+• Möglicher Vergleich zwischen Fläschs Chili-Erfolg und Pragg-Jenaz' Mango-Initiative
+• Potentielle Reaktionen anderer Gemeinden auf diese Trend-Nachahmung
+• Follow-up über Erfolg oder Scheitern der kopierten Strategie
+
+*Hinweis: Satirischer Ton mit regionalem Humor und Wortspielen typisch für "Fläsch Info"*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
