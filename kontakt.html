@@ -6,228 +6,61 @@
     <title>Kontakt - Fläsch Info | Melde dich bei uns</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <script src="https://www.google.com/recaptcha/api.js?render=6LcRXhAsAAAAACC1n3YUzIpxY_inDqsZzao4QBMN"></script>
+
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* Top Info Bar */
-        .info-bar {
-            background: #8B4513;
-            color: white;
-            padding: 0.5rem 0;
-            font-size: 0.85rem;
-        }
-
-        .info-bar-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .satire-badge {
-            background: #FFD700;
-            color: #8B4513;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-
-        /* Navigation */
-        nav {
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 70px;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-        }
-
-        .nav-logo img {
-            height: 72px;
-            width: auto;
-        }
-
-        @media (min-width: 768px) {
-            .nav-logo img {
-                height: 96px;
-            }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            transition: color 0.3s;
-            padding: 0.5rem 0;
-            border-bottom: 2px solid transparent;
-        }
-
-        .nav-links a:hover {
-            color: #C16F31;
-            border-bottom-color: #C16F31;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #8B4513 0%, #A0522D 25%, #C16F31 50%, #CD853F 75%, #8B4513 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            opacity: 0.95;
-        }
-
-        /* Container */
-        .container {
+        /* Page-specific styles for kontakt */
+        .main-content {
             max-width: 700px;
-            margin: 3rem auto;
-            padding: 0 2rem;
+            margin: 0 auto;
+            padding: var(--space-10) var(--space-6);
         }
 
-
-        /* Contact Form */
         .contact-section {
-            background: white;
-            border-radius: 10px;
-            padding: 3rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--color-white);
+            border: 1px solid var(--color-neutral-300);
+            border-radius: var(--radius-lg);
+            padding: var(--space-10);
         }
 
-        .message {
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            display: none;
+        .contact-section .form-group label {
+            color: var(--color-primary-800);
         }
 
-        .message.error {
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            color: #721c24;
-        }
-
-        .message.success {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            color: #155724;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #8B4513;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #C16F31;
-        }
-
-        .form-group textarea {
+        .contact-section .form-group textarea {
             min-height: 150px;
-            resize: vertical;
         }
 
         .submit-button {
-            background: linear-gradient(135deg, #8B4513 0%, #C16F31 100%);
-            color: white;
-            padding: 1rem 2rem;
+            background: var(--color-primary-700);
+            color: var(--color-white);
+            padding: 0.875rem 1.75rem;
             border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
+            border-radius: var(--radius-md);
+            font-family: var(--font-sans);
+            font-size: var(--text-base);
             font-weight: 600;
             cursor: pointer;
             width: 100%;
-            transition: all 0.3s ease;
+            transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
         }
 
         .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+            background: var(--color-primary-800);
+            box-shadow: 0 2px 8px rgba(122, 78, 45, 0.25);
+        }
+
+        .submit-button:active {
+            transform: translateY(1px);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         /* Success Modal */
@@ -249,14 +82,14 @@
         }
 
         .modal-content {
-            background: white;
+            background: var(--color-white);
             margin: 10% auto;
-            padding: 3rem;
-            border-radius: 20px;
+            padding: var(--space-10);
+            border-radius: var(--radius-xl);
             max-width: 500px;
             text-align: center;
             animation: slideDown 0.4s ease-out;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-lg);
         }
 
         @keyframes slideDown {
@@ -272,95 +105,44 @@
 
         .modal-icon {
             font-size: 4rem;
-            margin-bottom: 1rem;
+            margin-bottom: var(--space-4);
         }
 
         .modal-title {
-            color: #8B4513;
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-family: var(--font-serif);
+            color: var(--color-primary-800);
+            font-size: var(--text-3xl);
+            margin-bottom: var(--space-4);
         }
 
         .modal-text {
-            color: #666;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
+            color: var(--color-neutral-700);
+            font-size: var(--text-lg);
+            line-height: var(--leading-normal);
+            margin-bottom: var(--space-8);
         }
 
         .modal-button {
-            background: linear-gradient(135deg, #8B4513 0%, #C16F31 100%);
-            color: white;
-            padding: 1rem 2rem;
+            background: var(--color-primary-700);
+            color: var(--color-white);
+            padding: 0.875rem 1.75rem;
             border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
+            border-radius: var(--radius-md);
+            font-family: var(--font-sans);
+            font-size: var(--text-base);
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background-color 0.2s, box-shadow 0.2s;
         }
 
         .modal-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+            background: var(--color-primary-800);
+            box-shadow: 0 2px 8px rgba(122, 78, 45, 0.25);
         }
 
-        /* Footer */
-        footer {
-            background: #2c2c2c;
-            color: white;
-            padding: 2.5rem 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .footer-content p {
-            margin: 0.5rem 0;
-        }
-
-        .footer-disclaimer {
-            background: rgba(255, 215, 0, 0.15);
-            padding: 1rem;
-            border-radius: 5px;
-            margin-top: 1rem;
-            font-style: italic;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .info-bar-content {
-                flex-direction: column;
-                gap: 0.5rem;
-                text-align: center;
-            }
-
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-            }
-
             .contact-section {
-                padding: 2rem 1.5rem;
-            }
-
-            .coming-soon {
-                padding: 1.5rem;
-            }
-
-            .contact-section::after {
-                font-size: 1.5rem;
+                padding: var(--space-6);
             }
         }
     </style>
@@ -369,8 +151,8 @@
     <!-- Top Info Bar -->
     <div class="info-bar">
         <div class="info-bar-content">
-            <div>📍 Fläsch, Graubünden, Schweiz</div>
-            <div class="satire-badge">⚠️ SATIRE</div>
+            <div>Fläsch, Graubünden, Schweiz</div>
+            <div class="satire-badge">SATIRE</div>
         </div>
     </div>
 
@@ -380,27 +162,30 @@
             <a href="index.html" class="nav-logo">
                 <img src="logo.png" alt="Fläsch Info Logo">
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html#geschichten">Unsere Geschichten</a></li>
-                <li><a href="ueber-uns.html">Über uns</a></li>
-                <li><a href="kontakt.html">Kontakt</a></li>
-                <li><a href="my-articles.html" style="opacity: 0.5; font-size: 0.85rem;">Admin</a></li>
-            </ul>
+            <button type="button" class="nav-toggle" title="Navigation öffnen" aria-label="Navigation öffnen" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html#geschichten">Geschichten</a>
+                <a href="ueber-uns.html">Über uns</a>
+                <a href="kontakt.html">Kontakt</a>
+                <a href="my-articles.html" style="opacity: 0.6; font-size: var(--text-xs);">Admin</a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
+        <div class="container">
             <h1>Kontakt</h1>
-            <p class="hero-subtitle">Wir freuen uns auf deine Nachricht!</p>
+            <p class="subtitle">Wir freuen uns auf deine Nachricht!</p>
         </div>
     </section>
 
     <!-- Success Modal -->
     <div id="successModal" class="modal">
         <div class="modal-content">
-            <div class="modal-icon">✅</div>
+            <div class="modal-icon">&#10003;</div>
             <h2 class="modal-title">Nachricht erfolgreich versendet!</h2>
             <p class="modal-text">
                 Vielen Dank für deine Nachricht! Wir haben sie erhalten und melden uns bald bei dir.
@@ -410,33 +195,33 @@
     </div>
 
     <!-- Main Content -->
-    <div class="container">
+    <div class="main-content">
         <!-- Contact Form -->
         <div class="contact-section">
-            <div class="message" id="message"></div>
+            <div class="message" id="message" style="display: none;"></div>
 
             <form id="contactForm">
                 <div class="form-group">
-                    <label for="name">Dein Name <span style="color: #C16F31;">*</span></label>
+                    <label for="name">Dein Name <span style="color: var(--color-accent-600);">*</span></label>
                     <input type="text" id="name" name="name" placeholder="Max Mustermann" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Deine E-Mail <span style="color: #C16F31;">*</span></label>
+                    <label for="email">Deine E-Mail <span style="color: var(--color-accent-600);">*</span></label>
                     <input type="email" id="email" name="email" placeholder="max@example.com" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="subject">Betreff <span style="color: #C16F31;">*</span></label>
+                    <label for="subject">Betreff <span style="color: var(--color-accent-600);">*</span></label>
                     <input type="text" id="subject" name="subject" placeholder="Meine sensationelle Story-Idee..." required>
                 </div>
 
                 <div class="form-group">
-                    <label for="messageText">Deine Nachricht <span style="color: #C16F31;">*</span></label>
+                    <label for="messageText">Deine Nachricht <span style="color: var(--color-accent-600);">*</span></label>
                     <textarea id="messageText" name="message" placeholder="Erzähl uns deine Geschichte..." required></textarea>
                 </div>
 
-                <button type="submit" class="submit-button" id="submitBtn">🌶️ Nachricht absenden</button>
+                <button type="submit" class="submit-button" id="submitBtn">Nachricht absenden</button>
             </form>
         </div>
     </div>
@@ -489,10 +274,10 @@
 
             } catch (error) {
                 console.error('Contact form error:', error);
-                showMessage('error', '❌ ' + error.message);
+                showMessage('error', error.message);
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.textContent = '🌶️ Nachricht absenden';
+                submitBtn.textContent = 'Nachricht absenden';
             }
         });
 
@@ -527,12 +312,11 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <p>🍷 <strong>Fläsch Info</strong> - Satirische Geschichten aus Fläsch</p>
-            <p>&copy; 2025 Fläsch mittendrin - oder doch daneben?</p>
+            <p><strong>Fläsch Info</strong> — Satirische Geschichten aus Fläsch</p>
+            <p>&copy; 2025 Fläsch mittendrin — oder doch daneben?</p>
             <div class="footer-disclaimer">
-                ⚠️ Diese Webseite ist SATIRE! Alle Geschichten sind frei erfunden und dienen ausschliesslich der Unterhaltung.
-                <br><br>
-                🤖 Diese Webseite wurde mit KI erstellt. Inhalte werden von künstlicher Intelligenz generiert.
+                Diese Webseite ist Satire. Alle Geschichten sind frei erfunden und dienen ausschliesslich der Unterhaltung.
+                Erstellt mit KI — Inhalte werden von künstlicher Intelligenz generiert.
             </div>
         </div>
     </footer>
