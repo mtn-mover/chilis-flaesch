@@ -23,7 +23,7 @@ module.exports = async function handler(req, res) {
         // Try to read the markdown file via GitHub API
         const GITHUB_OWNER = 'mtn-mover';
         const GITHUB_REPO = 'chilis-flaesch';
-        const GITHUB_BRANCH = 'main';
+        const GITHUB_BRANCH = 'master';
 
         const response = await fetch(
           `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/context/flaesch-kontext.md?ref=${GITHUB_BRANCH}`,

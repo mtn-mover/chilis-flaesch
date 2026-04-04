@@ -26,7 +26,7 @@ module.exports = async function handler(req, res) {
     // Commit to GitHub
     const GITHUB_OWNER = 'mtn-mover';
     const GITHUB_REPO = 'chilis-flaesch';
-    const GITHUB_BRANCH = 'main';
+    const GITHUB_BRANCH = 'master';
     const filePath = 'context/flaesch-kontext.md';
 
     // Get current file SHA (needed for update)

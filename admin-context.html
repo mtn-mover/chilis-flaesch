@@ -342,10 +342,13 @@ async function loadContext() {
             renderAll();
             updateTokenCount();
         } else {
-            showMessage('Fehler: ' + result.error, 'error');
+            showMessage('Fehler: ' + (result.error || 'Unbekannter Fehler'), 'error');
+            document.getElementById('charactersList').innerHTML = '<p style="color:red">Laden fehlgeschlagen. Seite neu laden.</p>';
         }
     } catch (error) {
-        showMessage('Fehler beim Laden des Kontexts', 'error');
+        console.error('loadContext error:', error);
+        showMessage('Fehler beim Laden des Kontexts: ' + error.message, 'error');
+        document.getElementById('charactersList').innerHTML = '<p style="color:red">Laden fehlgeschlagen. Seite neu laden.</p>';
     }
 }
 
