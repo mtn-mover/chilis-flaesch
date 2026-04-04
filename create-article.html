@@ -5,204 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artikel erstellen - Fläsch Info Admin</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="cookie-consent.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-            min-height: 100vh;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header-logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-        }
-
-        .header-logo img {
-            height: 50px;
-            width: auto;
-        }
-
-        .header-logo h1 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        .header-logo:hover {
-            opacity: 0.9;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-
-        .nav-links a:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .user-greeting {
-            color: white;
-            padding: 0.5rem 1rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 5px;
-            font-weight: 600;
-            display: none;
-        }
-
-        .user-greeting.show {
-            display: block;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-
+        /* Page-specific: two-column layout */
         .two-column {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: var(--space-8);
+            margin-top: var(--space-6);
         }
 
-        .panel {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .panel h2 {
-            margin-bottom: 1.5rem;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #555;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-        }
-
-        .btn-success {
-            background: #28a745;
-            color: white;
-        }
-
+        /* Preview area */
         .preview-area {
-            border: 2px dashed #ddd;
-            border-radius: 10px;
-            padding: 2rem;
+            border: 2px dashed var(--color-neutral-300);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
             min-height: 400px;
-            background: #fafafa;
+            background: var(--color-neutral-100);
         }
 
         .preview-area.has-content {
-            border: 1px solid #ddd;
-            background: white;
+            border: 1px solid var(--color-neutral-300);
+            background: var(--color-white);
         }
 
         .preview-placeholder {
             text-align: center;
-            color: #999;
-            padding: 3rem 1rem;
+            color: var(--color-neutral-500);
+            padding: var(--space-12) var(--space-4);
         }
 
+        /* Action buttons row */
         .action-buttons {
             display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
+            gap: var(--space-3);
+            margin-top: var(--space-6);
             flex-wrap: wrap;
         }
 
-        .loading {
-            text-align: center;
-            padding: 2rem;
-        }
-
+        /* Spinner */
         .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
+            border: 3px solid var(--color-neutral-200);
+            border-top: 3px solid var(--color-primary-600);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -215,32 +64,33 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* File / image upload zones */
         .image-upload {
-            border: 2px dashed #ddd;
-            border-radius: 5px;
-            padding: 1rem;
+            border: 2px dashed var(--color-neutral-300);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: border-color 0.2s, background 0.2s;
         }
 
         .image-upload:hover {
-            border-color: #667eea;
-            background: #f8f9ff;
+            border-color: var(--color-primary-500);
+            background: var(--color-primary-50);
         }
 
         .uploaded-images {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: var(--space-3);
+            margin-top: var(--space-3);
         }
 
         .uploaded-image {
             position: relative;
             width: 150px;
             height: 150px;
-            border-radius: 5px;
+            border-radius: var(--radius-md);
             overflow: hidden;
         }
 
@@ -254,16 +104,20 @@
             position: absolute;
             top: 5px;
             right: 5px;
-            background: red;
+            background: var(--color-error);
             color: white;
             border: none;
             border-radius: 50%;
             width: 25px;
             height: 25px;
             cursor: pointer;
+            font-size: var(--text-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Editor Modal */
+        /* Editor modal */
         .editor-modal {
             display: none;
             position: fixed;
@@ -271,11 +125,13 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 10000;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: var(--space-6);
+            -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
         }
 
         .editor-modal.active {
@@ -283,30 +139,33 @@
         }
 
         .editor-content {
-            background: white;
-            border-radius: 10px;
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
             width: 100%;
             max-width: 1200px;
             max-height: 90vh;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
         }
 
         .editor-header {
-            padding: 1.5rem;
-            border-bottom: 2px solid #eee;
+            padding: var(--space-5);
+            border-bottom: 1px solid var(--color-neutral-200);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .editor-header h3 {
-            margin: 0;
-            color: #333;
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--color-primary-800);
         }
 
         .editor-body {
-            padding: 1.5rem;
+            padding: var(--space-5);
             flex: 1;
             overflow-y: auto;
         }
@@ -314,129 +173,152 @@
         .editor-textarea {
             width: 100%;
             min-height: 500px;
-            padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.95rem;
-            line-height: 1.6;
+            padding: var(--space-4);
+            border: 1.5px solid var(--color-neutral-300);
+            border-radius: var(--radius-md);
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-size: var(--text-sm);
+            line-height: var(--leading-normal);
             resize: vertical;
         }
 
         .editor-textarea:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--color-primary-500);
+            box-shadow: 0 0 0 3px rgba(184, 132, 90, 0.15);
         }
 
-        /* Rich Text Editor */
+        /* Rich text editor toolbar */
         .editor-toolbar {
             display: flex;
-            gap: 0.5rem;
-            padding: 0.75rem;
-            background: #f8f9fa;
-            border: 2px solid #ddd;
+            gap: var(--space-2);
+            padding: var(--space-3);
+            background: var(--color-neutral-100);
+            border: 1.5px solid var(--color-neutral-300);
             border-bottom: none;
-            border-radius: 5px 5px 0 0;
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
             flex-wrap: wrap;
         }
 
         .editor-toolbar button {
-            padding: 0.5rem 0.75rem;
-            border: 1px solid #ddd;
-            background: white;
-            border-radius: 3px;
+            padding: var(--space-2) var(--space-3);
+            border: 1px solid var(--color-neutral-300);
+            background: var(--color-white);
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: var(--text-sm);
             transition: all 0.2s;
             min-width: 35px;
         }
 
         .editor-toolbar button:hover {
-            background: #667eea;
+            background: var(--color-primary-700);
             color: white;
-            border-color: #667eea;
+            border-color: var(--color-primary-700);
         }
 
         .editor-toolbar button.active {
-            background: #667eea;
+            background: var(--color-primary-700);
             color: white;
-            border-color: #667eea;
+            border-color: var(--color-primary-700);
         }
 
         .editor-toolbar select {
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 3px;
-            background: white;
+            padding: var(--space-2);
+            border: 1px solid var(--color-neutral-300);
+            border-radius: var(--radius-sm);
+            background: var(--color-white);
             cursor: pointer;
+            font-family: var(--font-sans);
+            font-size: var(--text-sm);
         }
 
+        .editor-toolbar .separator {
+            border-left: 1px solid var(--color-neutral-300);
+            height: 30px;
+            align-self: center;
+        }
+
+        /* Rich editor content area */
         .rich-editor {
             width: 100%;
             min-height: 500px;
-            padding: 1rem;
-            border: 2px solid #ddd;
+            padding: var(--space-4);
+            border: 1.5px solid var(--color-neutral-300);
             border-top: none;
-            border-radius: 0 0 5px 5px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 1.05rem;
-            line-height: 1.6;
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+            font-family: var(--font-sans);
+            font-size: var(--text-base);
+            line-height: var(--leading-normal);
             overflow-y: auto;
-            background: white;
+            background: var(--color-white);
         }
 
         .rich-editor:focus {
             outline: none;
         }
 
+        /* Editor mode toggle */
         .editor-mode-toggle {
             display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: var(--space-2);
         }
 
         .mode-btn {
-            padding: 0.5rem 1rem;
-            border: 2px solid #ddd;
-            background: white;
-            border-radius: 5px;
+            padding: var(--space-2) var(--space-4);
+            border: 1.5px solid var(--color-neutral-300);
+            background: var(--color-white);
+            border-radius: var(--radius-md);
             cursor: pointer;
+            font-family: var(--font-sans);
             font-weight: 600;
+            font-size: var(--text-sm);
             transition: all 0.2s;
         }
 
         .mode-btn.active {
-            background: #667eea;
+            background: var(--color-primary-700);
             color: white;
-            border-color: #667eea;
+            border-color: var(--color-primary-700);
         }
 
         .editor-footer {
-            padding: 1.5rem;
-            border-top: 2px solid #eee;
+            padding: var(--space-5);
+            border-top: 1px solid var(--color-neutral-200);
             display: flex;
             justify-content: flex-end;
-            gap: 1rem;
+            gap: var(--space-3);
         }
 
-        .status-message {
-            padding: 1rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
+        /* Post-generation image upload section */
+        .post-gen-upload {
+            margin-top: var(--space-6);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--color-neutral-200);
         }
 
-        .status-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+        /* User greeting in nav */
+        .user-greeting {
+            font-family: var(--font-sans);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--color-neutral-700);
+            padding: var(--space-1) var(--space-3);
+            background: var(--color-primary-100);
+            border-radius: var(--radius-sm);
+            display: none;
         }
 
-        .status-error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+        .user-greeting.show {
+            display: block;
         }
 
+        /* Newspaper link hidden by default */
+        .newspaper-link {
+            display: none;
+        }
+
+        /* Responsive */
         @media (max-width: 968px) {
             .two-column {
                 grid-template-columns: 1fr;
@@ -445,27 +327,58 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="header-content">
-            <a href="index.html" class="header-logo">
-                <img src="logo.png" alt="Fläsch Info Logo">
-                <h1>Artikel erstellen</h1>
-            </a>
-            <div class="nav-links" id="navLinks">
-                <a href="my-articles.html">Meine Artikel</a>
-                <a href="create-newspaper.html" id="newspaperLink" style="display: none;">📰 Zeitung erstellen</a>
+    <!-- Info Bar -->
+    <div class="info-bar">
+        <div class="info-bar-content">
+            <div>Fläsch, Graubünden, Schweiz</div>
+            <div class="satire-badge">SATIRE</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><img src="logo.png" alt="Fläsch Info Logo"></a>
+            <button type="button" class="nav-toggle" title="Navigation" aria-label="Navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html">Startseite</a>
+                <a href="ueber-uns.html">Über uns</a>
+                <a href="kontakt.html">Kontakt</a>
                 <span class="user-greeting" id="userGreeting"></span>
-                <a href="#" onclick="logout()">Logout</a>
+                <button type="button" class="btn btn-logout" onclick="logout()">Abmelden</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Sub-Navigation -->
+    <div class="admin-subnav">
+        <div class="admin-subnav-content" id="adminSubnav">
+            <span class="admin-label">Admin</span>
+            <a href="create-article.html" class="active">Artikel erstellen</a>
+            <a href="my-articles.html">Meine Artikel</a>
+            <a href="admin-comments.html">Kommentare</a>
+            <a href="create-newspaper.html" id="newspaperLink" class="newspaper-link">Zeitung erstellen</a>
+        </div>
+    </div>
+
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="admin-header-content">
+            <div>
+                <h1>Artikel erstellen</h1>
+                <p>Neuen satirischen Artikel mit Claude generieren</p>
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <div id="statusMessage" class="status-message" style="display: none;"></div>
+    <div class="admin-container">
+        <div id="statusMessage" class="message" style="display: none;"></div>
 
         <div class="two-column">
             <!-- Left: Input Form -->
-            <div class="panel">
+            <div class="card">
                 <h2>Artikel-Details</h2>
                 <form id="articleForm">
                     <div class="form-group">
@@ -507,7 +420,7 @@
                             <input type="file" id="infoInput" accept=".pdf,.txt,.doc,.docx,image/*" multiple style="display: none;">
                             <p>Klicken zum Hochladen oder Drag & Drop</p>
                             <small>PDF, Bilder, Textdokumente (max 10MB pro Datei)</small>
-                            <small style="display: block; margin-top: 0.5rem; color: #666;">Diese Dateien werden NUR zur Information für Claude verwendet, nicht veröffentlicht</small>
+                            <small style="display: block; margin-top: var(--space-2); color: var(--color-neutral-500);">Diese Dateien werden NUR zur Information für Claude verwendet, nicht veröffentlicht</small>
                         </div>
                         <div class="uploaded-images" id="uploadedInfo"></div>
                     </div>
@@ -517,7 +430,7 @@
             </div>
 
             <!-- Right: Preview -->
-            <div class="panel">
+            <div class="card">
                 <h2>Vorschau</h2>
                 <div id="previewArea" class="preview-area">
                     <div class="preview-placeholder">
@@ -526,7 +439,7 @@
                 </div>
 
                 <!-- Image upload after generation -->
-                <div id="postGenerationImageUpload" style="display: none; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px solid #eee;">
+                <div id="postGenerationImageUpload" class="post-gen-upload" style="display: none;">
                     <div class="form-group">
                         <label>Bilder zum Artikel hinzufügen</label>
                         <div class="image-upload" id="postImageUpload">
@@ -539,9 +452,9 @@
                 </div>
 
                 <div class="action-buttons" id="actionButtons" style="display: none;">
-                    <button class="btn btn-secondary" onclick="regenerateArticle()">Neu generieren</button>
-                    <button class="btn btn-primary" onclick="openEditor()">✏️ Text bearbeiten</button>
-                    <button class="btn btn-success" onclick="saveDraft()">Als Draft speichern</button>
+                    <button type="button" class="btn btn-outline" onclick="regenerateArticle()">Neu generieren</button>
+                    <button type="button" class="btn btn-primary" onclick="openEditor()">Text bearbeiten</button>
+                    <button type="button" class="btn btn-success" onclick="saveDraft()">Als Draft speichern</button>
                 </div>
             </div>
         </div>
@@ -551,23 +464,23 @@
     <div class="editor-modal" id="editorModal">
         <div class="editor-content">
             <div class="editor-header">
-                <h3>✏️ Artikel bearbeiten</h3>
+                <h3>Artikel bearbeiten</h3>
                 <div class="editor-mode-toggle">
-                    <button class="mode-btn active" onclick="switchEditorMode('visual')" id="visualModeBtn">📝 Visuell</button>
-                    <button class="mode-btn" onclick="switchEditorMode('html')" id="htmlModeBtn">⌨️ HTML</button>
+                    <button type="button" class="mode-btn active" onclick="switchEditorMode('visual')" id="visualModeBtn">Visuell</button>
+                    <button type="button" class="mode-btn" onclick="switchEditorMode('html')" id="htmlModeBtn">HTML</button>
                 </div>
             </div>
             <div class="editor-body">
                 <!-- Title Input -->
-                <div style="margin-bottom: 1rem;">
-                    <label for="editorTitle" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">Titel:</label>
-                    <input type="text" id="editorTitle" style="width: 100%; padding: 0.75rem; font-size: 1.1rem; border: 2px solid #ddd; border-radius: 5px;" placeholder="Artikel-Titel">
+                <div class="form-group">
+                    <label for="editorTitle">Titel:</label>
+                    <input type="text" id="editorTitle" placeholder="Artikel-Titel">
                 </div>
 
                 <!-- Category Dropdown -->
-                <div style="margin-bottom: 1rem;">
-                    <label for="editorCategory" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">Kategorie:</label>
-                    <select id="editorCategory" style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 2px solid #ddd; border-radius: 5px; background-color: white;">
+                <div class="form-group">
+                    <label for="editorCategory">Kategorie:</label>
+                    <select id="editorCategory">
                         <option value="politik">Politik</option>
                         <option value="wirtschaft">Wirtschaft</option>
                         <option value="gesellschaft">Gesellschaft</option>
@@ -577,40 +490,40 @@
                 </div>
 
                 <!-- Author Display Name Dropdown -->
-                <div style="margin-bottom: 1rem;">
-                    <label for="editorAuthorDisplayName" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">Autor-Anzeigename:</label>
-                    <select id="editorAuthorDisplayName" style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 2px solid #ddd; border-radius: 5px; background-color: white;">
+                <div class="form-group">
+                    <label for="editorAuthorDisplayName">Autor-Anzeigename:</label>
+                    <select id="editorAuthorDisplayName">
                         <!-- Options will be loaded dynamically from users -->
                     </select>
                 </div>
 
                 <!-- Subtitle Input -->
-                <div style="margin-bottom: 1rem;">
-                    <label for="editorSubtitle" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">Untertitel / Schlagzeile:</label>
-                    <input type="text" id="editorSubtitle" maxlength="150" style="width: 100%; padding: 0.75rem; font-size: 1rem; border: 2px solid #ddd; border-radius: 5px;" placeholder="Untertitel (max. 150 Zeichen)">
-                    <small style="color: #666; font-size: 0.85rem;">Max. 150 Zeichen</small>
+                <div class="form-group">
+                    <label for="editorSubtitle">Untertitel / Schlagzeile:</label>
+                    <input type="text" id="editorSubtitle" maxlength="150" placeholder="Untertitel (max. 150 Zeichen)">
+                    <small style="color: var(--color-neutral-500); font-size: var(--text-xs);">Max. 150 Zeichen</small>
                 </div>
 
                 <!-- Visual Editor -->
                 <div id="visualEditorContainer" style="display: block;">
                     <div class="editor-toolbar">
-                        <button onclick="formatText('bold')" title="Fett"><b>B</b></button>
-                        <button onclick="formatText('italic')" title="Kursiv"><i>I</i></button>
-                        <button onclick="formatText('underline')" title="Unterstrichen"><u>U</u></button>
-                        <button onclick="formatText('strikeThrough')" title="Durchgestrichen"><s>S</s></button>
-                        <span style="border-left: 1px solid #ddd; height: 30px;"></span>
+                        <button type="button" onclick="formatText('bold')" title="Fett"><b>B</b></button>
+                        <button type="button" onclick="formatText('italic')" title="Kursiv"><i>I</i></button>
+                        <button type="button" onclick="formatText('underline')" title="Unterstrichen"><u>U</u></button>
+                        <button type="button" onclick="formatText('strikeThrough')" title="Durchgestrichen"><s>S</s></button>
+                        <span class="separator"></span>
                         <select onchange="formatBlock(this.value)" title="Überschrift">
                             <option value="">Normal</option>
                             <option value="h2">Überschrift 2</option>
                             <option value="h3">Überschrift 3</option>
                         </select>
-                        <span style="border-left: 1px solid #ddd; height: 30px;"></span>
-                        <button onclick="formatText('insertUnorderedList')" title="Liste">• Liste</button>
-                        <button onclick="formatText('insertOrderedList')" title="Nummerierte Liste">1. Liste</button>
-                        <span style="border-left: 1px solid #ddd; height: 30px;"></span>
-                        <button onclick="formatText('justifyLeft')" title="Links">⬅</button>
-                        <button onclick="formatText('justifyCenter')" title="Zentriert">↔</button>
-                        <button onclick="formatText('justifyRight')" title="Rechts">➡</button>
+                        <span class="separator"></span>
+                        <button type="button" onclick="formatText('insertUnorderedList')" title="Liste">Liste</button>
+                        <button type="button" onclick="formatText('insertOrderedList')" title="Nummerierte Liste">1. Liste</button>
+                        <span class="separator"></span>
+                        <button type="button" onclick="formatText('justifyLeft')" title="Links">L</button>
+                        <button type="button" onclick="formatText('justifyCenter')" title="Zentriert">M</button>
+                        <button type="button" onclick="formatText('justifyRight')" title="Rechts">R</button>
                     </div>
                     <div id="richEditor" class="rich-editor" contenteditable="true"></div>
                 </div>
@@ -621,8 +534,8 @@
                 </div>
             </div>
             <div class="editor-footer">
-                <button class="btn btn-secondary" onclick="closeEditor()">Abbrechen</button>
-                <button class="btn btn-success" onclick="saveEditorChanges()">Änderungen übernehmen</button>
+                <button type="button" class="btn btn-outline" onclick="closeEditor()">Abbrechen</button>
+                <button type="button" class="btn btn-success" onclick="saveEditorChanges()">Änderungen übernehmen</button>
             </div>
         </div>
     </div>
@@ -756,7 +669,7 @@
                         document.getElementById('content').value = draft.content || '';
 
                         // Update header to show we're editing
-                        document.querySelector('.header h1').textContent = 'Artikel bearbeiten';
+                        document.querySelector('.admin-header h1').textContent = 'Artikel bearbeiten';
 
                         // Show preview if available
                         if (draft.html) {
@@ -767,7 +680,7 @@
                             // Display preview with subtitle
                             let previewHTML = '';
                             if (draft.subtitle) {
-                                previewHTML = `<p style="font-size: 1.1rem; color: #666; font-style: italic; margin-bottom: 1.5rem; border-left: 4px solid #667eea; padding-left: 1rem;">${draft.subtitle}</p>`;
+                                previewHTML = `<p style="font-size: 1.1rem; color: var(--color-neutral-500); font-style: italic; margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary-500); padding-left: 1rem;">${draft.subtitle}</p>`;
                             }
                             previewHTML += draft.html;
                             previewArea.innerHTML = previewHTML;
@@ -833,13 +746,13 @@
         function displayUploadedInfoFile(name, type) {
             const div = document.createElement('div');
             div.className = 'uploaded-image';
-            const icon = type.includes('pdf') ? '📄' : type.includes('image') ? '🖼️' : '📝';
+            const label = type.includes('pdf') ? 'PDF' : type.includes('image') ? 'IMG' : 'DOC';
             div.innerHTML = `
-                <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f0f0f0; padding: 1rem; font-size: 2rem;">
-                    ${icon}
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: var(--color-neutral-100); padding: var(--space-4); font-size: var(--text-sm); font-weight: 700; color: var(--color-neutral-500);">
+                    ${label}
                 </div>
                 <button class="image-remove" onclick="removeInfoFile('${name}')">×</button>
-                <div style="position: absolute; bottom: 5px; left: 5px; right: 5px; background: rgba(0,0,0,0.7); color: white; padding: 0.25rem; font-size: 0.7rem; text-align: center; border-radius: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${name}</div>
+                <div style="position: absolute; bottom: 5px; left: 5px; right: 5px; background: rgba(0,0,0,0.7); color: white; padding: 0.25rem; font-size: var(--text-xs); text-align: center; border-radius: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${name}</div>
             `;
             uploadedInfoDiv.appendChild(div);
         }
@@ -876,7 +789,7 @@
             loadingDiv.className = 'uploaded-image';
             loadingDiv.innerHTML = `
                 <div class="spinner" style="margin: 0 auto;"></div>
-                <p style="font-size: 0.8rem; text-align: center; margin-top: 0.5rem;">Hochladen...</p>
+                <p style="font-size: var(--text-xs); text-align: center; margin-top: var(--space-2);">Hochladen...</p>
             `;
             postUploadedImagesDiv.appendChild(loadingDiv);
 
@@ -1016,7 +929,7 @@
                 // Display preview with subtitle
                 let previewHTML = '';
                 if (result.subtitle) {
-                    previewHTML = `<p style="font-size: 1.1rem; color: #666; font-style: italic; margin-bottom: 1.5rem; border-left: 4px solid #667eea; padding-left: 1rem;">${result.subtitle}</p>`;
+                    previewHTML = `<p style="font-size: 1.1rem; color: var(--color-neutral-500); font-style: italic; margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary-500); padding-left: 1rem;">${result.subtitle}</p>`;
                 }
                 previewHTML += result.html;
                 previewArea.innerHTML = previewHTML;
@@ -1026,14 +939,14 @@
                 // Show post-generation image upload
                 document.getElementById('postGenerationImageUpload').style.display = 'block';
 
-                statusMessage.className = 'status-message status-success';
-                statusMessage.textContent = '✅ Artikel erfolgreich generiert!';
+                statusMessage.className = 'message success';
+                statusMessage.textContent = 'Artikel erfolgreich generiert!';
                 statusMessage.style.display = 'block';
 
             } catch (error) {
-                previewArea.innerHTML = `<div class="preview-placeholder"><p style="color: red;">❌ Fehler: ${error.message}</p></div>`;
-                statusMessage.className = 'status-message status-error';
-                statusMessage.textContent = '❌ Fehler: ' + error.message;
+                previewArea.innerHTML = `<div class="preview-placeholder"><p style="color: var(--color-error);">Fehler: ${error.message}</p></div>`;
+                statusMessage.className = 'message error';
+                statusMessage.textContent = 'Fehler: ' + error.message;
                 statusMessage.style.display = 'block';
             }
         });
@@ -1083,7 +996,7 @@
 
             const statusMessage = document.getElementById('statusMessage');
             statusMessage.textContent = 'Speichere...';
-            statusMessage.className = 'status-message status-success';
+            statusMessage.className = 'message success';
             statusMessage.style.display = 'block';
 
             // If editing, include the draft ID to update it
@@ -1102,14 +1015,14 @@
             })
             .then(response => response.json())
             .then(result => {
-                statusMessage.textContent = '✅ Draft gespeichert! Du findest ihn unter "Meine Artikel"';
+                statusMessage.textContent = 'Draft gespeichert! Du findest ihn unter "Meine Artikel"';
                 setTimeout(() => {
                     window.location.href = 'my-articles.html';
                 }, 1500);
             })
             .catch(error => {
-                statusMessage.className = 'status-message status-error';
-                statusMessage.innerHTML = '<pre style="white-space: pre-wrap; text-align: left; font-size: 0.85rem;">❌ Fehler: ' + error.message + '</pre>';
+                statusMessage.className = 'message error';
+                statusMessage.innerHTML = '<pre style="white-space: pre-wrap; text-align: left; font-size: var(--text-xs);">Fehler: ' + error.message + '</pre>';
                 console.error('Full error:', error);
             });
         }
@@ -1267,7 +1180,7 @@
             const previewArea = document.getElementById('previewArea');
             let previewHTML = '';
             if (newSubtitle) {
-                previewHTML = `<p style="font-size: 1.1rem; color: #666; font-style: italic; margin-bottom: 1.5rem; border-left: 4px solid #667eea; padding-left: 1rem;">${newSubtitle}</p>`;
+                previewHTML = `<p style="font-size: 1.1rem; color: var(--color-neutral-500); font-style: italic; margin-bottom: 1.5rem; border-left: 4px solid var(--color-primary-500); padding-left: 1rem;">${newSubtitle}</p>`;
             }
             previewHTML += newHTML;
             previewArea.innerHTML = previewHTML;
@@ -1276,10 +1189,10 @@
             closeEditor();
 
             // Show success message
-            alert('✅ Änderungen wurden übernommen! Du kannst jetzt den Draft speichern.');
+            alert('Änderungen wurden übernommen! Du kannst jetzt den Draft speichern.');
         }
 
-        // Check if user is admin and add admin link
+        // Check if user is admin and add admin links to subnav
         async function checkAdminRole() {
             try {
                 const response = await fetch('/api/verify', {
@@ -1290,27 +1203,20 @@
 
                 const result = await response.json();
                 if (result.valid) {
-                    const navLinks = document.getElementById('navLinks');
-                    // Comments link for all authors/admins
-                    if (!navLinks.querySelector('a[href="admin-comments.html"]')) {
-                        const commentsLink = document.createElement('a');
-                        commentsLink.href = 'admin-comments.html';
-                        commentsLink.textContent = '💬 Kommentare';
-                        navLinks.insertBefore(commentsLink, navLinks.lastElementChild);
-                    }
+                    const subnav = document.getElementById('adminSubnav');
                     // Admin-only links
                     if (result.role === 'admin') {
-                        if (!navLinks.querySelector('a[href="admin-users.html"]')) {
-                            const adminLink = document.createElement('a');
-                            adminLink.href = 'admin-users.html';
-                            adminLink.textContent = '👥 Benutzerverwaltung';
-                            navLinks.insertBefore(adminLink, navLinks.lastElementChild);
+                        if (!subnav.querySelector('a[href="admin-users.html"]')) {
+                            const usersLink = document.createElement('a');
+                            usersLink.href = 'admin-users.html';
+                            usersLink.textContent = 'Benutzer';
+                            subnav.appendChild(usersLink);
                         }
-                        if (!navLinks.querySelector('a[href="admin-context.html"]')) {
+                        if (!subnav.querySelector('a[href="admin-context.html"]')) {
                             const contextLink = document.createElement('a');
                             contextLink.href = 'admin-context.html';
-                            contextLink.textContent = '🧠 Kontext';
-                            navLinks.insertBefore(contextLink, navLinks.lastElementChild);
+                            contextLink.textContent = 'Kontext';
+                            subnav.appendChild(contextLink);
                         }
                     }
                 }
