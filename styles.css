@@ -240,6 +240,20 @@ nav {
     transition: transform 0.3s, opacity 0.3s;
 }
 
+/* ---------- User Greeting ---------- */
+.user-greeting {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: var(--color-primary-700);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.user-greeting.show {
+    opacity: 1;
+}
+
 /* ---------- Hero Sections ---------- */
 .hero {
     background: var(--color-primary-200);

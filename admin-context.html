@@ -65,6 +65,7 @@
                 <a href="index.html">Startseite</a>
                 <a href="ueber-uns.html">Über uns</a>
                 <a href="kontakt.html">Kontakt</a>
+                <span class="user-greeting" id="userGreeting"></span>
                 <button type="button" class="btn btn-logout" onclick="logout()">Abmelden</button>
             </div>
         </div>
@@ -74,11 +75,12 @@
     <div class="admin-subnav">
         <div class="admin-subnav-content">
             <span class="admin-label">Admin</span>
-            <a href="create-article.html">Artikel</a>
+            <a href="create-article.html">Artikel erstellen</a>
             <a href="my-articles.html">Meine Artikel</a>
             <a href="admin-comments.html">Kommentare</a>
             <a href="admin-users.html">Benutzer</a>
             <a href="admin-context.html" class="active">Kontext</a>
+            <a href="create-newspaper.html">Zeitung erstellen</a>
         </div>
     </div>
 
@@ -249,6 +251,13 @@
 const API_BASE = '/api';
 let sessionToken = localStorage.getItem('sessionToken');
 let contextData = null;
+
+// Show user greeting
+const displayName = localStorage.getItem('userDisplayName');
+if (displayName) {
+    const el = document.getElementById('userGreeting');
+    if (el) { el.textContent = 'Hallo ' + displayName; el.classList.add('show'); }
+}
 
 // XSS protection
 function escapeHtml(str) {
