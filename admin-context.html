@@ -243,6 +243,8 @@
         </div>
     </div>
 
+<script src="cookie-consent.js"></script>
+<script src="auth-utils.js"></script>
 <script>
 const API_BASE = '/api';
 let sessionToken = localStorage.getItem('sessionToken');
@@ -284,8 +286,15 @@ function showMessage(text, type) {
 }
 
 function logout() {
-    localStorage.removeItem('sessionToken');
-    window.location.href = 'admin.html';
+    if (window.authUtils) { window.authUtils.logout(); }
+    else {
+        localStorage.removeItem('sessionToken');
+        localStorage.removeItem('username');
+        localStorage.removeItem('userDisplayName');
+        localStorage.removeItem('userRole');
+        localStorage.removeItem('loginTimestamp');
+        window.location.href = 'admin.html';
+    }
 }
 
 // Tab switching
@@ -784,7 +793,5 @@ async function exportToGit() {
     }
 })();
 </script>
-<script src="cookie-consent.js"></script>
-<script src="auth-utils.js"></script>
 </body>
 </html>

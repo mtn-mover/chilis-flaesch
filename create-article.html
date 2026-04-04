@@ -359,7 +359,9 @@
             <a href="create-article.html" class="active">Artikel erstellen</a>
             <a href="my-articles.html">Meine Artikel</a>
             <a href="admin-comments.html">Kommentare</a>
-            <a href="create-newspaper.html" id="newspaperLink" class="newspaper-link">Zeitung erstellen</a>
+            <a href="admin-users.html" id="adminUsersLink" class="admin-only">Benutzer</a>
+            <a href="admin-context.html" id="adminContextLink" class="admin-only">Kontext</a>
+            <a href="create-newspaper.html" id="newspaperLink" class="admin-only">Zeitung erstellen</a>
         </div>
     </div>
 
@@ -540,6 +542,8 @@
         </div>
     </div>
 
+    <script src="cookie-consent.js"></script>
+    <script src="auth-utils.js"></script>
     <script>
         let currentDraft = null;
         let uploadedImages = [];
@@ -557,12 +561,11 @@
             if (window.authUtils) {
                 window.authUtils.logout();
             } else {
-                // Cookie Consent behalten
-                const cookieConsent = localStorage.getItem('flaesch_cookie_consent');
-                localStorage.clear();
-                if (cookieConsent) {
-                    localStorage.setItem('flaesch_cookie_consent', cookieConsent);
-                }
+                localStorage.removeItem('sessionToken');
+                localStorage.removeItem('username');
+                localStorage.removeItem('userDisplayName');
+                localStorage.removeItem('userRole');
+                localStorage.removeItem('loginTimestamp');
                 window.location.href = 'admin.html';
             }
         }
@@ -1202,23 +1205,10 @@
                 });
 
                 const result = await response.json();
-                if (result.valid) {
-                    const subnav = document.getElementById('adminSubnav');
-                    // Admin-only links
-                    if (result.role === 'admin') {
-                        if (!subnav.querySelector('a[href="admin-users.html"]')) {
-                            const usersLink = document.createElement('a');
-                            usersLink.href = 'admin-users.html';
-                            usersLink.textContent = 'Benutzer';
-                            subnav.appendChild(usersLink);
-                        }
-                        if (!subnav.querySelector('a[href="admin-context.html"]')) {
-                            const contextLink = document.createElement('a');
-                            contextLink.href = 'admin-context.html';
-                            contextLink.textContent = 'Kontext';
-                            subnav.appendChild(contextLink);
-                        }
-                    }
+                if (result.valid && result.role === 'admin') {
+                    document.getElementById('adminUsersLink').classList.remove('admin-only');
+                    document.getElementById('adminContextLink').classList.remove('admin-only');
+                    document.getElementById('newspaperLink').classList.remove('admin-only');
                 }
             } catch (error) {
                 console.error('Failed to check admin role:', error);

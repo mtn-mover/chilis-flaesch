@@ -142,7 +142,9 @@
             <a href="create-article.html">Artikel erstellen</a>
             <a href="my-articles.html" class="active">Meine Artikel</a>
             <a href="admin-comments.html">Kommentare</a>
-            <a href="create-newspaper.html" id="newspaperLink" class="newspaper-link">Zeitung erstellen</a>
+            <a href="admin-users.html" id="adminUsersLink" class="admin-only">Benutzer</a>
+            <a href="admin-context.html" id="adminContextLink" class="admin-only">Kontext</a>
+            <a href="create-newspaper.html" id="newspaperLink" class="admin-only">Zeitung erstellen</a>
         </div>
     </div>
 
@@ -168,6 +170,8 @@
         </div>
     </div>
 
+    <script src="cookie-consent.js"></script>
+    <script src="auth-utils.js"></script>
     <script>
         const sessionToken = localStorage.getItem('sessionToken');
         if (!sessionToken) { window.location.href = 'admin.html'; }
@@ -175,9 +179,11 @@
         function logout() {
             if (window.authUtils) { window.authUtils.logout(); }
             else {
-                const cookieConsent = localStorage.getItem('flaesch_cookie_consent');
-                localStorage.clear();
-                if (cookieConsent) localStorage.setItem('flaesch_cookie_consent', cookieConsent);
+                localStorage.removeItem('sessionToken');
+                localStorage.removeItem('username');
+                localStorage.removeItem('userDisplayName');
+                localStorage.removeItem('userRole');
+                localStorage.removeItem('loginTimestamp');
                 window.location.href = 'admin.html';
             }
         }
@@ -202,23 +208,11 @@
                     if (el) { el.textContent = `Hallo ${result.userDisplayName}`; el.classList.add('show'); }
                 }
 
-                // Show newspaper link and admin-only subnav links for admins
+                // Show admin-only links
                 if (result.isAdmin) {
-                    const newspaperLink = document.getElementById('newspaperLink');
-                    if (newspaperLink) newspaperLink.style.display = 'block';
-
-                    const subnav = document.querySelector('.admin-subnav-content');
-                    if (subnav && !subnav.querySelector('a[href="admin-users.html"]')) {
-                        const usersLink = document.createElement('a');
-                        usersLink.href = 'admin-users.html';
-                        usersLink.textContent = 'Benutzer';
-                        subnav.appendChild(usersLink);
-
-                        const contextLink = document.createElement('a');
-                        contextLink.href = 'admin-context.html';
-                        contextLink.textContent = 'Kontext';
-                        subnav.appendChild(contextLink);
-                    }
+                    document.getElementById('newspaperLink').classList.remove('admin-only');
+                    document.getElementById('adminUsersLink').classList.remove('admin-only');
+                    document.getElementById('adminContextLink').classList.remove('admin-only');
                 }
 
                 if (result.drafts.length === 0) { emptyState.style.display = 'block'; return; }
@@ -368,7 +362,5 @@
 
         loadDrafts();
     </script>
-    <script src="cookie-consent.js"></script>
-    <script src="auth-utils.js"></script>
 </body>
 </html>

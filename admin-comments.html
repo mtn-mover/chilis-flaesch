@@ -243,6 +243,8 @@
         </div>
     </div>
 
+    <script src="cookie-consent.js"></script>
+    <script src="auth-utils.js"></script>
     <script>
         const API_BASE = '/api';
         const sessionToken = localStorage.getItem('sessionToken');
@@ -529,7 +531,14 @@
 
         function logout() {
             if (window.authUtils) { window.authUtils.logout(); }
-            else { localStorage.clear(); window.location.href = 'admin.html'; }
+            else {
+                localStorage.removeItem('sessionToken');
+                localStorage.removeItem('username');
+                localStorage.removeItem('userDisplayName');
+                localStorage.removeItem('userRole');
+                localStorage.removeItem('loginTimestamp');
+                window.location.href = 'admin.html';
+            }
         }
 
         (async () => {
@@ -537,7 +546,5 @@
             if (hasAccess) { await Promise.all([loadAllComments(), loadRejectedComments()]); }
         })();
     </script>
-    <script src="cookie-consent.js"></script>
-    <script src="auth-utils.js"></script>
 </body>
 </html>

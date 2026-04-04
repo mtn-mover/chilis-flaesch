@@ -3,6 +3,9 @@
    Extends styles.css for admin pages
    ========================================================================== */
 
+/* ---------- Admin-only links (hidden until JS reveals) ---------- */
+.admin-only { display: none; }
+
 /* ---------- Admin Sub-Navigation ---------- */
 .admin-subnav {
     background: var(--color-primary-50);
@@ -243,6 +246,7 @@
     z-index: 1000;
     justify-content: center;
     align-items: center;
+    -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
 }
 
