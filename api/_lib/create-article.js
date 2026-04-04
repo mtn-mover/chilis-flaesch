@@ -1,7 +1,7 @@
 // Vercel Serverless Function für Artikel-Erstellung mit Claude API
 const { Anthropic } = require('@anthropic-ai/sdk');
 const { verifySession } = require('./auth.js');
-const { renderContextForLLM } = require('./context-manager.js');
+const { renderContextForLLM, getContext, migrateFromMarkdown, saveContext } = require('./context-manager.js');
 
 // CORS Headers für Frontend-Zugriff
 const corsHeaders = {
@@ -114,13 +114,39 @@ module.exports = async function handler(req, res) {
       fileAnalysis = `\n\nDer Nutzer hat eine Datei hochgeladen: "${uploadedFileName}" (${uploadedFileType}). Nutze diese Informationen für den Artikel falls relevant.`;
     }
 
-    // Load dynamic context from Redis
+    // Load dynamic context from Redis (auto-migrate if empty)
     let dynamicContext = '';
     try {
+      const existing = await getContext();
+      if (!existing) {
+        console.log('No context in Redis, auto-migrating from GitHub...');
+        try {
+          const mdResponse = await fetch(
+            'https://api.github.com/repos/mtn-mover/chilis-flaesch/contents/context/flaesch-kontext.md?ref=master',
+            {
+              headers: {
+                'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3+json'
+              }
+            }
+          );
+          if (mdResponse.ok) {
+            const mdData = await mdResponse.json();
+            const mdContent = Buffer.from(mdData.content, 'base64').toString('utf-8');
+            const migrated = migrateFromMarkdown(mdContent);
+            await saveContext(migrated);
+            console.log('Auto-migration successful');
+          }
+        } catch (migErr) {
+          console.error('Auto-migration failed:', migErr);
+        }
+      }
       dynamicContext = await renderContextForLLM({ maxEvents: 15, minImportance: 'low' });
     } catch (ctxErr) {
       console.error('Failed to load dynamic context, using fallback:', ctxErr);
-      dynamicContext = '**Kontext über Fläsch:**\n- Kleines Dorf in Graubünden, bekannt für Weinbau und als "Chili-Dorf"\n- Motto: "Fläsch steht auf MEDIUM"';
+    }
+    if (!dynamicContext) {
+      dynamicContext = '**Kontext über Fläsch:**\n- Kleines Dorf in Graubünden, Schweiz (ca. 900 Einwohner)\n- Bekannt für Weinbau und als "Chili-Dorf"\n- Motto: "Fläsch steht auf MEDIUM" (nicht zu mild, nicht zu scharf)\n- Im Dorf gibt es einen **Volg** (Dorfladen/Supermarkt)\n- Spitzname: "die Gallier Graubündens"';
     }
 
     const prompt = `Du bist Redakteur für "Fläsch Info", eine satirische Nachrichten-Website über das kleine Schweizer Dorf Fläsch.
