@@ -2,6 +2,7 @@
 const { verifySession } = require('./auth.js');
 const Redis = require('ioredis');
 const { Anthropic } = require('@anthropic-ai/sdk');
+const { addEventFromArticle } = require('./context-manager.js');
 
 // Initialize Redis client
 let redis;
@@ -888,29 +889,23 @@ module.exports = async function handler(req, res) {
       console.error('Failed to update articles.json (non-critical):', articlesError);
     }
 
-    // Step 3c: Auto-update context - create blob
+    // Step 3c: Auto-update context in Redis
     try {
       const anthropic = new Anthropic({
         apiKey: process.env.ANTHROPIC_API_KEY,
       });
 
-      const extractionPrompt = `Analysiere diesen satirischen Artikel von "Fläsch Info" und extrahiere wichtige Informationen:
+      const extractionPrompt = `Analysiere diesen satirischen Artikel von "Fläsch Info" und extrahiere eine kurze Zusammenfassung (max 2-3 Sätze).
 
 **Artikel-Titel:** ${draft.title}
 **Kategorie:** ${draft.category}
 **Inhalt:** ${draft.content}
 
-Extrahiere und formatiere als kurze Zusammenfassung (max 200 Wörter):
-1. **Neue Charaktere:** Namen und ihre Rollen/Eigenschaften (falls erwähnt)
-2. **Hauptereignis:** Was ist passiert? (1-2 Sätze)
-3. **Wichtige Details:** Zahlen, Abstimmungen, Zitate (falls relevant)
-4. **Für zukünftige Artikel:** Was sollten zukünftige Artikel darüber wissen?
-
-Format: Kurz und prägnant, Bulletpoints.`;
+Fasse das Hauptereignis in 2-3 Sätzen zusammen. Nenne wichtige Zahlen, Abstimmungsergebnisse oder Zitate falls vorhanden. Schreibe als Fliesstext, keine Bulletpoints.`;
 
       const message = await anthropic.messages.create({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 512,
+        max_tokens: 256,
         messages: [{
           role: 'user',
           content: extractionPrompt
@@ -918,65 +913,8 @@ Format: Kurz und prägnant, Bulletpoints.`;
       });
 
       const extractedContext = message.content[0].text;
-
-      // Create context entry
-      const contextEntry = `
-### ${draft.title} (${new Date().toLocaleDateString('de-CH', { year: 'numeric', month: 'long' })})
-**Kategorie:** ${draft.category}
-${extractedContext}
-`;
-
-      // Get current context file
-      const contextResponse = await fetch(
-        `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/context/flaesch-kontext.md?ref=${GITHUB_BRANCH}`,
-        {
-          headers: {
-            'Authorization': `token ${process.env.GITHUB_TOKEN}`,
-            'Accept': 'application/vnd.github.v3+json'
-          }
-        }
-      );
-
-      if (contextResponse.ok) {
-        const contextData = await contextResponse.json();
-        let contextContent = Buffer.from(contextData.content, 'base64').toString('utf-8');
-
-        // Append new context entry before the "Stil-Richtlinien" section
-        const insertMarker = '## Stil-Richtlinien';
-        if (contextContent.includes(insertMarker)) {
-          contextContent = contextContent.replace(insertMarker, contextEntry + '\n' + insertMarker);
-        } else {
-          // If marker not found, append at the end
-          contextContent += '\n' + contextEntry;
-        }
-
-        // Create blob for updated context
-        const contextBlobResponse = await fetch(
-          `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/blobs`,
-          {
-            method: 'POST',
-            headers: {
-              'Authorization': `token ${process.env.GITHUB_TOKEN}`,
-              'Accept': 'application/vnd.github.v3+json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              content: Buffer.from(contextContent).toString('base64'),
-              encoding: 'base64'
-            })
-          }
-        );
-
-        if (contextBlobResponse.ok) {
-          const contextBlobData = await contextBlobResponse.json();
-          treeItems.push({
-            path: 'context/flaesch-kontext.md',
-            mode: '100644',
-            type: 'blob',
-            sha: contextBlobData.sha
-          });
-        }
-      }
+      await addEventFromArticle(draft.title, draft.category, extractedContext);
+      console.log('Context updated in Redis successfully');
     } catch (contextError) {
       console.error('Context update failed (non-critical):', contextError);
     }

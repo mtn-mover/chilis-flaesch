@@ -29,6 +29,11 @@
 
     { "source": "/api/debug-drafts", "destination": "/api/drafts?action=get" },
     { "source": "/api/debug-users", "destination": "/api/manage-users" },
-    { "source": "/api/fix-authors", "destination": "/api/manage-users" }
+    { "source": "/api/fix-authors", "destination": "/api/manage-users" },
+
+    { "source": "/api/get-context", "destination": "/api/context?action=get" },
+    { "source": "/api/update-context", "destination": "/api/context?action=update" },
+    { "source": "/api/compress-context", "destination": "/api/context?action=compress" },
+    { "source": "/api/export-context", "destination": "/api/context?action=export" }
   ]
 }

@@ -1,6 +1,7 @@
 // Vercel Serverless Function für Artikel-Erstellung mit Claude API
 const { Anthropic } = require('@anthropic-ai/sdk');
 const { verifySession } = require('./auth.js');
+const { renderContextForLLM } = require('./context-manager.js');
 
 // CORS Headers für Frontend-Zugriff
 const corsHeaders = {
@@ -113,14 +114,20 @@ module.exports = async function handler(req, res) {
       fileAnalysis = `\n\nDer Nutzer hat eine Datei hochgeladen: "${uploadedFileName}" (${uploadedFileType}). Nutze diese Informationen für den Artikel falls relevant.`;
     }
 
+    // Load dynamic context from Redis
+    let dynamicContext = '';
+    try {
+      dynamicContext = await renderContextForLLM({ maxEvents: 15, minImportance: 'low' });
+    } catch (ctxErr) {
+      console.error('Failed to load dynamic context, using fallback:', ctxErr);
+      dynamicContext = '**Kontext über Fläsch:**\n- Kleines Dorf in Graubünden, bekannt für Weinbau und als "Chili-Dorf"\n- Motto: "Fläsch steht auf MEDIUM"';
+    }
+
     const prompt = `Du bist Redakteur für "Fläsch Info", eine satirische Nachrichten-Website über das kleine Schweizer Dorf Fläsch.
 
 ${styleInstruction}
 
-**Kontext über Fläsch:**
-- Kleines Dorf in Graubünden, bekannt für Weinbau und als "Chili-Dorf"
-- Motto: "Fläsch steht auf MEDIUM" (nicht zu mild, nicht zu scharf)
-- Im Dorf gibt es einen **Volg** (Dorfladen/Supermarkt) - verwende diesen wenn ein Laden erwähnt werden soll
+${dynamicContext}
 
 **WICHTIG - Namensschutz:**
 ⚠️ **VERWENDE NIEMALS ECHTE NAMEN AUS PROTOKOLLEN ODER DOKUMENTEN!**
@@ -134,27 +141,6 @@ ${styleInstruction}
 - Erfinde lustige, satirische Pseudonyme (z.B. "El Diablo Müller", "Chili-Chefin Bernadette", "Gemeinderat Pfefferschmid")
 - Verwende kreative Funktionsbezeichnungen (z.B. "Schatzmeister", "Oberchili-Kommissar", "Weinrat")
 - NIEMALS echte Namen aus Protokollen oder Dokumenten verwenden!
-
-**Wiederkehrende Charaktere (bereits etabliert):**
-- **Der CEO (Gemeindepräsident):**
-  * Leitet gerne Arbeitsgruppen, setzt aber eigene Meinung durch
-  * Nutzt oft "Vertrauen" in Reden
-  * Hat Steuererhöhung 70%→75% vorgeschlagen (42:21 abgelehnt)
-- **El Diablo Müller:** Dorfbewohner mit starken Meinungen, meldet sich regelmässig
-- **Der Generalsekretär:** Vorsitzender der GPK, behält den Überblick
-- **Der Adjutant:** Der Abwart, sorgt für Ordnung
-
-**Bisherige Ereignisse (Storylines zum Anknüpfen):**
-
-*Steuer-Debakel (Sept 2025):* Der CEO wollte Steuerfuss 70%→75%. Arbeitsgruppe (20 Leute) empfahl weniger, er brachte volle Erhöhung. 3 verschiedene Finanzpläne kursierten. Abgelehnt 42:21. Vergleich: "Zu scharf wie Twin Peaks"
-
-*Migros Marketing-Fail:* Migros verwendete Korkenzieher statt Chili-Symbol in Fläsch-Kampagne. Peinlich!
-
-*Chili's Restaurant:* Chili's gewann gegen Hooters (zu scharf) und Twin Peaks (viel zu scharf). Schärfe-Skala etabliert.
-
-*El Diablo Müller:* Meldete sich zur "Chili-Steuer" zu Wort, war unzufrieden
-
-*Pumptrack-Projekt:* Neue Pumptrack-Anlage geplant für Biker
 
 **Nutzung:** Erwähne diese Charaktere/Ereignisse wenn es thematisch passt! Bei Politik-Artikeln kann der CEO auftauchen, El Diablo kommentiert kontroverse Themen, die Schärfe-Skala kann für Vergleiche genutzt werden.
 
