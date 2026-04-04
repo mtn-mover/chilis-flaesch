@@ -161,7 +161,8 @@
                 <a href="index.html#geschichten">Geschichten</a>
                 <a href="ueber-uns.html">Über uns</a>
                 <a href="kontakt.html">Kontakt</a>
-                <a href="my-articles.html" class="nav-admin-link" style="opacity: 0.6; font-size: var(--text-xs);">Admin</a>
+                <span class="user-greeting" id="userGreeting"></span>
+                <a href="my-articles.html" class="nav-admin-link">Admin</a>
             </div>
         </div>
     </nav>
@@ -303,5 +304,9 @@
             </div>
         </div>
     </footer>
+    <script>
+        var dn = localStorage.getItem('userDisplayName');
+        if (dn) { var el = document.getElementById('userGreeting'); if (el) { el.textContent = 'Hallo ' + dn; el.classList.add('show'); } }
+    </script>
 </body>
 </html>

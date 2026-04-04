@@ -240,6 +240,12 @@ nav {
     transition: transform 0.3s, opacity 0.3s;
 }
 
+/* ---------- Nav Admin Link (subtle) ---------- */
+.nav-admin-link {
+    opacity: 0.5;
+    font-size: var(--text-xs) !important;
+}
+
 /* ---------- User Greeting ---------- */
 .user-greeting {
     font-family: var(--font-sans);
