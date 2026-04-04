@@ -310,11 +310,22 @@
                     }
                 }
 
-                // Add admin link if user is admin (only once)
+                // Add comments link for all authors/admins
+                {
+                    const navLinks = document.getElementById('navLinks');
+                    const userGreeting = navLinks.querySelector('.user-greeting');
+                    if (!navLinks.querySelector('a[href="admin-comments.html"]')) {
+                        const commentsLink = document.createElement('a');
+                        commentsLink.href = 'admin-comments.html';
+                        commentsLink.textContent = '💬 Kommentare';
+                        navLinks.insertBefore(commentsLink, userGreeting);
+                    }
+                }
+
+                // Add admin-only links
                 if (result.isAdmin) {
                     const navLinks = document.getElementById('navLinks');
                     const userGreeting = navLinks.querySelector('.user-greeting');
-                    // Check if admin links already exist
                     if (!navLinks.querySelector('a[href="admin-users.html"]')) {
                         const adminLink = document.createElement('a');
                         adminLink.href = 'admin-users.html';

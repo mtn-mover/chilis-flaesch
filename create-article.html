@@ -1289,19 +1289,29 @@
                 });
 
                 const result = await response.json();
-                if (result.valid && result.role === 'admin') {
+                if (result.valid) {
                     const navLinks = document.getElementById('navLinks');
-                    if (!navLinks.querySelector('a[href="admin-users.html"]')) {
-                        const adminLink = document.createElement('a');
-                        adminLink.href = 'admin-users.html';
-                        adminLink.textContent = '👥 Benutzerverwaltung';
-                        navLinks.insertBefore(adminLink, navLinks.lastElementChild);
+                    // Comments link for all authors/admins
+                    if (!navLinks.querySelector('a[href="admin-comments.html"]')) {
+                        const commentsLink = document.createElement('a');
+                        commentsLink.href = 'admin-comments.html';
+                        commentsLink.textContent = '💬 Kommentare';
+                        navLinks.insertBefore(commentsLink, navLinks.lastElementChild);
                     }
-                    if (!navLinks.querySelector('a[href="admin-context.html"]')) {
-                        const contextLink = document.createElement('a');
-                        contextLink.href = 'admin-context.html';
-                        contextLink.textContent = '🧠 Kontext';
-                        navLinks.insertBefore(contextLink, navLinks.lastElementChild);
+                    // Admin-only links
+                    if (result.role === 'admin') {
+                        if (!navLinks.querySelector('a[href="admin-users.html"]')) {
+                            const adminLink = document.createElement('a');
+                            adminLink.href = 'admin-users.html';
+                            adminLink.textContent = '👥 Benutzerverwaltung';
+                            navLinks.insertBefore(adminLink, navLinks.lastElementChild);
+                        }
+                        if (!navLinks.querySelector('a[href="admin-context.html"]')) {
+                            const contextLink = document.createElement('a');
+                            contextLink.href = 'admin-context.html';
+                            contextLink.textContent = '🧠 Kontext';
+                            navLinks.insertBefore(contextLink, navLinks.lastElementChild);
+                        }
                     }
                 }
             } catch (error) {

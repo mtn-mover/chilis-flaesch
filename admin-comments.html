@@ -459,8 +459,8 @@
                 });
 
                 const result = await response.json();
-                if (!result.valid || result.role !== 'admin') {
-                    showMessage('Keine Berechtigung. Nur Admins können auf diese Seite zugreifen.', 'error');
+                if (!result.valid || (result.role !== 'admin' && result.role !== 'author')) {
+                    showMessage('Keine Berechtigung. Nur Admins und Autoren können auf diese Seite zugreifen.', 'error');
                     setTimeout(() => window.location.href = 'my-articles.html', 2000);
                     return false;
                 }
