@@ -313,15 +313,19 @@
                 // Add admin link if user is admin (only once)
                 if (result.isAdmin) {
                     const navLinks = document.getElementById('navLinks');
-                    // Check if admin link already exists
-                    const existingAdminLink = navLinks.querySelector('a[href="admin-users.html"]');
-                    if (!existingAdminLink) {
+                    const userGreeting = navLinks.querySelector('.user-greeting');
+                    // Check if admin links already exist
+                    if (!navLinks.querySelector('a[href="admin-users.html"]')) {
                         const adminLink = document.createElement('a');
                         adminLink.href = 'admin-users.html';
                         adminLink.textContent = '👥 Benutzerverwaltung';
-                        // Insert before user greeting
-                        const userGreeting = navLinks.querySelector('.user-greeting');
                         navLinks.insertBefore(adminLink, userGreeting);
+                    }
+                    if (!navLinks.querySelector('a[href="admin-context.html"]')) {
+                        const contextLink = document.createElement('a');
+                        contextLink.href = 'admin-context.html';
+                        contextLink.textContent = '🧠 Kontext';
+                        navLinks.insertBefore(contextLink, userGreeting);
                     }
                 }
 

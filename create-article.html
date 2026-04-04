@@ -1291,14 +1291,17 @@
                 const result = await response.json();
                 if (result.valid && result.role === 'admin') {
                     const navLinks = document.getElementById('navLinks');
-                    // Check if admin link already exists
-                    const existingAdminLink = navLinks.querySelector('a[href="admin-users.html"]');
-                    if (!existingAdminLink) {
+                    if (!navLinks.querySelector('a[href="admin-users.html"]')) {
                         const adminLink = document.createElement('a');
                         adminLink.href = 'admin-users.html';
                         adminLink.textContent = '👥 Benutzerverwaltung';
-                        // Insert before logout link
                         navLinks.insertBefore(adminLink, navLinks.lastElementChild);
+                    }
+                    if (!navLinks.querySelector('a[href="admin-context.html"]')) {
+                        const contextLink = document.createElement('a');
+                        contextLink.href = 'admin-context.html';
+                        contextLink.textContent = '🧠 Kontext';
+                        navLinks.insertBefore(contextLink, navLinks.lastElementChild);
                     }
                 }
             } catch (error) {
