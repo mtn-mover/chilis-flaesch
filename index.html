@@ -87,540 +87,56 @@
       }
     }
     </script>
+
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="cookie-consent.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Page-specific: info section, user greeting */
+        .info-section {
+            background: var(--color-white);
+            border: 1px solid var(--color-neutral-300);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin-bottom: var(--space-8);
+            font-size: var(--text-sm);
+            color: var(--color-neutral-700);
+            line-height: var(--leading-relaxed);
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
+        .info-section h3 {
+            font-family: var(--font-sans);
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--color-neutral-900);
+            margin-bottom: var(--space-3);
         }
-
-        /* Top Info Bar */
-        .info-bar {
-            background: #8B4513;
-            color: white;
-            padding: 0.5rem 0;
-            font-size: 0.85rem;
-        }
-
-        .info-bar-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .satire-badge {
-            background: #FFD700;
-            color: #8B4513;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-
-        /* Navigation */
-        nav {
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 70px;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-        }
-
-        .nav-logo img {
-            height: 72px;
-            width: auto;
-        }
-
-        @media (min-width: 768px) {
-            .nav-logo img {
-                height: 96px;
-            }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            transition: color 0.3s;
-            padding: 0.5rem 0;
-            border-bottom: 2px solid transparent;
-        }
-
-        .nav-links a:hover {
-            color: #C16F31;
-            border-bottom-color: #C16F31;
+        .info-section p { margin-bottom: var(--space-3); }
+        .info-section p:last-child { margin-bottom: 0; }
+        .info-section .ki-note {
+            margin-top: var(--space-4);
+            padding-top: var(--space-4);
+            border-top: 1px solid var(--color-neutral-200);
         }
 
         .user-greeting {
-            color: #8B4513;
-            padding: 0.5rem 1rem;
-            background: rgba(139, 69, 19, 0.1);
-            border-radius: 5px;
             font-weight: 600;
-            display: none;
+            color: var(--color-primary-700);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
+        .user-greeting.show { opacity: 1; }
 
-        .user-greeting.show {
-            display: block;
-        }
+        .main-content { padding-top: var(--space-10); }
+        .nav-admin-link { opacity: 0.6; font-size: var(--text-xs); }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #8B4513 0%, #A0522D 25%, #C16F31 50%, #CD853F 75%, #8B4513 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero::after {
-            content: '🍷';
-            position: absolute;
-            font-size: 20rem;
-            opacity: 0.08;
-            top: -50px;
-            right: -50px;
-            transform: rotate(-15deg);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .satire-disclaimer {
-            background: rgba(255, 215, 0, 0.95);
-            color: #8B4513;
-            padding: 1rem 2rem;
-            border-radius: 10px;
-            display: inline-block;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-top: 1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            border-left: 4px solid #C41E3A;
-        }
-
-        .satire-disclaimer strong {
-            font-size: 1.2rem;
-            display: block;
-            margin-bottom: 0.3rem;
-        }
-
-        /* Main Content */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 3px solid #C16F31;
-        }
-
-        .section-icon {
-            font-size: 2rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            color: #8B4513;
-            margin: 0;
-        }
-
-        /* Featured Stories */
-        .featured-stories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .story-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            border-top: 4px solid #C16F31;
-        }
-
-        .story-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .story-image {
+        /* No-image fallback gradient */
+        .story-image-placeholder {
             width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-
-        .story-content {
-            padding: 1.5rem;
-        }
-
-        .story-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .story-category {
-            display: inline-block;
-            background: #e74c3c;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .story-category.politik {
-            background: #e74c3c;
-        }
-
-        .story-category.wirtschaft {
-            background: #f39c12;
-        }
-
-        .story-category.kurioses {
-            background: #9b59b6;
-        }
-
-        .story-category.gesellschaft {
-            background: #3498db;
-        }
-
-        .story-category.kirche {
-            background: #27ae60;
-        }
-
-        .story-date {
-            font-size: 0.85rem;
-            color: #999;
-        }
-
-        .story-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.8rem;
-            color: #333;
-            line-height: 1.3;
-        }
-
-        .story-excerpt {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #666;
-        }
-
-        /* All Stories Grid */
-        .all-stories {
-            margin-top: 3rem;
-        }
-
-        .stories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .story-card-small {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .story-card-small:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-        }
-
-        .story-card-small .story-image {
-            height: 160px;
-        }
-
-        .story-card-small .story-content {
-            padding: 1.2rem;
-        }
-
-        .story-card-small .story-title {
-            font-size: 1.2rem;
-        }
-
-        /* Info Section */
-        .info-section {
-            background: white;
-            border-radius: 8px;
-            padding: 2rem;
-            margin: 3rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            border-left: 4px solid #C41E3A;
-        }
-
-        .info-section h3 {
-            color: #C16F31;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .info-section p {
-            color: #666;
-            line-height: 1.8;
-        }
-
-        /* Chat Button */
-        .chat-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin: 1rem 0.5rem 0.5rem 0;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .chat-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        .chat-button.secondary {
-            background: linear-gradient(135deg, #C16F31 0%, #8B4513 100%);
-            box-shadow: 0 4px 15px rgba(193, 111, 49, 0.4);
-        }
-
-        .chat-button.secondary:hover {
-            box-shadow: 0 6px 20px rgba(193, 111, 49, 0.6);
-        }
-
-        .contact-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        /* Footer */
-        footer {
-            background: #2c2c2c;
-            color: white;
-            padding: 2.5rem 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .footer-content p {
-            margin-bottom: 0.5rem;
-            opacity: 0.9;
-        }
-
-        .footer-disclaimer {
-            background: rgba(255, 215, 0, 0.15);
-            padding: 1rem;
-            border-radius: 5px;
-            margin-top: 1rem;
-            font-style: italic;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .info-bar-content {
-                flex-direction: column;
-                gap: 0.5rem;
-                text-align: center;
-            }
-
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .satire-disclaimer {
-                font-size: 0.95rem;
-            }
-
-            .featured-stories {
-                grid-template-columns: 1fr;
-            }
-
-            .stories-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .story-card, .story-card-small {
-            animation: fadeInUp 0.5s ease-out;
-        }
-
-        .story-card:nth-child(2) {
-            animation-delay: 0.1s;
-        }
-
-        /* Category Filter */
-        .category-filter {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .filter-btn {
-            padding: 0.6rem 1.2rem;
-            border: 2px solid #C16F31;
-            background: white;
-            color: #C16F31;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .filter-btn:hover {
-            background: #C16F31;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(193, 111, 49, 0.3);
-        }
-
-        .filter-btn.active {
-            background: #C16F31;
-            color: white;
-            box-shadow: 0 4px 12px rgba(193, 111, 49, 0.4);
-        }
-
-        .filter-btn.all {
-            border-color: #8B4513;
-            color: #8B4513;
-        }
-
-        .filter-btn.all:hover,
-        .filter-btn.all.active {
-            background: #8B4513;
-            color: white;
+            height: 200px;
+            background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-700) 100%);
         }
     </style>
 </head>
@@ -628,8 +144,8 @@
     <!-- Top Info Bar -->
     <div class="info-bar">
         <div class="info-bar-content">
-            <div>📍 Fläsch, Graubünden, Schweiz</div>
-            <div class="satire-badge">⚠️ SATIRE</div>
+            <div>Fläsch, Graubünden, Schweiz</div>
+            <div class="satire-badge">SATIRE</div>
         </div>
     </div>
 
@@ -639,69 +155,70 @@
             <a href="index.html" class="nav-logo">
                 <img src="logo.png" alt="Fläsch Info Logo">
             </a>
-            <ul class="nav-links">
-                <li><a href="#geschichten">Unsere Geschichten</a></li>
-                <li><a href="ueber-uns.html">Über uns</a></li>
-                <li><a href="kontakt.html">Kontakt</a></li>
-                <li><span class="user-greeting" id="userGreeting"></span></li>
-                <li><a href="my-articles.html" style="opacity: 0.5; font-size: 0.85rem;">Admin</a></li>
-            </ul>
+            <button type="button" class="nav-toggle" title="Navigation öffnen" aria-label="Navigation öffnen" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links">
+                <a href="#geschichten">Geschichten</a>
+                <a href="ueber-uns.html">Über uns</a>
+                <a href="kontakt.html">Kontakt</a>
+                <span class="user-greeting" id="userGreeting"></span>
+                <a href="my-articles.html" class="nav-admin-link">Admin</a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Fläsch mittendrin - oder doch daneben?</h1>
-            <p class="hero-subtitle">Geschichten von, über und aus Fläsch - über Allgemeines, Politik, Kirche, Bewohner und mehr</p>
-            <div class="satire-disclaimer">
-                <strong>⚠️ ACHTUNG: SATIRE!</strong>
-                Diese Webseite ist eine satirische Nachrichtenseite. Alle Geschichten sind frei erfunden.
-            </div>
+        <div class="container">
+            <h1>Fläsch mittendrin — oder doch daneben?</h1>
+            <p class="subtitle">Geschichten von, über und aus Fläsch — über Allgemeines, Politik, Kirche, Bewohner und mehr</p>
         </div>
     </section>
 
+    <!-- Satire Disclaimer -->
+    <div class="satire-disclaimer">
+        <strong>Achtung: Satire!</strong> Diese Webseite ist eine satirische Nachrichtenseite. Alle Geschichten sind frei erfunden.
+    </div>
+
     <!-- Main Content -->
-    <div class="container">
-        <!-- Info Section -->
+    <div class="container main-content">
+        <!-- Info Section (SEO) -->
         <div class="info-section">
-            <h3>ℹ️ Über dieses Projekt</h3>
+            <h3>Über dieses Projekt</h3>
             <p>
                 <strong>Fläsch Info</strong> ist die satirische Nachrichtenseite über das Schweizer Dorf <strong>Fläsch</strong> (auch Flaesch geschrieben) in <strong>Graubünden</strong>.
-                Wir berichten täglich über die neuesten Geschichten aus Fläsch GR - von Politik über Wirtschaft bis zu kuriosem aus der <strong>Gemeinde Fläsch</strong>.
+                Wir berichten täglich über die neuesten Geschichten aus Fläsch GR — von Politik über Wirtschaft bis zu Kuriosem aus der <strong>Gemeinde Fläsch</strong>.
                 Diese Webseite ist ein satirisches Projekt und hat keinen Bezug zur offiziellen Gemeinde Fläsch oder der Gemeindeverwaltung.
-                Alle hier veröffentlichten Geschichten über Fläsch sind frei erfunden und dienen ausschliesslich der Unterhaltung.
             </p>
-            <p style="margin-top: 0.75rem;">
-                Ob Nachrichten aus dem <strong>Fläscher</strong> Gemeinderat, Geschichten über den berühmten <strong>Fläsch Wein</strong>, oder satirische Berichte über das Dorfleben in Fläsch -
+            <p>
+                Ob Nachrichten aus dem <strong>Fläscher</strong> Gemeinderat, Geschichten über den berühmten <strong>Fläsch Wein</strong>, oder satirische Berichte über das Dorfleben in Fläsch —
                 hier finden Sie täglich neue, lustige Artikel über das charmante Bündner Dorf.
-                Jegliche Ähnlichkeiten mit realen Personen oder Ereignissen in Fläsch sind rein zufällig... oder doch nicht? 😉
             </p>
-            <p style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;">
-                <strong>🤖 KI-Offenlegung:</strong> Diese Webseite wurde mit künstlicher Intelligenz (KI) erstellt.
+            <p class="ki-note">
+                <strong>KI-Offenlegung:</strong> Diese Webseite wurde mit künstlicher Intelligenz (KI) erstellt.
                 Die Inhalte und Geschichten werden von KI generiert und sind ausschliesslich satirischer Natur.
             </p>
         </div>
 
         <!-- All Stories -->
-        <section id="geschichten" class="all-stories">
+        <section id="geschichten">
             <div class="section-header">
-                <span class="section-icon">📰</span>
-                <h2 class="section-title">Unsere Geschichten</h2>
+                <h2>Unsere Geschichten</h2>
             </div>
 
             <!-- Category Filter -->
-            <div class="category-filter">
-                <button class="filter-btn all active" onclick="filterByCategory('all')">Alle</button>
-                <button class="filter-btn" onclick="filterByCategory('politik')">Politik</button>
-                <button class="filter-btn" onclick="filterByCategory('wirtschaft')">Wirtschaft</button>
-                <button class="filter-btn" onclick="filterByCategory('kurioses')">Kurioses</button>
-                <button class="filter-btn" onclick="filterByCategory('gesellschaft')">Gesellschaft</button>
-                <button class="filter-btn" onclick="filterByCategory('kirche')">Kirche</button>
+            <div class="category-filters">
+                <button class="active" onclick="filterByCategory('all')">Alle</button>
+                <button onclick="filterByCategory('politik')">Politik</button>
+                <button onclick="filterByCategory('wirtschaft')">Wirtschaft</button>
+                <button onclick="filterByCategory('kurioses')">Kurioses</button>
+                <button onclick="filterByCategory('gesellschaft')">Gesellschaft</button>
+                <button onclick="filterByCategory('kirche')">Kirche</button>
             </div>
 
-            <div class="stories-grid">
-                <!-- Articles loaded dynamically from articles.json -->
+            <div class="stories-grid" id="storiesGrid">
+                <div class="loading">Artikel werden geladen...</div>
             </div>
         </section>
     </div>
@@ -709,12 +226,11 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <p>🍷 <strong>Fläsch Info</strong> - Satirische Geschichten aus Fläsch</p>
-            <p>&copy; 2025 Fläsch mittendrin - oder doch daneben?</p>
+            <p><strong>Fläsch Info</strong> — Satirische Geschichten aus Fläsch</p>
+            <p>&copy; 2025 Fläsch mittendrin — oder doch daneben?</p>
             <div class="footer-disclaimer">
-                ⚠️ Diese Webseite ist SATIRE! Alle Geschichten sind frei erfunden und dienen ausschliesslich der Unterhaltung.
-                <br><br>
-                🤖 Diese Webseite wurde mit KI erstellt. Inhalte werden von künstlicher Intelligenz generiert.
+                Diese Webseite ist Satire. Alle Geschichten sind frei erfunden und dienen ausschliesslich der Unterhaltung.
+                Erstellt mit KI — Inhalte werden von künstlicher Intelligenz generiert.
             </div>
         </div>
     </footer>
@@ -725,69 +241,34 @@
             const day = date.getDate();
             const monthNames = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun',
                               'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
-            const month = monthNames[date.getMonth()];
-            const year = date.getFullYear();
-            return `${day}. ${month} ${year}`;
-        }
-
-        function formatDateShort(dateString) {
-            const date = new Date(dateString);
-            const day = date.getDate();
-            const monthNames = ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun',
-                              'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
-            const month = monthNames[date.getMonth()];
-            const year = date.getFullYear();
-            return `${day}. ${month} ${year}`;
+            return `${day}. ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
         }
 
         function getCategoryLabel(category) {
             const labels = {
-                'politik': 'Politik',
-                'wirtschaft': 'Wirtschaft',
-                'kurioses': 'Kurioses',
-                'gesellschaft': 'Gesellschaft',
-                'kirche': 'Kirche',
-                'kultur': 'Kultur',
-                'sport': 'Sport'
+                'politik': 'Politik', 'wirtschaft': 'Wirtschaft', 'kurioses': 'Kurioses',
+                'gesellschaft': 'Gesellschaft', 'kirche': 'Kirche', 'kultur': 'Kultur', 'sport': 'Sport'
             };
             return labels[category] || category;
         }
 
-        function renderFeaturedStories(articles) {
-            const container = document.querySelector('.featured-stories');
+        function renderAllStories(articles) {
+            const container = document.getElementById('storiesGrid');
             if (!container) return;
 
             container.innerHTML = articles.map(article => `
                 <a href="${article.fileName}" class="story-card">
-                    ${article.image ? `<img src="${article.image}" alt="${article.title}" class="story-image">` : '<div class="story-image" style="background: linear-gradient(135deg, #C16F31 0%, #8B4513 100%);"></div>'}
+                    ${article.image
+                        ? `<img src="${article.image}" alt="${article.title}" class="story-image" loading="lazy">`
+                        : '<div class="story-image-placeholder"></div>'}
                     <div class="story-content">
-                        <div class="story-meta">
-                            <span class="story-category ${article.category}">${getCategoryLabel(article.category)}</span>
-                            <span class="story-date">${formatDate(article.date)}</span>
-                        </div>
+                        <span class="badge badge-${article.category}">${getCategoryLabel(article.category)}</span>
                         <h3 class="story-title">${article.title}</h3>
-                        ${article.subtitle ? `<p class="story-subtitle" style="font-size: 0.95rem; font-style: italic; color: #555; margin: 0.5rem 0;">${article.subtitle}</p>` : ''}
-                        ${article.authorDisplayName ? `<p class="story-author" style="font-size: 0.9rem; color: #666; margin: 0.5rem 0;">Erstellt durch: ${article.authorDisplayName}</p>` : ''}
-                    </div>
-                </a>
-            `).join('');
-        }
-
-        function renderAllStories(articles) {
-            const container = document.querySelector('.stories-grid');
-            if (!container) return;
-
-            container.innerHTML = articles.map(article => `
-                <a href="${article.fileName}" class="story-card-small" id="${article.category}">
-                    ${article.image ? `<img src="${article.image}" alt="${article.title}" class="story-image">` : '<div class="story-image" style="background: linear-gradient(135deg, #C16F31 0%, #8B4513 100%);"></div>'}
-                    <div class="story-content">
-                        <div class="story-meta">
-                            <span class="story-category ${article.category}">${getCategoryLabel(article.category)}</span>
-                            <span class="story-date">${formatDateShort(article.date)}</span>
+                        ${article.subtitle ? `<p class="story-subtitle">${article.subtitle}</p>` : ''}
+                        <div class="story-footer">
+                            <span>${formatDate(article.date)}</span>
+                            ${article.authorDisplayName ? `<span>${article.authorDisplayName}</span>` : ''}
                         </div>
-                        <h3 class="story-title">${article.title}</h3>
-                        ${article.subtitle ? `<p class="story-subtitle" style="font-size: 0.9rem; font-style: italic; color: #555; margin: 0.3rem 0;">${article.subtitle}</p>` : ''}
-                        ${article.authorDisplayName ? `<p class="story-author" style="font-size: 0.85rem; color: #666; margin: 0.3rem 0;">Erstellt durch: ${article.authorDisplayName}</p>` : ''}
                     </div>
                 </a>
             `).join('');
@@ -795,48 +276,29 @@
 
         // Category filtering
         let allArticles = [];
-        let currentFilter = 'all';
 
         function filterByCategory(category) {
-            currentFilter = category;
-
-            // Update active button
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.category-filters button').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
-            // Filter and render articles
             if (category === 'all') {
                 renderAllStories(allArticles);
             } else {
-                const filtered = allArticles.filter(article => article.category === category);
-                renderAllStories(filtered);
+                renderAllStories(allArticles.filter(a => a.category === category));
             }
         }
 
-        // Load articles when page loads
-        document.addEventListener('DOMContentLoaded', loadArticles);
-
-        // Modified loadArticles to store articles globally
         async function loadArticles() {
             try {
                 const response = await fetch('articles.json');
-                if (!response.ok) {
-                    console.error('Failed to load articles.json');
-                    return;
-                }
-
+                if (!response.ok) return;
                 allArticles = await response.json();
-
-                // Render all stories
                 renderAllStories(allArticles);
             } catch (error) {
                 console.error('Error loading articles:', error);
             }
         }
 
-        // Check if user is logged in and show greeting
         async function checkLoginStatus() {
             const sessionToken = localStorage.getItem('sessionToken');
             if (sessionToken) {
@@ -848,11 +310,8 @@
                     });
                     const result = await response.json();
                     if (result.valid && result.displayName) {
-                        const greetingElement = document.getElementById('userGreeting');
-                        if (greetingElement) {
-                            greetingElement.textContent = `Hallo ${result.displayName}`;
-                            greetingElement.classList.add('show');
-                        }
+                        const el = document.getElementById('userGreeting');
+                        if (el) { el.textContent = `Hallo ${result.displayName}`; el.classList.add('show'); }
                     }
                 } catch (error) {
                     console.error('Error checking login status:', error);
@@ -860,23 +319,16 @@
             }
         }
 
-        // Check login status on page load
+        document.addEventListener('DOMContentLoaded', loadArticles);
         checkLoginStatus();
 
-        // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
     </script>
 </body>
 </html>
-<!-- Test deployment Sa,  8. Nov 2025 17:49:01 -->

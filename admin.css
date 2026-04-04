@@ -1,0 +1,361 @@
+/* ==========================================================================
+   Fläsch Info — Admin Styles
+   Extends styles.css for admin pages
+   ========================================================================== */
+
+/* ---------- Admin Sub-Navigation ---------- */
+.admin-subnav {
+    background: var(--color-primary-50);
+    border-bottom: 1px solid var(--color-primary-200);
+}
+
+.admin-subnav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    overflow-x: auto;
+}
+
+.admin-subnav a {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-neutral-500);
+    text-decoration: none;
+    padding: var(--space-3) 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+}
+
+.admin-subnav a:hover {
+    color: var(--color-neutral-700);
+}
+
+.admin-subnav a.active {
+    color: var(--color-accent-600);
+    border-bottom-color: var(--color-accent-600);
+    font-weight: 600;
+}
+
+.admin-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-accent-600);
+    padding: var(--space-1) var(--space-3);
+    background: var(--color-accent-100);
+    border-radius: 2px;
+}
+
+/* ---------- Admin Header ---------- */
+.admin-header {
+    background: var(--color-primary-800);
+    color: white;
+    padding: var(--space-6) 0;
+}
+
+.admin-header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.admin-header h1 {
+    font-family: var(--font-serif);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+}
+
+.admin-header p {
+    opacity: 0.8;
+    font-size: var(--text-sm);
+    margin-top: var(--space-1);
+}
+
+/* ---------- Admin Container ---------- */
+.admin-container {
+    max-width: 1200px;
+    margin: var(--space-8) auto;
+    padding: 0 var(--space-6);
+}
+
+/* ---------- Stat Boxes ---------- */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+}
+
+.stat-box {
+    background: var(--color-primary-50);
+    border: 1px solid var(--color-primary-300);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    text-align: center;
+}
+
+.stat-box .stat-number {
+    font-family: var(--font-serif);
+    font-size: var(--text-4xl);
+    font-weight: 900;
+    color: var(--color-accent-600);
+}
+
+.stat-box .stat-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-neutral-500);
+    margin-top: var(--space-1);
+}
+
+/* ---------- Data Tables ---------- */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+}
+
+.data-table thead {
+    background: var(--color-primary-100);
+}
+
+.data-table th {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    font-weight: 600;
+    color: var(--color-primary-800);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    border-bottom: 2px solid var(--color-primary-300);
+}
+
+.data-table td {
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-neutral-100);
+    color: var(--color-neutral-700);
+}
+
+.data-table tbody tr:hover {
+    background: var(--color-primary-50);
+}
+
+/* ---------- Tabs ---------- */
+.tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--color-neutral-200);
+    margin-bottom: var(--space-6);
+    overflow-x: auto;
+}
+
+.tab {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    padding: var(--space-3) var(--space-6);
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: var(--color-neutral-500);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.tab:hover {
+    color: var(--color-neutral-700);
+    background: var(--color-neutral-100);
+}
+
+.tab.active {
+    color: var(--color-accent-600);
+    border-bottom-color: var(--color-accent-600);
+    font-weight: 600;
+}
+
+/* ---------- Item Cards (Context admin) ---------- */
+.item-card {
+    border: 1px solid var(--color-neutral-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    margin-bottom: var(--space-3);
+    transition: box-shadow 0.2s;
+}
+
+.item-card:hover {
+    box-shadow: var(--shadow-sm);
+}
+
+.item-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-2);
+}
+
+.item-card-header h3 {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-neutral-900);
+}
+
+.item-card-actions {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.item-card-body {
+    color: var(--color-neutral-500);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+}
+
+.item-card-body ul {
+    margin: var(--space-2) 0 0 var(--space-6);
+}
+
+/* ---------- Modal ---------- */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: var(--color-white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.modal h2 {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-6);
+}
+
+.modal-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: flex-end;
+    margin-top: var(--space-6);
+}
+
+/* ---------- Action Bar ---------- */
+.action-bar {
+    display: flex;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.token-count {
+    background: var(--color-primary-100);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-neutral-500);
+}
+
+/* ---------- Preview Box ---------- */
+.preview-box {
+    background: var(--color-neutral-100);
+    border: 1px solid var(--color-neutral-300);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: var(--text-sm);
+    white-space: pre-wrap;
+    max-height: 500px;
+    overflow-y: auto;
+    line-height: var(--leading-normal);
+}
+
+/* ---------- Compress Preview ---------- */
+.compress-item {
+    border: 1px solid var(--color-neutral-200);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+}
+
+.compress-old {
+    color: var(--color-neutral-500);
+    text-decoration: line-through;
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-2);
+}
+
+.compress-new {
+    color: var(--color-success);
+    font-size: var(--text-sm);
+}
+
+/* ---------- Responsive Admin ---------- */
+@media (max-width: 768px) {
+    .admin-header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .admin-subnav-content {
+        gap: var(--space-4);
+        padding: 0 var(--space-4);
+    }
+
+    .admin-container {
+        padding: 0 var(--space-4);
+    }
+
+    .stat-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .modal {
+        padding: var(--space-6);
+    }
+
+    .data-table {
+        font-size: var(--text-xs);
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: var(--space-2) var(--space-3);
+    }
+}
