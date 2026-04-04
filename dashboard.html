@@ -371,8 +371,8 @@
     </div>
 
     <script>
-        // Redirect to new create-article page
-        window.location.href = 'create-article.html';
+        // Dashboard is deprecated, redirect to my-articles
+        window.location.href = 'my-articles.html';
 
         // Auth Check mit Session-Verifizierung
         const sessionToken = localStorage.getItem('sessionToken');
@@ -390,7 +390,7 @@
             .then(data => {
                 if (!data.valid) {
                     // Session ungültig
-                    localStorage.clear();
+                    localStorage.removeItem('sessionToken'); localStorage.removeItem('username'); localStorage.removeItem('userDisplayName'); localStorage.removeItem('userRole'); localStorage.removeItem('loginTimestamp');
                     window.location.href = 'admin.html';
                 } else {
                     // Session gültig, Namen aktualisieren

@@ -693,13 +693,24 @@ nav {
 .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .btn-logout {
-    background: rgba(255,255,255,0.15);
-    color: white;
-    border: 1px solid rgba(255,255,255,0.3);
+    background: var(--color-neutral-100);
+    color: var(--color-neutral-700);
+    border: 1px solid var(--color-neutral-300);
     font-size: var(--text-xs);
     padding: 0.375rem 0.75rem;
 }
 .btn-logout:hover {
+    background: var(--color-neutral-200);
+    color: var(--color-neutral-900);
+}
+
+/* Logout in dark headers */
+.admin-header .btn-logout {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+.admin-header .btn-logout:hover {
     background: rgba(255,255,255,0.25);
     color: white;
 }

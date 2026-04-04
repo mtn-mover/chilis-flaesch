@@ -306,7 +306,7 @@
             .then(res => res.json())
             .then(data => {
                 if (data.valid) {
-                    window.location.href = 'dashboard.html';
+                    window.location.href = 'my-articles.html';
                 } else {
                     // Session ungültig, Token löschen
                     localStorage.removeItem('sessionToken');
