@@ -58,11 +58,14 @@
             <a href="index.html" class="nav-logo">
                 <img src="logo.png" alt="Fläsch Info Logo">
             </a>
+            <button type="button" class="nav-toggle" title="Navigation" aria-label="Navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
             <div class="nav-links">
-                <a href="index.html#geschichten">Unsere Geschichten</a>
+                <a href="index.html">Startseite</a>
                 <a href="ueber-uns.html">Über uns</a>
                 <a href="kontakt.html">Kontakt</a>
-                <a href="admin.html">Admin</a>
+                <button type="button" class="btn btn-logout" onclick="logout()">Abmelden</button>
             </div>
         </div>
     </nav>
@@ -86,7 +89,6 @@
                 <h1>Kontext-Verwaltung</h1>
                 <p>Artikel-Kontext für KI-Generierung pflegen</p>
             </div>
-            <button class="btn btn-logout" onclick="logout()">Abmelden</button>
         </div>
     </div>
 
@@ -782,5 +784,7 @@ async function exportToGit() {
     }
 })();
 </script>
+<script src="cookie-consent.js"></script>
+<script src="auth-utils.js"></script>
 </body>
 </html>
