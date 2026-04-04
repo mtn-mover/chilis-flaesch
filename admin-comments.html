@@ -5,415 +5,227 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kommentarverwaltung - Fläsch Info Admin</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="cookie-consent.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-            min-height: 100vh;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-
-        .nav-links a:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-
-        .card h2 {
-            margin-bottom: 1.5rem;
-            color: #333;
-        }
-
-        .stats {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            flex: 1;
-            min-width: 150px;
-            text-align: center;
-        }
-
-        .stat-card .number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #667eea;
-        }
-
-        .stat-card .label {
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 0.25rem;
-        }
-
-        .filter-bar {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .filter-bar input,
-        .filter-bar select {
-            padding: 0.6rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.95rem;
-        }
-
-        .filter-bar input {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .comment-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
+        /* Page-specific comment styles */
         .comment-item {
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 1.25rem;
-            transition: border-color 0.2s;
+            border: 1px solid var(--color-neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin-bottom: var(--space-3);
+            transition: box-shadow 0.2s;
         }
-
-        .comment-item:hover {
-            border-color: #667eea;
-        }
-
+        .comment-item:hover { box-shadow: var(--shadow-sm); }
         .comment-item.is-reply {
-            margin-left: 2rem;
-            border-left: 3px solid #667eea;
+            margin-left: var(--space-8);
+            border-left: 3px solid var(--color-primary-400);
+            background: var(--color-primary-50);
         }
-
         .comment-meta {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 0.75rem;
+            margin-bottom: var(--space-2);
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: var(--space-2);
         }
-
         .comment-meta .author {
             font-weight: 600;
-            color: #333;
+            color: var(--color-primary-700);
         }
-
-        .comment-meta .article-link {
-            font-size: 0.85rem;
-            color: #667eea;
-            text-decoration: none;
-        }
-
-        .comment-meta .article-link:hover {
-            text-decoration: underline;
-        }
-
         .comment-meta .date {
-            font-size: 0.85rem;
-            color: #999;
+            font-size: var(--text-xs);
+            color: var(--color-neutral-500);
         }
-
         .comment-text {
-            color: #444;
-            line-height: 1.6;
-            margin-bottom: 0.75rem;
-            white-space: pre-wrap;
+            font-size: var(--text-sm);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--space-3);
+            color: var(--color-neutral-700);
         }
-
         .comment-actions {
             display: flex;
-            gap: 0.5rem;
+            gap: var(--space-2);
             flex-wrap: wrap;
         }
-
-        .btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-
-        .btn-primary {
-            background: #667eea;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #5568d3;
-        }
-
-        .btn-danger {
-            background: #dc3545;
-            color: white;
-        }
-
-        .btn-danger:hover {
-            background: #c82333;
-        }
-
-        .btn-success {
-            background: #28a745;
-            color: white;
-        }
-
-        .btn-success:hover {
-            background: #218838;
-        }
-
-        .btn-sm {
-            padding: 0.4rem 0.8rem;
-            font-size: 0.85rem;
-        }
-
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .logout-btn {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: 1px solid white;
-        }
-
-        .logout-btn:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
-        .message {
-            padding: 1rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-        }
-
-        .message.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .message.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        /* Reply form inline */
         .reply-form {
-            margin-top: 0.75rem;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
             display: none;
+            margin-top: var(--space-3);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--color-neutral-200);
         }
-
         .reply-form textarea {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.95rem;
-            font-family: inherit;
-            resize: vertical;
+            padding: var(--space-3);
+            border: 1.5px solid var(--color-neutral-300);
+            border-radius: var(--radius-md);
+            font-family: var(--font-sans);
+            font-size: var(--text-sm);
             min-height: 80px;
-            margin-bottom: 0.75rem;
+            resize: vertical;
+            margin-bottom: var(--space-2);
         }
-
         .reply-form textarea:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--color-primary-500);
+            box-shadow: 0 0 0 3px rgba(184, 132, 90, 0.15);
         }
-
+        .badge-reply {
+            background: rgba(46, 125, 155, 0.1);
+            color: var(--color-info);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            padding: 0.15rem 0.4rem;
+            border-radius: 2px;
+        }
+        .badge-rejected {
+            background: rgba(190, 49, 68, 0.1);
+            color: var(--color-error);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            padding: 0.15rem 0.4rem;
+            border-radius: 2px;
+        }
+        .article-link {
+            font-size: var(--text-xs);
+            color: var(--color-primary-500);
+        }
+        .article-link:hover { color: var(--color-accent-500); }
+        .filter-bar {
+            display: flex;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+        .filter-bar input, .filter-bar select {
+            padding: var(--space-2) var(--space-3);
+            border: 1.5px solid var(--color-neutral-300);
+            border-radius: var(--radius-md);
+            font-family: var(--font-sans);
+            font-size: var(--text-sm);
+        }
+        .filter-bar input { flex: 1; }
+        .filter-bar input:focus, .filter-bar select:focus {
+            outline: none;
+            border-color: var(--color-primary-500);
+        }
+        .rejection-reason {
+            background: var(--color-warning, rgba(201,125,47,0.08));
+            border-left: 3px solid var(--color-warning);
+            padding: var(--space-2) var(--space-3);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin-bottom: var(--space-3);
+            font-size: var(--text-sm);
+        }
         .empty-state {
             text-align: center;
-            padding: 3rem;
-            color: #999;
+            padding: var(--space-12);
+            color: var(--color-neutral-500);
         }
-
-        .empty-state .icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            color: #999;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .badge-rejected {
-            background: #f8d7da;
-            color: #721c24;
-        }
-
-        .badge-reply {
-            background: #e3f2fd;
-            color: #1565c0;
-        }
-
-        /* Tabs */
-        .tabs {
-            display: flex;
-            gap: 0;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid #e0e0e0;
-        }
-
-        .tab {
-            padding: 0.75rem 1.5rem;
-            cursor: pointer;
-            border: none;
-            background: none;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #666;
-            border-bottom: 2px solid transparent;
-            margin-bottom: -2px;
-            transition: all 0.2s;
-        }
-
-        .tab:hover {
-            color: #333;
-        }
-
-        .tab.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
-        }
-
         .tab-count {
-            background: #e0e0e0;
-            color: #666;
-            padding: 0.1rem 0.5rem;
+            background: var(--color-neutral-200);
+            color: var(--color-neutral-700);
+            font-size: var(--text-xs);
+            padding: 0.1rem 0.4rem;
             border-radius: 10px;
-            font-size: 0.8rem;
-            margin-left: 0.5rem;
+            margin-left: var(--space-2);
         }
-
         .tab.active .tab-count {
-            background: #667eea;
+            background: var(--color-accent-600);
             color: white;
+        }
+        .username-meta {
+            color: var(--color-neutral-500);
+            font-size: var(--text-xs);
+        }
+        .meta-right { text-align: right; }
+        @media (max-width: 768px) {
+            .filter-bar { flex-direction: column; }
+            .comment-item.is-reply { margin-left: var(--space-4); }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="header-content">
+    <!-- Info Bar -->
+    <div class="info-bar">
+        <div class="info-bar-content">
+            <div>Fläsch, Graubünden, Schweiz</div>
+            <div class="satire-badge">SATIRE</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><img src="logo.png" alt="Fläsch Info Logo"></a>
+            <button type="button" class="nav-toggle" title="Navigation" aria-label="Navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links">
+                <a href="index.html">Startseite</a>
+                <a href="ueber-uns.html">Über uns</a>
+                <a href="kontakt.html">Kontakt</a>
+                <button type="button" class="btn btn-logout" onclick="logout()">Abmelden</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Sub-Navigation -->
+    <div class="admin-subnav">
+        <div class="admin-subnav-content">
+            <span class="admin-label">Admin</span>
+            <a href="create-article.html">Artikel erstellen</a>
+            <a href="my-articles.html">Meine Artikel</a>
+            <a href="admin-comments.html" class="active">Kommentare</a>
+            <a href="admin-users.html">Benutzer</a>
+            <a href="admin-context.html">Kontext</a>
+        </div>
+    </div>
+
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="admin-header-content">
             <div>
                 <h1>Kommentarverwaltung</h1>
-                <p style="opacity: 0.9; margin-top: 0.25rem;">Alle Kommentare im Überblick</p>
-            </div>
-            <div class="nav-links">
-                <a href="index.html">🏠 Zur Website</a>
-                <a href="admin-users.html">👥 Benutzer</a>
-                <a href="admin-context.html">🧠 Kontext</a>
-                <a href="my-articles.html">📄 Meine Artikel</a>
-                <button class="btn btn-sm logout-btn" onclick="logout()">Abmelden</button>
+                <p>Alle Kommentare im Überblick</p>
             </div>
         </div>
     </div>
 
-    <div class="container">
+    <div class="admin-container">
         <div id="messageContainer"></div>
 
         <!-- Stats -->
-        <div class="stats">
-            <div class="stat-card">
-                <div class="number" id="totalCount">-</div>
-                <div class="label">Kommentare total</div>
+        <div class="stat-grid">
+            <div class="stat-box">
+                <div class="stat-number" id="totalCount">-</div>
+                <div class="stat-label">Kommentare total</div>
             </div>
-            <div class="stat-card">
-                <div class="number" id="articleCount">-</div>
-                <div class="label">Artikel mit Kommentaren</div>
+            <div class="stat-box">
+                <div class="stat-number" id="articleCount">-</div>
+                <div class="stat-label">Artikel mit Kommentaren</div>
             </div>
-            <div class="stat-card">
-                <div class="number" id="rejectedCount">-</div>
-                <div class="label">Abgelehnte (Review)</div>
+            <div class="stat-box">
+                <div class="stat-number" id="rejectedCount">-</div>
+                <div class="stat-label">Abgelehnte (Review)</div>
             </div>
         </div>
 
-        <!-- Tabs -->
+        <!-- Tabs & Content -->
         <div class="card">
             <div class="tabs">
-                <button class="tab active" data-tab="approved" onclick="switchTab('approved')">
+                <button type="button" class="tab active" data-tab="approved" onclick="switchTab('approved')">
                     Alle Kommentare <span class="tab-count" id="approvedTabCount">0</span>
                 </button>
-                <button class="tab" data-tab="rejected" onclick="switchTab('rejected')">
+                <button type="button" class="tab" data-tab="rejected" onclick="switchTab('rejected')">
                     Abgelehnte <span class="tab-count" id="rejectedTabCount">0</span>
                 </button>
             </div>
 
-            <!-- Filter -->
             <div class="filter-bar">
                 <input type="text" id="searchInput" placeholder="Suche nach Benutzer, Text oder Artikel..." oninput="filterComments()">
                 <select id="articleFilter" title="Nach Artikel filtern" onchange="filterComments()">
@@ -421,18 +233,12 @@
                 </select>
             </div>
 
-            <!-- Approved Comments -->
             <div id="approvedTab">
-                <div class="comment-list" id="commentList">
-                    <div class="loading">Lade Kommentare...</div>
-                </div>
+                <div id="commentList"><div class="loading">Lade Kommentare...</div></div>
             </div>
 
-            <!-- Rejected Comments -->
             <div id="rejectedTab" style="display: none;">
-                <div class="comment-list" id="rejectedList">
-                    <div class="loading">Lade abgelehnte Kommentare...</div>
-                </div>
+                <div id="rejectedList"><div class="loading">Lade abgelehnte Kommentare...</div></div>
             </div>
         </div>
     </div>
@@ -444,27 +250,20 @@
         let rejectedComments = [];
         let currentTab = 'approved';
 
-        // Check admin access
         async function checkAdminAccess() {
-            if (!sessionToken) {
-                window.location.href = 'admin.html';
-                return false;
-            }
-
+            if (!sessionToken) { window.location.href = 'admin.html'; return false; }
             try {
                 const response = await fetch(`${API_BASE}/verify`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ sessionToken })
                 });
-
                 const result = await response.json();
                 if (!result.valid || (result.role !== 'admin' && result.role !== 'author')) {
                     showMessage('Keine Berechtigung. Nur Admins und Autoren können auf diese Seite zugreifen.', 'error');
                     setTimeout(() => window.location.href = 'my-articles.html', 2000);
                     return false;
                 }
-
                 return true;
             } catch (error) {
                 console.error('Auth check failed:', error);
@@ -479,13 +278,11 @@
             setTimeout(() => { messageContainer.innerHTML = ''; }, 5000);
         }
 
-        // Load all approved comments
         async function loadAllComments() {
             try {
                 const response = await fetch(`${API_BASE}/comments?action=admin-all`, {
                     headers: { 'Authorization': `Bearer ${sessionToken}` }
                 });
-
                 const result = await response.json();
                 if (result.success) {
                     allComments = result.comments;
@@ -501,13 +298,11 @@
             }
         }
 
-        // Load rejected comments
         async function loadRejectedComments() {
             try {
                 const response = await fetch(`${API_BASE}/admin-rejected-comments?sub=list`, {
                     headers: { 'Authorization': `Bearer ${sessionToken}` }
                 });
-
                 const result = await response.json();
                 if (result.success) {
                     rejectedComments = result.comments;
@@ -523,8 +318,6 @@
         function updateStats() {
             document.getElementById('totalCount').textContent = allComments.length;
             document.getElementById('approvedTabCount').textContent = allComments.length;
-
-            // Count unique articles
             const articles = new Set(allComments.map(c => c.articleSlug));
             document.getElementById('articleCount').textContent = articles.size;
         }
@@ -532,8 +325,6 @@
         function populateArticleFilter() {
             const select = document.getElementById('articleFilter');
             const articles = [...new Set(allComments.map(c => c.articleSlug))].sort();
-
-            // Keep first option
             select.innerHTML = '<option value="">Alle Artikel</option>';
             articles.forEach(slug => {
                 const option = document.createElement('option');
@@ -544,17 +335,13 @@
         }
 
         function filterComments() {
-            if (currentTab === 'approved') {
-                renderComments();
-            } else {
-                renderRejectedComments();
-            }
+            if (currentTab === 'approved') renderComments();
+            else renderRejectedComments();
         }
 
         function getFilteredComments(comments) {
             const search = document.getElementById('searchInput').value.toLowerCase();
             const articleFilter = document.getElementById('articleFilter').value;
-
             return comments.filter(c => {
                 if (articleFilter && c.articleSlug !== articleFilter) return false;
                 if (search) {
@@ -574,43 +361,36 @@
         function renderComments() {
             const container = document.getElementById('commentList');
             const filtered = getFilteredComments(allComments);
-
             if (filtered.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="icon">💬</div>
-                        <p>Keine Kommentare gefunden</p>
-                    </div>`;
+                container.innerHTML = '<div class="empty-state"><p>Keine Kommentare gefunden</p></div>';
                 return;
             }
-
             container.innerHTML = filtered.map(comment => {
                 const date = new Date(comment.timestamp).toLocaleString('de-CH');
                 const isReply = comment.parentId !== null;
-
                 return `
                     <div class="comment-item ${isReply ? 'is-reply' : ''}" id="item-${comment.id}">
                         <div class="comment-meta">
                             <div>
                                 <span class="author">${escapeHtml(comment.displayName)}</span>
-                                <span style="color: #999; font-size: 0.85rem;">(@${escapeHtml(comment.username)})</span>
-                                ${isReply ? '<span class="badge badge-reply">Antwort</span>' : ''}
+                                <span class="username-meta">(@${escapeHtml(comment.username)})</span>
+                                ${isReply ? '<span class="badge-reply">Antwort</span>' : ''}
                             </div>
-                            <div style="text-align: right;">
-                                <a class="article-link" href="${comment.articleSlug}.html" target="_blank">📄 ${escapeHtml(comment.articleSlug)}</a>
+                            <div class="meta-right">
+                                <a class="article-link" href="${comment.articleSlug}.html" target="_blank">${escapeHtml(comment.articleSlug)}</a>
                                 <div class="date">${date}</div>
                             </div>
                         </div>
                         <div class="comment-text">${escapeHtml(comment.text)}</div>
                         <div class="comment-actions">
-                            <button class="btn btn-primary btn-sm" onclick="toggleReplyForm('${comment.id}', '${escapeHtml(comment.articleSlug)}')">💬 Antworten</button>
-                            <button class="btn btn-danger btn-sm" onclick="deleteComment('${escapeHtml(comment.articleSlug)}', '${comment.id}')">🗑 Löschen</button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="toggleReplyForm('${comment.id}', '${escapeHtml(comment.articleSlug)}')">Antworten</button>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="deleteComment('${escapeHtml(comment.articleSlug)}', '${comment.id}')">Löschen</button>
                         </div>
                         <div class="reply-form" id="reply-${comment.id}">
                             <textarea id="replyText-${comment.id}" placeholder="Deine Antwort als Admin..."></textarea>
                             <div style="display: flex; gap: 0.5rem;">
-                                <button class="btn btn-success btn-sm" onclick="submitReply('${comment.id}', '${escapeHtml(comment.articleSlug)}')">Antwort senden</button>
-                                <button class="btn btn-sm" style="background: #6c757d; color: white;" onclick="toggleReplyForm('${comment.id}')">Abbrechen</button>
+                                <button type="button" class="btn btn-success btn-sm" onclick="submitReply('${comment.id}', '${escapeHtml(comment.articleSlug)}')">Antwort senden</button>
+                                <button type="button" class="btn btn-outline btn-sm" onclick="toggleReplyForm('${comment.id}')">Abbrechen</button>
                             </div>
                         </div>
                     </div>`;
@@ -620,60 +400,49 @@
         function renderRejectedComments() {
             const container = document.getElementById('rejectedList');
             const filtered = getFilteredComments(rejectedComments);
-
             if (filtered.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="icon">✅</div>
-                        <p>Keine abgelehnten Kommentare</p>
-                    </div>`;
+                container.innerHTML = '<div class="empty-state"><p>Keine abgelehnten Kommentare</p></div>';
                 return;
             }
-
             container.innerHTML = filtered.map(comment => {
                 const date = new Date(comment.timestamp).toLocaleString('de-CH');
-
                 return `
                     <div class="comment-item" id="rejected-${comment.id}">
                         <div class="comment-meta">
                             <div>
                                 <span class="author">${escapeHtml(comment.displayName)}</span>
-                                <span style="color: #999; font-size: 0.85rem;">(@${escapeHtml(comment.username)})</span>
-                                <span class="badge badge-rejected">Abgelehnt</span>
+                                <span class="username-meta">(@${escapeHtml(comment.username)})</span>
+                                <span class="badge-rejected">Abgelehnt</span>
                             </div>
-                            <div style="text-align: right;">
-                                <a class="article-link" href="${comment.articleSlug}.html" target="_blank">📄 ${escapeHtml(comment.articleSlug)}</a>
+                            <div class="meta-right">
+                                <a class="article-link" href="${comment.articleSlug}.html" target="_blank">${escapeHtml(comment.articleSlug)}</a>
                                 <div class="date">${date}</div>
                             </div>
                         </div>
                         <div class="comment-text">${escapeHtml(comment.text)}</div>
-                        <div style="background: #fff3cd; padding: 0.5rem 0.75rem; border-radius: 5px; margin-bottom: 0.75rem; font-size: 0.9rem;">
+                        <div class="rejection-reason">
                             <strong>Grund:</strong> ${escapeHtml(comment.rejectionReason || '-')}
                             ${comment.severity ? ` | <strong>Schwere:</strong> ${escapeHtml(comment.severity)}` : ''}
                         </div>
                         <div class="comment-actions">
-                            <button class="btn btn-success btn-sm" onclick="approveRejected('${comment.id}')">✅ Trotzdem veröffentlichen</button>
-                            <button class="btn btn-danger btn-sm" onclick="deleteRejected('${comment.id}')">🗑 Endgültig löschen</button>
+                            <button type="button" class="btn btn-success btn-sm" onclick="approveRejected('${comment.id}')">Trotzdem veröffentlichen</button>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="deleteRejected('${comment.id}')">Endgültig löschen</button>
                         </div>
                     </div>`;
             }).join('');
         }
 
-        // Tab switching
         function switchTab(tab) {
             currentTab = tab;
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.querySelector(`.tab[data-tab="${tab}"]`).classList.add('active');
-
             document.getElementById('approvedTab').style.display = tab === 'approved' ? 'block' : 'none';
             document.getElementById('rejectedTab').style.display = tab === 'rejected' ? 'block' : 'none';
         }
 
-        // Toggle reply form
         function toggleReplyForm(commentId) {
             const form = document.getElementById(`reply-${commentId}`);
             const isVisible = form.style.display === 'block';
-            // Hide all reply forms
             document.querySelectorAll('.reply-form').forEach(f => f.style.display = 'none');
             if (!isVisible) {
                 form.style.display = 'block';
@@ -681,30 +450,16 @@
             }
         }
 
-        // Submit admin reply
         async function submitReply(commentId, articleSlug) {
             const textarea = document.getElementById(`replyText-${commentId}`);
             const text = textarea.value.trim();
-
-            if (!text) {
-                alert('Bitte gib eine Antwort ein');
-                return;
-            }
-
+            if (!text) { alert('Bitte gib eine Antwort ein'); return; }
             try {
                 const response = await fetch(`${API_BASE}/comments?action=admin-reply`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${sessionToken}`
-                    },
-                    body: JSON.stringify({
-                        articleSlug,
-                        commentText: text,
-                        parentId: commentId
-                    })
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${sessionToken}` },
+                    body: JSON.stringify({ articleSlug, commentText: text, parentId: commentId })
                 });
-
                 const result = await response.json();
                 if (result.success) {
                     showMessage('Antwort erfolgreich veröffentlicht!');
@@ -720,79 +475,52 @@
             }
         }
 
-        // Delete approved comment
         async function deleteComment(articleSlug, commentId) {
             if (!confirm('Kommentar wirklich löschen? Alle Antworten werden ebenfalls gelöscht.')) return;
-
             try {
                 const response = await fetch(`${API_BASE}/comments?action=admin-delete`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${sessionToken}`
-                    },
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${sessionToken}` },
                     body: JSON.stringify({ articleSlug, commentId })
                 });
-
                 const result = await response.json();
-                if (result.success) {
-                    showMessage(result.message);
-                    await loadAllComments();
-                } else {
-                    showMessage('Fehler: ' + result.error, 'error');
-                }
+                if (result.success) { showMessage(result.message); await loadAllComments(); }
+                else { showMessage('Fehler: ' + result.error, 'error'); }
             } catch (error) {
                 console.error('Delete error:', error);
                 showMessage('Fehler beim Löschen', 'error');
             }
         }
 
-        // Approve rejected comment
         async function approveRejected(commentId) {
             try {
                 const response = await fetch(`${API_BASE}/admin-rejected-comments?sub=approve`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${sessionToken}`
-                    },
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${sessionToken}` },
                     body: JSON.stringify({ commentId })
                 });
-
                 const result = await response.json();
                 if (result.success) {
                     showMessage('Kommentar wurde veröffentlicht!');
                     await Promise.all([loadAllComments(), loadRejectedComments()]);
-                } else {
-                    showMessage('Fehler: ' + result.error, 'error');
-                }
+                } else { showMessage('Fehler: ' + result.error, 'error'); }
             } catch (error) {
                 console.error('Approve error:', error);
                 showMessage('Fehler beim Genehmigen', 'error');
             }
         }
 
-        // Delete rejected comment
         async function deleteRejected(commentId) {
             if (!confirm('Kommentar endgültig löschen?')) return;
-
             try {
                 const response = await fetch(`${API_BASE}/admin-rejected-comments?sub=delete`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${sessionToken}`
-                    },
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${sessionToken}` },
                     body: JSON.stringify({ commentId })
                 });
-
                 const result = await response.json();
-                if (result.success) {
-                    showMessage('Kommentar endgültig gelöscht');
-                    await loadRejectedComments();
-                } else {
-                    showMessage('Fehler: ' + result.error, 'error');
-                }
+                if (result.success) { showMessage('Kommentar endgültig gelöscht'); await loadRejectedComments(); }
+                else { showMessage('Fehler: ' + result.error, 'error'); }
             } catch (error) {
                 console.error('Delete rejected error:', error);
                 showMessage('Fehler beim Löschen', 'error');
@@ -800,20 +528,13 @@
         }
 
         function logout() {
-            if (window.authUtils) {
-                window.authUtils.logout();
-            } else {
-                localStorage.clear();
-                window.location.href = 'admin.html';
-            }
+            if (window.authUtils) { window.authUtils.logout(); }
+            else { localStorage.clear(); window.location.href = 'admin.html'; }
         }
 
-        // Initialize
         (async () => {
             const hasAccess = await checkAdminAccess();
-            if (hasAccess) {
-                await Promise.all([loadAllComments(), loadRejectedComments()]);
-            }
+            if (hasAccess) { await Promise.all([loadAllComments(), loadRejectedComments()]); }
         })();
     </script>
     <script src="cookie-consent.js"></script>

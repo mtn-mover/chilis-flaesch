@@ -3,164 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login - Fläsch Info</title>
+    <title>Admin Login - Flaesch Info</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="cookie-consent.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+        /* Page-specific: login layout */
+        body.login-page {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            padding: var(--space-8);
         }
 
         .login-container {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             max-width: 500px;
             width: 100%;
-            padding: 2.5rem;
         }
 
         .logo-section {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: var(--space-8);
         }
 
         .logo-section img {
             height: 80px;
-            margin-bottom: 1rem;
+            margin: 0 auto var(--space-4);
         }
 
         .logo-section h1 {
-            color: #333;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
+            font-family: var(--font-serif);
+            font-size: var(--text-3xl);
+            color: var(--color-primary-900);
+            margin-bottom: var(--space-2);
         }
 
         .logo-section p {
-            color: #666;
-            font-size: 0.95rem;
+            color: var(--color-neutral-500);
+            font-size: var(--text-sm);
         }
 
-        .disclaimer {
-            background: #fff3cd;
-            border: 2px solid #ffc107;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 2rem;
+        /* Page-specific: disclaimer list */
+        .disclaimer ul {
+            margin-left: var(--space-6);
+            font-size: var(--text-sm);
+            line-height: var(--leading-relaxed);
         }
 
         .disclaimer h3 {
-            color: #856404;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
+            font-size: var(--text-sm);
+            margin-bottom: var(--space-2);
         }
 
-        .disclaimer ul {
-            margin-left: 1.5rem;
-            color: #856404;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #333;
-            font-weight: 600;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .login-button {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .login-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
+        /* Page-specific: forgot links */
         .forgot-links {
             text-align: center;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e0e0e0;
+            margin-top: var(--space-4);
+            padding-top: var(--space-4);
+            border-top: 1px solid var(--color-neutral-200);
+            font-size: var(--text-sm);
         }
 
         .forgot-links a {
-            color: #667eea;
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin: 0 0.5rem;
+            margin: 0 var(--space-2);
         }
 
-        .forgot-links a:hover {
-            text-decoration: underline;
+        .forgot-links .separator {
+            color: var(--color-neutral-300);
         }
 
         .back-link {
             text-align: center;
-            margin-top: 1.5rem;
+            margin-top: var(--space-6);
+            font-size: var(--text-sm);
         }
 
         .back-link a {
-            color: #667eea;
-            text-decoration: none;
             font-weight: 500;
         }
 
-        .back-link a:hover {
-            text-decoration: underline;
-        }
-
-        .error-message {
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            color: #721c24;
-            padding: 0.75rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            display: none;
-        }
-
-        /* Modal Styles */
+        /* Page-specific: modal show/hide */
         .modal {
             display: none;
             position: fixed;
@@ -179,120 +104,95 @@
         }
 
         .modal-content {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
             max-width: 450px;
             width: 90%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-lg);
         }
 
         .modal h2 {
-            color: #333;
-            margin-bottom: 1rem;
+            font-family: var(--font-serif);
+            color: var(--color-primary-900);
+            margin-bottom: var(--space-4);
         }
 
         .modal p {
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .modal input {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            margin-bottom: 1rem;
+            color: var(--color-neutral-500);
+            margin-bottom: var(--space-6);
+            line-height: var(--leading-normal);
+            font-size: var(--text-sm);
         }
 
         .modal-buttons {
             display: flex;
-            gap: 1rem;
+            gap: var(--space-4);
+            margin-top: var(--space-4);
         }
 
-        .modal-button {
+        .modal-buttons .btn {
             flex: 1;
-            padding: 0.8rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s;
         }
 
-        .modal-button.primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .modal-button.secondary {
-            background: #e0e0e0;
-            color: #333;
-        }
-
-        .modal-button:hover {
-            transform: translateY(-2px);
-        }
-
-        .success-message {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            color: #155724;
-            padding: 0.75rem;
-            border-radius: 5px;
-            margin-bottom: 1rem;
+        /* Hidden message helper */
+        .hidden-message {
             display: none;
+        }
+
+        /* Full-width button for login */
+        .btn-block {
+            width: 100%;
         }
     </style>
 </head>
-<body>
+<body class="login-page">
     <div class="login-container">
-        <div class="logo-section">
-            <img src="logo.png" alt="Fläsch Info">
-            <h1>Admin-Bereich</h1>
-            <p>Geschützter Zugang für Content-Ersteller</p>
-        </div>
-
-        <div class="disclaimer">
-            <h3>⚠️ Wichtige Hinweise:</h3>
-            <ul>
-                <li><strong>Nur Satire:</strong> Alle Inhalte müssen satirischer Natur sein</li>
-                <li><strong>Keine vollen Namen:</strong> Verwenden Sie nur Vornamen oder Pseudonyme</li>
-                <li><strong>Keine Beleidigungen:</strong> Diffamierungen sind nicht erlaubt</li>
-                <li><strong>Verantwortung:</strong> Jeder Ersteller ist für seine Inhalte verantwortlich</li>
-                <li><strong>Rückverfolgbarkeit:</strong> Alle Artikel sind zum Ersteller zurückverfolgbar</li>
-            </ul>
-        </div>
-
-        <div class="error-message" id="errorMessage"></div>
-
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">Benutzername</label>
-                <input type="text" id="username" name="username" required autocomplete="username">
+        <div class="card">
+            <div class="logo-section">
+                <img src="logo.png" alt="Flaesch Info">
+                <h1>Admin-Bereich</h1>
+                <p>Geschuetzter Zugang fuer Content-Ersteller</p>
             </div>
 
-            <div class="form-group">
-                <label for="password">Passwort</label>
-                <input type="password" id="password" name="password" required autocomplete="current-password">
+            <div class="message warning disclaimer">
+                <h3>Wichtige Hinweise:</h3>
+                <ul>
+                    <li><strong>Nur Satire:</strong> Alle Inhalte muessen satirischer Natur sein</li>
+                    <li><strong>Keine vollen Namen:</strong> Verwenden Sie nur Vornamen oder Pseudonyme</li>
+                    <li><strong>Keine Beleidigungen:</strong> Diffamierungen sind nicht erlaubt</li>
+                    <li><strong>Verantwortung:</strong> Jeder Ersteller ist fuer seine Inhalte verantwortlich</li>
+                    <li><strong>Rueckverfolgbarkeit:</strong> Alle Artikel sind zum Ersteller rueckverfolgbar</li>
+                </ul>
             </div>
 
-            <button type="submit" class="login-button">🔐 Einloggen</button>
-        </form>
+            <div class="message error hidden-message" id="errorMessage"></div>
 
-        <div class="forgot-links">
-            <a href="#" id="forgotUsernameLink">Benutzername vergessen?</a>
-            <span style="color: #ccc;">|</span>
-            <a href="#" id="forgotPasswordLink">Passwort vergessen?</a>
-        </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Benutzername</label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
 
-        <div class="back-link">
-            <a href="register.html">Noch kein Account? Jetzt registrieren →</a>
-            <br><br>
-            <a href="index.html">← Zurück zur Startseite</a>
+                <div class="form-group">
+                    <label for="password">Passwort</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Einloggen</button>
+            </form>
+
+            <div class="forgot-links">
+                <a href="#" id="forgotUsernameLink">Benutzername vergessen?</a>
+                <span class="separator">|</span>
+                <a href="#" id="forgotPasswordLink">Passwort vergessen?</a>
+            </div>
+
+            <div class="back-link">
+                <a href="register.html">Noch kein Account? Jetzt registrieren &rarr;</a>
+                <br><br>
+                <a href="index.html">&larr; Zurueck zur Startseite</a>
+            </div>
         </div>
     </div>
 
@@ -301,11 +201,13 @@
         <div class="modal-content">
             <h2>Benutzername vergessen?</h2>
             <p>Gib deine E-Mail-Adresse ein und wir senden dir deinen Benutzernamen zu.</p>
-            <div id="forgotUsernameMessage" class="success-message"></div>
-            <input type="email" id="forgotUsernameEmail" placeholder="E-Mail-Adresse" />
+            <div id="forgotUsernameMessage" class="message success hidden-message"></div>
+            <div class="form-group">
+                <input type="email" id="forgotUsernameEmail" placeholder="E-Mail-Adresse" />
+            </div>
             <div class="modal-buttons">
-                <button class="modal-button secondary" onclick="closeForgotUsernameModal()">Abbrechen</button>
-                <button class="modal-button primary" onclick="sendUsernameReminder()">Senden</button>
+                <button type="button" class="btn btn-outline" onclick="closeForgotUsernameModal()">Abbrechen</button>
+                <button type="button" class="btn btn-primary" onclick="sendUsernameReminder()">Senden</button>
             </div>
         </div>
     </div>
@@ -314,12 +216,14 @@
     <div class="modal" id="forgotPasswordModal">
         <div class="modal-content">
             <h2>Passwort vergessen?</h2>
-            <p>Gib deine E-Mail-Adresse ein und wir senden dir einen Link zum Zurücksetzen deines Passworts.</p>
-            <div id="forgotPasswordMessage" class="success-message"></div>
-            <input type="email" id="forgotPasswordEmail" placeholder="E-Mail-Adresse" />
+            <p>Gib deine E-Mail-Adresse ein und wir senden dir einen Link zum Zuruecksetzen deines Passworts.</p>
+            <div id="forgotPasswordMessage" class="message success hidden-message"></div>
+            <div class="form-group">
+                <input type="email" id="forgotPasswordEmail" placeholder="E-Mail-Adresse" />
+            </div>
             <div class="modal-buttons">
-                <button class="modal-button secondary" onclick="closeForgotPasswordModal()">Abbrechen</button>
-                <button class="modal-button primary" onclick="sendPasswordReset()">Senden</button>
+                <button type="button" class="btn btn-outline" onclick="closeForgotPasswordModal()">Abbrechen</button>
+                <button type="button" class="btn btn-primary" onclick="sendPasswordReset()">Senden</button>
             </div>
         </div>
     </div>
@@ -373,7 +277,7 @@
 
             } catch (error) {
                 // Login fehlgeschlagen
-                errorMessage.textContent = '❌ ' + error.message;
+                errorMessage.textContent = error.message;
                 errorMessage.style.display = 'block';
 
                 setTimeout(() => {

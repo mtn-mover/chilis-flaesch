@@ -5,239 +5,155 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meine Artikel - Fläsch Info Admin</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-            min-height: 100vh;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header-logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-        }
-
-        .header-logo img {
-            height: 50px;
-            width: auto;
-        }
-
-        .header-logo h1 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        .header-logo:hover {
-            opacity: 0.9;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-
-        .nav-links a:hover {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .user-greeting {
-            color: white;
-            padding: 0.5rem 1rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 5px;
-            font-weight: 600;
-            display: none;
-        }
-
-        .user-greeting.show {
-            display: block;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-
+        /* Page-specific styles */
         .article-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: var(--space-6);
         }
-
         .article-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            background: var(--color-white);
+            border: 1px solid var(--color-neutral-300);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            transition: box-shadow 0.2s;
         }
-
-        .article-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
-
+        .article-card:hover { box-shadow: var(--shadow-md); }
         .article-card h3 {
-            color: #333;
-            margin-bottom: 0.5rem;
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--color-neutral-900);
+            margin-bottom: var(--space-3);
         }
-
         .article-meta {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: var(--text-sm);
+            color: var(--color-neutral-500);
+            margin-bottom: var(--space-4);
+            line-height: var(--leading-relaxed);
         }
-
+        .article-meta a { color: var(--color-accent-600); }
         .article-category {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-right: 0.5rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 2px;
+            font-size: var(--text-xs);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: var(--tracking-wider);
         }
-
-        .category-politik { background: #e3f2fd; color: #1976d2; }
-        .category-wirtschaft { background: #e8f5e9; color: #388e3c; }
-        .category-kurioses { background: #fff3e0; color: #f57c00; }
-        .category-gesellschaft { background: #f3e5f5; color: #7b1fa2; }
-
+        .category-politik { background: rgba(190,49,68,0.1); color: var(--cat-politik); }
+        .category-wirtschaft { background: rgba(201,125,47,0.1); color: var(--cat-wirtschaft); }
+        .category-kurioses { background: rgba(124,92,191,0.1); color: var(--cat-kurioses); }
+        .category-gesellschaft { background: rgba(46,125,155,0.1); color: var(--cat-gesellschaft); }
+        .category-kirche { background: rgba(61,122,79,0.1); color: var(--cat-kirche); }
+        .category-kultur { background: rgba(46,125,155,0.1); color: var(--cat-kultur); }
+        .category-sport { background: rgba(61,139,95,0.1); color: var(--cat-sport); }
         .article-status {
             display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 2px;
+            font-size: var(--text-xs);
             font-weight: 600;
+            margin-left: var(--space-2);
         }
-
-        .status-draft { background: #fff9c4; color: #f57f17; }
-        .status-published { background: #c8e6c9; color: #2e7d32; }
-
+        .status-draft { background: rgba(201,125,47,0.1); color: var(--color-warning); }
+        .status-published { background: rgba(61,122,79,0.1); color: var(--color-success); }
         .article-actions {
             display: flex;
-            gap: 0.5rem;
-            margin-top: 1rem;
             flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-top: var(--space-4);
+            padding-top: var(--space-4);
+            border-top: 1px solid var(--color-neutral-100);
         }
-
-        .btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: #667eea;
-            color: white;
-        }
-
-        .btn-success {
-            background: #28a745;
-            color: white;
-        }
-
-        .btn-danger {
-            background: #dc3545;
-            color: white;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
+        .btn-info { background: var(--color-info); color: white; }
+        .btn-info:hover { background: #24687F; color: white; }
         .empty-state {
             text-align: center;
-            padding: 4rem 2rem;
-            background: white;
-            border-radius: 10px;
+            padding: var(--space-16);
+            color: var(--color-neutral-500);
         }
-
         .empty-state h2 {
-            color: #666;
-            margin-bottom: 1rem;
+            font-family: var(--font-serif);
+            color: var(--color-neutral-700);
+            margin-bottom: var(--space-2);
         }
-
-        .loading {
-            text-align: center;
-            padding: 4rem 2rem;
+        .user-greeting {
+            font-weight: 600;
+            color: var(--color-primary-700);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-
-        .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
+        .user-greeting.show { opacity: 1; }
+        .newspaper-link { display: none; }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        .spinner {
+            border: 3px solid var(--color-neutral-200);
+            border-top: 3px solid var(--color-accent-600);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto var(--space-4);
+        }
+        @media (max-width: 768px) {
+            .article-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="header-content">
-            <a href="index.html" class="header-logo">
-                <img src="logo.png" alt="Fläsch Info Logo">
-                <h1>Meine Artikel</h1>
-            </a>
-            <div class="nav-links" id="navLinks">
-                <a href="create-article.html">Neuer Artikel</a>
-                <a href="create-newspaper.html" id="newspaperLink" style="display: none;">📰 Zeitung erstellen</a>
-                <span class="user-greeting" id="userGreeting"></span>
-                <a href="#" onclick="logout()">Logout</a>
-            </div>
+    <!-- Info Bar -->
+    <div class="info-bar">
+        <div class="info-bar-content">
+            <div>Fläsch, Graubünden, Schweiz</div>
+            <div class="satire-badge">SATIRE</div>
         </div>
     </div>
 
-    <div class="container">
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><img src="logo.png" alt="Fläsch Info Logo"></a>
+            <button type="button" class="nav-toggle" title="Navigation" aria-label="Navigation" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Startseite</a>
+                <span class="user-greeting" id="userGreeting"></span>
+                <button type="button" class="btn btn-logout" onclick="logout()">Abmelden</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Sub-Navigation -->
+    <div class="admin-subnav">
+        <div class="admin-subnav-content">
+            <span class="admin-label">Admin</span>
+            <a href="create-article.html">Artikel erstellen</a>
+            <a href="my-articles.html" class="active">Meine Artikel</a>
+            <a href="admin-comments.html">Kommentare</a>
+            <a href="create-newspaper.html" id="newspaperLink" class="newspaper-link">Zeitung erstellen</a>
+        </div>
+    </div>
+
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="admin-header-content">
+            <div><h1>Meine Artikel</h1></div>
+        </div>
+    </div>
+
+    <div class="admin-container">
         <div id="loadingIndicator" class="loading">
             <div class="spinner"></div>
             <p>Lade Artikel...</p>
@@ -248,31 +164,24 @@
         <div id="emptyState" class="empty-state" style="display: none;">
             <h2>Noch keine Artikel</h2>
             <p>Erstelle deinen ersten Artikel!</p>
-            <a href="create-article.html" class="btn btn-primary" style="margin-top: 1rem;">Artikel erstellen</a>
+            <a href="create-article.html" class="btn btn-primary" style="margin-top: var(--space-4);">Artikel erstellen</a>
         </div>
     </div>
 
     <script>
         const sessionToken = localStorage.getItem('sessionToken');
-        if (!sessionToken) {
-            window.location.href = 'admin.html';
-        }
+        if (!sessionToken) { window.location.href = 'admin.html'; }
 
         function logout() {
-            if (window.authUtils) {
-                window.authUtils.logout();
-            } else {
-                // Cookie Consent behalten
+            if (window.authUtils) { window.authUtils.logout(); }
+            else {
                 const cookieConsent = localStorage.getItem('flaesch_cookie_consent');
                 localStorage.clear();
-                if (cookieConsent) {
-                    localStorage.setItem('flaesch_cookie_consent', cookieConsent);
-                }
+                if (cookieConsent) localStorage.setItem('flaesch_cookie_consent', cookieConsent);
                 window.location.href = 'admin.html';
             }
         }
 
-        // Load Drafts
         async function loadDrafts() {
             const loadingIndicator = document.getElementById('loadingIndicator');
             const articlesGrid = document.getElementById('articlesGrid');
@@ -284,73 +193,40 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ sessionToken })
                 });
-
                 const result = await response.json();
-
                 loadingIndicator.style.display = 'none';
+                if (!response.ok) throw new Error(result.error);
 
-                if (!response.ok) {
-                    throw new Error(result.error);
-                }
-
-                // Show user greeting in header
                 if (result.userDisplayName) {
-                    const greetingElement = document.getElementById('userGreeting');
-                    if (greetingElement) {
-                        greetingElement.textContent = `Hallo ${result.userDisplayName}`;
-                        greetingElement.classList.add('show');
-                    }
+                    const el = document.getElementById('userGreeting');
+                    if (el) { el.textContent = `Hallo ${result.userDisplayName}`; el.classList.add('show'); }
                 }
 
-                // Show newspaper link for admins
+                // Show newspaper link and admin-only subnav links for admins
                 if (result.isAdmin) {
                     const newspaperLink = document.getElementById('newspaperLink');
-                    if (newspaperLink) {
-                        newspaperLink.style.display = 'block';
-                    }
-                }
+                    if (newspaperLink) newspaperLink.style.display = 'block';
 
-                // Add comments link for all authors/admins
-                {
-                    const navLinks = document.getElementById('navLinks');
-                    const userGreeting = navLinks.querySelector('.user-greeting');
-                    if (!navLinks.querySelector('a[href="admin-comments.html"]')) {
-                        const commentsLink = document.createElement('a');
-                        commentsLink.href = 'admin-comments.html';
-                        commentsLink.textContent = '💬 Kommentare';
-                        navLinks.insertBefore(commentsLink, userGreeting);
-                    }
-                }
+                    const subnav = document.querySelector('.admin-subnav-content');
+                    if (subnav && !subnav.querySelector('a[href="admin-users.html"]')) {
+                        const usersLink = document.createElement('a');
+                        usersLink.href = 'admin-users.html';
+                        usersLink.textContent = 'Benutzer';
+                        subnav.appendChild(usersLink);
 
-                // Add admin-only links
-                if (result.isAdmin) {
-                    const navLinks = document.getElementById('navLinks');
-                    const userGreeting = navLinks.querySelector('.user-greeting');
-                    if (!navLinks.querySelector('a[href="admin-users.html"]')) {
-                        const adminLink = document.createElement('a');
-                        adminLink.href = 'admin-users.html';
-                        adminLink.textContent = '👥 Benutzerverwaltung';
-                        navLinks.insertBefore(adminLink, userGreeting);
-                    }
-                    if (!navLinks.querySelector('a[href="admin-context.html"]')) {
                         const contextLink = document.createElement('a');
                         contextLink.href = 'admin-context.html';
-                        contextLink.textContent = '🧠 Kontext';
-                        navLinks.insertBefore(contextLink, userGreeting);
+                        contextLink.textContent = 'Kontext';
+                        subnav.appendChild(contextLink);
                     }
                 }
 
-                if (result.drafts.length === 0) {
-                    emptyState.style.display = 'block';
-                    return;
-                }
+                if (result.drafts.length === 0) { emptyState.style.display = 'block'; return; }
 
-                // Display drafts
                 articlesGrid.style.display = 'grid';
                 articlesGrid.innerHTML = result.drafts.map(draft => createArticleCard(draft, result.isAdmin)).join('');
-
             } catch (error) {
-                loadingIndicator.innerHTML = `<p style="color: red;">Fehler: ${error.message}</p>`;
+                loadingIndicator.innerHTML = `<p style="color: var(--color-error);">Fehler: ${error.message}</p>`;
             }
         }
 
@@ -367,289 +243,129 @@
                         <span class="article-status status-${draft.status}">${draft.status === 'draft' ? 'Entwurf' : 'Veröffentlicht'}</span>
                         <br>
                         <small>Erstellt durch: ${draft.authorDisplayName} | ${date}</small>
-                        ${isPublished && draft.publishedUrl ? `<br><small><a href="${draft.publishedUrl}" target="_blank" style="color: #667eea;">🔗 Artikel ansehen</a></small>` : ''}
+                        ${isPublished && draft.publishedUrl ? `<br><small><a href="${draft.publishedUrl}" target="_blank">Artikel ansehen</a></small>` : ''}
                     </div>
                     <div class="article-actions">
                         ${canEdit ? `
                             ${!isPublished ? `
-                                <button class="btn btn-primary" onclick="editDraft('${draft.id}')">Bearbeiten</button>
-                                <button class="btn" style="background: #17a2b8; color: white;" onclick="previewDraft('${draft.id}')">👁️ Vorschau</button>
-                                <button class="btn btn-success" onclick="publishDraft('${draft.id}')">Veröffentlichen</button>
-                                <button class="btn btn-danger" onclick="deleteDraft('${draft.id}')">Löschen</button>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="editDraft('${draft.id}')">Bearbeiten</button>
+                                <button type="button" class="btn btn-info btn-sm" onclick="previewDraft('${draft.id}')">Vorschau</button>
+                                <button type="button" class="btn btn-success btn-sm" onclick="publishDraft('${draft.id}')">Veröffentlichen</button>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteDraft('${draft.id}')">Löschen</button>
                             ` : `
-                                <button class="btn btn-primary" onclick="editDraft('${draft.id}')">Bearbeiten</button>
-                                <button class="btn" style="background: #17a2b8; color: white;" onclick="previewDraft('${draft.id}')">👁️ Vorschau</button>
-                                <button class="btn btn-success" onclick="republishDraft('${draft.id}')">Neu veröffentlichen</button>
-                                <button class="btn btn-danger" onclick="unpublishArticle('${draft.id}')">Von Website löschen</button>
+                                <button type="button" class="btn btn-primary btn-sm" onclick="editDraft('${draft.id}')">Bearbeiten</button>
+                                <button type="button" class="btn btn-info btn-sm" onclick="previewDraft('${draft.id}')">Vorschau</button>
+                                <button type="button" class="btn btn-success btn-sm" onclick="republishDraft('${draft.id}')">Neu veröffentlichen</button>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="unpublishArticle('${draft.id}')">Von Website löschen</button>
                             `}
                         ` : ''}
                     </div>
-                </div>
-            `;
+                </div>`;
         }
 
-        function editDraft(id) {
-            // Redirect to create-article page with draft ID
-            window.location.href = `create-article.html?edit=${id}`;
-        }
+        function editDraft(id) { window.location.href = `create-article.html?edit=${id}`; }
 
         async function previewDraft(id) {
             try {
-                // Get draft data
                 const response = await fetch('/api/get-drafts', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ sessionToken })
                 });
-
                 const result = await response.json();
-                if (!response.ok) {
-                    console.error('API Error:', result);
-                    alert('Fehler beim Laden des Artikels: ' + (result.error || 'Unbekannter Fehler'));
-                    return;
-                }
-
+                if (!response.ok) { alert('Fehler: ' + (result.error || 'Unbekannter Fehler')); return; }
                 const draft = result.drafts.find(d => d.id === id);
-                if (!draft) {
-                    alert('Artikel nicht gefunden');
-                    return;
-                }
-
-                // Open preview in new tab
+                if (!draft) { alert('Artikel nicht gefunden'); return; }
                 const previewWindow = window.open('', '_blank');
-                if (!previewWindow) {
-                    alert('Popup wurde blockiert. Bitte erlaube Pop-ups für diese Seite.');
-                    return;
-                }
-
-                // Create preview HTML
-                const previewHTML = generatePreviewHTML(draft);
-                previewWindow.document.write(previewHTML);
+                if (!previewWindow) { alert('Popup wurde blockiert.'); return; }
+                previewWindow.document.write(generatePreviewHTML(draft));
                 previewWindow.document.close();
-
-            } catch (error) {
-                console.error('Preview Error:', error);
-                alert('Fehler: ' + error.message);
-            }
+            } catch (error) { alert('Fehler: ' + error.message); }
         }
 
         function generatePreviewHTML(draft) {
-            const categoryLabel = {
-                'politik': 'Politik',
-                'wirtschaft': 'Wirtschaft',
-                'kurioses': 'Kurioses',
-                'gesellschaft': 'Gesellschaft'
-            }[draft.category] || draft.category;
-
-            // Handle images: first as hero, rest embedded in article
+            const categoryLabel = { 'politik': 'Politik', 'wirtschaft': 'Wirtschaft', 'kurioses': 'Kurioses', 'gesellschaft': 'Gesellschaft' }[draft.category] || draft.category;
             const images = draft.images || [];
             const heroImage = images.length > 0 ? images[0] : (draft.image || '');
             const additionalImages = images.length > 1 ? images.slice(1) : [];
-
-            // Generate HTML for additional images to embed in article
-            const additionalImagesHTML = additionalImages.map(img =>
-                `<img src="${img}" alt="Artikel Bild" style="width: 100%; max-width: 800px; border-radius: 15px; margin: 2.5rem auto; display: block;">`
-            ).join('\n');
-
+            const additionalImagesHTML = additionalImages.map(img => `<img src="${img}" alt="Artikel Bild" style="width: 100%; max-width: 800px; border-radius: 15px; margin: 2.5rem auto; display: block;">`).join('\n');
             const isPublished = draft.status === 'published';
-            const bannerColor = isPublished ? '#28a745' : '#ff6b6b';
-            const bannerText = isPublished ? '✅ VERÖFFENTLICHT - Dies ist eine Vorschau des live Artikels' : '⚠️ VORSCHAU - Dieser Artikel ist noch nicht veröffentlicht';
-
-            // Get article content and inject additional images after first paragraph
+            const bannerColor = isPublished ? '#3D7A4F' : '#BE3144';
+            const bannerText = isPublished ? 'VERÖFFENTLICHT - Dies ist eine Vorschau des live Artikels' : 'VORSCHAU - Dieser Artikel ist noch nicht veröffentlicht';
             let articleContent = draft.html || draft.content;
             if (additionalImagesHTML && articleContent) {
-                // Find first closing </p> tag and insert images after it
                 const firstParagraphEnd = articleContent.indexOf('</p>');
                 if (firstParagraphEnd !== -1) {
-                    articleContent = articleContent.slice(0, firstParagraphEnd + 4) +
-                                   '\n' + additionalImagesHTML + '\n' +
-                                   articleContent.slice(firstParagraphEnd + 4);
+                    articleContent = articleContent.slice(0, firstParagraphEnd + 4) + '\n' + additionalImagesHTML + '\n' + articleContent.slice(firstParagraphEnd + 4);
                 } else {
-                    // If no paragraph found, append at the beginning
                     articleContent = additionalImagesHTML + '\n' + articleContent;
                 }
             }
-
             const subtitleHTML = draft.subtitle ? `<p style="font-size: 1.2rem; font-style: italic; color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto;">${draft.subtitle}</p>` : '';
-
-            return `<!DOCTYPE html>
-<html lang="de-CH">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${draft.title} - VORSCHAU</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; }
-        .preview-banner { background: linear-gradient(135deg, ${bannerColor} 0%, ${bannerColor} 100%); color: white; padding: 1rem; text-align: center; font-weight: bold; font-size: 1.2rem; }
-        .hero { background: linear-gradient(135deg, #8B4513 0%, #654321 100%); color: white; padding: 3rem 2rem; text-align: center; }
-        .hero-image { width: 100%; max-width: 1200px; height: 400px; object-fit: cover; margin: 0 auto 2rem; border-radius: 10px; display: block; }
-        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
-        .hero-meta { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; }
-        .hero-category { background: rgba(255,255,255,0.2); padding: 0.5rem 1.5rem; border-radius: 25px; font-weight: 600; }
-        .container { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
-        .article-content { font-size: 1.15rem; line-height: 1.9; color: #2d3436; }
-        .article-content p { margin-bottom: 1.8rem; }
-        .article-content h2 { font-size: 2.2rem; color: #8B4513; margin: 3rem 0 1.5rem; padding-bottom: 0.5rem; border-bottom: 3px solid #8B4513; }
-        .article-content h3 { font-size: 1.6rem; color: #C16F31; margin: 2.5rem 0 1rem; padding-left: 1rem; border-left: 5px solid #8B4513; }
-        .article-content blockquote { background: #fff9f0; border-left: 5px solid #8B4513; padding: 1.5rem 2rem; margin: 2.5rem 0; font-style: italic; border-radius: 10px; }
-        .article-content img { max-width: 100%; height: auto; border-radius: 15px; margin: 2.5rem 0; }
-    </style>
-</head>
-<body>
-    <div class="preview-banner">${bannerText}</div>
-
-    <section class="hero">
-        ${heroImage ? `<img src="${heroImage}" alt="${draft.title}" class="hero-image">` : ''}
-        <h1>${draft.title}</h1>
-        ${subtitleHTML}
-        <div class="hero-meta">
-            <span class="hero-category">${categoryLabel}</span>
-            <span>Erstellt durch: ${draft.authorDisplayName}</span>
-            <span>${new Date(draft.updatedAt).toLocaleDateString('de-CH')}</span>
-        </div>
-    </section>
-
-    <div class="container">
-        <article class="article-content">
-            ${articleContent}
-        </article>
-    </div>
-</body>
-</html>`;
+            return `<!DOCTYPE html><html lang="de-CH"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${draft.title} - VORSCHAU</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head><body>
+            <div style="background:${bannerColor}; color:white; padding:1rem; text-align:center; font-weight:600;">${bannerText}</div>
+            <section class="hero-article"><div class="hero-content">${heroImage ? `<img src="${heroImage}" alt="${draft.title}" style="width:100%;max-width:1200px;height:400px;object-fit:cover;margin:0 auto 2rem;border-radius:10px;display:block;">` : ''}<h1>${draft.title}</h1>${subtitleHTML}<div class="article-meta" style="display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-top:1.5rem;"><span class="badge badge-${draft.category}">${categoryLabel}</span><span>Erstellt durch: ${draft.authorDisplayName}</span><span>${new Date(draft.updatedAt).toLocaleDateString('de-CH')}</span></div></div></section>
+            <div class="article-content">${articleContent}</div></body></html>`;
         }
 
         async function deleteDraft(id) {
             if (!confirm('Artikel wirklich löschen?')) return;
-
             try {
-                const response = await fetch('/api/delete-draft', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ sessionToken, draftId: id })
-                });
-
+                const response = await fetch('/api/delete-draft', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sessionToken, draftId: id }) });
                 const result = await response.json();
-                if (response.ok) {
-                    alert('Artikel gelöscht');
-                    loadDrafts(); // Reload
-                } else {
-                    alert('Fehler: ' + result.error);
-                }
-            } catch (error) {
-                alert('Fehler: ' + error.message);
-            }
+                if (response.ok) { alert('Artikel gelöscht'); loadDrafts(); }
+                else { alert('Fehler: ' + result.error); }
+            } catch (error) { alert('Fehler: ' + error.message); }
         }
 
         async function publishDraft(id) {
-            if (!confirm('Artikel wirklich veröffentlichen? Er wird live auf der Website erscheinen.')) return;
-
-            // Show loading indicator
+            if (!confirm('Artikel wirklich veröffentlichen?')) return;
             const loadingDiv = document.createElement('div');
             loadingDiv.id = 'publishLoading';
-            loadingDiv.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10000;';
-            loadingDiv.innerHTML = `
-                <div class="spinner"></div>
-                <p style="color: white; font-size: 1.2rem; margin-top: 1rem;">Artikel wird veröffentlicht...</p>
-                <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">Bitte warten, dies kann einen Moment dauern.</p>
-            `;
+            loadingDiv.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10000;';
+            loadingDiv.innerHTML = '<div class="spinner" style="border-top-color:white;"></div><p style="color:white;font-size:1.2rem;margin-top:1rem;">Artikel wird veröffentlicht...</p>';
             document.body.appendChild(loadingDiv);
-
             try {
-                const response = await fetch('/api/publish-article', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ sessionToken, draftId: id })
-                });
-
+                const response = await fetch('/api/publish-article', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sessionToken, draftId: id }) });
                 const result = await response.json();
-                loadingDiv.remove(); // Remove loading indicator
-
-                if (response.ok) {
-                    alert('✅ Artikel veröffentlicht!\n\nURL: ' + result.url + '\n\nDas Deployment dauert ca. 1-2 Minuten.');
-                    loadDrafts(); // Reload
-                } else {
-                    alert('❌ Fehler: ' + result.error + (result.details ? '\n\n' + result.details : ''));
-                }
-            } catch (error) {
                 loadingDiv.remove();
-                alert('❌ Fehler: ' + error.message);
-            }
+                if (response.ok) { alert('Artikel veröffentlicht!\n\nURL: ' + result.url); loadDrafts(); }
+                else { alert('Fehler: ' + result.error + (result.details ? '\n\n' + result.details : '')); }
+            } catch (error) { loadingDiv.remove(); alert('Fehler: ' + error.message); }
         }
 
         async function republishDraft(id) {
-            if (!confirm('Artikel neu veröffentlichen?\n\nDer bestehende Artikel auf der Website wird mit der aktuellen Version überschrieben.')) return;
-
-            // Show loading indicator
+            if (!confirm('Artikel neu veröffentlichen?')) return;
             const loadingDiv = document.createElement('div');
             loadingDiv.id = 'publishLoading';
-            loadingDiv.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10000;';
-            loadingDiv.innerHTML = `
-                <div class="spinner"></div>
-                <p style="color: white; font-size: 1.2rem; margin-top: 1rem;">Artikel wird neu veröffentlicht...</p>
-                <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">Bitte warten, dies kann einen Moment dauern.</p>
-            `;
+            loadingDiv.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10000;';
+            loadingDiv.innerHTML = '<div class="spinner" style="border-top-color:white;"></div><p style="color:white;font-size:1.2rem;margin-top:1rem;">Artikel wird neu veröffentlicht...</p>';
             document.body.appendChild(loadingDiv);
-
             try {
-                const response = await fetch('/api/publish-article', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ sessionToken, draftId: id })
-                });
-
+                const response = await fetch('/api/publish-article', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sessionToken, draftId: id }) });
                 const result = await response.json();
-                loadingDiv.remove(); // Remove loading indicator
-
-                if (response.ok) {
-                    alert('✅ Artikel neu veröffentlicht!\n\nURL: ' + result.url + '\n\nDie Änderungen sind in ca. 1-2 Minuten live.');
-                    loadDrafts(); // Reload
-                } else {
-                    alert('❌ Fehler: ' + result.error + (result.details ? '\n\n' + result.details : ''));
-                }
-            } catch (error) {
                 loadingDiv.remove();
-                alert('❌ Fehler: ' + error.message);
-            }
+                if (response.ok) { alert('Artikel neu veröffentlicht!\n\nURL: ' + result.url); loadDrafts(); }
+                else { alert('Fehler: ' + result.error + (result.details ? '\n\n' + result.details : '')); }
+            } catch (error) { loadingDiv.remove(); alert('Fehler: ' + error.message); }
         }
 
         async function unpublishArticle(id) {
-            if (!confirm('⚠️ ACHTUNG!\n\nDer Artikel wird von der Website gelöscht und zurück zu "Entwurf" gesetzt.\n\nDu kannst ihn später neu bearbeiten und wieder veröffentlichen.\n\nFortfahren?')) return;
-
-            // Show loading indicator
+            if (!confirm('Artikel von der Website löschen und zurück zu "Entwurf" setzen?')) return;
             const loadingDiv = document.createElement('div');
             loadingDiv.id = 'publishLoading';
-            loadingDiv.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10000;';
-            loadingDiv.innerHTML = `
-                <div class="spinner"></div>
-                <p style="color: white; font-size: 1.2rem; margin-top: 1rem;">Artikel wird zurückgezogen...</p>
-                <p style="color: white; font-size: 0.9rem; margin-top: 0.5rem;">Bitte warten, dies kann einen Moment dauern.</p>
-            `;
+            loadingDiv.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10000;';
+            loadingDiv.innerHTML = '<div class="spinner" style="border-top-color:white;"></div><p style="color:white;font-size:1.2rem;margin-top:1rem;">Artikel wird zurückgezogen...</p>';
             document.body.appendChild(loadingDiv);
-
             try {
-                const response = await fetch('/api/delete-article', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ sessionToken, draftId: id })
-                });
-
+                const response = await fetch('/api/delete-article', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sessionToken, draftId: id }) });
                 const result = await response.json();
-                loadingDiv.remove(); // Remove loading indicator
-
-                if (response.ok) {
-                    alert('✅ Artikel von Website gelöscht!\n\nDer Artikel ist jetzt wieder ein Entwurf und kann bearbeitet werden.');
-                    loadDrafts(); // Reload
-                } else {
-                    alert('❌ Fehler: ' + result.error + (result.details ? '\n\n' + result.details : ''));
-                }
-            } catch (error) {
                 loadingDiv.remove();
-                alert('❌ Fehler: ' + error.message);
-            }
+                if (response.ok) { alert('Artikel von Website gelöscht. Er ist jetzt wieder ein Entwurf.'); loadDrafts(); }
+                else { alert('Fehler: ' + result.error + (result.details ? '\n\n' + result.details : '')); }
+            } catch (error) { loadingDiv.remove(); alert('Fehler: ' + error.message); }
         }
 
-        // Load on page load
         loadDrafts();
     </script>
 </body>
