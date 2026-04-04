@@ -714,6 +714,36 @@ Nach einem Großanlass in Maienfels Mehrzweckhalle wurde der Abfahrtsverkehr bew
 
 **Satirischer Unterton:** Kritik an rücksichtsloser Verkehrsumleitung zu Lasten der Nachbarn.
 
+
+### Eine Strasse wird vergoldet, eine andere dauerhaft gesperrt (April 2026)
+**Kategorie:** politik
+**Satirische Artikel-Analyse: Fläsch Straßenpolitik**
+
+**1. Neue Charaktere:**
+• Gemeindevorstand Fläsch (Entscheidungsträger)
+• Kantonspolizei Graubünden (Genehmigungsbehörde)
+• Stimmberechtigte der Gemeindeversammlung (Abstimmende)
+
+**2. Hauptereignis:**
+• Weg Neuwingert wird dauerhaft gesperrt (schlechter Zustand, Steinschlaggefahr, hohe Sanierungskosten)
+• Gleichzeitig wird 766'000 CHF für erste Etappe der Güterstraßen-Sanierung "Serla" bewilligt
+
+**3. Wichtige Details:**
+• Datum: 24. März - Polizeigenehmigung Sperrung UND Gemeindeversammlung
+• Kredit: 766'000 CHF (nur erste Etappe!)
+• Sanierungsbereich: Kantonsstraße bis Abzweiger Kiesfang Tola
+• Abstimmung: "grossmehrheitlich" angenommen
+• Satirischer Hinweis auf "Haushaltsnotstand"-Szenarien
+
+**4. Für zukünftige Artikel:**
+• Mögliche Fortsetzung der "Serla"-Etappen (weitere Kosten?)
+• Überwachung der Gemeindefinanzen
+• Reaktionen auf die Neuwingert-Sperrung
+• Vergleich zwischen gesperrten vs. sanierten Straßen
+• Entwicklung der "Salamitaktik"-Vorwürfe bei weiteren Kreditanträgen
+
+*Satirischer Subtext: Ironie zwischen Geldmangel (Sperrung) und gleichzeitigen Großausgaben*
+
 ## Stil-Richtlinien
 
 ### Satire-Level
