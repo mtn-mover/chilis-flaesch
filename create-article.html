@@ -786,6 +786,48 @@
             e.target.value = '';
         });
 
+        // Compress image client-side to stay under Vercel's 4.5MB body limit
+        function compressImage(file, maxSizeMB = 2) {
+            return new Promise((resolve) => {
+                // Skip compression for small files and GIFs
+                if (file.size < maxSizeMB * 1024 * 1024 || file.type === 'image/gif') {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve({ dataUrl: e.target.result, fileName: file.name });
+                    reader.readAsDataURL(file);
+                    return;
+                }
+
+                const img = new Image();
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        let { width, height } = img;
+
+                        // Scale down if very large
+                        const maxDim = 2400;
+                        if (width > maxDim || height > maxDim) {
+                            const ratio = Math.min(maxDim / width, maxDim / height);
+                            width = Math.round(width * ratio);
+                            height = Math.round(height * ratio);
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        // Compress as JPEG with quality 0.85
+                        const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+                        const newName = file.name.replace(/\.[^.]+$/, '.jpg');
+                        resolve({ dataUrl, fileName: newName });
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
         async function uploadPostImage(file) {
             // Show loading indicator
             const loadingDiv = document.createElement('div');
@@ -796,43 +838,45 @@
             `;
             postUploadedImagesDiv.appendChild(loadingDiv);
 
-            const reader = new FileReader();
-            reader.onload = async function(e) {
-                try {
-                    const response = await fetch('/api/upload-image', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            sessionToken: sessionToken,
-                            imageData: e.target.result,
-                            fileName: file.name,
-                            articleSlug: document.getElementById('title').value
-                        })
-                    });
+            try {
+                const { dataUrl, fileName } = await compressImage(file);
 
-                    const result = await response.json();
+                const response = await fetch('/api/upload-image', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        sessionToken: sessionToken,
+                        imageData: dataUrl,
+                        fileName: fileName,
+                        articleSlug: document.getElementById('title').value
+                    })
+                });
 
-                    // Remove loading indicator
-                    loadingDiv.remove();
-
-                    if (result.success) {
-                        uploadedImages.push(result.imageUrl);
-                        displayPostUploadedImage(result.imageUrl);
-
-                        // Update currentDraft images
-                        if (currentDraft) {
-                            currentDraft.images = uploadedImages;
-                        }
-                    } else {
-                        alert('Fehler beim Hochladen: ' + result.error);
-                    }
-                } catch (error) {
-                    // Remove loading indicator on error
-                    loadingDiv.remove();
-                    alert('Fehler beim Hochladen: ' + error.message);
+                if (!response.ok && response.headers.get('content-type')?.indexOf('json') === -1) {
+                    throw new Error('Bild zu gross. Bitte ein kleineres Bild verwenden (max. 3MB).');
                 }
-            };
-            reader.readAsDataURL(file);
+
+                const result = await response.json();
+
+                // Remove loading indicator
+                loadingDiv.remove();
+
+                if (result.success) {
+                    uploadedImages.push(result.imageUrl);
+                    displayPostUploadedImage(result.imageUrl);
+
+                    // Update currentDraft images
+                    if (currentDraft) {
+                        currentDraft.images = uploadedImages;
+                    }
+                } else {
+                    alert('Fehler beim Hochladen: ' + result.error);
+                }
+            } catch (error) {
+                // Remove loading indicator on error
+                loadingDiv.remove();
+                alert('Fehler beim Hochladen: ' + error.message);
+            }
         }
 
         function displayPostUploadedImage(url) {
