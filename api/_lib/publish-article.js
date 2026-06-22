@@ -569,7 +569,7 @@ module.exports = async function handler(req, res) {
 Fasse das Hauptereignis in 2-3 Sätzen zusammen. Nenne wichtige Zahlen, Abstimmungsergebnisse oder Zitate falls vorhanden. Schreibe als Fliesstext, keine Bulletpoints.`;
 
       const message = await anthropic.messages.create({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-6',
         max_tokens: 256,
         messages: [{
           role: 'user',

@@ -64,7 +64,7 @@ ${commentContext ? `**Antwort auf Kommentar:** ${commentContext}` : '**Dies ist 
 **Generiere jetzt einen passenden Kommentar:**`;
 
     const message = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-6',
       max_tokens: 300,
       temperature: 0.9, // Höhere Kreativität für humorvolle Kommentare
       messages: [{

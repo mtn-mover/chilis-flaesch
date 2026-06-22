@@ -229,7 +229,7 @@ Beginne jetzt mit "SUBTITLE: " !`;
     // Claude API Call
     console.log('Calling Claude API...');
     const message = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-6',
       max_tokens: 2048, // Reduced from 4096 to speed up and reduce memory
       messages: [{
         role: 'user',

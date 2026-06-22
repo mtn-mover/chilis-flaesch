@@ -63,7 +63,7 @@ Kommentar: "Alle [ethnische Gruppe] sind..."
 **Analysiere jetzt den obigen Kommentar:**`;
 
     const message = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-sonnet-4-6',
       max_tokens: 500,
       temperature: 0.2, // Niedrige Temperatur für konsistente Moderation
       messages: [{
